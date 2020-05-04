@@ -14,6 +14,8 @@ public class Main extends Application {
         primaryStage.setTitle("zeroXess");
         primaryStage.setScene(new Scene(root, 600, 800));
         primaryStage.show();
+
+        //ik maak morgen een pane aan voor het inlogscherm.
     }
     public static void main(String[] args) {
         launch(args);
