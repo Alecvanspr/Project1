@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    Scene loginScene, homeScene;
+    Scene loginScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -24,7 +24,14 @@ public class Main extends Application {
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         Button btnLogin = new Button("Log in");
-        btnLogin.setOnAction(e -> primaryStage.setScene(homeScene));
+        btnLogin.setOnAction(e -> {
+            Homescreen home = new Homescreen();
+            try {
+                home.start(primaryStage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
         Pane login = new Pane();
@@ -37,12 +44,6 @@ public class Main extends Application {
 
         loginScene = new Scene(login,800,600);
 
-        Label welcome = new Label("Welcome to the homescreen");
-        Pane home = new Pane();
-        home.getChildren().add(welcome);
-        welcome.relocate(400,300);
-
-        homeScene = new Scene(home,800,600);
 
         primaryStage.setScene(loginScene);
         primaryStage.setTitle("Title here");
