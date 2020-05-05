@@ -1,6 +1,9 @@
 package sample;
 
 public class Loginscreen {
+    public Loginscreen(){
+
+    }
 
     /*
     hier komt de code voor het inlogscherm.
