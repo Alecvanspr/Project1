@@ -47,6 +47,15 @@ public class Main extends Application {
         btnLogin.relocate(100,145);
         btnSignUp.relocate(150,145);
 
+        btnSignUp.setOnAction(e -> {
+            SignUpScreen signUpScreen = new SignUpScreen();
+            try{
+                signUpScreen.start(primaryStage);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+
         btnLogin.setOnAction(e -> {
             System.out.println(textFieldUserName.getText());
             System.out.println(passwordField.getText());
