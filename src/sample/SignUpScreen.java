@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 
 public class SignUpScreen extends Application {
     Scene SignUpp;
-    Main main;
-    ArrayKeeper arrayKeeper;
+    Main main = new Main();
     public void start(Stage stage) throws Exception{
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
@@ -22,12 +21,11 @@ public class SignUpScreen extends Application {
         PasswordField passwordField = new PasswordField();
         PasswordField passwordFieldConf = new PasswordField();
         TextField textFieldBirth = new TextField();
-        textFieldBirth.autosize();
         Button btnRegister = new Button("Register");
         Pane register = new Pane();
 
         register.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf
-                , textFieldUserName, passwordField, passwordFieldConf, btnRegister,textFieldBirth,lblBirthdate);
+                , textFieldUserName, passwordField, passwordFieldConf,textFieldBirth,lblBirthdate, btnRegister);
 
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
@@ -39,10 +37,17 @@ public class SignUpScreen extends Application {
         textFieldBirth.relocate(100,205);
         btnRegister.relocate(100,235);
 
+        //dit zo een method maken
         btnRegister.setOnAction(e->{
             if((!(passwordField.getText().equals("")))&&(!(textFieldUserName.getText().equals("")))){
+                System.out.println("Waar");
                 if(passwordField.getText().equals(passwordFieldConf.getText())) {
-                    arrayKeeper.SignUpData(textFieldUserName.getText(), passwordField.getText(), textFieldBirth.getText());
+                    main.arraykeeper.SignUpData(textFieldUserName.getText(),passwordField.getText(),textFieldBirth.getText());
+                    try{
+                        main.start(stage);
+                    } catch (Exception ex){
+                        ex.printStackTrace();
+                    }
                 }else {
                     Label passwordWrong = new Label("Passwords don't match");
                     passwordWrong.relocate(100,265);
@@ -52,12 +57,6 @@ public class SignUpScreen extends Application {
                     Label emptyFields = new Label("Fields are empty");
                     emptyFields.relocate(100,265);
                     register.getChildren().add(emptyFields);
-            }
-            Main main = new Main();
-            try {
-                main.start(stage);
-            } catch (Exception ex){
-                ex.printStackTrace();
             }
         });
 
