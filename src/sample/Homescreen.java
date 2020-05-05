@@ -7,13 +7,19 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class Homescreen extends Application {
     Scene homeScene;
+    Main main;
+    public ArrayList<PersonalData> personalData = main.getPersons();//deze doet het niet
     @Override
     public void start(Stage stage) throws Exception {
         Label welcome = new Label("Welcome to the homescreen");
         //buttons to navigate to different things
         Button btnLogOut = new Button("Log out");
+        Label user = new Label("Welcome back" + personalData.get(main.getCurrentUser()));//en dit zou dan de naam weer moeten geven
         Button btnProfile = new Button("Profile settings");
         Button btnContacts = new Button("Contacts");
         Button btnMarketPlace = new Button("Marketplace");

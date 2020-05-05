@@ -16,9 +16,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class Main extends Application {
-    public ArrayList<String> Usernames = new ArrayList<>();
+    public ArrayList<PersonalData> persons = new ArrayList<>();
+    private int currentUser;
     private String gebruiker;
-    public ArrayList<String> Passwords = new ArrayList<>();
     Scene loginScene;
 
     @Override
@@ -28,27 +28,21 @@ public class Main extends Application {
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         Button btnLogin = new Button("Log in");
-        Button signIn = new Button("Create an account");
+        Button btnSignUp = new Button("Create an account");
 
-        //array vullen, later moet dit weg
-        Usernames.add("Admin");
-        Passwords.add("Admin");
-        Usernames.add("Alec");
-        Passwords.add("1234");
-        Usernames.add("Bruh");
-        Passwords.add("Bruh");
+        delettis();
 
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
         Pane login = new Pane();
-        login.getChildren().addAll(lblUserName,lblPassWord,btnLogin,textFieldUserName,passwordField,signIn);
+        login.getChildren().addAll(lblUserName,lblPassWord,btnLogin,textFieldUserName,passwordField,btnSignUp);
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
         lblPassWord.relocate(100,95);
         passwordField.relocate(100,115);
         btnLogin.relocate(100,145);
-        signIn.relocate(150,145);
+        btnSignUp.relocate(150,145);
 
         btnLogin.setOnAction(e -> {
             if(gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
@@ -64,11 +58,17 @@ public class Main extends Application {
                 error.relocate(400,400);
             }
         });
-        signIn.setOnAction(e->{
-
-                });
+        btnSignUp.setOnAction(e -> {
+            SignUpScreen signUpScreen = new SignUpScreen();
+            try{
+                signUpScreen.start(primaryStage);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
 
         loginScene = new Scene(login,800,600);
+        login.setMinSize(800,600);
 
 
         primaryStage.setScene(loginScene);
@@ -78,20 +78,37 @@ public class Main extends Application {
 
     public boolean gegevensCheck(String password,String username){
         boolean ret = false;
-        for(int i=0;i<Usernames.size();i++){
-            if(Usernames.get(i).equals(username)){
-                if(Passwords.get(i).equals(password)){
+        int s = 0;
+        for(int i = 0;i<persons.size();i++){
+            System.out.println(persons.get(i).getName());
+            System.out.println(persons.get(i).getPassword());
+            if(persons.get(i).getName().equals(username)){
+                if(persons.get(i).getPassword().equals(password)){
                     ret = true;
+                    s = i;
                 }
             }
         }
+        setCurrentUser(s);
         return ret;
     }
-    public void setCurrentGebruiker(String CurrentUser){
-        this.gebruiker = gebruiker;
+    public void delettis(){
+        //array vullen, later moet dit weg
+        PersonalData Admin = new PersonalData();
+        Admin.setName("admin");
+        Admin.setPassword("admin");
+        Admin.setBirthDate("admin");
+        persons.add(Admin);
     }
-    public String getGebruiker(){
-        return gebruiker;
+    public int getCurrentUser(){
+        return currentUser;
+    }
+    public void setCurrentUser(int currentUser){
+        this.currentUser = currentUser;
+    }
+    //dit is de arraylist van die class.
+    public ArrayList<PersonalData> getPersons(){
+        return persons;
     }
     public static void main(String[] args) {
         launch(args);
