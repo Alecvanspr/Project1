@@ -51,6 +51,12 @@ public class SignUpScreen extends Application {
                     emptyFields.relocate(100,265);
                     register.getChildren().add(emptyFields);
             }
+            Main main = new Main();
+            try {
+                main.start(stage);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
         });
 
         SignUpp = new Scene(register, 800,600);
@@ -64,6 +70,5 @@ public class SignUpScreen extends Application {
         personalData.setPassword(password);
         personalData.setBirthDate(birthdate);
         main.persons.add(personalData);
-
     }
 }
