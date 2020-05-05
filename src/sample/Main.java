@@ -35,6 +35,8 @@ public class Main extends Application {
         Passwords.add("Admin");
         Usernames.add("Alec");
         Passwords.add("1234");
+        Usernames.add("Bruh");
+        Passwords.add("Bruh");
 
 
         TextField textFieldUserName = new TextField();
@@ -48,9 +50,7 @@ public class Main extends Application {
         btnLogin.relocate(100,145);
 
         btnLogin.setOnAction(e -> {
-            System.out.println(textFieldUserName.getText());
-            System.out.println(passwordField.getText());
-            if(gegevensCheck(textFieldUserName.getText(),passwordField.getText())) {
+            if(gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
                 Homescreen home = new Homescreen();
                 try {
                     home.start(primaryStage);
@@ -59,6 +59,7 @@ public class Main extends Application {
                 }
             }else{
                 Label error = new Label("Sorry, try again");
+                login.getChildren().add(error);
                 error.relocate(400,400);
             }
         });
@@ -74,8 +75,10 @@ public class Main extends Application {
     public boolean gegevensCheck(String password,String username){
         boolean ret = false;
         for(int i=0;i<Usernames.size();i++){
-            if(Usernames.get(i).equals(username)&&(Passwords.get(i).equals(password))){
-                ret = true;
+            if(Usernames.get(i).equals(username)){
+                if(Passwords.get(i).equals(password)){
+                    ret = true;
+                }
             }
         }
         return ret;
