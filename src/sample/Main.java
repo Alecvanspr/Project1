@@ -35,6 +35,8 @@ public class Main extends Application {
         Passwords.add("Admin");
         Usernames.add("Alec");
         Passwords.add("1234");
+        Usernames.add("Bruh");
+        Passwords.add("Bruh");
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
