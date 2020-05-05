@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 public class SignUpScreen extends Application {
     Scene SignUpp;
+    Main main;
+    ArrayKeeper arrayKeeper;
     public void start(Stage stage) throws Exception{
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
@@ -38,9 +40,9 @@ public class SignUpScreen extends Application {
         btnRegister.relocate(100,235);
 
         btnRegister.setOnAction(e->{
-            if((!(passwordField.getText().equals("")))&&(!(textFieldUserName.getText().equals("")))&&(!(textFieldBirth.equals("")))){
+            if((!(passwordField.getText().equals("")))&&(!(textFieldUserName.getText().equals("")))){
                 if(passwordField.getText().equals(passwordFieldConf.getText())) {
-                    createPersonalData(textFieldUserName.getText(), passwordField.getText(), textFieldBirth.getText());
+                    arrayKeeper.SignUpData(textFieldUserName.getText(), passwordField.getText(), textFieldBirth.getText());
                 }else {
                     Label passwordWrong = new Label("Passwords don't match");
                     passwordWrong.relocate(100,265);
@@ -62,13 +64,5 @@ public class SignUpScreen extends Application {
         SignUpp = new Scene(register, 800,600);
         stage.setScene(SignUpp);
         stage.show();
-    }
-    public void createPersonalData(String name,String password,String birthdate){
-        Main main = new Main();
-        PersonalData personalData = new PersonalData();
-        personalData.setName(name);
-        personalData.setPassword(password);
-        personalData.setBirthDate(birthdate);
-        main.persons.add(personalData);
     }
 }

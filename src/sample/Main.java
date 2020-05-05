@@ -16,9 +16,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class Main extends Application {
-    public ArrayList<PersonalData> persons = new ArrayList<>();
-    private int currentUser;
-    private String gebruiker;
+    ArrayKeeper arraykeeper = new ArrayKeeper();
     Scene loginScene;
 
     @Override
@@ -31,7 +29,6 @@ public class Main extends Application {
         Button btnSignUp = new Button("Create an account");
 
         delettis();
-
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
@@ -79,36 +76,24 @@ public class Main extends Application {
     public boolean gegevensCheck(String password,String username){
         boolean ret = false;
         int s = 0;
-        for(int i = 0;i<persons.size();i++){
-            System.out.println(persons.get(i).getName());
-            System.out.println(persons.get(i).getPassword());
-            if(persons.get(i).getName().equals(username)){
-                if(persons.get(i).getPassword().equals(password)){
+        for(int i = 0;i<arraykeeper.Data.size();i++){
+            if(arraykeeper.Data.get(i).getName().equals(username)){
+                if(arraykeeper.Data.get(i).getPassword().equals(password)){
                     ret = true;
                     s = i;
                 }
             }
         }
-        setCurrentUser(s);
+        arraykeeper.setCurrentUser(s);
         return ret;
     }
     public void delettis(){
-        //array vullen, later moet dit weg
+        arraykeeper.SignUpData("Admin","Admin","Yesterday"); //deze manier werkt
         PersonalData Admin = new PersonalData();
         Admin.setName("admin");
         Admin.setPassword("admin");
         Admin.setBirthDate("admin");
-        persons.add(Admin);
-    }
-    public int getCurrentUser(){
-        return currentUser;
-    }
-    public void setCurrentUser(int currentUser){
-        this.currentUser = currentUser;
-    }
-    //dit is de arraylist van die class.
-    public ArrayList<PersonalData> getPersons(){
-        return persons;
+        arraykeeper.Data.add(Admin); //deze manier werkt
     }
     public static void main(String[] args) {
         launch(args);

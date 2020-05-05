@@ -21,11 +21,9 @@ public class PersonalData {
     public void setPassword(String password){
         this.password = password;
     }
-
     public String getPassword(){
         return password;
     }
-
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
