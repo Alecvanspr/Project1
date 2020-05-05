@@ -22,6 +22,7 @@ public class Homescreen extends Application {
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
                 btnMarketPlace,btnLiveStock);
         welcome.relocate(350,300);
+
         btnLogOut.relocate(738,5);
         btnLogOut.setOnAction(e -> {
             Main main = new Main();
@@ -31,7 +32,17 @@ public class Homescreen extends Application {
                 ex.printStackTrace();
             }
         });
+
         btnProfile.relocate(330,325);
+        btnProfile.setOnAction(e -> {
+            ProfileSettingsScreen pScreen = new ProfileSettingsScreen();
+            try {
+                pScreen.start(stage);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+
         btnContacts.relocate(330,355);
         btnMarketPlace.relocate(430,325);
         btnLiveStock.relocate(430,355);
