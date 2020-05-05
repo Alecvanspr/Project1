@@ -16,23 +16,30 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class Main extends Application {
-    ArrayKeeper arraykeeper = new ArrayKeeper();
-    public Stage window;
-    public Pane login = new Pane();
+    public ArrayList<String> Usernames = new ArrayList<>();
+    private String gebruiker;
+    public ArrayList<String> Passwords = new ArrayList<>();
+    Scene loginScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         //Login screen stuff
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         Button btnLogin = new Button("Log in");
         Button btnSignUp = new Button("Create an account");
 
-        delettis();
+        //array vullen, later moet dit weg
+        Usernames.add("Admin");
+        Passwords.add("Admin");
+        Usernames.add("Alec");
+        Passwords.add("1234");
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
-        login.getChildren().addAll(lblUserName,lblPassWord,btnLogin,textFieldUserName,passwordField,btnSignUp);
+        Pane login = new Pane();
+        login.getChildren().addAll(lblUserName,lblPassWord,btnSignUp, btnLogin,textFieldUserName,passwordField);
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
         lblPassWord.relocate(100,95);
@@ -41,60 +48,47 @@ public class Main extends Application {
         btnSignUp.relocate(150,145);
 
         btnLogin.setOnAction(e -> {
+            System.out.println(textFieldUserName.getText());
+            System.out.println(passwordField.getText());
             if(gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
-                Homescreen home = new Homescreen();
-                try {
-                    home.start(primaryStage);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }else{
+            Homescreen home = new Homescreen();
+            try {
+                home.start(primaryStage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }}
+            else{
                 Label error = new Label("Sorry, try again");
                 login.getChildren().add(error);
                 error.relocate(400,400);
             }
         });
-        btnSignUp.setOnAction(e -> {
-            SignUpScreen signUpScreen = new SignUpScreen();
-            try{
-                signUpScreen.start(primaryStage);
-            } catch (Exception ex){
-                ex.printStackTrace();
-            }
-        });
+
+        loginScene = new Scene(login,800,600);
 
 
-        login.setMinSize(800,600);
-
-        Scene loginScene = new Scene(login,800,600);
         primaryStage.setScene(loginScene);
-        primaryStage.setTitle("Log in");
-        window = primaryStage;
+        primaryStage.setTitle("Title here");
         primaryStage.show();
     }
 
     public boolean gegevensCheck(String password,String username){
         boolean ret = false;
-        int s = 0;
-        for(int i = 0;i<arraykeeper.Data.size();i++){
-            if(arraykeeper.Data.get(i).getName().equals(username)){
-                if(arraykeeper.Data.get(i).getPassword().equals(password)){
-                    ret = true;
-                    s = i;
-                }
+        for(int i=0;i<Usernames.size();i++){
+            if(Usernames.get(i).equals(username)&&(Passwords.get(i).equals(password))){
+                ret = true;
             }
         }
-        arraykeeper.setCurrentUser(s);
         return ret;
     }
-    public void delettis(){
-        arraykeeper.SignUpData("Admin","Admin","Yesterday"); //deze manier werkt
-        PersonalData Admin = new PersonalData();
-        Admin.setName("admin");
-        Admin.setPassword("admin");
-        Admin.setBirthDate("admin");
-        arraykeeper.Data.add(Admin); //deze manier werkt
+    public void setGebruiker(String gebruiker){
+        this.gebruiker = gebruiker;
     }
+    public String getGebruiker(){
+        return gebruiker;
+    }
+
+
     public static void main(String[] args) {
         launch(args);
     }
