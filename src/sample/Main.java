@@ -42,12 +42,13 @@ public class Main extends Application {
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
         Pane login = new Pane();
-        login.getChildren().addAll(lblUserName,lblPassWord,btnLogin,textFieldUserName,passwordField);
+        login.getChildren().addAll(lblUserName,lblPassWord,btnLogin,textFieldUserName,passwordField,signIn);
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
         lblPassWord.relocate(100,95);
         passwordField.relocate(100,115);
         btnLogin.relocate(100,145);
+        signIn.relocate(150,145);
 
         btnLogin.setOnAction(e -> {
             if(gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
@@ -63,6 +64,9 @@ public class Main extends Application {
                 error.relocate(400,400);
             }
         });
+        signIn.setOnAction(e->{
+
+                });
 
         loginScene = new Scene(login,800,600);
 
@@ -83,7 +87,7 @@ public class Main extends Application {
         }
         return ret;
     }
-    public void setGebruiker(String gebruiker){
+    public void setCurrentGebruiker(String CurrentUser){
         this.gebruiker = gebruiker;
     }
     public String getGebruiker(){
