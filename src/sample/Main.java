@@ -17,11 +17,11 @@ import java.util.ArrayList;
 
 public class Main extends Application {
     ArrayKeeper arraykeeper = new ArrayKeeper();
-    Scene loginScene;
+    public Stage window;
+    public Pane login = new Pane();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         //Login screen stuff
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
@@ -32,7 +32,6 @@ public class Main extends Application {
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
-        Pane login = new Pane();
         login.getChildren().addAll(lblUserName,lblPassWord,btnLogin,textFieldUserName,passwordField,btnSignUp);
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
@@ -64,12 +63,13 @@ public class Main extends Application {
             }
         });
 
-        loginScene = new Scene(login,800,600);
+
         login.setMinSize(800,600);
 
-
+        Scene loginScene = new Scene(login,800,600);
         primaryStage.setScene(loginScene);
         primaryStage.setTitle("Log in");
+        window = primaryStage;
         primaryStage.show();
     }
 
