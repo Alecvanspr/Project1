@@ -47,7 +47,6 @@ public class SignUpScreen extends Application {
         btnRegister.relocate(100,320);
         btnBack.relocate(0, 570);
 
-        //dit zo een method maken
         btnRegister.setOnAction(e->{
             register(stage,register,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
                     textFieldBirth.getText(),lblSecurity.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString());

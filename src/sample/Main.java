@@ -99,7 +99,7 @@ public class Main extends Application {
     }
     public void delettis(){
         //dit is om te testen, dit moet achteraf verwijderd worden.
-        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","Best wel");
+        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","You have to insert your username first");
         PersonalData Admin = new PersonalData();
         Admin.setName("admin");
         Admin.setPassword("admin");
