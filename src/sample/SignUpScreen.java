@@ -9,8 +9,9 @@ import javafx.stage.Stage;
 public class SignUpScreen extends Application {
     Scene SignUpp;
     Main main = new Main();
-//    String question1, question2, question3;
+    //    String question1, question2, question3;
     public void start(Stage stage) throws Exception{
+        Button btnBack = new Button("Back");
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         Label lblPassWordConf = new Label("Confirm password");
@@ -29,8 +30,8 @@ public class SignUpScreen extends Application {
         Pane register = new Pane();
 
         register.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf
-                , textFieldUserName, passwordField, passwordFieldConf,textFieldBirth,lblBirthdate, btnRegister,
-                securityQuestions, securityAnswer, lblSecurity);
+                , textFieldUserName, passwordField, passwordFieldConf,textFieldBirth,lblBirthdate,
+                securityQuestions, securityAnswer, lblSecurity,btnRegister,btnBack);
 
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
@@ -44,13 +45,14 @@ public class SignUpScreen extends Application {
         securityQuestions.relocate(100,250);
         securityAnswer.relocate(100, 278);
         btnRegister.relocate(100,320);
+        btnBack.relocate(0, 570);
 
         //dit zo een method maken
         btnRegister.setOnAction(e->{
             if((!(passwordField.getText().equals("")))&&(!(textFieldUserName.getText().equals("")))){
                 System.out.println("Waar");
                 if(passwordField.getText().equals(passwordFieldConf.getText())) {
-                    main.arraykeeper.SignUpData(textFieldUserName.getText(),passwordField.getText(),textFieldBirth.getText(),securityAnswer.getText());
+                    main.arraykeeper.SignUpData(textFieldUserName.getText(),passwordField.getText(),textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString());
                     try{
                         main.start(stage);
                     } catch (Exception ex){
@@ -62,13 +64,23 @@ public class SignUpScreen extends Application {
                     register.getChildren().add(passwordWrong);
                 }
             }else{
-                    Label emptyFields = new Label("Fields are empty");
-                    emptyFields.relocate(100,265);
-                    register.getChildren().add(emptyFields);
+                Label emptyFields = new Label("Fields are empty");
+                emptyFields.relocate(100,265);
+                register.getChildren().add(emptyFields);
+            }
+        });
+
+        btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
+            Main main = new Main();
+            try {
+                main.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
 
         SignUpp = new Scene(register, 800,600);
+        stage.setTitle("Sign up");
         stage.setScene(SignUpp);
         stage.show();
     }

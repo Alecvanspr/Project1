@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class Marketplace extends Application {
     Scene marktScene;
+    Homescreen homescreen = new Homescreen();
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -24,6 +25,7 @@ public class Marketplace extends Application {
             }
         });
         marktScene = new Scene(market,800,600);
+        stage.setTitle("Market place");
         stage.setScene(marktScene);
         stage.show();
     }

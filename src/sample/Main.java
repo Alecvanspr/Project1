@@ -13,18 +13,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 public class Main extends Application {
-    ArrayKeeper arraykeeper = new ArrayKeeper();
-    public Stage window;
+    public ArrayKeeper arraykeeper = new ArrayKeeper();
+    Homescreen home = new Homescreen();
+    Stage window;
     public Pane login = new Pane();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        window = primaryStage;
         //Login screen stuff
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
+        Button btnForgotPassword = new Button("Forgot Password");
         Button btnLogin = new Button("Log in");
         Button btnSignUp = new Button("Create an account");
 
@@ -32,32 +33,41 @@ public class Main extends Application {
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
-        login.getChildren().addAll(lblUserName,lblPassWord,btnLogin,textFieldUserName,passwordField,btnSignUp);
+        login.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord,btnLogin,btnSignUp, btnForgotPassword);
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
         lblPassWord.relocate(100,95);
         passwordField.relocate(100,115);
         btnLogin.relocate(100,145);
         btnSignUp.relocate(150,145);
+        btnForgotPassword.relocate(100,175);
 
         btnLogin.setOnAction(e -> {
             if(gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
-                Homescreen home = new Homescreen();
                 try {
-                    home.start(primaryStage);
+                    home.start(window);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }else{
                 Label error = new Label("Sorry, try again");
                 login.getChildren().add(error);
-                error.relocate(400,400);
+                error.relocate(100,200);
             }
         });
         btnSignUp.setOnAction(e -> {
             SignUpScreen signUpScreen = new SignUpScreen();
             try{
-                signUpScreen.start(primaryStage);
+                signUpScreen.start(window);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+
+        btnForgotPassword.setOnMousePressed(e->{
+            ForgotPassword forgotPassword = new ForgotPassword();
+            try{
+                forgotPassword.start(window);
             } catch (Exception ex){
                 ex.printStackTrace();
             }
@@ -65,19 +75,19 @@ public class Main extends Application {
 
 
         login.setMinSize(800,600);
-
+        window.setMinHeight(800);
+        window.setMinWidth(800);
         Scene loginScene = new Scene(login,800,600);
-        primaryStage.setScene(loginScene);
-        primaryStage.setTitle("Log in");
-        window = primaryStage;
-        primaryStage.show();
+        window.setScene(loginScene);
+        window.setTitle("Log in");
+        window.show();
     }
 
     public boolean gegevensCheck(String password,String username){
         boolean ret = false;
         int s = 0;
         for(int i = 0;i<arraykeeper.Data.size();i++){
-            if(arraykeeper.Data.get(i).getName().equals(username)){
+            if(ArrayKeeper.Data.get(i).getName().equals(username)){
                 if(arraykeeper.Data.get(i).getPassword().equals(password)){
                     ret = true;
                     s = i;
@@ -88,13 +98,15 @@ public class Main extends Application {
         return ret;
     }
     public void delettis(){
-        arraykeeper.SignUpData("Admin","Admin","Yesterday","admin"); //deze manier werkt
+        //dit is om te testen, dit moet achteraf verwijderd worden.
+        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","Best wel");
         PersonalData Admin = new PersonalData();
         Admin.setName("admin");
         Admin.setPassword("admin");
         Admin.setBirthDate("admin");
-        Admin.setSecurityAnswer("admin");
-        arraykeeper.Data.add(Admin); //deze manier werkt
+        Admin.setSecurtityQuestion("Oh yeah, Mister crabs");
+        Admin.setSecurityAnswer("dab");
+        arraykeeper.Data.add(Admin);
     }
     public static void main(String[] args) {
         launch(args);

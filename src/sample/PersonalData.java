@@ -7,6 +7,7 @@ public class PersonalData {
     private String phoneNumber;
     private String email;
     private String gender;
+    private String securtityQuestion;
     private String securityAnswer;
     public PersonalData(){
     }
@@ -17,6 +18,12 @@ public class PersonalData {
 
     public void setSecurityAnswer(String securityAnswer) {
         this.securityAnswer = securityAnswer;
+    }
+    public void setSecurtityQuestion(String securtityQuestion){
+        this.securtityQuestion = securtityQuestion;
+    }
+    public String getSecurtityQuestion() {
+        return securtityQuestion;
     }
 
     public void setName(String name) {
