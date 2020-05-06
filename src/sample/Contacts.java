@@ -25,6 +25,7 @@ public class Contacts extends Application {
             }
         });
         contactScene = new Scene(contact,800,600);
+        stage.setTitle("Contacts");
         stage.setScene(contactScene);
         stage.show();
     }

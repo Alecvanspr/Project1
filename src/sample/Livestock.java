@@ -24,6 +24,7 @@ public class Livestock extends Application {
             }
         });
         stockScene = new Scene(liveS,800,600);
+        stage.setTitle("Livestock");
         stage.setScene(stockScene);
         stage.show();
     }

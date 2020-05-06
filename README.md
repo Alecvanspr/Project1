@@ -6,3 +6,5 @@ you will lose subscribers
 
 subscriber is lost
 life end now
+
+me go commit die
