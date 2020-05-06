@@ -58,10 +58,11 @@ public class Main extends Application {
                 ex.printStackTrace();
             }
         });
+
         btnForgotPassword.setOnMousePressed(e->{
             ForgotPassword forgotPassword = new ForgotPassword();
             try{
-
+                forgotPassword.start(window);
             } catch (Exception ex){
                 ex.printStackTrace();
             }
@@ -91,7 +92,7 @@ public class Main extends Application {
         return ret;
     }
     public void delettis(){
-        arraykeeper.SignUpData("Admin","Admin","Yesterday"); //deze manier werkt
+        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh"); //deze manier werkt
         PersonalData Admin = new PersonalData();
         Admin.setName("admin");
         Admin.setPassword("admin");
