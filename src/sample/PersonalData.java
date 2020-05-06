@@ -7,7 +7,16 @@ public class PersonalData {
     private String phoneNumber;
     private String email;
     private String gender;
+    private String securityAnswer;
     public PersonalData(){
+    }
+
+    public String getSecurityAnswer() {
+        return securityAnswer;
+    }
+
+    public void setSecurityAnswer(String securityAnswer) {
+        this.securityAnswer = securityAnswer;
     }
 
     public void setName(String name) {
