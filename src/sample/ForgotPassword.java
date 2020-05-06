@@ -55,7 +55,7 @@ public class ForgotPassword extends Application {
         btnBack.relocate(0, 570);
 
         ChangePassword.setOnAction(e->{
-            if(security.getText().equals(main.arraykeeper.getPersonaldata().get(changingUser).getSecurityAnswer())) {
+            if(security.getText().equalsIgnoreCase(main.arraykeeper.getPersonaldata().get(changingUser).getSecurityAnswer())) {
                 if (txtPassword.getText().equals(txtPasswordConfirm.getText())) {
                     main.arraykeeper.changePassword(changingUser, txtPassword.getText());
                     goBack(stage);
@@ -78,7 +78,6 @@ public class ForgotPassword extends Application {
     public int getUser(String username){
         int ret = 0;
         for(int i = 0; i<main.arraykeeper.Data.size();i++){
-            System.out.println("Poah hey");
             if(main.arraykeeper.getPersonaldata().get(i).getName().equals(username)){
                 ret = i;
             }
