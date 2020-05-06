@@ -13,13 +13,13 @@ import java.util.Objects;
 public class Homescreen extends Application {
     Scene homeScene;
     Main main;
-    ArrayKeeper arrayKeeper;
+    //ArrayKeeper arrayKeeper;
     @Override
     public void start(Stage stage) throws Exception {
         Label welcome = new Label("Welcome to the homescreen");
         //buttons to navigate to different things
         Button btnLogOut = new Button("Log out");
-        //Label user = new Label("Welcome back" + arrayKeeper.Data.get(main.getCurrentUser()).getName());//en dit zou dan de naam weer moeten geven
+        Label user = new Label("Welcome back " + ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getName());//en dit zou dan de naam weer moeten geven
         Button btnProfile = new Button("Profile settings");
         Button btnContacts = new Button("Contacts");
         Button btnMarketPlace = new Button("Marketplace");
@@ -27,8 +27,10 @@ public class Homescreen extends Application {
         Pane home = new Pane();
 
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
-                btnMarketPlace,btnLiveStock);
+                btnMarketPlace,btnLiveStock,user);
         welcome.relocate(350,300);
+
+        user.relocate(660,35);
 
         btnLogOut.relocate(738,5);
         btnLogOut.setOnAction(e -> {
