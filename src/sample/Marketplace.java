@@ -24,6 +24,7 @@ public class Marketplace extends Application {
             }
         });
         marktScene = new Scene(market,800,600);
+        stage.setTitle("Market place");
         stage.setScene(marktScene);
         stage.show();
     }

@@ -11,6 +11,7 @@ public class SignUpScreen extends Application {
     Main main = new Main();
     //    String question1, question2, question3;
     public void start(Stage stage) throws Exception{
+        Button btnBack = new Button("Back");
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         Label lblPassWordConf = new Label("Confirm password");
@@ -30,7 +31,7 @@ public class SignUpScreen extends Application {
 
         register.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf
                 , textFieldUserName, passwordField, passwordFieldConf,textFieldBirth,lblBirthdate,
-                securityQuestions, securityAnswer, lblSecurity,btnRegister);
+                securityQuestions, securityAnswer, lblSecurity,btnRegister,btnBack);
 
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
@@ -44,6 +45,7 @@ public class SignUpScreen extends Application {
         securityQuestions.relocate(100,250);
         securityAnswer.relocate(100, 278);
         btnRegister.relocate(100,320);
+        btnBack.relocate(0, 570);
 
         //dit zo een method maken
         btnRegister.setOnAction(e->{
@@ -68,7 +70,17 @@ public class SignUpScreen extends Application {
             }
         });
 
+        btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
+            Main main = new Main();
+            try {
+                main.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
         SignUpp = new Scene(register, 800,600);
+        stage.setTitle("Sign up");
         stage.setScene(SignUpp);
         stage.show();
     }

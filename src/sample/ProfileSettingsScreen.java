@@ -28,6 +28,7 @@ public class ProfileSettingsScreen extends Application {
         });
 
         Settings = new Scene(pSettings,800,600);
+        stage.setTitle("Profile settings");
         stage.setScene(Settings);
         stage.show();
     }

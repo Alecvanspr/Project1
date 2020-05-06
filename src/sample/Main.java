@@ -48,7 +48,7 @@ public class Main extends Application {
             }else{
                 Label error = new Label("Sorry, try again");
                 login.getChildren().add(error);
-                error.relocate(100,175);
+                error.relocate(100,200);
             }
         });
         btnSignUp.setOnAction(e -> {
@@ -71,7 +71,8 @@ public class Main extends Application {
 
 
         login.setMinSize(800,600);
-
+        window.setMinHeight(800);
+        window.setMinWidth(800);
         Scene loginScene = new Scene(login,800,600);
         window.setScene(loginScene);
         window.setTitle("Log in");

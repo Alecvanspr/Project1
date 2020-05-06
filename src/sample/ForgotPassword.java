@@ -71,6 +71,7 @@ public class ForgotPassword extends Application {
             goBack(stage);
         });
         ForgotPassword = new Scene(Forgot, 800, 600);
+        stage.setTitle("Reset Password");
         stage.setScene(ForgotPassword);
         stage.show();
     }

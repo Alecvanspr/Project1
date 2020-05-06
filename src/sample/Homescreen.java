@@ -76,6 +76,7 @@ public class Homescreen extends Application {
         btnLiveStock.relocate(430,355);
 
         homeScene = new Scene(home,800,600);
+        stage.setTitle("Homescreen");
         stage.setScene(homeScene);
         stage.show();
     }
