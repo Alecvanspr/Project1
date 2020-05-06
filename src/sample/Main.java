@@ -36,6 +36,7 @@ public class Main extends Application {
         passwordField.relocate(100,115);
         btnLogin.relocate(100,145);
         btnSignUp.relocate(150,145);
+        btnForgotPassword.relocate(100,175);
 
         btnLogin.setOnAction(e -> {
             if(gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
@@ -92,12 +93,15 @@ public class Main extends Application {
         return ret;
     }
     public void delettis(){
-        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh"); //deze manier werkt
+        //dit is om te testen, dit moet achteraf verwijderd worden.
+        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","Best wel");
         PersonalData Admin = new PersonalData();
         Admin.setName("admin");
         Admin.setPassword("admin");
         Admin.setBirthDate("admin");
-        arraykeeper.Data.add(Admin); //deze manier werkt
+        Admin.setSecurtityQuestion("Oh yeah, Mister crabs");
+        Admin.setSecurityAnswer("dab");
+        arraykeeper.Data.add(Admin);
     }
     public static void main(String[] args) {
         launch(args);

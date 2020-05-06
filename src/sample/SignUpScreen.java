@@ -50,7 +50,7 @@ public class SignUpScreen extends Application {
             if((!(passwordField.getText().equals("")))&&(!(textFieldUserName.getText().equals("")))){
                 System.out.println("Waar");
                 if(passwordField.getText().equals(passwordFieldConf.getText())) {
-                    main.arraykeeper.SignUpData(textFieldUserName.getText(),passwordField.getText(),textFieldBirth.getText(),securityAnswer.getText());
+                    main.arraykeeper.SignUpData(textFieldUserName.getText(),passwordField.getText(),textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString());
                     try{
                         main.start(stage);
                     } catch (Exception ex){
