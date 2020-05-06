@@ -88,11 +88,12 @@ public class Main extends Application {
         return ret;
     }
     public void delettis(){
-        arraykeeper.SignUpData("Admin","Admin","Yesterday"); //deze manier werkt
+        arraykeeper.SignUpData("Admin","Admin","Yesterday","admin"); //deze manier werkt
         PersonalData Admin = new PersonalData();
         Admin.setName("admin");
         Admin.setPassword("admin");
         Admin.setBirthDate("admin");
+        Admin.setSecurityAnswer("admin");
         arraykeeper.Data.add(Admin); //deze manier werkt
     }
     public static void main(String[] args) {
