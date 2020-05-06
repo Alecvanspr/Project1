@@ -72,8 +72,34 @@ public class Homescreen extends Application {
         });
 
         btnContacts.relocate(330,355);
+        btnContacts.setOnAction(e -> {
+            Contacts contacts = new Contacts();
+            try {
+                contacts.start(stage);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+
         btnMarketPlace.relocate(430,325);
+        btnMarketPlace.setOnAction(e ->{
+            Marketplace markt = new Marketplace();
+            try {
+                markt.start(stage);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+
         btnLiveStock.relocate(430,355);
+        btnLiveStock.setOnAction(e -> {
+            Livestock livestock = new Livestock();
+            try {
+                livestock.start(stage);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
 
         homeScene = new Scene(home,800,600);
         stage.setTitle("Homescreen");
