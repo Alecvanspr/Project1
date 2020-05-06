@@ -51,17 +51,6 @@ public class Homescreen extends Application {
                 ex.printStackTrace();
             }
         });
-
-        btnContacts.relocate(330,355);
-        btnContacts.setOnAction(e -> {
-            Contacts contacts = new Contacts();
-            try {
-                contacts.start(stage);
-            } catch (Exception ex){
-                ex.printStackTrace();
-            }
-        });
-
         btnMarketPlace.relocate(430,325);
         btnMarketPlace.setOnAction(e ->{
             Marketplace markt = new Marketplace();
@@ -82,8 +71,16 @@ public class Homescreen extends Application {
             }
         });
 
+        btnContacts.relocate(330,355);
+        btnMarketPlace.relocate(430,325);
+        btnLiveStock.relocate(430,355);
+
         homeScene = new Scene(home,800,600);
         stage.setScene(homeScene);
         stage.show();
     }
 }
+
+
+
+

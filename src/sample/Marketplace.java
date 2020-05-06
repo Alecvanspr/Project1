@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class Marketplace extends Application {
     Scene marktScene;
+    Homescreen homescreen = new Homescreen();
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -16,7 +17,6 @@ public class Marketplace extends Application {
         market.getChildren().add(btnBack);
         btnBack.relocate(0,570);
         btnBack.setOnAction(e -> {
-            Homescreen homescreen = new Homescreen();
             try {
                 homescreen.start(stage);
             } catch (Exception ex){
