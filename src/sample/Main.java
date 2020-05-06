@@ -1,19 +1,13 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 public class Main extends Application {
     public ArrayKeeper arraykeeper = new ArrayKeeper();
@@ -27,6 +21,7 @@ public class Main extends Application {
         //Login screen stuff
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
+        Button btnForgotPassword = new Button("Forgot Password");
         Button btnLogin = new Button("Log in");
         Button btnSignUp = new Button("Create an account");
 
@@ -34,7 +29,7 @@ public class Main extends Application {
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
-        login.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord,btnLogin,btnSignUp);
+        login.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord,btnLogin,btnSignUp, btnForgotPassword);
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
         lblPassWord.relocate(100,95);
@@ -63,6 +58,14 @@ public class Main extends Application {
                 ex.printStackTrace();
             }
         });
+        btnForgotPassword.setOnMousePressed(e->{
+            ForgotPassword forgotPassword = new ForgotPassword();
+            try{
+
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
 
 
         login.setMinSize(800,600);
@@ -77,7 +80,7 @@ public class Main extends Application {
         boolean ret = false;
         int s = 0;
         for(int i = 0;i<arraykeeper.Data.size();i++){
-            if(arraykeeper.Data.get(i).getName().equals(username)){
+            if(ArrayKeeper.Data.get(i).getName().equals(username)){
                 if(arraykeeper.Data.get(i).getPassword().equals(password)){
                     ret = true;
                     s = i;
