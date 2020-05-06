@@ -16,6 +16,9 @@ public class ArrayKeeper {
         Data.add(personalData);
         currentUser++;
     }
+    public void changePassword(int user,String password){
+        Data.get(user).setPassword(password);
+    }
 
     public ArrayList<PersonalData> getPersonaldata(){
         return Data;
