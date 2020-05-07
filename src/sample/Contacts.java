@@ -16,17 +16,23 @@ public class Contacts extends Application {
         Pane contact = new Pane();
         contact.getChildren().add(btnBack);
         btnBack.relocate(0,570);
+
         btnBack.setOnAction(e -> {
-            Homescreen homescreen = new Homescreen();
-            try {
-                homescreen.start(stage);
-            } catch (Exception ex){
-                ex.printStackTrace();
-            }
+            goHomeScreen(stage);
         });
+
         contactScene = new Scene(contact,800,600);
         stage.setTitle("Contacts");
         stage.setScene(contactScene);
         stage.show();
+    }
+
+    public void goHomeScreen(Stage stage){
+        Homescreen homescreen = new Homescreen();
+        try {
+            homescreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

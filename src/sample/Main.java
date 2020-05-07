@@ -13,6 +13,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.awt.*;
+
 public class Main extends Application {
     public ArrayKeeper arraykeeper = new ArrayKeeper();
     Homescreen home = new Homescreen();
@@ -22,14 +24,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
-        //Login screen stuff
+
+        //this are all the buttons
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         Button btnForgotPassword = new Button("Forgot Password");
         Button btnLogin = new Button("Log in");
         Button btnSignUp = new Button("Create an account");
 
-        delettis();
+        delettis(); //this is the demo account where we all can log in with, i used it to to test. but it need to be deleted afterwards
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
@@ -65,12 +68,7 @@ public class Main extends Application {
         });
 
         btnForgotPassword.setOnMousePressed(e->{
-            ForgotPassword forgotPassword = new ForgotPassword();
-            try{
-                forgotPassword.start(window);
-            } catch (Exception ex){
-                ex.printStackTrace();
-            }
+            goForgetPassword();
         });
 
 
@@ -97,6 +95,22 @@ public class Main extends Application {
         arraykeeper.setCurrentUser(s);
         return ret;
     }
+    public void goForgetPassword(){
+        ForgotPassword forgotPassword = new ForgotPassword();
+        try{
+            forgotPassword.start(window);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goSignUp(){
+
+    }
+
+
+
+
+
     public void delettis(){
         //dit is om te testen, dit moet achteraf verwijderd worden.
         arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","You have to insert your username first");
