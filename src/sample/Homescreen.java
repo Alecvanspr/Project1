@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Homescreen extends Application {
     Scene homeScene;
     Main main;
-    //ArrayKeeper arrayKeeper;
+    ArrayKeeper arrayKeeper;
     @Override
     public void start(Stage stage) throws Exception {
         Label welcome = new Label("Welcome to the homescreen");
@@ -34,7 +34,7 @@ public class Homescreen extends Application {
 
         btnLogOut.relocate(738,5);
         btnLogOut.setOnAction(e -> {
-            goMarket(stage);
+            goMain(stage);
         });
 
         btnProfile.relocate(330,325);
@@ -64,9 +64,9 @@ public class Homescreen extends Application {
     }
 
     public void goMain(Stage stage){
-        Contacts contacts = new Contacts();
+        Main main = new Main();
         try {
-            contacts.start(stage);
+            main.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }

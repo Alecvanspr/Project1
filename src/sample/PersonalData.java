@@ -4,9 +4,9 @@ public class PersonalData {
     private String name;
     private String password;
     private String birthDate;
-    private String phoneNumber;
-    private String email;
-    private String gender;
+    private String phoneNumber = "Not yet defined";
+    private String email = "Not yet defined";
+    private String gender = "Not yet defined";
     private String securtityQuestion;
     private String securityAnswer;
     public PersonalData(){
