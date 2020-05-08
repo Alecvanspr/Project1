@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import static sample.ArrayKeeper.getCurrentUser;
@@ -115,7 +114,7 @@ public class EditSettings extends Application {
         if(CheckFilled(newUsername)) {
             PersonalData personalData = new PersonalData();
             personalData = ArrayKeeper.Data.get(getCurrentUser());
-            personalData.setName(newUsername);
+            personalData.setUserName(newUsername);
             ArrayKeeper.Data.set(ArrayKeeper.getCurrentUser(), personalData);
         }
     }

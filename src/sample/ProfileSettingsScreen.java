@@ -13,7 +13,7 @@ public class ProfileSettingsScreen extends Application {
     public int currentUser= ArrayKeeper.getCurrentUser();
 
     public void start(Stage stage) throws Exception{
-        Label textName = new Label("Username : " + ArrayKeeper.Data.get(currentUser).getName());
+        Label textName = new Label("Username : " + ArrayKeeper.Data.get(currentUser).getUsername());
         Label txtBirthDate = new Label("Birth date : "+ArrayKeeper.Data.get(currentUser).getBirthDate());
         Label textGender = new Label("Gender :" + ArrayKeeper.Data.get(currentUser).getGender());
         Label textPhonenumber = new Label("Phone number : " + ArrayKeeper.Data.get(currentUser).getPhoneNumber());

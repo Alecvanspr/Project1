@@ -1,19 +1,13 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 public class Main extends Application {
     public ArrayKeeper arraykeeper = new ArrayKeeper();
@@ -85,7 +79,7 @@ public class Main extends Application {
         boolean ret = false;
         int s = 0;
         for(int i = 0;i<arraykeeper.Data.size();i++){
-            if(ArrayKeeper.Data.get(i).getName().equals(username)){
+            if(ArrayKeeper.Data.get(i).getUsername().equals(username)){
                 if(arraykeeper.Data.get(i).getPassword().equals(password)){
                     ret = true;
                     s = i;
@@ -115,7 +109,7 @@ public class Main extends Application {
         //dit is om te testen, dit moet achteraf verwijderd worden.
         arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","You have to insert your username first");
         PersonalData Admin = new PersonalData();
-        Admin.setName("admin");
+        Admin.setUserName("admin");
         Admin.setPassword("admin");
         Admin.setBirthDate("admin");
         Admin.setSecurtityQuestion("Oh yeah, Mister crabs");

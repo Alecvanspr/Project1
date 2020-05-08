@@ -1,7 +1,8 @@
 package sample;
 
 public class PersonalData {
-    private String name;
+    private String Usernamename;
+    private String name = "Not yet defined";
     private String password;
     private String birthDate;
     private String phoneNumber = "Not yet defined";
@@ -26,11 +27,18 @@ public class PersonalData {
         return securtityQuestion;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String name) {
+        this.Usernamename = name;
     }
 
-    public String getName() {
+    public String getUsername() {
+        return Usernamename;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
         return name;
     }
 

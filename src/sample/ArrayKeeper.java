@@ -8,7 +8,7 @@ public class ArrayKeeper {
 
     public void SignUpData(String name,String password,String birth, String security,String securityQ){
         PersonalData personalData = new PersonalData();
-        personalData.setName(name);
+        personalData.setUserName(name);
         personalData.setPassword(password);
         personalData.setBirthDate(birth);
         personalData.setSecurtityQuestion(securityQ);
