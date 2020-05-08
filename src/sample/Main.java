@@ -53,12 +53,7 @@ public class Main extends Application {
             }
         });
         btnSignUp.setOnAction(e -> {
-            SignUpScreen signUpScreen = new SignUpScreen();
-            try{
-                signUpScreen.start(window);
-            } catch (Exception ex){
-                ex.printStackTrace();
-            }
+            goSignUp();
         });
 
         btnForgotPassword.setOnMousePressed(e->{
@@ -98,11 +93,13 @@ public class Main extends Application {
         }
     }
     public void goSignUp(){
-
+        SignUpScreen signUpScreen = new SignUpScreen();
+        try{
+            signUpScreen.start(window);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
-
-
-
 
 
     public void delettis(){

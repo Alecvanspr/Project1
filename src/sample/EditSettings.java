@@ -18,6 +18,7 @@ public class EditSettings extends Application {
         Pane eSettings = new Pane();
         Label text = new Label("Settings to change user settings");
         Button btnChangeUsername = new Button("Change username");
+        Button btnChangeName = new Button("Change name");
         Button btnChangePassword = new Button("Change password");
         Button btnChangeBirthday = new Button("Change Birthday");
         Button btnChagnePhonenumber = new Button("Change phonenumber");
@@ -26,6 +27,7 @@ public class EditSettings extends Application {
         Button btnChangeGender = new Button("Change Gender");
 
         TextField txtNewUsername = new TextField();
+        TextField txtNewName = new TextField();
         PasswordField txtNewPassword = new PasswordField();
         PasswordField txtNewPasswordConfrm = new PasswordField();
         TextField txtNewBirthday = new TextField();
@@ -33,24 +35,26 @@ public class EditSettings extends Application {
         TextField txtSecurityQuestion = new TextField();
         TextField txtChangeGender = new TextField();
 
-        eSettings.getChildren().addAll(txtNewUsername, btnChangeUsername,txtNewPassword,txtNewPasswordConfrm,
+        eSettings.getChildren().addAll(txtNewUsername, btnChangeUsername,txtNewName,btnChangeName,txtNewPassword,txtNewPasswordConfrm,
                 btnChangePassword,txtNewBirthday,btnChangeBirthday,txtSecurityQuestion,btnChangeSecurityQuestion,
                 txtNewPhoneNumber,btnChagnePhonenumber,txtChangeGender,btnChangeGender,btnApplyAll);
 
         txtNewUsername.relocate(100,100);
         btnChangeUsername.relocate(300,100);
-        txtNewPassword.relocate(100,135);
-        txtNewPasswordConfrm.relocate(100,160);
-        btnChangePassword.relocate(300,160);
-        txtNewBirthday.relocate(100,195);
-        btnChangeBirthday.relocate(300,195);
-        txtSecurityQuestion.relocate(100,230);
-        btnChangeSecurityQuestion.relocate(300,230);
-        txtNewPhoneNumber.relocate(100,265);
-        btnChagnePhonenumber.relocate(300,265);
-        txtChangeGender.relocate(100,300);
-        btnChangeGender.relocate(300,300);
-        btnApplyAll.relocate(335,335);
+        txtNewName.relocate(100,135);
+        btnChangeName.relocate(300,135);
+        txtNewPassword.relocate(100,170);
+        txtNewPasswordConfrm.relocate(100,195);
+        btnChangePassword.relocate(300,195);
+        txtNewBirthday.relocate(100,230);
+        btnChangeBirthday.relocate(300,230);
+        txtSecurityQuestion.relocate(100,265);
+        btnChangeSecurityQuestion.relocate(300,265);
+        txtNewPhoneNumber.relocate(100,300);
+        btnChagnePhonenumber.relocate(300,300);
+        txtChangeGender.relocate(100,335);
+        btnChangeGender.relocate(300,335);
+        btnApplyAll.relocate(300,370);
 
         Button btnBack = new Button("Back");
 
@@ -80,10 +84,15 @@ public class EditSettings extends Application {
             goProfileSettingScreen(stage);
         });
         btnChangeGender.setOnAction(E->{
+            changeGender(txtChangeGender.getText());
+            goProfileSettingScreen(stage);
+        });
+        btnChangeName.setOnAction(E->{
 
         });
         btnApplyAll.setOnAction(E->{
             changeUsername(txtNewUsername.getText());
+            changeName(txtNewName.getText());
             changePassword(txtNewPassword.getText(),txtNewPasswordConfrm.getText());
             changePhone(txtNewPhoneNumber.getText());
             changeBirthday(txtNewBirthday.getText());
@@ -127,6 +136,12 @@ public class EditSettings extends Application {
                 ArrayKeeper.Data.set(getCurrentUser(), personalData);
             }
         }
+    }
+    public void changeName(String name){
+        PersonalData personalData = new PersonalData();
+        personalData = ArrayKeeper.Data.get(getCurrentUser());
+        personalData.setName(name);
+        ArrayKeeper.Data.set(getCurrentUser(), personalData);
     }
     public void changeBirthday(String birthday){
         if (CheckFilled(birthday)) {

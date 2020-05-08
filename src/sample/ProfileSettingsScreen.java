@@ -14,18 +14,20 @@ public class ProfileSettingsScreen extends Application {
 
     public void start(Stage stage) throws Exception{
         Label textName = new Label("Username : " + ArrayKeeper.Data.get(currentUser).getUsername());
+        Label txtRealName = new Label("Name : " + ArrayKeeper.Data.get(currentUser).getName());
         Label txtBirthDate = new Label("Birth date : "+ArrayKeeper.Data.get(currentUser).getBirthDate());
         Label textGender = new Label("Gender :" + ArrayKeeper.Data.get(currentUser).getGender());
         Label textPhonenumber = new Label("Phone number : " + ArrayKeeper.Data.get(currentUser).getPhoneNumber());
         Button btnBack = new Button("Back");
         Button btnEdit = new Button("Edit Profile");
         Pane pSettings = new Pane();
-        pSettings.getChildren().addAll( btnBack,btnEdit,textName,txtBirthDate,textGender,textPhonenumber);
+        pSettings.getChildren().addAll( btnBack,btnEdit,textName,txtRealName,txtBirthDate,textGender,textPhonenumber);
 
         textName.relocate(100,100);
-        txtBirthDate.relocate(100,125);
-        textGender.relocate(100,150);
-        textPhonenumber.relocate(100,175);
+        txtRealName.relocate(100,125);
+        txtBirthDate.relocate(100,150);
+        textGender.relocate(100,175);
+        textPhonenumber.relocate(100,200);
 
 
         btnBack.relocate(0,570);
@@ -33,7 +35,7 @@ public class ProfileSettingsScreen extends Application {
             goHomeScreen(stage);
         });
 
-        btnEdit.relocate(400,400);
+        btnEdit.relocate(100,235);
         btnEdit.setOnAction(e -> {
             goEdit(stage);
         });
