@@ -1,12 +1,17 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -15,9 +20,22 @@ public class Main extends Application {
     Stage window;
     public Pane login = new Pane();
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
+        final int initWidth = 800;
+        final int initheight = 600;
+        final Pane root = new Pane();
+
+        login.setPrefWidth(initWidth);
+        login.setPrefHeight(initheight);
+        root.getChildren().add(login);
+
+        Scale scale = new Scale(1,1,0,0);
+        scale.xProperty().bind(root.widthProperty().divide(initWidth));
+        scale.yProperty().bind(root.heightProperty().divide(initheight));
+        root.getTransforms().add(scale);
 
         //this are all the buttons
         Label lblUserName = new Label("Username");
@@ -61,13 +79,29 @@ public class Main extends Application {
         });
 
 
-        login.setMinSize(800,600);
-        window.setMinHeight(800);
-        window.setMinWidth(800);
-        Scene loginScene = new Scene(login,800,600);
+        //login.setMinSize(800,600);
+        //window.setMinHeight(600);
+        //window.setMinWidth(800);
+        Scene loginScene = new Scene(root,800,600);
+        window.setResizable(true);
         window.setScene(loginScene);
         window.setTitle("Log in");
         window.show();
+
+        loginScene.rootProperty().addListener(new ChangeListener<Parent>() {
+            @Override
+            public void changed(ObservableValue<? extends Parent> observableValue, Parent parent, Parent t1) {
+                loginScene.rootProperty().removeListener(this);
+                loginScene.setRoot(root);
+                ((Region)t1).setPrefWidth(initWidth);
+                ((Region)t1).setPrefHeight(initheight);
+                root.getChildren().clear();
+                root.getChildren().add(t1);
+                loginScene.rootProperty().addListener(this);
+            }
+        });
+
+
     }
 
     public boolean gegevensCheck(String password,String username){
