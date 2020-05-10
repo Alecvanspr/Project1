@@ -23,6 +23,7 @@ public class ArrayKeeper {
     public ArrayList<PersonalData> getPersonaldata(){
         return Data;
     }
+
     public void setCurrentUser(int currentUser){
         this.currentUser = currentUser;
     }
