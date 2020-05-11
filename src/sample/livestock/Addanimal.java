@@ -31,9 +31,10 @@ public class Addanimal extends Application {
         lblspiecies.relocate(100,240);
         textSpieses.relocate(100,275);
 
-        Animal newAminal = new Animal();
+
 
         btnAdd.setOnAction(E-> {
+                    Animal newAminal = new Animal();
                     newAminal.setName(txtname.getText());
                     newAminal.setGender(txtGender.getText());
                     newAminal.setSpecies(textSpieses.getText());

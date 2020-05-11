@@ -13,31 +13,24 @@ import java.util.ArrayList;
 
 public class EditAnimal extends Application {
     Scene editscene;
-    int currentAnimal;
+    private int currentAnimal;
     int currentUser = ArrayKeeper.getCurrentUser();
-    ArrayKeeper arrayKeeper = new ArrayKeeper();
+    //Animal animal = ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal); //kijk of je dit later kan implementeren
+    public EditAnimal(int currentAnimal){
+        this.currentAnimal = currentAnimal;
+    }
 
     @Override
     public void start(Stage stage) throws Exception{
         Pane pane = new Pane();
         Button btnBack = new Button("Back");
-        Label nameAnimal = new Label("Animal name "+ arrayKeeper.getPersonaldata().get(currentUser).getAnimals().get(currentAnimal).getName());
-        Label ageAnimal = new Label("Animal Age " + arrayKeeper.getPersonaldata().get(currentUser).getAnimals().get(currentAnimal).getAge());
-        Label SpiecesAminal = new Label("Animal Spied "+ arrayKeeper.getPersonaldata().get(currentUser).getAnimals().get(currentAnimal).getSpecies());
+        Label nameAnimal = new Label("Animal name "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getName());
+        Label ageAnimal = new Label("Animal Age " + ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getAge());
+        Label SpiecesAminal = new Label("Animal species "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getSpecies());
 
         btnBack.setOnAction(E-> {
             goBack(stage);
         });
-
-
-        /*
-        Hier moet een stuk code komen wat ervoor zorgt dat de current gebruiker,
-        ook wel de i wordt meegegeven naar hier. Dan kan je daarmee in de array list.
-        dan moet je ook nog een paar knoppen maken om die dingen te edditen.
-        je kan dat denk ik doen door een 2de method die niet verbonden is aan de void start.
-         */
-
-
 
         nameAnimal.relocate(100,100);
         ageAnimal.relocate(100,135);
@@ -46,12 +39,12 @@ public class EditAnimal extends Application {
         pane.getChildren().addAll(nameAnimal,ageAnimal,SpiecesAminal,btnBack);
 
         editscene = new Scene(pane,800,600);
-        stage.setTitle("Edit "); //+ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get().getName()
+        stage.setTitle("Edit "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getName()); //+ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get().getName()
         stage.setScene(editscene);
         stage.show();
     }
-    public void setCurrentAnimal(int currentAnimal){
-        this.currentAnimal = currentAnimal;
+    public void setCurrentAnimal(int invoerAnimal){
+        this.currentAnimal = invoerAnimal;
     }
     public void goBack(Stage stage){
         Livestock livestock = new Livestock();
