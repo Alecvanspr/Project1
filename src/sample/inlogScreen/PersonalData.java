@@ -1,11 +1,12 @@
 package sample.inlogScreen;
 
+import sample.ArrayKeeper;
 import sample.livestock.Animal;
 
 import java.util.ArrayList;
 
 public class PersonalData {
-    public static ArrayList<Animal> animals = new ArrayList<>();
+    private static ArrayList<Animal> animals = new ArrayList<>();
     private String Usernamename;
     private String name = "Not yet defined";
     private String password;
@@ -83,5 +84,9 @@ public class PersonalData {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public ArrayList<Animal> getAnimals() {
+        return animals;
     }
 }

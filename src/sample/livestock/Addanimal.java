@@ -37,7 +37,7 @@ public class Addanimal extends Application {
                     newAminal.setName(txtname.getText());
                     newAminal.setGender(txtGender.getText());
                     newAminal.setSpecies(textSpieses.getText());
-                    ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.add(newAminal);
+                    ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().add(newAminal);
                     goBack(stage);
                 });
 
