@@ -1,4 +1,6 @@
-package sample;
+package sample.inlogScreen;
+
+import sample.livestock.Animal;
 
 import java.util.ArrayList;
 

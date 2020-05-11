@@ -1,10 +1,11 @@
-package sample;
+package sample.inlogScreen;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.inlogScreen.Main;
 
 public class SignUpScreen extends Application {
     Scene SignUpp;

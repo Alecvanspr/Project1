@@ -1,4 +1,4 @@
-package sample;
+package sample.livestock;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -6,8 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.awt.image.AreaAveragingScaleFilter;
+import sample.ArrayKeeper;
+import sample.Homescreen;
+import sample.livestock.Addanimal;
+import sample.livestock.EditAnimal;
 
 public class Livestock extends Application {
     Scene stockScene;
@@ -62,7 +64,7 @@ public class Livestock extends Application {
         }
     }
     public void displayAllAnimals(Stage stage){
-        for(int i=0;i<ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.size();i++){
+        for(int i = 0; i< ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.size(); i++){
             Label label = new Label(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get(i).getName());
             int animal = i;
             label.setOnMouseClicked(E->{

@@ -1,4 +1,4 @@
-package sample;
+package sample.livestock;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

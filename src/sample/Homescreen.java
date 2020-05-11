@@ -6,9 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.Objects;
+import sample.contacts.Contacts;
+import sample.inlogScreen.Main;
+import sample.livestock.Livestock;
+import sample.market.Marketplace;
+import sample.profileSettings.ProfileSettingsScreen;
 
 public class Homescreen extends Application {
     Scene homeScene;

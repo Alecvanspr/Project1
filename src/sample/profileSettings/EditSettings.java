@@ -1,4 +1,4 @@
-package sample;
+package sample.profileSettings;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -8,6 +8,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.ArrayKeeper;
+import sample.inlogScreen.PersonalData;
+import sample.profileSettings.ProfileSettingsScreen;
 
 import static sample.ArrayKeeper.getCurrentUser;
 

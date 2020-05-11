@@ -1,4 +1,4 @@
-package sample;
+package sample.inlogScreen;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -13,6 +13,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import sample.ArrayKeeper;
+import sample.Homescreen;
 
 public class Main extends Application {
     public ArrayKeeper arraykeeper = new ArrayKeeper();

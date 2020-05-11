@@ -1,4 +1,4 @@
-package sample;
+package sample.livestock;
 
 public class Animal {
     public static Long number = 0L;

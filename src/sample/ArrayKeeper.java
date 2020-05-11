@@ -1,5 +1,7 @@
 package sample;
 
+import sample.inlogScreen.PersonalData;
+
 import java.util.ArrayList;
 
 public class ArrayKeeper {

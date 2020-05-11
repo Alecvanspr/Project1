@@ -1,4 +1,4 @@
-package sample;
+package sample.profileSettings;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.ArrayKeeper;
+import sample.Homescreen;
 
 public class ProfileSettingsScreen extends Application {
     Homescreen homescreen = new Homescreen();
