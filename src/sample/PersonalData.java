@@ -3,7 +3,7 @@ package sample;
 import java.util.ArrayList;
 
 public class PersonalData {
-    ArrayList<Animal> animals = new ArrayList<>();
+    public static ArrayList<Animal> animals = new ArrayList<>();
     private String Usernamename;
     private String name = "Not yet defined";
     private String password;

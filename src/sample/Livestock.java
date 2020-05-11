@@ -52,10 +52,11 @@ public class Livestock extends Application {
             ex.printStackTrace();
         }
     }
-    public void goEditAnimal(Stage stage){
+    public void goEditAnimal(Stage stage,int animal){
         EditAnimal editAnimal = new EditAnimal();
         try {
             editAnimal.start(stage);
+            editAnimal.setCurrentAnimal(animal);
         } catch (Exception ex){
             ex.printStackTrace();
         }
@@ -63,8 +64,9 @@ public class Livestock extends Application {
     public void displayAllAnimals(Stage stage){
         for(int i=0;i<ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.size();i++){
             Label label = new Label(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get(i).getName());
+            int animal = i;
             label.setOnMouseClicked(E->{
-                goEditAnimal(stage);
+                goEditAnimal(stage,animal);
             });
             label.relocate(100, plaats);
             plaats = plaats+35;

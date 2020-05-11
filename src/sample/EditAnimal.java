@@ -2,19 +2,26 @@ package sample;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class EditAnimal extends Application {
     Scene editscene;
-    Livestock livestock;
+    int currentAnimal;
     @Override
     public void start(Stage stage) throws Exception{
         Pane pane = new Pane();
-        Label nameAnimal = new Label();
+        Button btnBack = new Button("Back");
+        Label nameAnimal = new Label("Animal name ");
         Label ageAnimal = new Label();
         Label SpiecesAminal = new Label();
+
+        btnBack.setOnAction(E-> {
+            goBack(stage);
+        });
+
 
         /*
         Hier moet een stuk code komen wat ervoor zorgt dat de current gebruiker,
@@ -36,5 +43,15 @@ public class EditAnimal extends Application {
         stage.setScene(editscene);
         stage.show();
     }
-
+    public void setCurrentAnimal(int currentAnimal){
+        this.currentAnimal = currentAnimal;
+    }
+    public void goBack(Stage stage){
+        Livestock livestock = new Livestock();
+        try {
+            livestock.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }
