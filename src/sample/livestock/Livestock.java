@@ -79,6 +79,9 @@ public class Livestock extends Application {
     }
     public void displayAllAnimals(Stage stage){
         for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++){
+            System.out.println(ArrayKeeper.getCurrentUser());
+            System.out.println(arrayKeeper.getPersonaldata().get(0).getAnimals().size());
+            System.out.println(arrayKeeper.getPersonaldata().get(1).getAnimals().size());
             Label label = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getName());
             int animal = i;
             label.setOnMouseClicked(E->{

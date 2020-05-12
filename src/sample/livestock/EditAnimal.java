@@ -13,6 +13,8 @@ import sample.inlogScreen.PersonalData;
 
 import java.util.ArrayList;
 
+import static sample.ArrayKeeper.getCurrentUser;
+
 public class EditAnimal extends Application {
     Scene editscene;
     private int currentAnimal;
@@ -27,13 +29,15 @@ public class EditAnimal extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
+        PersonalData personalData = ArrayKeeper.Data.get(currentUser);
         Pane pane = new Pane();
         Button btnBack = new Button("Back");
         Button btnEdit = new Button("Edit Animal");
-        Label nameAnimal = new Label("Animal name "+ arrayKeeper.getPersonaldata().get(currentUser).getAnimals().get(currentAnimal).getName());
-        Label ageAnimal = new Label("Animal Age " + ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getAge());
-        Label lblGender = new Label("Animal Gender "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getGender());
-        Label SpeciesAminal = new Label("Animal species "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getSpecies());
+        Label nameAnimal = new Label("Animal name "+ personalData.getAnimals().get(currentAnimal).getName());
+        Label ageAnimal = new Label("Animal Age " + personalData.getAnimals().get(currentAnimal).getAge());
+        Label lblGender = new Label("Animal Gender "+ personalData.getAnimals().get(currentAnimal).getGender());
+        Label SpeciesAminal = new Label("Animal species "+ personalData.getAnimals().get(currentAnimal).getSpecies());
+        Label lblUserStamp = new Label("User "+ getCurrentUser() + currentUser);
         Button btnDelete = new Button("Delete Animal");
         Button btnSaveChanges = new Button("Apply Changes");
         TextField txtfname = new TextField();
@@ -45,6 +49,8 @@ public class EditAnimal extends Application {
         txtfGender.relocate(300,170);
         txtfSpecies.relocate(300,205);
         btnSaveChanges.relocate(300,240);
+
+        lblUserStamp.relocate(300,275);
 
         btnDelete.setOnAction(E->{
             deleteAnimal();
@@ -72,7 +78,7 @@ public class EditAnimal extends Application {
         lblGender.relocate(100,170);
         SpeciesAminal.relocate(100,205);
 
-        pane.getChildren().addAll(nameAnimal,ageAnimal,SpeciesAminal,lblGender,btnEdit,btnBack);
+        pane.getChildren().addAll(nameAnimal,ageAnimal,SpeciesAminal,lblGender,btnEdit,btnBack,lblUserStamp);
 
         editscene = new Scene(pane,800,600);
         stage.setTitle("Edit "+ ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName()); //+ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get().getName()

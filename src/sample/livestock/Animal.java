@@ -54,8 +54,7 @@ public class Animal {
     }
 
     public Long getUniqueNumber(){
-        number = number+1;
-        return number;
+        return number++;
     }
 
     public void setName(String nameNew){

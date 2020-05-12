@@ -173,8 +173,7 @@ public class EditSettings extends Application {
     }
     public void changeGender(String gender){
         if(CheckFilled(gender)){
-            PersonalData personalData = new PersonalData();
-            personalData = ArrayKeeper.Data.get(getCurrentUser());
+            PersonalData personalData = ArrayKeeper.Data.get(getCurrentUser());
             personalData.setGender(gender);
             ArrayKeeper.Data.set(getCurrentUser(), personalData);
         }

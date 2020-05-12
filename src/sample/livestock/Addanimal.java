@@ -5,12 +5,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ImageInput;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.inlogScreen.Main;
 
 public class Addanimal extends Application {
     Scene animalScene;
+    Main main = new Main();
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -38,7 +41,8 @@ public class Addanimal extends Application {
                     newAminal.setName(txtname.getText());
                     newAminal.setGender(txtGender.getText());
                     newAminal.setSpecies(textSpieses.getText());
-                    ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().add(newAminal);
+                    System.out.println(ArrayKeeper.getCurrentUser());
+                    main.arraykeeper.getPersonaldata().get(0).getAnimals().add(newAminal);
                     goBack(stage);
                 });
 
