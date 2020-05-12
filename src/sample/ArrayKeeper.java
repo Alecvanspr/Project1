@@ -1,6 +1,7 @@
 package sample;
 
 import sample.inlogScreen.PersonalData;
+import sample.livestock.Animal;
 
 import java.util.ArrayList;
 
@@ -32,5 +33,9 @@ public class ArrayKeeper {
 
     public static int getCurrentUser() {
         return currentUser;
+    }
+
+    public static PersonalData getData(int user) {
+        return Data.get(user);
     }
 }

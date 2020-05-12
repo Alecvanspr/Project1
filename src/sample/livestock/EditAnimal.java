@@ -33,24 +33,47 @@ public class EditAnimal extends Application {
         Pane pane = new Pane();
         Button btnBack = new Button("Back");
         Button btnEdit = new Button("Edit Animal");
-        Label nameAnimal = new Label("Animal name "+ personalData.getAnimals().get(currentAnimal).getName());
-        Label ageAnimal = new Label("Animal Age " + personalData.getAnimals().get(currentAnimal).getAge());
-        Label lblGender = new Label("Animal Gender "+ personalData.getAnimals().get(currentAnimal).getGender());
-        Label SpeciesAminal = new Label("Animal species "+ personalData.getAnimals().get(currentAnimal).getSpecies());
-        Label lblUserStamp = new Label("User "+ getCurrentUser() + currentUser);
+        Label nameAnimal = new Label("Animal name ");
+        Label ageAnimal = new Label("Animal Age ");
+        Label lblGender = new Label("Animal Gender");
+        Label SpeciesAminal = new Label("Animal species ");
+        Label lblRace = new Label("Animal race ");
+        Label lblWeight = new Label("Animal Weight");
         Button btnDelete = new Button("Delete Animal");
         Button btnSaveChanges = new Button("Apply Changes");
-        TextField txtfname = new TextField();
-        TextField txtfAge = new TextField();
-        TextField txtfSpecies = new TextField();
-        TextField txtfGender = new TextField();
-        txtfname.relocate(300,100);
-        txtfAge.relocate(300,135);
-        txtfGender.relocate(300,170);
-        txtfSpecies.relocate(300,205);
-        btnSaveChanges.relocate(300,240);
 
-        lblUserStamp.relocate(300,275);
+        Label DataNameAnimal = new Label(personalData.getAnimals().get(currentAnimal).getName());
+        Label DataAgeAnimal = new Label(""+personalData.getAnimals().get(currentAnimal).getAge());
+        Label DataGenderAnimal = new Label(personalData.getAnimals().get(currentAnimal).getGender());
+        Label DataSpeciesAnimal = new Label(personalData.getAnimals().get(currentAnimal).getSpecies());
+        Label DataRaceAnimal = new Label(personalData.getAnimals().get(currentAnimal).getRace());
+        Label DataWeightAnimal = new Label(""+ personalData.getAnimals().get(currentAnimal).getWeight());
+
+        TextField txtfname = new TextField(personalData.getAnimals().get(currentAnimal).getName());
+        TextField txtfAge = new TextField(""+personalData.getAnimals().get(currentAnimal).getAge());
+        TextField txtfSpecies = new TextField(personalData.getAnimals().get(currentAnimal).getGender());
+        TextField txtfGender = new TextField(personalData.getAnimals().get(currentAnimal).getSpecies());
+        TextField txtfRace = new TextField(personalData.getAnimals().get(currentAnimal).getRace());
+        TextField txtfWeight = new TextField(""+personalData.getAnimals().get(currentAnimal).getWeight());
+
+        DataNameAnimal.relocate(250,100);
+        DataAgeAnimal.relocate(250,135);
+        DataGenderAnimal.relocate(250,170);
+        DataSpeciesAnimal.relocate(250,205);
+        DataRaceAnimal.relocate(250,240);
+        DataWeightAnimal.relocate(250,275);
+
+        pane.getChildren().addAll(DataNameAnimal,DataAgeAnimal,DataGenderAnimal,DataSpeciesAnimal,DataRaceAnimal,DataWeightAnimal);
+
+
+        txtfname.relocate(450,100);
+        txtfAge.relocate(450,135);
+        txtfGender.relocate(450,170);
+        txtfSpecies.relocate(450,205);
+        txtfRace.relocate(450,240);
+        txtfWeight.relocate(450,275);
+        btnSaveChanges.relocate(450,310);
+
 
         btnDelete.setOnAction(E->{
             deleteAnimal();
@@ -60,25 +83,32 @@ public class EditAnimal extends Application {
 
         btnBack.setOnAction(E-> {
             goBack(stage);
-            System.out.println(currentAnimal);
-            System.out.println(currentUser);
         });
         btnEdit.setOnAction(E->{
-            pane.getChildren().addAll(txtfname,txtfAge,txtfGender,txtfSpecies,btnSaveChanges,btnDelete);
-            btnSaveChanges.setOnAction(e->{
-                SaveEdits(txtfname,txtfAge,txtfGender,txtfSpecies);
-                goBack(stage);
-            });
+            pane.getChildren().addAll(txtfname,txtfAge,txtfGender,txtfSpecies,txtfRace,txtfWeight,btnSaveChanges,btnDelete);
+            try {
+                btnSaveChanges.setOnAction(e -> {
+                    SaveEdits(txtfname, txtfAge, txtfGender, txtfSpecies, txtfRace, txtfWeight);
+                    goBack(stage);
+                });
+            }catch (java.lang.NumberFormatException e){
+                Label ErrorLabel = new Label("Age and weight have to be numbers");
+                ErrorLabel.relocate(250,310);
+                pane.getChildren().add(ErrorLabel);
+            }
+            btnEdit.setVisible(false);
         });
 
         btnBack.relocate(10,565);
-        btnEdit.relocate(100,240);
+        btnEdit.relocate(100,310);
         nameAnimal.relocate(100,100);
         ageAnimal.relocate(100,135);
         lblGender.relocate(100,170);
-        SpeciesAminal.relocate(100,205);
+        lblRace.relocate(100,205);
+        SpeciesAminal.relocate(100,240);
+        lblWeight.relocate(100,275);
 
-        pane.getChildren().addAll(nameAnimal,ageAnimal,SpeciesAminal,lblGender,btnEdit,btnBack,lblUserStamp);
+        pane.getChildren().addAll(nameAnimal,ageAnimal,SpeciesAminal,lblGender,lblRace,lblWeight,btnEdit,btnBack);
 
         editscene = new Scene(pane,800,600);
         stage.setTitle("Edit "+ ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName()); //+ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get().getName()
@@ -96,19 +126,28 @@ public class EditAnimal extends Application {
             ex.printStackTrace();
         }
     }
-    public void SaveEdits(TextField name,TextField age,TextField gender,TextField Species) {
+    public void SaveEdits(TextField name,TextField age,TextField gender,TextField Species,TextField race, TextField Weight) {
+        int intAge = Integer.parseInt(age.getText());
+        double doubleWeight = Double.parseDouble(Weight.getText());
         if (CheckFilled(name.getText())) {
-            ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setName(name.getText());
+            ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setName(name.getText());
         }
         if (CheckFilled(age.getText())) {
-            ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setAge(Integer.parseInt(age.getText()));
+            ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setAge(intAge);
         }
         if (CheckFilled(gender.getText())) {
-            ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setGender(gender.getText());
+            ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setGender(gender.getText());
         }
         if (CheckFilled(Species.getText())) {
-            ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setSpecies(Species.getText());
+            ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setSpecies(Species.getText());
         }
+        if (CheckFilled(race.getText())) {
+            ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setRace(race.getText());
+        }
+        if (CheckFilled(Weight.getText())) {
+            ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setWeight(doubleWeight);
+        }
+
     }
         public boolean CheckFilled (String isempety){
             boolean ret = true;
