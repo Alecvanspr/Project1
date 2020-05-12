@@ -16,6 +16,7 @@ import sample.livestock.Addanimal;
 import sample.livestock.EditAnimal;
 
 public class Livestock extends Application {
+    ArrayKeeper arrayKeeper = new ArrayKeeper();
     Scene stockScene;
     public int plaats = 75;
     ScrollPane liveStockScroll = new ScrollPane();
@@ -69,7 +70,7 @@ public class Livestock extends Application {
         }
     }
     public void goEditAnimal(Stage stage,int animal){
-        EditAnimal editAnimal = new EditAnimal(animal);
+        EditAnimal editAnimal = new EditAnimal(animal,ArrayKeeper.getCurrentUser());
         try {
             editAnimal.start(stage);
         } catch (Exception ex){
@@ -77,8 +78,8 @@ public class Livestock extends Application {
         }
     }
     public void displayAllAnimals(Stage stage){
-        for(int i = 0; i<ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++){
-            Label label = new Label(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getName());
+        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++){
+            Label label = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getName());
             int animal = i;
             label.setOnMouseClicked(E->{
                 goEditAnimal(stage,animal);

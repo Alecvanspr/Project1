@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
@@ -14,32 +16,66 @@ import java.util.ArrayList;
 public class EditAnimal extends Application {
     Scene editscene;
     private int currentAnimal;
-    int currentUser = ArrayKeeper.getCurrentUser();
+    private int currentUser;
+    ArrayKeeper arrayKeeper = new ArrayKeeper();
+
     //Animal animal = ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal); //kijk of je dit later kan implementeren
-    public EditAnimal(int currentAnimal){
+    public EditAnimal(int currentAnimal,int currentUser){
         this.currentAnimal = currentAnimal;
+        this.currentUser = currentUser;
     }
 
     @Override
     public void start(Stage stage) throws Exception{
         Pane pane = new Pane();
         Button btnBack = new Button("Back");
-        Label nameAnimal = new Label("Animal name "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getName());
+        Button btnEdit = new Button("Edit Animal");
+        Label nameAnimal = new Label("Animal name "+ arrayKeeper.getPersonaldata().get(currentUser).getAnimals().get(currentAnimal).getName());
         Label ageAnimal = new Label("Animal Age " + ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getAge());
-        Label SpiecesAminal = new Label("Animal species "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getSpecies());
+        Label lblGender = new Label("Animal Gender "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getGender());
+        Label SpeciesAminal = new Label("Animal species "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getSpecies());
+        Button btnDelete = new Button("Delete Animal");
+        Button btnSaveChanges = new Button("Apply Changes");
+        TextField txtfname = new TextField();
+        TextField txtfAge = new TextField();
+        TextField txtfSpecies = new TextField();
+        TextField txtfGender = new TextField();
+        txtfname.relocate(300,100);
+        txtfAge.relocate(300,135);
+        txtfGender.relocate(300,170);
+        txtfSpecies.relocate(300,205);
+        btnSaveChanges.relocate(300,240);
 
-        btnBack.setOnAction(E-> {
+        btnDelete.setOnAction(E->{
+            deleteAnimal();
             goBack(stage);
         });
 
+
+        btnBack.setOnAction(E-> {
+            goBack(stage);
+            System.out.println(currentAnimal);
+            System.out.println(currentUser);
+        });
+        btnEdit.setOnAction(E->{
+            pane.getChildren().addAll(txtfname,txtfAge,txtfGender,txtfSpecies,btnSaveChanges,btnDelete);
+            btnSaveChanges.setOnAction(e->{
+                SaveEdits(txtfname,txtfAge,txtfGender,txtfSpecies);
+                goBack(stage);
+            });
+        });
+
+        btnBack.relocate(10,565);
+        btnEdit.relocate(100,240);
         nameAnimal.relocate(100,100);
         ageAnimal.relocate(100,135);
-        SpiecesAminal.relocate(100,170);
+        lblGender.relocate(100,170);
+        SpeciesAminal.relocate(100,205);
 
-        pane.getChildren().addAll(nameAnimal,ageAnimal,SpiecesAminal,btnBack);
+        pane.getChildren().addAll(nameAnimal,ageAnimal,SpeciesAminal,lblGender,btnEdit,btnBack);
 
         editscene = new Scene(pane,800,600);
-        stage.setTitle("Edit "+ ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal).getName()); //+ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get().getName()
+        stage.setTitle("Edit "+ ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName()); //+ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get().getName()
         stage.setScene(editscene);
         stage.show();
     }
@@ -54,4 +90,29 @@ public class EditAnimal extends Application {
             ex.printStackTrace();
         }
     }
-}
+    public void SaveEdits(TextField name,TextField age,TextField gender,TextField Species) {
+        if (CheckFilled(name.getText())) {
+            ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setName(name.getText());
+        }
+        if (CheckFilled(age.getText())) {
+            ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setAge(Integer.parseInt(age.getText()));
+        }
+        if (CheckFilled(gender.getText())) {
+            ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setGender(gender.getText());
+        }
+        if (CheckFilled(Species.getText())) {
+            ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setSpecies(Species.getText());
+        }
+    }
+        public boolean CheckFilled (String isempety){
+            boolean ret = true;
+            if (isempety.equals("")) {
+                ret = false;
+            }
+            return ret;
+        }
+        public void deleteAnimal(){
+        ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().remove(currentAnimal);
+        }
+    }
+
