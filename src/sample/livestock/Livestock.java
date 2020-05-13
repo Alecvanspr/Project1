@@ -52,7 +52,8 @@ public class Livestock extends Application {
             goNewAnimal(stage);
         });
 
-        
+
+
         liveStockPane.getChildren().addAll(btnBack,btnAdd,lblName,lblHealth,lblWeight);
         btnBack.relocate(0,570);
         btnBack.setOnAction(e -> {
