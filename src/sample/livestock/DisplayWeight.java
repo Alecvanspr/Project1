@@ -20,7 +20,6 @@ public class DisplayWeight extends Application {
         btnBack.relocate(0,575);
 
 
-
         btnBack.setOnAction(E->{
             goBack(stage);
         });

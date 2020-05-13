@@ -38,7 +38,6 @@ public class EditAnimal extends Application {
         Label lblGender = new Label("Animal Gender");
         Label SpeciesAminal = new Label("Animal species ");
         Label lblRace = new Label("Animal race ");
-        Label lblWeight = new Label("Animal Weight");
         Button btnDelete = new Button("Delete Animal");
         Button btnSaveChanges = new Button("Apply Changes");
 
@@ -47,23 +46,20 @@ public class EditAnimal extends Application {
         Label DataGenderAnimal = new Label(personalData.getAnimals().get(currentAnimal).getGender());
         Label DataSpeciesAnimal = new Label(personalData.getAnimals().get(currentAnimal).getSpecies());
         Label DataRaceAnimal = new Label(personalData.getAnimals().get(currentAnimal).getRace());
-        Label DataWeightAnimal = new Label(""+ personalData.getAnimals().get(currentAnimal).getWeight());
 
         TextField txtfname = new TextField(personalData.getAnimals().get(currentAnimal).getName());
         TextField txtfAge = new TextField(""+personalData.getAnimals().get(currentAnimal).getAge());
         TextField txtfSpecies = new TextField(personalData.getAnimals().get(currentAnimal).getGender());
         TextField txtfGender = new TextField(personalData.getAnimals().get(currentAnimal).getSpecies());
         TextField txtfRace = new TextField(personalData.getAnimals().get(currentAnimal).getRace());
-        TextField txtfWeight = new TextField(""+personalData.getAnimals().get(currentAnimal).getWeight());
 
         DataNameAnimal.relocate(250,100);
         DataAgeAnimal.relocate(250,135);
         DataGenderAnimal.relocate(250,170);
         DataSpeciesAnimal.relocate(250,205);
         DataRaceAnimal.relocate(250,240);
-        DataWeightAnimal.relocate(250,275);
 
-        pane.getChildren().addAll(DataNameAnimal,DataAgeAnimal,DataGenderAnimal,DataSpeciesAnimal,DataRaceAnimal,DataWeightAnimal);
+        pane.getChildren().addAll(DataNameAnimal,DataAgeAnimal,DataGenderAnimal,DataSpeciesAnimal,DataRaceAnimal);
 
 
         txtfname.relocate(450,100);
@@ -71,7 +67,6 @@ public class EditAnimal extends Application {
         txtfGender.relocate(450,170);
         txtfSpecies.relocate(450,205);
         txtfRace.relocate(450,240);
-        txtfWeight.relocate(450,275);
         btnSaveChanges.relocate(450,310);
 
 
@@ -85,10 +80,10 @@ public class EditAnimal extends Application {
             goBack(stage);
         });
         btnEdit.setOnAction(E->{
-            pane.getChildren().addAll(txtfname,txtfAge,txtfGender,txtfSpecies,txtfRace,txtfWeight,btnSaveChanges,btnDelete);
+            pane.getChildren().addAll(txtfname,txtfAge,txtfGender,txtfSpecies,txtfRace,btnSaveChanges,btnDelete);
             try {
                 btnSaveChanges.setOnAction(e -> {
-                    SaveEdits(txtfname, txtfAge, txtfGender, txtfSpecies, txtfRace, txtfWeight);
+                    SaveEdits(txtfname, txtfAge, txtfGender, txtfSpecies, txtfRace);
                     goBack(stage);
                 });
             }catch (java.lang.NumberFormatException e){
@@ -106,9 +101,8 @@ public class EditAnimal extends Application {
         lblGender.relocate(100,170);
         lblRace.relocate(100,205);
         SpeciesAminal.relocate(100,240);
-        lblWeight.relocate(100,275);
 
-        pane.getChildren().addAll(nameAnimal,ageAnimal,SpeciesAminal,lblGender,lblRace,lblWeight,btnEdit,btnBack);
+        pane.getChildren().addAll(nameAnimal,ageAnimal,SpeciesAminal,lblGender,lblRace,btnEdit,btnBack);
 
         editscene = new Scene(pane,800,600);
         stage.setTitle("Edit "+ ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName()); //+ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get().getName()
@@ -126,9 +120,8 @@ public class EditAnimal extends Application {
             ex.printStackTrace();
         }
     }
-    public void SaveEdits(TextField name,TextField age,TextField gender,TextField Species,TextField race, TextField Weight) {
+    public void SaveEdits(TextField name,TextField age,TextField gender,TextField Species,TextField race) {
         int intAge = Integer.parseInt(age.getText());
-        double doubleWeight = Double.parseDouble(Weight.getText());
         if (CheckFilled(name.getText())) {
             ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setName(name.getText());
         }
@@ -144,10 +137,6 @@ public class EditAnimal extends Application {
         if (CheckFilled(race.getText())) {
             ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setRace(race.getText());
         }
-        if (CheckFilled(Weight.getText())) {
-            ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).addWeight(Weight.getText());
-        }
-
     }
         public boolean CheckFilled (String isempety){
             boolean ret = true;
