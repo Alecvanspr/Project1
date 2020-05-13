@@ -1,4 +1,4 @@
-package sample;
+package sample.inlogScreen;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -7,13 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ForgotPassword extends Application {
     Scene ForgotPassword;
     Main main = new Main();
     public int changingUser;
+    public Label lblError = new Label();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -24,7 +24,7 @@ public class ForgotPassword extends Application {
         Label lblSecurityQuestion = new Label("Click here to reveal your Security Question");
         Label lblnewPassword = new Label("New password");
         Label lblnewPasswordConfirm = new Label("Enter new password again");
-        Label lblError = new Label();
+
         TextField txtUsername = new TextField();
         TextField txtBirth = new TextField();
         TextField security = new TextField();
@@ -55,16 +55,7 @@ public class ForgotPassword extends Application {
         btnBack.relocate(0, 570);
 
         ChangePassword.setOnAction(e->{
-            if(security.getText().equals(main.arraykeeper.getPersonaldata().get(changingUser).getSecurityAnswer())) {
-                if (txtPassword.getText().equals(txtPasswordConfirm.getText())) {
-                    main.arraykeeper.changePassword(changingUser, txtPassword.getText());
-                    goBack(stage);
-                } else {
-                    lblError.setText("Passwords do not match");
-                }
-            }else{
-                lblError.setText("Question Wrong");
-            }
+            changePassword(security.getText(),txtPassword.getText(),txtPasswordConfirm.getText(),stage);
         });
 
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
@@ -78,7 +69,6 @@ public class ForgotPassword extends Application {
     public int getUser(String username){
         int ret = 0;
         for(int i = 0; i<main.arraykeeper.Data.size();i++){
-            System.out.println("Poah hey");
             if(main.arraykeeper.getPersonaldata().get(i).getName().equals(username)){
                 ret = i;
             }
@@ -87,6 +77,18 @@ public class ForgotPassword extends Application {
     }
     public void setSecurityQuestion(Label label){
         label.setText(main.arraykeeper.getPersonaldata().get(changingUser).getSecurtityQuestion());
+    }
+    public void changePassword(String secutiry,String password,String passwordcheck,Stage stage){
+        if(secutiry.equalsIgnoreCase(main.arraykeeper.getPersonaldata().get(changingUser).getSecurityAnswer())) {
+            if (password.equals(passwordcheck)) {
+                main.arraykeeper.changePassword(changingUser, password);
+                goBack(stage);
+            } else {
+                lblError.setText("Passwords do not match");
+            }
+        }else{
+            lblError.setText("Question Wrong");
+        }
     }
     public void goBack(Stage stage){
         Main main = new Main();
