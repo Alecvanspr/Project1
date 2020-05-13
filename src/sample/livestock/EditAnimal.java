@@ -12,6 +12,7 @@ import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import static sample.ArrayKeeper.getCurrentUser;
 
@@ -21,7 +22,6 @@ public class EditAnimal extends Application {
     private int currentUser;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
 
-    //Animal animal = ArrayKeeper.Data.get(currentUser).getAnimals().get(currentAnimal); //kijk of je dit later kan implementeren
     public EditAnimal(int currentAnimal,int currentUser){
         this.currentAnimal = currentAnimal;
         this.currentUser = currentUser;
@@ -145,7 +145,7 @@ public class EditAnimal extends Application {
             ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setRace(race.getText());
         }
         if (CheckFilled(Weight.getText())) {
-            ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).setWeight(doubleWeight);
+            ArrayKeeper.Data.get(getCurrentUser()).getAnimals().get(currentAnimal).addWeight(Weight.getText());
         }
 
     }

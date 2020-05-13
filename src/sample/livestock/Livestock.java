@@ -26,6 +26,14 @@ public class Livestock extends Application {
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
         Button btnAdd = new Button("Add animal");
+        Label lblName = new Label("Name Animal");
+        Label lblHealth = new Label("Last health");
+        Label lblWeight = new Label("Last Weight");
+
+        lblName.relocate(100,40);
+        lblHealth.relocate(300,40);
+        lblWeight.relocate(500,40);
+
         stage.setResizable(false);
 
         btnAdd.relocate(100,10);
@@ -36,13 +44,15 @@ public class Livestock extends Application {
         scrollBar.relocate(775,0);
         ScrollPane scrollPane = new ScrollPane(scrollBar);
 
+        displayHealth(stage);
+        displayWeight(stage);
         displayAllAnimals(stage);
 
         btnAdd.setOnAction(E->{
             goNewAnimal(stage);
         });
 
-        liveStockPane.getChildren().addAll(btnBack,btnAdd);
+        liveStockPane.getChildren().addAll(btnBack,btnAdd,lblName,lblHealth,lblWeight);
         btnBack.relocate(0,570);
         btnBack.setOnAction(e -> {
             returnHome(stage);
@@ -77,6 +87,22 @@ public class Livestock extends Application {
             ex.printStackTrace();
         }
     }
+    public void goDisplayHealth(Stage stage,int animal){
+        DisplayHealth displayHealth = new DisplayHealth(animal,ArrayKeeper.getCurrentUser());
+        try {
+            displayHealth.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goDisplayWeight(Stage stage,int animal){
+        DisplayWeight displayWeight = new DisplayWeight(animal,ArrayKeeper.getCurrentUser());
+        try {
+            displayWeight.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
     public void displayAllAnimals(Stage stage){
         for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++){
             Label label = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getName());
@@ -86,6 +112,28 @@ public class Livestock extends Application {
             });
             label.relocate(100, plaats);
             plaats = plaats+35;
+            liveStockPane.getChildren().add(label);
+        }
+    }
+    public void displayHealth(Stage stage){
+        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size();i++){
+            Label label = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getHealth().get(i));
+            int animal = i;
+            label.setOnMouseClicked(E->{
+                goDisplayHealth(stage,animal);
+            });
+            label.relocate(300,plaats);
+            liveStockPane.getChildren().add(label);
+        }
+    }
+    public void displayWeight(Stage stage){
+        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size();i++){
+            Label label = new Label(""+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getWeight().get(i));
+            int animal = i;
+            label.setOnMouseClicked(E->{
+                goDisplayWeight(stage,animal);
+            });
+            label.relocate(500,plaats);
             liveStockPane.getChildren().add(label);
         }
     }

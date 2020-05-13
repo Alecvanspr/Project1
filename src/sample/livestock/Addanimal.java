@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.inlogScreen.Main;
@@ -26,6 +27,7 @@ public class Addanimal extends Application {
         Label lblspiecies = new Label("Type animal");
         Label lblrace = new Label ("Race animal");
         Label lblweight = new Label("Weight animal");
+        Label lblHealth = new Label("Current health situation animal");
 
         TextField txtname = new TextField();
         TextField txtAge = new TextField("0");
@@ -33,6 +35,7 @@ public class Addanimal extends Application {
         TextField textSpieses = new TextField();
         TextField txtRace = new TextField();
         TextField txtWeight = new TextField("0.00");
+        TextField txtHealth = new TextField();
 
         btnAdd.relocate(300,500);
         lblname.relocate(100,100);
@@ -47,24 +50,20 @@ public class Addanimal extends Application {
         txtRace.relocate(300,240);
         lblweight.relocate(100,270);
         txtWeight.relocate(300,270);
+        lblHealth.relocate(100,305);
+        txtHealth.relocate(300,305);
 
 
         btnAdd.setOnAction(E-> {
                     int intAge = Integer.parseInt(txtAge.getText());
                     double doubleWeight = Double.parseDouble(txtWeight.getText());
-                    Animal newAminal = new Animal();
-                    newAminal.setName(txtname.getText());
-                    newAminal.setGender(txtGender.getText());
-                    newAminal.setSpecies(textSpieses.getText());
-                    newAminal.setRace(txtRace.getText());
-                    newAminal.setWeight(doubleWeight);
-                    newAminal.setAge(intAge);
-                    System.out.println(ArrayKeeper.getCurrentUser());
+                    Animal newAminal = new Animal(txtname.getText(),txtGender.getText(),intAge,textSpieses.getText(),txtRace.getText(),doubleWeight,txtHealth.getText());
+                    newAminal.setDateHealth(""+ java.time.LocalDate.now());
                     main.arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().add(newAminal);
                     goBack(stage);
                 });
 
-        animal.getChildren().addAll(btnAdd,lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight);
+        animal.getChildren().addAll(btnAdd,lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,lblHealth,txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight,txtHealth);
         stage.setTitle("Add animal");
         stage.setScene(animalScene);
         stage.show();

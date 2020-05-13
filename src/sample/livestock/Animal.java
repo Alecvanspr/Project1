@@ -1,5 +1,7 @@
 package sample.livestock;
 
+import java.util.ArrayList;
+
 public class Animal {
     public static Long number = 0L;
     //This number is animalnr, but this is the counter.
@@ -9,20 +11,21 @@ public class Animal {
     private Integer age;
     private String species;
     private String race;
-    private Double weight;
+    public ArrayList<Double> weight = new ArrayList<>();
+    public ArrayList<String> health = new ArrayList<>();
+    public ArrayList<String> dateHealth = new ArrayList<>();
+    public ArrayList<String> dateWeight = new ArrayList<>();
 
-    public Animal(){
-        this.animalnr = getUniqueNumber();
-    }
-
-    public Animal(String gender, Integer age, String name, String species, String race, Double weight){
+    public Animal(String name,String gender, Integer age,  String species, String race, Double weight,String Health){
+        System.out.println(weight);
         this.animalnr = getUniqueNumber();
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.species = species;
         this.race = race;
-        this.weight = weight;
+        this.weight.add(weight);
+        this.health.add(Health);
     }
 
     public Long getAnimalnr(){
@@ -39,10 +42,6 @@ public class Animal {
 
     public String getRace(){
         return race;
-    }
-
-    public double getWeight(){
-        return weight;
     }
 
     public String getName(){
@@ -76,8 +75,31 @@ public class Animal {
         race = raceNew;
     }
 
-    public void setWeight(Double weightNew){
-        weight = weightNew;
+    public void addWeight(String weightNew){
+        Double doubleWeight = Double.parseDouble(weightNew);
+        this.weight.add(doubleWeight);
+    }
+    public ArrayList<Double> getWeight(){
+        return weight;
+    }
+    public void addHealth(String newHealth){
+        health.add(newHealth);
+    }
+
+    public ArrayList<String> getHealth(){
+        return  health;
+    }
+    public void setDateHealth(String newDate){
+        this.dateHealth.add(newDate);
+    }
+    public void setDateWeight(String newDate){
+        this.dateWeight.add(newDate);
+    }
+    public String getDateHealth(int counter){
+        return  dateHealth.get(counter);
+    }
+    public String getDateWeight(int counter){
+        return  dateWeight.get(counter);
     }
 
     public static void main(String[] args) {
@@ -85,8 +107,8 @@ public class Animal {
 }
 class sheep extends Animal{
     String woolQuality;
-    public sheep(String gender, Integer age, String name, String species, String race, Double weight,String woolQuality){
-        super(gender, age, name, species, race, weight);
+    public sheep(String gender, Integer age, String name, String species, String race, Double weight,String dateWeight,String woolQuality){
+        super(name,gender, age,  species, race, weight,dateWeight);
         this.woolQuality = woolQuality;
     }
 

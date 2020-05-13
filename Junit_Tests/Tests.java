@@ -23,33 +23,33 @@ public class Tests {
         ArrayList<Animal> animalsHenk = new ArrayList<>();
         ArrayList<Animal> animalsKarel = new ArrayList<>();
 
-        Animal animal1 = new Animal();
+        Animal animal1 = new Animal("","",0,"","",0.00,"");
         animal1.setName("Blaf");
-        Animal animal2 = new Animal();
+        Animal animal2 = new Animal("","",0,"","",0.00,"");
         animal2.setName("Bruh");
-        Animal animal3 = new Animal();
+        Animal animal3 = new Animal("","",0,"","",0.00,"");
         animal3.setName("Wat een lief hondje");
 
         animalsbob.add(animal1);
         animalsbob.add(animal2);
         animalsbob.add(animal3);
 
-        Animal animal11 = new Animal();
+        Animal animal11 = new Animal("","",0,"","",0.00,"");
         animal11.setName("Dier 11");
-        Animal animal12 = new Animal();
+        Animal animal12 = new Animal("","",0,"","",0.00,"");
         animal12.setName("Dier 12");
-        Animal animal13 = new Animal();
+        Animal animal13 = new Animal("","",0,"","",0.00,"");
         animal13.setName("Dier 13");
 
         animalsHenk.add(animal11);
         animalsHenk.add(animal12);
         animalsHenk.add(animal13);
 
-        Animal animal21 = new Animal();
+        Animal animal21 = new Animal("","",0,"","",0.00,"");
         animal21.setName("Freek vonk");
-        Animal animal22 = new Animal();
+        Animal animal22 = new Animal("","",0,"","",0.00,"");
         animal22.setName("België");
-        Animal animal23 = new Animal();
+        Animal animal23 = new Animal("","",0,"","",0.00,"");
         animal23.setName("Bruh momentum");
 
         animalsKarel.add(animal21);
@@ -61,5 +61,10 @@ public class Tests {
         arrayKeeper.getPersonaldata().get(2).setAnimals(animalsKarel);
 
         Assert.assertEquals("Belgi", ArrayKeeper.getData(2).getAnimals().get(1).getName());
+    }
+    @Test
+    public void TestWeight(){
+        ArrayKeeper arrayKeeper = new ArrayKeeper();
+
     }
 }
