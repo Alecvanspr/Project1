@@ -143,10 +143,12 @@ public class EditSettings extends Application {
         }
     }
     public void changeName(String name){
-        PersonalData personalData = new PersonalData();
-        personalData = ArrayKeeper.Data.get(getCurrentUser());
-        personalData.setName(name);
-        ArrayKeeper.Data.set(getCurrentUser(), personalData);
+        if (CheckFilled(name)) {
+            PersonalData personalData = new PersonalData();
+            personalData = ArrayKeeper.Data.get(getCurrentUser());
+            personalData.setName(name);
+            ArrayKeeper.Data.set(getCurrentUser(), personalData);
+        }
     }
     public void changeBirthday(String birthday){
         if (CheckFilled(birthday)) {
