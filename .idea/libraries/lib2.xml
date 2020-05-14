@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="lib2">
     <CLASSES>
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/OneDrive/HBO-ICT/Semester2/Overige/javafx-sdk-14.0.1/lib" />
     </CLASSES>
     <JAVADOC />
@@ -9,5 +10,15 @@
     </SOURCES>
     <jarDirectory url="file://$USER_HOME$/OneDrive/HBO-ICT/Semester2/Overige/javafx-sdk-14.0.1/lib" recursive="false" />
     <jarDirectory url="file://$USER_HOME$/OneDrive/HBO-ICT/Semester2/Overige/javafx-sdk-14.0.1/lib" recursive="false" type="SOURCES" />
+=======
+      <root url="file://D:/Downloads/JavaFX/javafx-sdk-14.0.1/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://D:/Downloads/JavaFX/javafx-sdk-14.0.1/lib" />
+    </SOURCES>
+    <jarDirectory url="file://D:/Downloads/JavaFX/javafx-sdk-14.0.1/lib" recursive="false" />
+    <jarDirectory url="file://D:/Downloads/JavaFX/javafx-sdk-14.0.1/lib" recursive="false" type="SOURCES" />
+>>>>>>> Iets veranderd aan MarketPLace en auction page aangemaakt
   </library>
 </component>
