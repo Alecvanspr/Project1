@@ -23,6 +23,9 @@ public class AuctionList{
         startLabel.setFont(Font.font("Arial",30));
         startLabel.relocate(200,0);
         auctionList.getChildren().add(startLabel);
+        Label testLabel = new Label("TestLabel");
+        testLabel.relocate(500, 500);
+        auctionList.getChildren().add(testLabel);
 
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
