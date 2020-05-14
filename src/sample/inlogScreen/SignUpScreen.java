@@ -1,10 +1,11 @@
-package sample;
+package sample.inlogScreen;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.inlogScreen.Main;
 
 public class SignUpScreen extends Application {
     Scene SignUpp;
@@ -47,41 +48,42 @@ public class SignUpScreen extends Application {
         btnRegister.relocate(100,320);
         btnBack.relocate(0, 570);
 
-        //dit zo een method maken
         btnRegister.setOnAction(e->{
-            if((!(passwordField.getText().equals("")))&&(!(textFieldUserName.getText().equals("")))){
-                System.out.println("Waar");
-                if(passwordField.getText().equals(passwordFieldConf.getText())) {
-                    main.arraykeeper.SignUpData(textFieldUserName.getText(),passwordField.getText(),textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString());
-                    try{
-                        main.start(stage);
-                    } catch (Exception ex){
-                        ex.printStackTrace();
-                    }
-                }else {
-                    Label passwordWrong = new Label("Passwords don't match");
-                    passwordWrong.relocate(100,265);
-                    register.getChildren().add(passwordWrong);
-                }
-            }else{
-                Label emptyFields = new Label("Fields are empty");
-                emptyFields.relocate(100,265);
-                register.getChildren().add(emptyFields);
-            }
+            register(stage,register,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
+                    textFieldBirth.getText(),lblSecurity.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString());
         });
 
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
-            Main main = new Main();
-            try {
-                main.start(stage);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            BackToMain(stage);
         });
 
         SignUpp = new Scene(register, 800,600);
         stage.setTitle("Sign up");
         stage.setScene(SignUpp);
         stage.show();
+    }
+    public void BackToMain(Stage stage){
+        Main main = new Main();
+        try {
+            main.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void register(Stage stage,Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions){
+        if((!(password.equals("")))&&(!(username.equals("")))){
+            if(password.equals(PasswordConfig)) {
+                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions);
+                BackToMain(stage);
+            }else {
+                Label passwordWrong = new Label("Passwords don't match");
+                passwordWrong.relocate(100,265);
+                register.getChildren().add(passwordWrong);
+            }
+        }else{
+            Label emptyFields = new Label("Fields are empty");
+            emptyFields.relocate(100,265);
+            register.getChildren().add(emptyFields);
+        }
     }
 }

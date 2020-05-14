@@ -1,5 +1,8 @@
 package sample;
 
+import sample.inlogScreen.PersonalData;
+import sample.livestock.Animal;
+
 import java.util.ArrayList;
 
 public class ArrayKeeper {
@@ -8,7 +11,7 @@ public class ArrayKeeper {
 
     public void SignUpData(String name,String password,String birth, String security,String securityQ){
         PersonalData personalData = new PersonalData();
-        personalData.setName(name);
+        personalData.setUserName(name);
         personalData.setPassword(password);
         personalData.setBirthDate(birth);
         personalData.setSecurtityQuestion(securityQ);
@@ -23,11 +26,16 @@ public class ArrayKeeper {
     public ArrayList<PersonalData> getPersonaldata(){
         return Data;
     }
+
     public void setCurrentUser(int currentUser){
         this.currentUser = currentUser;
     }
 
     public static int getCurrentUser() {
         return currentUser;
+    }
+
+    public static PersonalData getData(int user) {
+        return Data.get(user);
     }
 }

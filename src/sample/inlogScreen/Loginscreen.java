@@ -1,4 +1,4 @@
-package sample;
+package sample.inlogScreen;
 
 public class Loginscreen {
     public Loginscreen(){

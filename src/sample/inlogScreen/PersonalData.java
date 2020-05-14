@@ -1,12 +1,19 @@
-package sample;
+package sample.inlogScreen;
+
+import sample.ArrayKeeper;
+import sample.livestock.Animal;
+
+import java.util.ArrayList;
 
 public class PersonalData {
-    private String name;
+    ArrayList<Animal> animals= new ArrayList<>();
+    private String Usernamename;
+    private String name = "Not yet defined";
     private String password;
     private String birthDate;
-    private String phoneNumber;
-    private String email;
-    private String gender;
+    private String phoneNumber = "Not yet defined";
+    private String email = "Not yet defined";
+    private String gender = "Not yet defined";
     private String securtityQuestion;
     private String securityAnswer;
     public PersonalData(){
@@ -26,11 +33,18 @@ public class PersonalData {
         return securtityQuestion;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String name) {
+        this.Usernamename = name;
     }
 
-    public String getName() {
+    public String getUsername() {
+        return Usernamename;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
         return name;
     }
 
@@ -70,5 +84,13 @@ public class PersonalData {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public ArrayList<Animal> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(ArrayList<Animal> animals){
+        this.animals = animals;
     }
 }

@@ -1,10 +1,11 @@
-package sample;
+package sample.contacts;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.Homescreen;
 
 public class Contacts extends Application {
 
@@ -16,17 +17,23 @@ public class Contacts extends Application {
         Pane contact = new Pane();
         contact.getChildren().add(btnBack);
         btnBack.relocate(0,570);
+
         btnBack.setOnAction(e -> {
-            Homescreen homescreen = new Homescreen();
-            try {
-                homescreen.start(stage);
-            } catch (Exception ex){
-                ex.printStackTrace();
-            }
+            goHomeScreen(stage);
         });
+
         contactScene = new Scene(contact,800,600);
         stage.setTitle("Contacts");
         stage.setScene(contactScene);
         stage.show();
+    }
+
+    public void goHomeScreen(Stage stage){
+        Homescreen homescreen = new Homescreen();
+        try {
+            homescreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 }
