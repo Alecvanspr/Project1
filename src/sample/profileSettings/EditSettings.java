@@ -12,6 +12,8 @@ import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
 import sample.profileSettings.ProfileSettingsScreen;
 
+import java.util.ArrayList;
+
 import static sample.ArrayKeeper.getCurrentUser;
 
 public class EditSettings extends Application {

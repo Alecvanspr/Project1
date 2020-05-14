@@ -60,7 +60,7 @@ public class Tests {
         arrayKeeper.getPersonaldata().get(1).setAnimals(animalsHenk);
         arrayKeeper.getPersonaldata().get(2).setAnimals(animalsKarel);
 
-        Assert.assertEquals("Belgi", ArrayKeeper.getData(2).getAnimals().get(1).getName());
+        Assert.assertEquals("Belgi", ArrayKeeper.Data.get(2).getAnimals().get(1).getName());
     }
     @Test
     public void TestWeight(){

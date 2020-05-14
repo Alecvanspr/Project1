@@ -21,6 +21,7 @@ public class Addanimal extends Application {
         Pane animal = new Pane();
         animalScene = new Scene(animal,800,600);
         Button btnAdd = new Button("Add");
+        Button btnBack = new Button("Back");
         Label lblname = new Label("Name animal");
         Label lblAge = new Label ("Age animal");
         Label lblgender = new Label("Gender animal");
@@ -52,7 +53,11 @@ public class Addanimal extends Application {
         txtWeight.relocate(300,270);
         lblHealth.relocate(100,305);
         txtHealth.relocate(300,305);
+        btnBack.relocate(0,565);
 
+        btnBack.setOnAction(E->{
+            goBack(stage);
+        });
 
         btnAdd.setOnAction(E-> {
                     int intAge = Integer.parseInt(txtAge.getText());
@@ -63,7 +68,7 @@ public class Addanimal extends Application {
                     goBack(stage);
                 });
 
-        animal.getChildren().addAll(btnAdd,lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,lblHealth,txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight,txtHealth);
+        animal.getChildren().addAll(btnAdd,lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,lblHealth,txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight,txtHealth,btnBack);
         stage.setTitle("Add animal");
         stage.setScene(animalScene);
         stage.show();

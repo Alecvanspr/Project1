@@ -27,7 +27,7 @@ public class DisplayWeight extends Application {
         ShowWeight();
 
         btnAdd.setOnAction(E->{
-            goAddHealth(stage);
+            goAddWeight(stage);
         });
 
         btnBack.setOnAction(E->{
@@ -53,20 +53,20 @@ public class DisplayWeight extends Application {
             ex.printStackTrace();
         }
     }
-    public void goAddHealth(Stage stage){
-        AddHeathCheck addHeathCheck = new AddHeathCheck(currentAnimal);
+    public void goAddWeight(Stage stage){
+        AddWeightCheck addWeightCheck = new AddWeightCheck(currentAnimal);
         try {
-            addHeathCheck.start(stage);
+            addWeightCheck.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
     }
     public void ShowWeight(){
-        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().size(); i++){
+        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getWeight().size(); i++){
             Label Weight = new Label(""+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getWeight().get(i));
-            Label CheckDate = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getDateWeight(i));
-            Weight.relocate(300, plaats);
-            CheckDate.relocate(100,plaats);
+            Label CheckDate = new Label(""+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getDateWeight().get(i));
+            Weight.relocate(100, plaats);
+            CheckDate.relocate(300,plaats);
             plaats = plaats+35;
             weightPane.getChildren().addAll(CheckDate,Weight);
         }
