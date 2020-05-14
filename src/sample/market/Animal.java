@@ -1,4 +1,4 @@
-package sample;
+package sample.market;
 
 public class Animal {
     private static Long number = 0L;
