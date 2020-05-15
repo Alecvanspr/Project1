@@ -20,8 +20,8 @@ public class UserAuctions extends Application{
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.5);
-                btnBack.setScaleY(1.5);
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
             }
         });
         btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -31,21 +31,21 @@ public class UserAuctions extends Application{
                 btnBack.setScaleY(1.0);
             }
         });
-        btnBack.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Marketplace marketplace = new Marketplace();
-                try{
-                    marketplace.start(stage);
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            }
+        btnBack.setOnAction(E->{
+                goBack(stage);
         });
 
         userAuctions = new Scene(userAuctionsPane, 800, 600);
         stage.setTitle("Your Auctions");
         stage.setScene(userAuctions);
         stage.show();
+    }
+    public void goBack(Stage stage){
+        Marketplace marketplace = new Marketplace();
+        try{
+            marketplace.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

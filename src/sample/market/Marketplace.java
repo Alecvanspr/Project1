@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import sample.Homescreen;
+import sample.livestock.Animal;
 
 public class Marketplace extends Application {
     Scene marktScene;
@@ -19,7 +20,8 @@ public class Marketplace extends Application {
         Button btnBack = new Button("Back");
         Button auctionButton = new Button("To Auction");
         Label startLabel = new Label("Welcome to the auction page");
-        startLabel.setFont(Font.font ("Arial", 30));
+        Font fontArial = new Font("Arial", 30);
+        startLabel.setFont(fontArial);
         startLabel.relocate(200,0);
         Pane market = new Pane();
         market.getChildren().add(btnBack);
@@ -35,14 +37,14 @@ public class Marketplace extends Application {
         yourAuctionBtn.relocate(500, 200);
         yourAuctionBtn.setPrefWidth(100);
         yourAuctionBtn.setPrefHeight(100);
-        yourAuctionBtn.setFont(Font.font("Arial", 10));
+        yourAuctionBtn.setFont(fontArial);
         market.getChildren().add(yourAuctionBtn);
 
         yourAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                yourAuctionBtn.setScaleX(1.5);
-                yourAuctionBtn.setScaleY(1.5);
+                yourAuctionBtn.setScaleX(1.2);
+                yourAuctionBtn.setScaleY(1.2);
             }
         });
         yourAuctionBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -52,22 +54,14 @@ public class Marketplace extends Application {
                 yourAuctionBtn.setScaleY(1.0);
             }
         });
-        yourAuctionBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                UserAuctions userAuctions = new UserAuctions();
-                try{
-                    userAuctions.start(stage);
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            }
+        yourAuctionBtn.setOnAction(E-> {
+            goYourAuction(stage);
         });
             auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                auctionButton.setScaleX(1.5);
-                auctionButton.setScaleY(1.5);
+                auctionButton.setScaleX(1.2);
+                auctionButton.setScaleY(1.2);
             }
         });
         auctionButton.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -80,8 +74,8 @@ public class Marketplace extends Application {
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.5);
-                btnBack.setScaleY(1.5);
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
 
             }
         });
@@ -90,37 +84,50 @@ public class Marketplace extends Application {
             public void handle(MouseEvent mouseEvent) {
                 btnBack.setScaleX(1);
                 btnBack.setScaleY(1);
-
             }
         });
         btnBack.setOnAction(e -> {
-            Homescreen homescreen = new Homescreen();
-            try {
-                homescreen.start(stage);
-            } catch (Exception ex){
-                ex.printStackTrace();
-            }
+            goBack(stage);
         });
-        auctionButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Animal animal = new Animal("man", 18, "Jasper", "Human","Human",80.0, "healthy");
-                Auction auction = new Auction(animal, 1000.0);
-                Animal animal2 = new Animal("man", 18, "Jasper", "Kip","Kip",80.0, "healthy");
-                auction.addAnimalToQueue(animal2);
-                Auction auction2 = new Auction(animal, 500.0);
-                AuctionList auctionList = new AuctionList();
-                try {
-                    auctionList.start(stage);
-                }   catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            }
+
+        auctionButton.setOnAction(E->{
+                Animal animal = new Animal("Jasper","man", 18, "Human","Human",80.0, "healthy");
+                createNewAution(animal,1000.00); //ik heb een method gemaakt van de aution,die het automatisch in de Queue zet.
+                Animal animal2 = new Animal("Jasper","man", 18, "Kip","Kip",80.0, "healthy");
+                createNewAution(animal2,500);
+                goAutionlist(stage);
         });
         marktScene = new Scene(market,800,600);
         stage.setTitle("Market place");
         stage.setScene(marktScene);
         stage.show();
     }
-
+public void createNewAution(Animal animal,double minPrice) {
+    Auction auction = new Auction(animal, minPrice);
+    auction.addAnimalToQueue(animal);
+    }
+    public void goAutionlist(Stage stage){
+        AuctionList auctionList = new AuctionList();
+        try {
+            auctionList.start(stage);
+        }   catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goBack(Stage stage){
+        Homescreen homescreen = new Homescreen();
+        try {
+            homescreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goYourAuction(Stage stage){
+        UserAuctions userAuctions = new UserAuctions();
+        try{
+            userAuctions.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }

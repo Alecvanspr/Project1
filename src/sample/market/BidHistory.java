@@ -43,27 +43,32 @@ public class BidHistory extends Application {
                 btnBack.setScaleY(1.0);
             }
         });
-        btnBack.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                AuctionList auctionList = new AuctionList();
-                try{
-                    auctionList.start(stage);
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            }
+        btnBack.setOnAction(E->{
+            goBack(stage);
         });
+
+        printBidHistory(bidHistoryPane);
+
+        bidHistory = new Scene(bidHistoryPane, 800, 600);
+        stage.setTitle("Bid History");
+        stage.setScene(bidHistory);
+        stage.show();
+    }
+    public void goBack(Stage stage){
+        AuctionList auctionList = new AuctionList();
+        try{
+            auctionList.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void printBidHistory(Pane bidHistoryPane){
         for (int i = 0; i < userBids.getUserBidHistoryList().size(); i++){
             Label bidLabel = new Label("Bid #"+(i+1)+": " + userBids.userBidHistoryList.get(i).getDate() + " " + userBids.userBidHistoryList.get(i).getTime() + "  -   Amount = "+ userBids.getUserBidHistoryList().get(i).getAmount());
             bidLabel.relocate(10,50+(30*i));
             bidHistoryPane.getChildren().add(bidLabel);
             bidLabel.setFont(Font.font("Arial", 20));
         }
-        bidHistory = new Scene(bidHistoryPane, 800, 600);
-        stage.setTitle("Bid History");
-        stage.setScene(bidHistory);
-        stage.show();
     }
     public class userBidHistory{
         private ArrayList<Bid> userBidHistoryList = new ArrayList<Bid>();

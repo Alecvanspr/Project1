@@ -1,6 +1,7 @@
 package sample.market;
 
 import java.util.ArrayList;
+import sample.livestock.Animal;
 import java.util.Scanner;
 
 public class Auction {
