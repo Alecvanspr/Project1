@@ -44,7 +44,7 @@ public class ForgotPassword extends Application {
         txtPassword.relocate(100,225);
         lblnewPasswordConfirm.relocate(100,250);
         txtPasswordConfirm.relocate(100,275);
-        ChangePassword.relocate(100,300);
+        ChangePassword.relocate(100,335);
         lblError.relocate(100,325);
 
         lblSecurityQuestion.setOnMouseClicked(e->{
@@ -66,8 +66,8 @@ public class ForgotPassword extends Application {
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
+                btnBack.setScaleX(1.1);
+                btnBack.setScaleY(1.1);
 
             }
         });
@@ -76,6 +76,22 @@ public class ForgotPassword extends Application {
             public void handle(MouseEvent mouseEvent) {
                 btnBack.setScaleX(1);
                 btnBack.setScaleY(1);
+
+            }
+        });
+        ChangePassword.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ChangePassword.setScaleX(1.1);
+                ChangePassword.setScaleY(1.1);
+
+            }
+        });
+        ChangePassword.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ChangePassword.setScaleX(1);
+                ChangePassword.setScaleY(1);
 
             }
         });

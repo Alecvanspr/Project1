@@ -74,6 +74,22 @@ public class SignUpScreen extends Application {
 
             }
         });
+        btnRegister.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnRegister.setScaleX(1.2);
+                btnRegister.setScaleY(1.2);
+
+            }
+        });
+        btnRegister.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnRegister.setScaleX(1);
+                btnRegister.setScaleY(1);
+
+            }
+        });
 
         SignUpp = new Scene(register, 800,600);
         stage.setTitle("Sign up");
