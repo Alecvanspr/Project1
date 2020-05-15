@@ -3,13 +3,18 @@ package sample.market;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import sample.ArrayKeeper;
+
+import javax.print.DocFlavor;
 
 public class AuctionList{
     Scene AuctionList;
@@ -63,28 +68,44 @@ public class AuctionList{
             TextField bidAmount = new TextField();
             bidAmount.relocate(200,50+(30*i));
             auctionList.getChildren().add(bidAmount);
-
+            Integer x = i;
             makeBid.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
 
-                    Double amount = stringToDouble(bidAmount.getText());
+                    Double amount = stringToDouble(checkIfDouble(bidAmount.getText()));
                     auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount);
+                    textField.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
 
+                    if (auction.getAmountMustBeHigher()) {
+                        Alert bidIsToLow = new Alert(AlertType.ERROR);
+                        bidIsToLow.setContentText("Bid is to low! needs to be higher then " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
+                        bidIsToLow.show();
+                    }
+                    bidAmount.setText("");
                 }
             });
+
         }
+
 
         AuctionList = new Scene(auctionList, 800, 600);
         stage.setTitle("Auction list");
         stage.setScene(AuctionList);
         stage.show();
     }
+
     public double stringToDouble(String string){
         double d = Double.parseDouble(string);
         return d;
     }
     public static void main(String[] args) {
 
+    }
+    public String checkIfDouble(String string){
+        if (!string.contains("\\.")){
+            String correctString = string + ".0";
+        }
+        return string;
     }
 }

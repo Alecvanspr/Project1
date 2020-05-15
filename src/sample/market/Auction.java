@@ -9,6 +9,7 @@ public class Auction {
     private ArrayList<Bid> bidHistory;
     private ArrayList<Animal> forSaleQueue;
     private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
+    private Boolean amountMustBeHigher;
     public Auction(Animal animalForSale,Double minPrice){
         this.forSale = animalForSale;
         this.highestBid = firstBid(minPrice);
@@ -18,6 +19,10 @@ public class Auction {
         this.forSaleQueue = forSaleQueue;
         addToAuctionList(this);
 
+
+    }
+    public Boolean getAmountMustBeHigher(){
+        return this.amountMustBeHigher;
     }
     public static void addToAuctionList(Auction auction){
         auctionList.add(auction);
@@ -64,7 +69,6 @@ public class Auction {
     }
 
     public void makeBid(String user, Double amount){
-        Scanner scanner = new Scanner(System.in);
         if(this.getHighestBid().getUser().equals(user)){
             System.out.println("You have already placed the highest bid.");
         }
@@ -74,17 +78,11 @@ public class Auction {
                 this.setHighestBid(newBid);
                 this.getBidHistory().add(newBid);
                 System.out.println("Bid succesfully placed!");
+                amountMustBeHigher = false;
             }
-
             else{
-                while(!this.isHigher(amount)){
-                    System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
-                    amount = scanner.nextDouble();
-                }
-                Bid newBid = new Bid(user, amount);
-                this.setHighestBid(newBid);
-                this.getBidHistory().add(newBid);
-                System.out.println("Bid successfully placed!");
+                System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
+                amountMustBeHigher = true;
             }
         }
     }
