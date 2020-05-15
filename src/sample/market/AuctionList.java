@@ -81,6 +81,10 @@ public class AuctionList{
                         Alert bidIsToLow = new Alert(AlertType.ERROR);
                         bidIsToLow.setContentText("Bid is to low! needs to be higher then " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
                         bidIsToLow.show();
+                    }else{
+                        Alert bidIsPlaced = new Alert(AlertType.INFORMATION);
+                        bidIsPlaced.setContentText("Bid of " + Auction.getAuctionList().get(x).getHighestBid().getAmount() + " has been placed!");
+                        bidIsPlaced.show();
                     }
                     bidAmount.setText("");
                 }
