@@ -1,7 +1,7 @@
 package sample.market;
 
 import java.util.ArrayList;
-
+import java.util.Timer;
 import sample.ArrayKeeper;
 import sample.livestock.Animal;
 import java.util.Scanner;
@@ -102,8 +102,8 @@ public class Auction {
         return "The current highest bid is " + this.getHighestBid().getAmount() + " by " + this.getHighestBid().getUser() + ".";
     }
 
-    public void printBidHistory(){
-        for(int i = this.getBidHistory().size()-1; i >= 0; i--) {
+    public void printBidHistory() {
+        for (int i = this.getBidHistory().size() - 1; i >= 0; i--) {
             if (i > 0) {
                 System.out.printf("%.2f", this.getBidHistory().get(i).getAmount());
                 System.out.print(" by " + this.getBidHistory().get(i).getUser() + "\n");
