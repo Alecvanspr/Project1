@@ -18,11 +18,12 @@ public class Marketplace extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
+        Font CfontArial = new Font("Arial", 50);
+        Font fontArial = new Font("Arial", 11);
         Button auctionButton = new Button("To Auction");
         Label startLabel = new Label("Welcome to the auction page");
-        Font fontArial = new Font("Arial", 30);
-        startLabel.setFont(fontArial);
-        startLabel.relocate(200,0);
+        startLabel.setFont(CfontArial);
+        startLabel.relocate(75,25);
         Pane market = new Pane();
         market.getChildren().add(btnBack);
         market.getChildren().add(auctionButton);
@@ -38,6 +39,7 @@ public class Marketplace extends Application {
         yourAuctionBtn.setPrefWidth(100);
         yourAuctionBtn.setPrefHeight(100);
         yourAuctionBtn.setFont(fontArial);
+        auctionButton.setFont(fontArial);
         market.getChildren().add(yourAuctionBtn);
 
         yourAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
