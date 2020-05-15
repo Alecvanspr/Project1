@@ -1,11 +1,13 @@
 package sample.livestock;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ImageInput;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -67,6 +69,22 @@ public class Addanimal extends Application {
                     main.arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().add(newAminal);
                     goBack(stage);
                 });
+        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
+
+            }
+        });
+        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1);
+                btnBack.setScaleY(1);
+
+            }
+        });
 
         animal.getChildren().addAll(btnAdd,lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,lblHealth,txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight,txtHealth,btnBack);
         stage.setTitle("Add animal");

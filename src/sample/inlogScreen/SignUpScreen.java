@@ -61,8 +61,8 @@ public class SignUpScreen extends Application {
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.5);
-                btnBack.setScaleY(1.5);
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
 
             }
         });

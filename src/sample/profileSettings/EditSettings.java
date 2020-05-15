@@ -1,11 +1,13 @@
 package sample.profileSettings;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
@@ -109,6 +111,22 @@ public class EditSettings extends Application {
         btnBack.relocate(0,570);
         btnBack.setOnAction(e -> {
             goProfileSettingScreen(stage);
+        });
+        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
+
+            }
+        });
+        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1);
+                btnBack.setScaleY(1);
+
+            }
         });
 
         changeSettings = new Scene(eSettings,800,600);

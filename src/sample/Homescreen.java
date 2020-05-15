@@ -1,9 +1,11 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.contacts.Contacts;
@@ -57,6 +59,22 @@ public class Homescreen extends Application {
         btnLiveStock.relocate(430,355);
         btnLiveStock.setOnAction(e -> {
             goLivestock(stage);
+        });
+        btnLogOut.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnLogOut.setScaleX(1.2);
+                btnLogOut.setScaleY(1.2);
+
+            }
+        });
+        btnLogOut.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnLogOut.setScaleX(1);
+                btnLogOut.setScaleY(1);
+
+            }
         });
 
         homeScene = new Scene(home,800,600);
