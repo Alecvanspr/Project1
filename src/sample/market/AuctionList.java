@@ -1,9 +1,9 @@
 package sample.market;
 
+import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.TextField;
@@ -14,12 +14,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import sample.ArrayKeeper;
 
-import javax.print.DocFlavor;
 
-public class AuctionList{
+public class AuctionList extends Application {
     Scene AuctionList;
     Marketplace marketplace = new Marketplace();
-
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
         btnBack.relocate(10, 565);
@@ -29,6 +27,7 @@ public class AuctionList{
         startLabel.setFont(Font.font("Arial",30));
         startLabel.relocate(200,0);
         auctionList.getChildren().add(startLabel);
+
 
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -48,9 +47,9 @@ public class AuctionList{
         btnBack.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Marketplace markerplace = new Marketplace();
+                Marketplace marketplace = new Marketplace();
                 try {
-                    markerplace.start(stage);
+                    marketplace.start(stage);
                 }catch (Exception ex){
                     ex.printStackTrace();
                 }
@@ -63,10 +62,10 @@ public class AuctionList{
             textField.relocate(10, 50+(30*i));
             auctionList.getChildren().add(textField);
             Button makeBid = new Button("MakeBid");
-            makeBid.relocate(420, 50+(30*i));
+            makeBid.relocate(470, 50+(30*i));
             auctionList.getChildren().add(makeBid);
             TextField bidAmount = new TextField();
-            bidAmount.relocate(200,50+(30*i));
+            bidAmount.relocate(250,50+(30*i));
             auctionList.getChildren().add(bidAmount);
             Integer x = i;
             makeBid.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -77,7 +76,7 @@ public class AuctionList{
                     auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount);
                     textField.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
 
-                    if (auction.getAmountMustBeHigher()) {
+                    if (auction.getAmountMustBeHigher(amount, auction.getHighestBid().getAmount())) {
                         Alert bidIsToLow = new Alert(AlertType.ERROR);
                         bidIsToLow.setContentText("Bid is to low! needs to be higher then " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
                         bidIsToLow.show();
@@ -92,7 +91,35 @@ public class AuctionList{
 
         }
 
+        Button btnToYourBids = new Button("To Your bids");
+        btnToYourBids.relocate(650, 50);
+        auctionList.getChildren().add(btnToYourBids);
+        btnToYourBids.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnToYourBids.setScaleX(1.0);
+                btnToYourBids.setScaleY(1.0);
+            }
+        });
+        btnToYourBids.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnToYourBids.setScaleX(1.5);
+                btnToYourBids.setScaleY(1.5);
+            }
+        });
+        btnToYourBids.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                BidHistory bidHistory = new BidHistory();
 
+                try {
+                    bidHistory.start(stage);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
         AuctionList = new Scene(auctionList, 800, 600);
         stage.setTitle("Auction list");
         stage.setScene(AuctionList);

@@ -21,9 +21,14 @@ public class Auction {
 
 
     }
-    public Boolean getAmountMustBeHigher(){
-        return this.amountMustBeHigher;
+    public Boolean getAmountMustBeHigher(Double amount, Double highestAmount){
+        if(amount > highestAmount){
+            return true;
+        }else{
+            return false;
+        }
     }
+
     public static void addToAuctionList(Auction auction){
         auctionList.add(auction);
     }
@@ -61,7 +66,7 @@ public class Auction {
     }
 
     public boolean isHigher(Double amount){
-        if(amount > this.getHighestBid().getAmount()){
+        if(amount > getHighestBid().getAmount()){
             return true;
         }else{
             return false;
@@ -69,11 +74,7 @@ public class Auction {
     }
 
     public void makeBid(String user, Double amount){
-        if(this.getHighestBid().getUser().equals(user)){
-            System.out.println("You have already placed the highest bid.");
-        }
-        else{
-            if(this.isHigher(amount)) {
+            if(isHigher(amount)) {
                 Bid newBid = new Bid(user, amount);
                 this.setHighestBid(newBid);
                 this.getBidHistory().add(newBid);
@@ -84,7 +85,7 @@ public class Auction {
                 System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
                 amountMustBeHigher = true;
             }
-        }
+
     }
 
     public Bid firstBid(Double minPrice){
@@ -113,20 +114,3 @@ public class Auction {
     }
 }
 
-class Bid{
-    private String user;
-    private Double amount;
-
-    public Bid(String user, Double amount){
-        this.user = user;
-        this.amount = amount;
-    }
-
-    public Double getAmount(){
-        return amount;
-    }
-
-    public String getUser(){
-        return user;
-    }
-}
