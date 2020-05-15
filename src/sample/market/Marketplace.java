@@ -25,22 +25,56 @@ public class Marketplace extends Application {
         market.getChildren().add(btnBack);
         market.getChildren().add(auctionButton);
         market.getChildren().add(startLabel);
-        auctionButton.relocate(600,200);
+        auctionButton.relocate(200,200);
         btnBack.relocate(10,565);
-        auctionButton.setScaleX(2.0);
-        auctionButton.setScaleY(2.0);
-        auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        auctionButton.setPrefHeight(100);
+        auctionButton.setPrefWidth(100);
+
+
+        Button yourAuctionBtn = new Button("To your Auctions");
+        yourAuctionBtn.relocate(500, 200);
+        yourAuctionBtn.setPrefWidth(100);
+        yourAuctionBtn.setPrefHeight(100);
+        yourAuctionBtn.setFont(Font.font("Arual", 10));
+        market.getChildren().add(yourAuctionBtn);
+
+        yourAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                auctionButton.setScaleX(2.2);
-                auctionButton.setScaleY(2.2);
+                yourAuctionBtn.setScaleX(1.5);
+                yourAuctionBtn.setScaleY(1.5);
+            }
+        });
+        yourAuctionBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                yourAuctionBtn.setScaleX(1.0);
+                yourAuctionBtn.setScaleY(1.0);
+            }
+        });
+        yourAuctionBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UserAuctions userAuctions = new UserAuctions();
+                try{
+                    userAuctions.start(stage);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
+            auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                auctionButton.setScaleX(1.5);
+                auctionButton.setScaleY(1.5);
             }
         });
         auctionButton.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                auctionButton.setScaleX(2.0);
-                auctionButton.setScaleY(2.0);
+                auctionButton.setScaleX(1.0);
+                auctionButton.setScaleY(1.0);
             }
         });
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
