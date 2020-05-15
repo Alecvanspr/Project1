@@ -64,7 +64,13 @@ public class BidHistory extends Application {
     }
     public void printBidHistory(Pane bidHistoryPane){
         for (int i = 0; i < userBids.getUserBidHistoryList().size(); i++){
-            Label bidLabel = new Label("Bid #"+(i+1)+": " + userBids.userBidHistoryList.get(i).getDate() + " " + userBids.userBidHistoryList.get(i).getTime() + "  -   Amount = "+ userBids.getUserBidHistoryList().get(i).getAmount());
+            Label bidLabel = new Label("Bid #"+(i+1)+": " +
+                    userBids.userBidHistoryList.get(i).getDate() + " " +
+                    userBids.userBidHistoryList.get(i).getTime() + "  -   Amount = "+
+                    userBids.getUserBidHistoryList().get(i).getAmount()+"   -   Animal = "+
+                    userBids.userBidHistoryList.get(i).getAnimal().getSpecies()
+            );
+
             bidLabel.relocate(10,50+(30*i));
             bidHistoryPane.getChildren().add(bidLabel);
             bidLabel.setFont(Font.font("Arial", 20));

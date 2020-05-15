@@ -10,12 +10,14 @@ import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import javafx.scene.control.Alert.AlertType;
 import sample.ArrayKeeper;
+import sample.livestock.Animal;
 
 
 public class AuctionList extends Application {
     Scene AuctionList;
     Marketplace marketplace = new Marketplace();
     ScrollPane scrollPane = new ScrollPane();
+    Animal animal = new Animal("Jasper","man", 18, "Human","Human",80.0, "healthy");
 
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
@@ -41,7 +43,7 @@ public class AuctionList extends Application {
                 goBack(stage);
         });
 
-        printLines(auctionList);
+        printLines(auctionList, animal); //hier moet de naam van het dier
 
         Button btnToYourBids = new Button("To Your bids");
         btnToYourBids.relocate(650, 50);
@@ -95,9 +97,9 @@ public class AuctionList extends Application {
             ex.printStackTrace();
         }
     }
-    public void makeBid(String bidAmount,Auction auction,TextField textField,Integer howMany,int x,TextField txtBidAmount){
+    public void makeBid(String bidAmount,Auction auction,TextField textField,Integer howMany,int x,TextField txtBidAmount,Animal animal){
         Double amount = stringToDouble(checkIfDouble(bidAmount));
-        auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount);
+        auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount,animal);
         textField.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
 
         if (auction.getAmountMustBeHigher(amount, auction.getHighestBid().getAmount())) {
@@ -111,7 +113,7 @@ public class AuctionList extends Application {
         }
         txtBidAmount.setText("");
     }
-    public void printLines(Pane auctionList){
+    public void printLines(Pane auctionList,Animal animal){
         for(int i = 0; i < Auction.getAuctionList().size(); i++) {
             Auction auction = Auction.getAuctionList().get(i);
             Integer howMany = auction.getForSaleQueue().size() + 1; //De +1 is omdat de eerste animal van de auction niet in de queue komt
@@ -127,7 +129,7 @@ public class AuctionList extends Application {
             Integer x = i;
 
             makeBid.setOnAction(E -> {
-                makeBid(bidAmount.getText(), auction, textField, howMany, x, bidAmount);
+                makeBid(bidAmount.getText(), auction, textField, howMany, x, bidAmount,animal);
             });
         }
     }

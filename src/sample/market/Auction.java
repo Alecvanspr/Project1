@@ -13,7 +13,7 @@ public class Auction {
     private Boolean amountMustBeHigher;
     public Auction(Animal animalForSale,Double minPrice){
         this.forSale = animalForSale;
-        this.highestBid = firstBid(minPrice);
+        this.highestBid = firstBid(minPrice,animalForSale);
         ArrayList<Bid> bidHistory = new ArrayList<Bid>();
         this.bidHistory = bidHistory;
         ArrayList<Animal> forSaleQueue = new ArrayList<Animal>();
@@ -74,9 +74,9 @@ public class Auction {
         }
     }
 
-    public void makeBid(String user, Double amount){
+    public void makeBid(String user, Double amount ,Animal animal){
             if(isHigher(amount)) {
-                Bid newBid = new Bid(user, amount);
+                Bid newBid = new Bid(user, amount, animal);
                 this.setHighestBid(newBid);
                 this.getBidHistory().add(newBid);
                 System.out.println("Bid succesfully placed!");
@@ -89,8 +89,8 @@ public class Auction {
 
     }
 
-    public Bid firstBid(Double minPrice){
-        Bid startBid = new Bid("Nobody", minPrice);
+    public Bid firstBid(Double minPrice,Animal animal){
+        Bid startBid = new Bid("Nobody", minPrice,animal);
         return startBid;
     }
 

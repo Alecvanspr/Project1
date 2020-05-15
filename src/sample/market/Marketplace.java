@@ -15,6 +15,8 @@ import sample.livestock.Animal;
 public class Marketplace extends Application {
     Scene marktScene;
     Homescreen homescreen = new Homescreen();
+    public Animal animal;
+
     @Override
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
@@ -93,7 +95,7 @@ public class Marketplace extends Application {
         });
 
         auctionButton.setOnAction(E->{
-                Animal animal = new Animal("Jasper","man", 18, "Human","Human",80.0, "healthy");
+                animal = new Animal("Jasper","man", 18, "Human","Human",80.0, "healthy");
                 createNewAution(animal,1000.00); //ik heb een method gemaakt van de aution,die het automatisch in de Queue zet.
                 Animal animal2 = new Animal("Jasper","man", 18, "Kip","Kip",80.0, "healthy");
                 createNewAution(animal2,500);
