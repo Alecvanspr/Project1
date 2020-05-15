@@ -1,6 +1,7 @@
 package sample.market;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -49,10 +50,9 @@ public class Marketplace extends Application {
         });
 
         //go to the Auctions of the user
-        Button yourAuctionBtn = new Button("your Auctions");
+        Button yourAuctionBtn = new Button("Your auctions");
         yourAuctionBtn.relocate(500, 400);
-        yourAuctionBtn.setPrefWidth(100);
-        yourAuctionBtn.setPrefHeight(100);
+        buttonSetLayout(yourAuctionBtn);
         yourAuctionBtn.setFont(fontArial);
         market.getChildren().add(yourAuctionBtn);
         yourAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -73,9 +73,8 @@ public class Marketplace extends Application {
             goYourAuction(stage);
         });
         //button to go to BidHistory
-        Button bidHistoryBtn = new Button("your bid history");
-        bidHistoryBtn.setPrefHeight(100);
-        bidHistoryBtn.setPrefWidth(100);
+        Button bidHistoryBtn = new Button("Your bid history");
+        buttonSetLayout(bidHistoryBtn);
         bidHistoryBtn.setFont(fontArial);
         bidHistoryBtn.relocate(200, 400);
         market.getChildren().add(bidHistoryBtn);
@@ -102,8 +101,7 @@ public class Marketplace extends Application {
         Button auctionButton = new Button("To Auction");
         auctionButton.setFont(fontArial);
         auctionButton.relocate(200,200);
-        auctionButton.setPrefHeight(100);
-        auctionButton.setPrefWidth(100);
+        buttonSetLayout(auctionButton);
         market.getChildren().add(auctionButton);
         auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -127,6 +125,31 @@ public class Marketplace extends Application {
                 Animal animal2 = new Animal("Jasper","man", 18, "Kip","Kip",80.0, "healthy");
                 createNewAution(animal2,500);
                 goAutionlist(stage);
+        });
+        //Button to make Auction
+        Button makeAuction = new Button("Make Auction");
+        buttonSetLayout(makeAuction);
+        makeAuction.relocate(500, 200);
+        market.getChildren().add(makeAuction);
+        makeAuction.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                makeAuction.setScaleX(1.0);
+                makeAuction.setScaleY(1.0);
+            }
+        });
+        makeAuction.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                makeAuction.setScaleX(1.2);
+                makeAuction.setScaleY(1.2);
+            }
+        });
+        makeAuction.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                goToMakeAuction(stage);
+            }
         });
         marktScene = new Scene(market,800,600);
         stage.setTitle("Market place");
@@ -165,6 +188,18 @@ public void createNewAution(Animal animal,double minPrice) {
         UserAuctions userAuctions = new UserAuctions();
         try{
             userAuctions.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void buttonSetLayout(Button button){
+        button.setPrefWidth(100);
+        button.setPrefHeight(100);
+    }
+    public void goToMakeAuction(Stage stage){
+        MakeAuction makeAuction = new MakeAuction();
+        try {
+            makeAuction.start(stage);
         }catch (Exception ex){
             ex.printStackTrace();
         }
