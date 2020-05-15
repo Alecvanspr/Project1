@@ -35,7 +35,7 @@ public class Marketplace extends Application {
         yourAuctionBtn.relocate(500, 200);
         yourAuctionBtn.setPrefWidth(100);
         yourAuctionBtn.setPrefHeight(100);
-        yourAuctionBtn.setFont(Font.font("Arual", 10));
+        yourAuctionBtn.setFont(Font.font("Arial", 10));
         market.getChildren().add(yourAuctionBtn);
 
         yourAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
