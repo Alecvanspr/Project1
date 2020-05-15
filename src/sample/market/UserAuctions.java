@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class UserAuctions extends Application{
     Scene userAuctions;
     Marketplace marketPlace = new Marketplace();
+    ScrollPane scrollPane = new ScrollPane();
     @Override
     public void start(Stage stage) throws Exception{
         Pane userAuctionsPane = new Pane();
@@ -40,7 +42,9 @@ public class UserAuctions extends Application{
         btnBack.setOnAction(E->{
                 goBack(stage);
         });
-        userAuctions = new Scene(userAuctionsPane, 800, 600);
+        scrollPane.setContent(userAuctionsPane);
+
+        userAuctions = new Scene(scrollPane, 800, 600);
         stage.setTitle("Your Auctions");
         stage.setScene(userAuctions);
         stage.show();
@@ -67,6 +71,5 @@ public class UserAuctions extends Application{
             userAuctions.getChildren().add(userAuctionText);
         }
     }
-    //labels
 
 }

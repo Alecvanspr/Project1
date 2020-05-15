@@ -76,8 +76,10 @@ public class AuctionList extends Application {
     public String checkIfDouble(String string){
         if (!string.contains("\\.")){
             String correctString = string + ".0";
+            return correctString;
+        }else{
+            return string;
         }
-        return string;
     }
     public void goBidHistory(Stage stage){
         BidHistory bidHistory = new BidHistory();
