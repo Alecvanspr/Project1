@@ -50,7 +50,7 @@ public class Marketplace extends Application {
 
         //go to the Auctions of the user
         Button yourAuctionBtn = new Button("your Auctions");
-        yourAuctionBtn.relocate(500, 200);
+        yourAuctionBtn.relocate(500, 400);
         yourAuctionBtn.setPrefWidth(100);
         yourAuctionBtn.setPrefHeight(100);
         yourAuctionBtn.setFont(fontArial);

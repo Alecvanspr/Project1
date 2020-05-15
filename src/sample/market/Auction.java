@@ -1,6 +1,8 @@
 package sample.market;
 
 import java.util.ArrayList;
+
+import sample.ArrayKeeper;
 import sample.livestock.Animal;
 import java.util.Scanner;
 
@@ -10,7 +12,7 @@ public class Auction {
     private ArrayList<Bid> bidHistory;
     private ArrayList<Animal> forSaleQueue;
     private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
-    private Boolean amountMustBeHigher;
+    private int UserId;
     public Auction(Animal animalForSale,Double minPrice){
         this.forSale = animalForSale;
         this.highestBid = firstBid(minPrice);
@@ -19,8 +21,7 @@ public class Auction {
         ArrayList<Animal> forSaleQueue = new ArrayList<Animal>();
         this.forSaleQueue = forSaleQueue;
         addToAuctionList(this);
-
-
+        this.UserId = ArrayKeeper.getCurrentUser();
     }
     public Boolean getAmountMustBeHigher(Double amount, Double highestAmount){
         if(amount > highestAmount){
@@ -57,6 +58,10 @@ public class Auction {
         return highestBid;
     }
 
+    public int getUserId(){
+        return this.UserId;
+    }
+
 
     public void setHighestBid(Bid bid){
         this.highestBid = bid;
@@ -80,11 +85,10 @@ public class Auction {
                 this.setHighestBid(newBid);
                 this.getBidHistory().add(newBid);
                 System.out.println("Bid succesfully placed!");
-                amountMustBeHigher = false;
             }
             else{
                 System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
-                amountMustBeHigher = true;
+
             }
 
     }
