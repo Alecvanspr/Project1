@@ -70,6 +70,11 @@ public class Marketplace extends Application {
         auctionButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                Animal animal = new Animal("man", 18, "Jasper", "Human","Human",80.0, "healthy");
+                Auction auction = new Auction(animal, 1000.0);
+                Animal animal2 = new Animal("man", 18, "Jasper", "Kip","Kip",80.0, "healthy");
+                auction.addAnimalToQueue(animal2);
+                Auction auction2 = new Auction(animal, 500.0);
                 AuctionList auctionList = new AuctionList();
                 try {
                     auctionList.start(stage);
@@ -83,12 +88,5 @@ public class Marketplace extends Application {
         stage.setScene(marktScene);
         stage.show();
     }
-    public void goAuction(Stage stage){
-        Marketplace markt = new Marketplace();
-        try {
-            markt.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
 }

@@ -1,4 +1,5 @@
-package sample;
+package sample.market;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,14 +8,27 @@ public class Auction {
     private Bid highestBid;
     private ArrayList<Bid> bidHistory;
     private ArrayList<Animal> forSaleQueue;
-
-    public Auction(Animal animalForSale){
+    private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
+    private Boolean amountMustBeHigher;
+    public Auction(Animal animalForSale,Double minPrice){
         this.forSale = animalForSale;
-        this.highestBid = firstBid();
+        this.highestBid = firstBid(minPrice);
         ArrayList<Bid> bidHistory = new ArrayList<Bid>();
         this.bidHistory = bidHistory;
         ArrayList<Animal> forSaleQueue = new ArrayList<Animal>();
         this.forSaleQueue = forSaleQueue;
+        addToAuctionList(this);
+
+
+    }
+    public Boolean getAmountMustBeHigher(){
+        return this.amountMustBeHigher;
+    }
+    public static void addToAuctionList(Auction auction){
+        auctionList.add(auction);
+    }
+    public static ArrayList<Auction> getAuctionList(){
+        return auctionList;
     }
 
     public Animal getForSale(){
@@ -55,7 +69,6 @@ public class Auction {
     }
 
     public void makeBid(String user, Double amount){
-        Scanner scanner = new Scanner(System.in);
         if(this.getHighestBid().getUser().equals(user)){
             System.out.println("You have already placed the highest bid.");
         }
@@ -65,23 +78,17 @@ public class Auction {
                 this.setHighestBid(newBid);
                 this.getBidHistory().add(newBid);
                 System.out.println("Bid succesfully placed!");
+                amountMustBeHigher = false;
             }
-
             else{
-                while(!this.isHigher(amount)){
-                    System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
-                    amount = scanner.nextDouble();
-                }
-                Bid newBid = new Bid(user, amount);
-                this.setHighestBid(newBid);
-                this.getBidHistory().add(newBid);
-                System.out.println("Bid successfully placed!");
+                System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
+                amountMustBeHigher = true;
             }
         }
     }
 
-    public Bid firstBid(){
-        Bid startBid = new Bid("Nobody", 0.0);
+    public Bid firstBid(Double minPrice){
+        Bid startBid = new Bid("Nobody", minPrice);
         return startBid;
     }
 
@@ -90,16 +97,17 @@ public class Auction {
     }
 
     public void printBidHistory(){
-        for(int i = this.getBidHistory().size()-1; i >= 0; i--){
-            if(i > 0){System.out.printf("%.2f", this.getBidHistory().get(i).getAmount());
-            System.out.print(" by " + this.getBidHistory().get(i).getUser()+ "\n");
-            }
-            else{
+        for(int i = this.getBidHistory().size()-1; i >= 0; i--) {
+            if (i > 0) {
+                System.out.printf("%.2f", this.getBidHistory().get(i).getAmount());
+                System.out.print(" by " + this.getBidHistory().get(i).getUser() + "\n");
+            } else {
                 System.out.printf("%.2f", this.getBidHistory().get(i).getAmount());
                 System.out.print(" by " + this.getBidHistory().get(i).getUser());
             }
         }
     }
+
 
     public static void main(String[] args) {
     }
