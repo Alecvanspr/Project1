@@ -75,6 +75,7 @@ public class Marketplace extends Application {
                 auctionButton.setScaleY(1.0);
             }
         });
+
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -95,6 +96,7 @@ public class Marketplace extends Application {
         });
 
         auctionButton.setOnAction(E->{
+                //ik neem aan dat dit zo weg gaat.
                 animal = new Animal("Jasper","man", 18, "Human","Human",80.0, "healthy");
                 createNewAution(animal,1000.00); //ik heb een method gemaakt van de aution,die het automatisch in de Queue zet.
                 Animal animal2 = new Animal("Jasper","man", 18, "Kip","Kip",80.0, "healthy");

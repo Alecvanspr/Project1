@@ -17,7 +17,6 @@ public class AuctionList extends Application {
     Scene AuctionList;
     Marketplace marketplace = new Marketplace();
     ScrollPane scrollPane = new ScrollPane();
-    Animal animal = new Animal("Jasper","man", 18, "Human","Human",80.0, "healthy");
 
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
@@ -43,7 +42,7 @@ public class AuctionList extends Application {
                 goBack(stage);
         });
 
-        printLines(auctionList, animal); //hier moet de naam van het dier
+        printLines(auctionList);
 
         Button btnToYourBids = new Button("To Your bids");
         btnToYourBids.relocate(650, 50);
@@ -72,9 +71,6 @@ public class AuctionList extends Application {
         double d = Double.parseDouble(string);
         return d;
     }
-    public static void main(String[] args) {
-
-    }
     public String checkIfDouble(String string){
         if (!string.contains("\\.")){
             String correctString = string + ".0";
@@ -97,7 +93,8 @@ public class AuctionList extends Application {
             ex.printStackTrace();
         }
     }
-    public void makeBid(String bidAmount,Auction auction,TextField textField,Integer howMany,int x,TextField txtBidAmount,Animal animal){
+    public void makeBid(String bidAmount,Auction auction,TextField textField,Integer howMany,int x,TextField txtBidAmount){
+        Animal animal = makeAnimal("Jasper","man", 18, "Human","Human",80.0, "healthy");
         Double amount = stringToDouble(checkIfDouble(bidAmount));
         auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount,animal);
         textField.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
@@ -113,7 +110,7 @@ public class AuctionList extends Application {
         }
         txtBidAmount.setText("");
     }
-    public void printLines(Pane auctionList,Animal animal){
+    public void printLines(Pane auctionList){
         for(int i = 0; i < Auction.getAuctionList().size(); i++) {
             Auction auction = Auction.getAuctionList().get(i);
             Integer howMany = auction.getForSaleQueue().size() + 1; //De +1 is omdat de eerste animal van de auction niet in de queue komt
@@ -129,8 +126,12 @@ public class AuctionList extends Application {
             Integer x = i;
 
             makeBid.setOnAction(E -> {
-                makeBid(bidAmount.getText(), auction, textField, howMany, x, bidAmount,animal);
+                makeBid(bidAmount.getText(), auction, textField, howMany, x, bidAmount);
             });
         }
+    }
+    public Animal makeAnimal(String name,String gender,int age,String species,String race,double weight,String health){ //dit moet achteaf verwijderd worden
+        Animal animal = new Animal(name,gender,age,species,race,weight,health);
+        return animal;
     }
 }
