@@ -17,62 +17,18 @@ public class Marketplace extends Application {
     Homescreen homescreen = new Homescreen();
     @Override
     public void start(Stage stage) throws Exception{
-        Button btnBack = new Button("Back");
         Font CfontArial = new Font("Arial", 50);
         Font fontArial = new Font("Arial", 11);
-        Button auctionButton = new Button("To Auction");
         Label startLabel = new Label("Welcome to the auction page");
         startLabel.setFont(CfontArial);
         startLabel.relocate(75,25);
         Pane market = new Pane();
-        market.getChildren().add(btnBack);
-        market.getChildren().add(auctionButton);
         market.getChildren().add(startLabel);
-        auctionButton.relocate(200,200);
+
+        //Go back button
+        Button btnBack = new Button("Back");
         btnBack.relocate(10,565);
-        auctionButton.setPrefHeight(100);
-        auctionButton.setPrefWidth(100);
-
-
-        Button yourAuctionBtn = new Button("To your Auctions");
-        yourAuctionBtn.relocate(500, 200);
-        yourAuctionBtn.setPrefWidth(100);
-        yourAuctionBtn.setPrefHeight(100);
-        yourAuctionBtn.setFont(fontArial);
-        auctionButton.setFont(fontArial);
-        market.getChildren().add(yourAuctionBtn);
-
-        yourAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                yourAuctionBtn.setScaleX(1.2);
-                yourAuctionBtn.setScaleY(1.2);
-            }
-        });
-        yourAuctionBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                yourAuctionBtn.setScaleX(1.0);
-                yourAuctionBtn.setScaleY(1.0);
-            }
-        });
-        yourAuctionBtn.setOnAction(E-> {
-            goYourAuction(stage);
-        });
-            auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                auctionButton.setScaleX(1.2);
-                auctionButton.setScaleY(1.2);
-            }
-        });
-        auctionButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                auctionButton.setScaleX(1.0);
-                auctionButton.setScaleY(1.0);
-            }
-        });
+        market.getChildren().add(btnBack);
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -91,6 +47,79 @@ public class Marketplace extends Application {
         btnBack.setOnAction(e -> {
             goBack(stage);
         });
+
+        //go to the Auctions of the user
+        Button yourAuctionBtn = new Button("your Auctions");
+        yourAuctionBtn.relocate(500, 200);
+        yourAuctionBtn.setPrefWidth(100);
+        yourAuctionBtn.setPrefHeight(100);
+        yourAuctionBtn.setFont(fontArial);
+        market.getChildren().add(yourAuctionBtn);
+        yourAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                yourAuctionBtn.setScaleX(1.2);
+                yourAuctionBtn.setScaleY(1.2);
+            }
+        });
+        yourAuctionBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                yourAuctionBtn.setScaleX(1.0);
+                yourAuctionBtn.setScaleY(1.0);
+            }
+        });
+        yourAuctionBtn.setOnAction(E-> {
+            goYourAuction(stage);
+        });
+        //button to go to BidHistory
+        Button bidHistoryBtn = new Button("your bid history");
+        bidHistoryBtn.setPrefHeight(100);
+        bidHistoryBtn.setPrefWidth(100);
+        bidHistoryBtn.setFont(fontArial);
+        bidHistoryBtn.relocate(200, 400);
+        market.getChildren().add(bidHistoryBtn);
+        bidHistoryBtn.setOnMouseEntered((new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                bidHistoryBtn.setScaleX(1.2);
+                bidHistoryBtn.setScaleY(1.2);
+            }
+        }));
+        bidHistoryBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                bidHistoryBtn.setScaleX(1.0);
+                bidHistoryBtn.setScaleY(1.0);
+            }
+        });
+        bidHistoryBtn.setOnAction(E->{
+            goBidHistory(stage);
+        });
+
+
+        //button to go to auctionButton
+        Button auctionButton = new Button("To Auction");
+        auctionButton.setFont(fontArial);
+        auctionButton.relocate(200,200);
+        auctionButton.setPrefHeight(100);
+        auctionButton.setPrefWidth(100);
+        market.getChildren().add(auctionButton);
+        auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                auctionButton.setScaleX(1.2);
+                auctionButton.setScaleY(1.2);
+            }
+        });
+        auctionButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                auctionButton.setScaleX(1.0);
+                auctionButton.setScaleY(1.0);
+            }
+        });
+
 
         auctionButton.setOnAction(E->{
                 Animal animal = new Animal("Jasper","man", 18, "Human","Human",80.0, "healthy");
@@ -121,6 +150,14 @@ public void createNewAution(Animal animal,double minPrice) {
         try {
             homescreen.start(stage);
         } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goBidHistory(Stage stage){
+        BidHistory bidHistory = new BidHistory();
+        try{
+            bidHistory.start(stage);
+        }catch (Exception ex){
             ex.printStackTrace();
         }
     }

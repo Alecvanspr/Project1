@@ -18,35 +18,36 @@ public class AuctionList extends Application {
     ScrollPane scrollPane = new ScrollPane();
 
     public void start(Stage stage) throws Exception{
+        Pane auctionList = new Pane();
+
+        //Button back
         Button btnBack = new Button("Back");
         btnBack.relocate(750, 565);
-        Pane auctionList = new Pane();
         auctionList.getChildren().add(btnBack);
+        btnBack.setOnMouseEntered(E-> {
+            btnBack.setScaleX(1.2);
+            btnBack.setScaleY(1.2);
+        });
+        btnBack.setOnMouseExited(E-> {
+            btnBack.setScaleX(1.0);
+            btnBack.setScaleY(1.0);
+        });
+        btnBack.setOnAction(E-> {
+            goBack(stage);
+        });
+
+        //Start Label
         Label startLabel = new Label("Here you can see all the auctions");
         startLabel.setFont(Font.font("Arial",30));
         startLabel.relocate(200,0);
         auctionList.getChildren().add(startLabel);
 
-
-        btnBack.setOnMouseExited(E-> {
-                btnBack.setScaleX(1.5);
-                btnBack.setScaleY(1.5);
-        });
-        btnBack.setOnMouseExited(E-> {
-                btnBack.setScaleX(1.0);
-                btnBack.setScaleY(1.0);
-        });
-
-        btnBack.setOnAction(E-> {
-                goBack(stage);
-        });
-
         printLines(auctionList);
 
+        //Button to your bids
         Button btnToYourBids = new Button("To Your bids");
         btnToYourBids.relocate(650, 50);
         auctionList.getChildren().add(btnToYourBids);
-
         btnToYourBids.setOnMouseEntered(E->{
                 btnToYourBids.setScaleX(1.0);
                 btnToYourBids.setScaleY(1.0);
@@ -55,7 +56,6 @@ public class AuctionList extends Application {
                 btnToYourBids.setScaleX(1.2);
                 btnToYourBids.setScaleY(1.2);
         });
-
         btnToYourBids.setOnAction(E-> {
             goBidHistory(stage);
         });
