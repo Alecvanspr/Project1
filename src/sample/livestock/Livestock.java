@@ -27,16 +27,22 @@ public class Livestock extends Application {
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
         Button btnAdd = new Button("Add animal");
+        Button btnShowAnimalsBySpiecies = new Button("Sort by spiecies");
         Label lblName = new Label("Name Animal");
         Label lblHealth = new Label("Last health");
         Label lblWeight = new Label("Last Weight");
         lblName.relocate(100,40);
         lblHealth.relocate(300,40);
         lblWeight.relocate(500,40);
+        btnShowAnimalsBySpiecies.relocate(300,10);
 
         stage.setResizable(false);
 
         btnAdd.relocate(100,10);
+
+        btnShowAnimalsBySpiecies.setOnAction(E->{
+            goShowAnimalsBySpecies(stage);
+        });
 
         ScrollBar scrollBar= new ScrollBar();
         scrollBar.setOrientation(Orientation.VERTICAL);
@@ -52,7 +58,7 @@ public class Livestock extends Application {
             goNewAnimal(stage);
         });
 
-        liveStockPane.getChildren().addAll(btnBack,btnAdd,lblName,lblHealth,lblWeight);
+        liveStockPane.getChildren().addAll(btnBack,btnAdd,lblName,lblHealth,lblWeight,btnShowAnimalsBySpiecies);
         btnBack.relocate(10,565);
         btnBack.setOnAction(e -> {
             returnHome(stage);
@@ -145,6 +151,14 @@ public class Livestock extends Application {
         DisplayWeight displayWeight = new DisplayWeight(animal,ArrayKeeper.getCurrentUser());
         try {
             displayWeight.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goShowAnimalsBySpecies(Stage stage){
+        ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
+        try {
+            showAnimalsBySpecies.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
