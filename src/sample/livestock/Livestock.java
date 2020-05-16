@@ -44,7 +44,7 @@ public class Livestock extends Application {
         btnAdd.relocate(100,10);
 
         btnShowAnimalsBySpiecies.setOnAction(E->{
-            goShowAnimalsBySpecies(stage);
+            //goShowAnimalsBySpecies(stage);
         });
 
         ScrollBar scrollBar= new ScrollBar();
@@ -214,5 +214,4 @@ public class Livestock extends Application {
     public int getPlaats() {
         return placeName;
     }
-    public
 }
