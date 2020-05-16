@@ -1,6 +1,8 @@
 package sample.livestock;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HorizontalDirection;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -8,12 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.Homescreen;
 import sample.livestock.Addanimal;
 import sample.livestock.EditAnimal;
+import sample.market.MakeAuction;
 
 public class Livestock extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
@@ -29,7 +33,6 @@ public class Livestock extends Application {
         Label lblName = new Label("Name Animal");
         Label lblHealth = new Label("Last health");
         Label lblWeight = new Label("Last Weight");
-
         lblName.relocate(100,40);
         lblHealth.relocate(300,40);
         lblWeight.relocate(500,40);
@@ -56,6 +59,37 @@ public class Livestock extends Application {
         btnBack.relocate(0,570);
         btnBack.setOnAction(e -> {
             returnHome(stage);
+        });
+        //Button to go back to make auction
+        Button toMakeAuction = new Button("Go to make Auction");
+        toMakeAuction.relocate(575, 500);
+        toMakeAuction.setPrefWidth(150);
+        toMakeAuction.setPrefHeight(50);
+        liveStockPane.getChildren().add(toMakeAuction);
+        toMakeAuction.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                toMakeAuction.setScaleY(1.2);
+                toMakeAuction.setScaleX(1.2);
+            }
+        });
+        toMakeAuction.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                toMakeAuction.setScaleY(1.0);
+                toMakeAuction.setScaleX(1.0);
+            }
+        });
+        toMakeAuction.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                MakeAuction makeAuction = new MakeAuction();
+                try {
+                    makeAuction.start(stage);
+                } catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }
         });
         liveStockScroll.setContent(liveStockPane);
         stockScene = new Scene(liveStockScroll,800,600);
