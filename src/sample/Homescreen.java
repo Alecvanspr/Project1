@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.contacts.Contacts;
 import sample.inlogScreen.Main;
@@ -21,6 +22,7 @@ public class Homescreen extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Label welcome = new Label("Welcome to the homescreen");
+        welcome.setFont(Font.font("Arial",30));
         //buttons to navigate to different things
         Button btnLogOut = new Button("Log out");
         Label user = new Label("Welcome back " + ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername());//en dit zou dan de naam weer moeten geven
@@ -32,7 +34,7 @@ public class Homescreen extends Application {
 
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
                 btnMarketPlace,btnLiveStock,user);
-        welcome.relocate(350,300);
+        welcome.relocate(225,100);
 
         user.relocate(660,35);
 
@@ -41,39 +43,79 @@ public class Homescreen extends Application {
             goMain(stage);
         });
 
-        btnProfile.relocate(330,325);
+        //Profile Button
+        setButtonLayout(btnProfile);
+        btnProfile.relocate(225,200);
         btnProfile.setOnAction(e -> {
             goProfile(stage);
         });
+        btnProfile.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnProfile, 1.0);
+            }
+        });
+        btnProfile.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnProfile, 1.2);
+            }
+        });
 
-        btnContacts.relocate(330,355);
+        //Contact button
+        setButtonLayout(btnContacts);
+        btnContacts.relocate(225,400);
         btnContacts.setOnAction(e -> {
             goContacts(stage);
         });
+        btnContacts.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnContacts, 1.2);
+            }
+        });
+        btnContacts.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnContacts, 1.0);
+            }
+        });
 
-        btnMarketPlace.relocate(430,325);
+        //Market button
+        setButtonLayout(btnMarketPlace);
+        btnMarketPlace.relocate(450,200);
         btnMarketPlace.setOnAction(e ->{
             goMarket(stage);
         });
+        btnMarketPlace.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnMarketPlace, 1.0);
+            }
+        });
+        btnMarketPlace.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnMarketPlace, 1.2);
+            }
+        });
 
-        btnLiveStock.relocate(430,355);
+        //Livestoch button
+        setButtonLayout(btnLiveStock);
+        btnLiveStock.relocate(450,400);
         btnLiveStock.setOnAction(e -> {
             goLivestock(stage);
         });
-        btnLogOut.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        btnLiveStock.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                btnLogOut.setScaleX(1.2);
-                btnLogOut.setScaleY(1.2);
-
+                setButtonScaleChange(btnLiveStock, 1.2);
             }
         });
-        btnLogOut.setOnMouseExited(new EventHandler<MouseEvent>() {
+        btnLiveStock.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                btnLogOut.setScaleX(1);
-                btnLogOut.setScaleY(1);
-
+                setButtonScaleChange(btnLiveStock, 1.0);
             }
         });
 
@@ -90,6 +132,14 @@ public class Homescreen extends Application {
         } catch (Exception ex){
             ex.printStackTrace();
         }
+    }
+    public void setButtonLayout(Button button){
+        button.setPrefHeight(150);
+        button.setPrefWidth(150);
+    }
+    public void setButtonScaleChange(Button button, Double scale){
+        button.setScaleY(scale);
+        button.setScaleX(scale);
     }
     public void goMarket(Stage stage){
         Marketplace markt = new Marketplace();
