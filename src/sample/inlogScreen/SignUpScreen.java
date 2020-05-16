@@ -52,7 +52,7 @@ public class SignUpScreen extends Application {
 
         btnRegister.setOnAction(e->{
             register(stage,register,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
-                    textFieldBirth.getText(),lblSecurity.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString());
+                    textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString());
         });
 
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.

@@ -45,7 +45,7 @@ public class ForgotPassword extends Application {
         lblnewPasswordConfirm.relocate(100,250);
         txtPasswordConfirm.relocate(100,275);
         ChangePassword.relocate(100,335);
-        lblError.relocate(100,325);
+        lblError.relocate(100,314);
 
         lblSecurityQuestion.setOnMouseClicked(e->{
                 changingUser= getUser(txtUsername.getText());
@@ -104,7 +104,7 @@ public class ForgotPassword extends Application {
     public int getUser(String username){
         int ret = 0;
         for(int i = 0; i<main.arraykeeper.Data.size();i++){
-            if(main.arraykeeper.getPersonaldata().get(i).getName().equals(username)){
+            if(main.arraykeeper.getPersonaldata().get(i).getUsername().equals(username)){
                 ret = i;
             }
         }
