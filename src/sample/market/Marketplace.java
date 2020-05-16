@@ -1,6 +1,7 @@
 package sample.market;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,44 +11,30 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import sample.Homescreen;
+import sample.livestock.Animal;
 
 public class Marketplace extends Application {
     Scene marktScene;
     Homescreen homescreen = new Homescreen();
     @Override
     public void start(Stage stage) throws Exception{
-        Button btnBack = new Button("Back");
-        Button auctionButton = new Button("To Auction");
+        Font CfontArial = new Font("Arial", 50);
+        Font fontArial = new Font("Arial", 11);
         Label startLabel = new Label("Welcome to the auction page");
-        startLabel.setFont(Font.font ("Arial", 30));
-        startLabel.relocate(200,0);
+        startLabel.setFont(CfontArial);
+        startLabel.relocate(75,25);
         Pane market = new Pane();
-        market.getChildren().add(btnBack);
-        market.getChildren().add(auctionButton);
         market.getChildren().add(startLabel);
-        auctionButton.relocate(600,200);
+
+        //Go back button
+        Button btnBack = new Button("Back");
         btnBack.relocate(10,565);
-        auctionButton.setScaleX(2.0);
-        auctionButton.setScaleY(2.0);
-        auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                auctionButton.setScaleX(2.2);
-                auctionButton.setScaleY(2.2);
-            }
-        });
-        auctionButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                auctionButton.setScaleX(2.0);
-                auctionButton.setScaleY(2.0);
-            }
-        });
+        market.getChildren().add(btnBack);
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.5);
-                btnBack.setScaleY(1.5);
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
 
             }
         });
@@ -56,31 +43,112 @@ public class Marketplace extends Application {
             public void handle(MouseEvent mouseEvent) {
                 btnBack.setScaleX(1);
                 btnBack.setScaleY(1);
-
             }
         });
         btnBack.setOnAction(e -> {
-            Homescreen homescreen = new Homescreen();
-            try {
-                homescreen.start(stage);
-            } catch (Exception ex){
-                ex.printStackTrace();
-            }
+            goBack(stage);
         });
-        auctionButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+        //go to the Auctions of the user
+        Button yourAuctionBtn = new Button("Your auctions");
+        yourAuctionBtn.relocate(500, 400);
+        buttonSetLayout(yourAuctionBtn);
+        yourAuctionBtn.setFont(fontArial);
+        market.getChildren().add(yourAuctionBtn);
+        yourAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Animal animal = new Animal("man", 18, "Jasper", "Human","Human",80.0, "healthy");
-                Auction auction = new Auction(animal, 1000.0);
-                Animal animal2 = new Animal("man", 18, "Jasper", "Kip","Kip",80.0, "healthy");
-                auction.addAnimalToQueue(animal2);
-                Auction auction2 = new Auction(animal, 500.0);
-                AuctionList auctionList = new AuctionList();
-                try {
-                    auctionList.start(stage);
-                }   catch (Exception ex){
-                    ex.printStackTrace();
-                }
+                yourAuctionBtn.setScaleX(1.2);
+                yourAuctionBtn.setScaleY(1.2);
+            }
+        });
+        yourAuctionBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                yourAuctionBtn.setScaleX(1.0);
+                yourAuctionBtn.setScaleY(1.0);
+            }
+        });
+        yourAuctionBtn.setOnAction(E-> {
+            goYourAuction(stage);
+        });
+        //button to go to BidHistory
+        Button bidHistoryBtn = new Button("Your bid history");
+        buttonSetLayout(bidHistoryBtn);
+        bidHistoryBtn.setFont(fontArial);
+        bidHistoryBtn.relocate(200, 400);
+        market.getChildren().add(bidHistoryBtn);
+        bidHistoryBtn.setOnMouseEntered((new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                bidHistoryBtn.setScaleX(1.2);
+                bidHistoryBtn.setScaleY(1.2);
+            }
+        }));
+        bidHistoryBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                bidHistoryBtn.setScaleX(1.0);
+                bidHistoryBtn.setScaleY(1.0);
+            }
+        });
+        bidHistoryBtn.setOnAction(E->{
+            goBidHistory(stage);
+        });
+
+
+        //button to go to auctionButton
+        Button auctionButton = new Button("To Auction");
+        auctionButton.setFont(fontArial);
+        auctionButton.relocate(200,200);
+        buttonSetLayout(auctionButton);
+        market.getChildren().add(auctionButton);
+        auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                auctionButton.setScaleX(1.2);
+                auctionButton.setScaleY(1.2);
+            }
+        });
+        auctionButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                auctionButton.setScaleX(1.0);
+                auctionButton.setScaleY(1.0);
+            }
+        });
+
+
+        auctionButton.setOnAction(E->{
+                Animal animal = new Animal("Jasper","man", 18, "Human","Human",80.0, "healthy");
+                createNewAution(animal,1000.00); //ik heb een method gemaakt van de aution,die het automatisch in de Queue zet.
+                Animal animal2 = new Animal("Jasper","man", 18, "Kip","Kip",80.0, "healthy");
+                createNewAution(animal2,500);
+                goAutionlist(stage);
+        });
+        //Button to make Auction
+        Button makeAuction = new Button("Make Auction");
+        buttonSetLayout(makeAuction);
+        makeAuction.relocate(500, 200);
+        market.getChildren().add(makeAuction);
+        makeAuction.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                makeAuction.setScaleX(1.0);
+                makeAuction.setScaleY(1.0);
+            }
+        });
+        makeAuction.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                makeAuction.setScaleX(1.2);
+                makeAuction.setScaleY(1.2);
+            }
+        });
+        makeAuction.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                goToMakeAuction(stage);
             }
         });
         marktScene = new Scene(market,800,600);
@@ -88,5 +156,53 @@ public class Marketplace extends Application {
         stage.setScene(marktScene);
         stage.show();
     }
+    public void createNewAution(Animal animal,double minPrice) {
+    Auction auction = new Auction(animal, minPrice);
 
+    auction.addAnimalToQueue(animal);
+    }
+    public void goAutionlist(Stage stage){
+        AuctionList auctionList = new AuctionList();
+        try {
+            auctionList.start(stage);
+        }   catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goBack(Stage stage){
+        Homescreen homescreen = new Homescreen();
+        try {
+            homescreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goBidHistory(Stage stage){
+        BidHistory bidHistory = new BidHistory();
+        try{
+            bidHistory.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goYourAuction(Stage stage){
+        UserAuctions userAuctions = new UserAuctions();
+        try{
+            userAuctions.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void buttonSetLayout(Button button){
+        button.setPrefWidth(100);
+        button.setPrefHeight(100);
+    }
+    public void goToMakeAuction(Stage stage){
+        MakeAuction makeAuction = new MakeAuction();
+        try {
+            makeAuction.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }
