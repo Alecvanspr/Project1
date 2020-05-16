@@ -81,14 +81,14 @@ public class MakeAuction extends Application {
                 goBack(stage);
             }
         });
-        //TextField voor Animal
-        TextField animalField = new TextField();
-        animalField.setPrefWidth(150);
-        animalField.relocate(220,100);
-        Label animalLabel = new Label("Animal: ");
-        animalLabel.relocate(100,101);
-        makeAuction.getChildren().add(animalField);
-        makeAuction.getChildren().add(animalLabel);
+        //TextField voor Item
+        TextField itemField = new TextField();
+        itemField.setPrefWidth(150);
+        itemField.relocate(220,100);
+        Label itemLabel = new Label("Item: ");
+        itemLabel.relocate(100,101);
+        makeAuction.getChildren().add(itemField);
+        makeAuction.getChildren().add(itemLabel);
 
         //TextField voor de how many
         TextField manyField = new TextField();
@@ -114,9 +114,9 @@ public class MakeAuction extends Application {
         TextField timerField = new TextField();
         timerField.setPrefWidth(150);
         timerField.relocate(220, 250);
-        Label timerLabel = new Label("how long (hours per animal):");
+        Label timerLabel = new Label("how long (hours per item):");
         timerLabel.setPrefWidth(150);
-        timerLabel.relocate(25, 251);
+        timerLabel.relocate(20, 251);
         makeAuction.getChildren().add(timerField);
         makeAuction.getChildren().add(timerLabel);
 
