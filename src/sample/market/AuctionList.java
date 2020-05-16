@@ -102,15 +102,6 @@ public class AuctionList extends Application {
         auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount);
         textField.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
 
-        if (auction.getAmountMustBeHigher(amount, auction.getHighestBid().getAmount())) {
-            Alert bidIsToLow = new Alert(AlertType.ERROR);
-            bidIsToLow.setContentText("Bid is to low! needs to be higher then " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
-            bidIsToLow.show();
-        }else{
-            Alert bidIsPlaced = new Alert(AlertType.INFORMATION);
-            bidIsPlaced.setContentText("Bid of " + Auction.getAuctionList().get(x).getHighestBid().getAmount() + " has been placed!");
-            bidIsPlaced.show();
-        }
         txtBidAmount.setText("");
     }
     public void printLines(Pane auctionList){

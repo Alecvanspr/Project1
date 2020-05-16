@@ -156,8 +156,9 @@ public class Marketplace extends Application {
         stage.setScene(marktScene);
         stage.show();
     }
-public void createNewAution(Animal animal,double minPrice) {
+    public void createNewAution(Animal animal,double minPrice) {
     Auction auction = new Auction(animal, minPrice);
+
     auction.addAnimalToQueue(animal);
     }
     public void goAutionlist(Stage stage){

@@ -2,8 +2,11 @@ package sample.market;
 
 import java.util.ArrayList;
 import java.util.Timer;
+
+import javafx.scene.control.Alert;
 import sample.ArrayKeeper;
 import sample.livestock.Animal;
+import sample.market.AuctionList;
 import java.util.Scanner;
 
 public class Auction {
@@ -85,10 +88,16 @@ public class Auction {
                 this.setHighestBid(newBid);
                 this.getBidHistory().add(newBid);
                 System.out.println("Bid succesfully placed!");
+                Alert bidIsPlaced = new Alert(Alert.AlertType.INFORMATION);
+                bidIsPlaced.setContentText("Bid of " + amount + " has been placed!");
+                bidIsPlaced.show();
+
             }
             else{
                 System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
-
+                Alert bidIsToLow = new Alert(Alert.AlertType.ERROR);
+                bidIsToLow.setContentText("Bid is to low! needs to be higher then " + amount);
+                bidIsToLow.show();
             }
 
     }
