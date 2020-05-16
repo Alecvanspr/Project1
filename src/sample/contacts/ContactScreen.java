@@ -13,6 +13,7 @@ import sample.Homescreen;
 public class ContactScreen extends Application {
 
     Scene contactScene;
+    Addressbook addressbook = new Addressbook();
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -20,10 +21,10 @@ public class ContactScreen extends Application {
         Pane contact = new Pane();
 
         Button btnAdd = new Button("Add");
-        Button btnEdit = new Button("Save");
+        Button btnSave = new Button("Save");
         Button btnFind = new Button("Find");
         Button btnList = new Button("List");
-        Button btnEdit2 = new Button("Edit");
+        Button btnEdit = new Button("Edit");
 
         TextField tfContact = new TextField();
 
@@ -54,9 +55,9 @@ public class ContactScreen extends Application {
 
 
         btnAdd.relocate(500,300);
-        btnEdit.relocate(545,300);
+        btnSave.relocate(545,300);
 
-        btnEdit2.relocate(100,490);
+        btnEdit.relocate(100,490);
         btnList.relocate(310,50);
 
         btnFind.relocate(260,50);
@@ -91,6 +92,10 @@ public class ContactScreen extends Application {
         tfCity.relocate(500,240);
         tfCountry.relocate(500,270);
 
+        btnEdit.setOnAction(E->{
+            addressbook.edit(tfName.getText(),tfEmail.getText(),tfPhoneNumber.getText(),tfStreet.getText(),tfPostelCode.getText(), tfCity.getText(),tfCountry.getText());
+        });
+
 
         btnAdd.setOnAction(E->{
             Address address = new Address(tfStreet.getText(), tfPostelCode.getText(), tfCity.getText(),tfCountry.getText());
@@ -115,14 +120,14 @@ public class ContactScreen extends Application {
         btnList.setOnAction(E->{
         });
 
-        btnEdit2.setOnAction(E->{
+        btnSave.setOnAction(E->{
         });
 
         btnEdit.setOnAction(E->{
-            Addressbook.edit(tfName.getText(), tfEmail.getText(), tfPhoneNumber.getText(), tfStreet.getText(),tfPostelCode.getText(),tfCity.getText(),tfCountry.getText());
+            addressbook.edit(tfName.getText(), tfEmail.getText(), tfPhoneNumber.getText(), tfStreet.getText(),tfPostelCode.getText(),tfCity.getText(),tfCountry.getText());
         });
 
-        contact.getChildren().addAll(btnList, btnEdit2,btnBack, lblphonenumber, tfPhoneNumber, tfContact,btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblpostelcode,lblcity,lblcountry,tfCity,tfCountry,tfEmail,tfName,tfPostelCode,tfStreet,taContacts, taContactsFullDetail);
+        contact.getChildren().addAll(btnList, btnSave,btnBack, lblphonenumber, tfPhoneNumber, tfContact,btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblpostelcode,lblcity,lblcountry,tfCity,tfCountry,tfEmail,tfName,tfPostelCode,tfStreet,taContacts, taContactsFullDetail);
         btnBack.relocate(0,570);
 
 

@@ -21,7 +21,7 @@ public class Addressbook {
     }
 
 
-    public static List<Contact> edit(String name,  String email , String number, String street, String postelcode, String city, String country){
+    public void edit(String name,  String email , String number, String street, String postelcode, String city, String country){
         for(Contact contact : contacts) {
             if(contact.getName().equalsIgnoreCase(name)){
                 contact.setName(name);
@@ -33,7 +33,6 @@ public class Addressbook {
                 contact.getAddress().setCountry(country);
             }
         }
-        return null;
     }
 
 
