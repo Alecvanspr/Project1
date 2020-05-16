@@ -35,7 +35,7 @@ public class ArrayKeeper {
         return currentUser;
     }
 
-    public static PersonalData getData(int user) {
+    public PersonalData getData(int user) {
         return Data.get(user);
     }
 }

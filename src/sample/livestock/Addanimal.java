@@ -1,11 +1,13 @@
 package sample.livestock;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ImageInput;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -21,6 +23,7 @@ public class Addanimal extends Application {
         Pane animal = new Pane();
         animalScene = new Scene(animal,800,600);
         Button btnAdd = new Button("Add");
+        Button btnBack = new Button("Back");
         Label lblname = new Label("Name animal");
         Label lblAge = new Label ("Age animal");
         Label lblgender = new Label("Gender animal");
@@ -52,7 +55,11 @@ public class Addanimal extends Application {
         txtWeight.relocate(300,270);
         lblHealth.relocate(100,305);
         txtHealth.relocate(300,305);
+        btnBack.relocate(0,565);
 
+        btnBack.setOnAction(E->{
+            goBack(stage);
+        });
 
         btnAdd.setOnAction(E-> {
                     int intAge = Integer.parseInt(txtAge.getText());
@@ -62,8 +69,24 @@ public class Addanimal extends Application {
                     main.arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().add(newAminal);
                     goBack(stage);
                 });
+        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
 
-        animal.getChildren().addAll(btnAdd,lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,lblHealth,txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight,txtHealth);
+            }
+        });
+        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1);
+                btnBack.setScaleY(1);
+
+            }
+        });
+
+        animal.getChildren().addAll(btnAdd,lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,lblHealth,txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight,txtHealth,btnBack);
         stage.setTitle("Add animal");
         stage.setScene(animalScene);
         stage.show();
