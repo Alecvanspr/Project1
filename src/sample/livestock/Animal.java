@@ -5,19 +5,19 @@ import java.util.ArrayList;
 public class Animal {
     public static Long number = 0L;
     //This number is animalnr, but this is the counter.
-    private Long animalnr;
+    private Integer animalnr;
     private String name;
     private String gender;
     private Integer age;
     private String species;
     private String race;
+    private int currentUser;
     public ArrayList<Double> weight = new ArrayList<>();
     public ArrayList<String> health = new ArrayList<>();
     public ArrayList<String> dateHealth = new ArrayList<>();
     public ArrayList<String> dateWeight = new ArrayList<>();
 
     public Animal(String name,String gender, Integer age,  String species, String race, Double weight,String Health){
-        System.out.println(weight);
         this.animalnr = getUniqueNumber();
         this.name = name;
         this.gender = gender;
@@ -26,9 +26,11 @@ public class Animal {
         this.race = race;
         this.weight.add(weight);
         this.health.add(Health);
+        this.dateWeight.add(""+java.time.LocalDate.now());
+        this.dateHealth.add(""+java.time.LocalDate.now());
     }
 
-    public Long getAnimalnr(){
+    public Integer getAnimalnr(){
         return animalnr;
     }
 
@@ -52,8 +54,17 @@ public class Animal {
         return age;
     }
 
-    public Long getUniqueNumber(){
-        return number++;
+    public Integer getUniqueNumber(){
+        /*
+        String number = "";
+        if((currentUser<100)&&(currentUser>=10)){
+            number = "0"+currentUser;
+        }else if(currentUser<10){
+            number = "00"+currentUser;
+        }
+
+         */
+        return currentUser;
     }
 
     public void setName(String nameNew){
@@ -98,8 +109,9 @@ public class Animal {
     public String getDateHealth(int counter){
         return  dateHealth.get(counter);
     }
-    public String getDateWeight(int counter){
-        return  dateWeight.get(counter);
+
+    public ArrayList<String> getDateWeight(){
+        return dateWeight;
     }
 
     public static void main(String[] args) {

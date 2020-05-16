@@ -1,8 +1,10 @@
 package sample.inlogScreen;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.inlogScreen.Main;
@@ -55,6 +57,38 @@ public class SignUpScreen extends Application {
 
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
             BackToMain(stage);
+        });
+        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
+
+            }
+        });
+        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1);
+                btnBack.setScaleY(1);
+
+            }
+        });
+        btnRegister.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnRegister.setScaleX(1.2);
+                btnRegister.setScaleY(1.2);
+
+            }
+        });
+        btnRegister.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnRegister.setScaleX(1);
+                btnRegister.setScaleY(1);
+
+            }
         });
 
         SignUpp = new Scene(register, 800,600);
