@@ -11,6 +11,7 @@ public class Animal {
     private Integer age;
     private String species;
     private String race;
+    private Species speciesClass;
     private int currentUser;
     public ArrayList<Double> weight = new ArrayList<>();
     public ArrayList<String> health = new ArrayList<>();
@@ -23,13 +24,14 @@ public class Animal {
         this.gender = gender;
         this.age = age;
         this.species = species;
+        this.speciesClass = new Species(species);
         this.race = race;
         this.weight.add(weight);
         this.health.add(Health);
         this.dateWeight.add(""+java.time.LocalDate.now());
         this.dateHealth.add(""+java.time.LocalDate.now());
     }
-
+    public Species getSpeciesClass(){return speciesClass;}
     public Integer getAnimalnr(){
         return animalnr;
     }
