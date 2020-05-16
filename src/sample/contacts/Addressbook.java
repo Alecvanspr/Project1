@@ -39,7 +39,7 @@ public class Addressbook {
 
     public static String list(){
         for(Contact contact : contacts) {
-            return contact.getName();
+            return contact.getName() + "\n";
         }
         return null;
     }

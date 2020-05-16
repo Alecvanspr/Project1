@@ -36,6 +36,8 @@ public class ContactScreen extends Application {
         Label lblcity = new Label("City");
         Label lblcountry = new Label("Country");
 
+        Label lblFoundContact = new Label();
+
         Label nameData = new Label();
         Label emailData = new Label("Email");
         Label phonenumberData = new Label("Phone");
@@ -93,7 +95,15 @@ public class ContactScreen extends Application {
         tfCountry.relocate(500,270);
 
         btnEdit.setOnAction(E->{
-            addressbook.edit(tfName.getText(),tfEmail.getText(),tfPhoneNumber.getText(),tfStreet.getText(),tfPostelCode.getText(), tfCity.getText(),tfCountry.getText());
+
+            tfName.setText("");
+            tfEmail.setText("");
+            tfPhoneNumber.setText("");
+            tfStreet.setText("");
+            tfPostelCode.setText("");
+            tfCity.setText("");
+            tfCountry.setText("");
+            lblFoundContact.setText("");
         });
 
 
@@ -101,29 +111,42 @@ public class ContactScreen extends Application {
             Address address = new Address(tfStreet.getText(), tfPostelCode.getText(), tfCity.getText(),tfCountry.getText());
             Contact contactAdd = new Contact(tfName.getText(), tfEmail.getText(), tfPhoneNumber.getText(), address);
             Addressbook.addContact(contactAdd);
+            lblFoundContact.setText("");
             taContacts.appendText(tfName.getText() + "\n");
+            tfName.setText("");
+            tfEmail.setText("");
+            tfPhoneNumber.setText("");
+            tfStreet.setText("");
+            tfPostelCode.setText("");
+            tfCity.setText("");
+            tfCountry.setText("");
+
         });
+
 
         btnFind.setOnAction(E->{
             String name = tfName.getText();
-            Addressbook.find(name);
-            Label label = new Label(name);
-            label.setOnMouseClicked(event->{
+            lblFoundContact.setText(name);
+            lblFoundContact.setOnMouseClicked(event->{
                 taContactsFullDetail.setText(Addressbook.displayContact(name) + "\n");
             });
             taContacts.setText("");
-            taContacts.setText(name);
-            label.relocate(400,400);
-            contact.getChildren().add(label);
+            lblFoundContact.relocate(104,95);
+            contact.getChildren().add(lblFoundContact);
         });
 
         btnList.setOnAction(E->{
+            lblFoundContact.setText("");
+            taContacts.setText("");
+            taContacts.appendText(Addressbook.list());
         });
 
         btnSave.setOnAction(E->{
+            addressbook.edit(tfName.getText(),tfEmail.getText(),tfPhoneNumber.getText(),tfStreet.getText(),tfPostelCode.getText(), tfCity.getText(),tfCountry.getText());
         });
 
         btnEdit.setOnAction(E->{
+            lblFoundContact.setText("");
             addressbook.edit(tfName.getText(), tfEmail.getText(), tfPhoneNumber.getText(), tfStreet.getText(),tfPostelCode.getText(),tfCity.getText(),tfCountry.getText());
         });
 
