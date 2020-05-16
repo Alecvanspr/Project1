@@ -48,10 +48,10 @@ public class Addressbook {
     public static String displayContact(String c){
         for(Contact contact : contacts) {
             if(contact.getName().equals(c))
-            return contact.getName() + contact.getEmail() + contact.getEmail()
-                    + contact.getPhoneNumber() + contact.getAddress().getStreet()
-                    + contact.getAddress().getPostelCode() + contact.getAddress().getCity()
-                    + contact.getAddress().getCountry();
+            return contact.getName() + "\n" + contact.getEmail()
+                    + "\n" + contact.getPhoneNumber() + "\n" + contact.getAddress().getStreet()
+                    + "\n" + contact.getAddress().getPostelCode() + "\n" + contact.getAddress().getCity()
+                    + "\n" + contact.getAddress().getCountry();
         }
         return null;
     }
