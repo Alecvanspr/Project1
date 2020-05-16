@@ -79,7 +79,7 @@ public class Livestock extends Application {
         });
 
         //Button to go back to make auction
-        Button toMakeAuction = new Button("Go to make Auction");
+        Button toMakeAuction = new Button("Go to Auctions");
         toMakeAuction.relocate(575, 500);
         toMakeAuction.setPrefWidth(150);
         toMakeAuction.setPrefHeight(50);

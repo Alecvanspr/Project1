@@ -120,6 +120,29 @@ public class MakeAuction extends Application {
         makeAuction.getChildren().add(timerField);
         makeAuction.getChildren().add(timerLabel);
 
+        Button makeAuctionBtn = new Button("Make Auction");
+        makeAuctionBtn.relocate(400, 250);
+        makeAuctionBtn.setPrefWidth(150);
+        makeAuction.getChildren().add(makeAuctionBtn);
+        makeAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                makeAuctionBtn.setScaleY(1.2);
+                makeAuctionBtn.setScaleX(1.2);
+            }
+        });
+        makeAuctionBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                makeAuctionBtn.setScaleX(1.0);
+                makeAuctionBtn.setScaleY(1.0);
+            }
+        });
+        makeAuctionBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+            }
+        });
         MakeAuction = new Scene(makeAuction, 800, 600);
         stage.setTitle("Make Auction");
         stage.setScene(MakeAuction);
