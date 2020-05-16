@@ -23,9 +23,7 @@ public class PersonalData {
     public static ArrayList<Species> getSpecies(){
         return species;
     }
-    public void addSpecies(Animal animal){
-        species.add(animal.getSpeciesClass());
-    }
+
     public String getSecurityAnswer() {
         return securityAnswer;
     }

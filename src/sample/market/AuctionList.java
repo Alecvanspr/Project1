@@ -95,11 +95,11 @@ public class AuctionList extends Application {
             ex.printStackTrace();
         }
     }
-    public void makeBid(String bidAmount,Auction auction,TextField textField,Integer howMany,int x,TextField txtBidAmount){
+    public void makeBid(String bidAmount,Auction auction,Label label,Integer howMany,int x,TextField txtBidAmount){
         Animal animal = makeAnimal("Jasper","man", 18, "Human","Human",80.0, "healthy");
         Double amount = stringToDouble(checkIfDouble(bidAmount));
         auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount,animal);
-        textField.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
+        label.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
 
         txtBidAmount.setText("");
     }
@@ -107,7 +107,7 @@ public class AuctionList extends Application {
         for(int i = 0; i < Auction.getAuctionList().size(); i++) {
             Auction auction = Auction.getAuctionList().get(i);
             Integer howMany = auction.getForSaleQueue().size() + 1; //De +1 is omdat de eerste animal van de auction niet in de queue komt
-            TextField textField = new TextField(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(i).getHighestBid().getAmount());
+            Label textField = new Label(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(i).getHighestBid().getAmount());
             textField.relocate(10, 50 + (30 * i));
             auctionList.getChildren().add(textField);
             Button makeBid = new Button("MakeBid");
@@ -119,7 +119,7 @@ public class AuctionList extends Application {
             Integer x = i;
 
             makeBid.setOnAction(E -> {
-                makeBid(bidAmount.getText(), auction, textField, howMany, x, bidAmount);
+                makeBid(bidAmount.getText(), auction, textField , howMany, x, bidAmount);
             });
         }
     }

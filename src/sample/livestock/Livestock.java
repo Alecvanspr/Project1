@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.Homescreen;
+import sample.market.AuctionList;
 import sample.market.MakeAuction;
 
 public class Livestock extends Application {
@@ -37,15 +38,11 @@ public class Livestock extends Application {
         lblName.relocate(100,40);
         lblHealth.relocate(300,40);
         lblWeight.relocate(500,40);
-        btnShowAnimalsBySpiecies.relocate(300,10);
 
         stage.setResizable(false);
 
         btnAdd.relocate(100,10);
 
-        btnShowAnimalsBySpiecies.setOnAction(E->{
-            //goShowAnimalsBySpecies(stage);
-        });
 
         ScrollBar scrollBar= new ScrollBar();
         scrollBar.setOrientation(Orientation.VERTICAL);
@@ -104,14 +101,47 @@ public class Livestock extends Application {
         toMakeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                MakeAuction makeAuction = new MakeAuction();
+                AuctionList auctionList = new AuctionList();
                 try {
-                    makeAuction.start(stage);
+                    auctionList.start(stage);
                 } catch (Exception ex){
                     ex.printStackTrace();
                 }
             }
         });
+
+        //Button to make Auction for your animals
+        Button makeAuction = new Button("Make Auction of animals");
+        makeAuction.relocate(575, 400);
+        makeAuction.setPrefWidth(150);
+        makeAuction.setPrefHeight(50);
+        liveStockPane.getChildren().add(makeAuction);
+        makeAuction.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
+                try {
+                    showAnimalsBySpecies.start(stage);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
+        makeAuction.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                makeAuction.setScaleX(1.2);
+                makeAuction.setScaleY(1.2);
+            }
+        });
+        makeAuction.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                makeAuction.setScaleY(1.0);
+                makeAuction.setScaleX(1.0);
+            }
+        });
+
         liveStockScroll.setContent(liveStockPane);
         stockScene = new Scene(liveStockScroll,800,600);
         stage.setTitle("Livestock");
@@ -206,11 +236,9 @@ public class Livestock extends Application {
         displayWeight(stage);
         displayAllAnimals(stage);
     }
-
     public void setPlaceName(int place) {
         this.placeName = place;
     }
-
     public int getPlaats() {
         return placeName;
     }

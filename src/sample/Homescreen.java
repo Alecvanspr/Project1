@@ -11,6 +11,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.contacts.Contacts;
 import sample.inlogScreen.Main;
+import sample.livestock.Animal;
 import sample.livestock.Livestock;
 import sample.market.Marketplace;
 import sample.profileSettings.ProfileSettingsScreen;

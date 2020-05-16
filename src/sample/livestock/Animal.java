@@ -1,5 +1,7 @@
 package sample.livestock;
 
+import sample.inlogScreen.PersonalData;
+
 import java.util.ArrayList;
 
 public class Animal {
@@ -11,7 +13,6 @@ public class Animal {
     private Integer age;
     private String species;
     private String race;
-    private Species speciesClass;
     private int currentUser;
     public ArrayList<Double> weight = new ArrayList<>();
     public ArrayList<String> health = new ArrayList<>();
@@ -24,14 +25,40 @@ public class Animal {
         this.gender = gender;
         this.age = age;
         this.species = species;
-        this.speciesClass = new Species(species);
         this.race = race;
         this.weight.add(weight);
         this.health.add(Health);
         this.dateWeight.add(""+java.time.LocalDate.now());
         this.dateHealth.add(""+java.time.LocalDate.now());
+        makeSpecies(species);
     }
-    public Species getSpeciesClass(){return speciesClass;}
+    public void makeSpecies(String species){
+            if(!checkSpecies(species)){
+                Species speciesObject = new Species(species);
+                speciesObject.getArrayListOfSpecies().add(this);
+
+                PersonalData.getSpecies().add(speciesObject);
+
+            }else{
+                for(int i =0; i < PersonalData.getSpecies().size(); i++){
+                    if (PersonalData.getSpecies().get(i).getSpecies().equalsIgnoreCase(this.species)){
+                        PersonalData.getSpecies().get(i).addAnimalToArray(this);
+                    }
+                }
+            }
+
+    }
+    public Boolean checkSpecies(String species){
+        for(int i =0; i < PersonalData.getSpecies().size(); i++){
+            if(PersonalData.getSpecies().get(i).getSpecies().equalsIgnoreCase(this.getSpecies())){
+                return true;
+
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
     public Integer getAnimalnr(){
         return animalnr;
     }
