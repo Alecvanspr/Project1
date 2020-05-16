@@ -16,7 +16,7 @@ public class Animal {
     public ArrayList<String> dateHealth = new ArrayList<>();
     public ArrayList<String> dateWeight = new ArrayList<>();
 
-    public Animal(String name,String gender, Integer age,  String species, String race, Double weight,String Health){
+    public Animal(String name,String gender, Integer age,  String species, String race, Double weight,String health){
         System.out.println(weight);
         this.animalnr = getUniqueNumber();
         this.name = name;
@@ -25,7 +25,7 @@ public class Animal {
         this.species = species;
         this.race = race;
         this.weight.add(weight);
-        this.health.add(Health);
+        this.health.add(health);
     }
 
     public Long getAnimalnr(){
@@ -89,27 +89,19 @@ public class Animal {
     public ArrayList<String> getHealth(){
         return  health;
     }
+
     public void setDateHealth(String newDate){
         this.dateHealth.add(newDate);
     }
+
     public void setDateWeight(String newDate){
         this.dateWeight.add(newDate);
     }
+
     public String getDateHealth(int counter){
         return  dateHealth.get(counter);
     }
     public String getDateWeight(int counter){
         return  dateWeight.get(counter);
     }
-
-    public static void main(String[] args) {
-    }
-}
-class sheep extends Animal{
-    String woolQuality;
-    public sheep(String gender, Integer age, String name, String species, String race, Double weight,String dateWeight,String woolQuality){
-        super(name,gender, age,  species, race, weight,dateWeight);
-        this.woolQuality = woolQuality;
-    }
-
 }

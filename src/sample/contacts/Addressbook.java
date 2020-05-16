@@ -38,14 +38,16 @@ public class Addressbook {
 
 
     public static String list(){
+        String ret = "";
         for(Contact contact : contacts) {
-            return contact.getName() + "\n";
+            ret = ret+ contact.getName() + "\n";
         }
-        return null;
+        return ret;
     }
 
     public static String displayContact(String c){
         for(Contact contact : contacts) {
+            System.out.println(c);
             if(contact.getName().equals(c))
             return contact.getName() + "\n" + contact.getEmail()
                     + "\n" + contact.getPhoneNumber() + "\n" + contact.getAddress().getStreet()

@@ -95,7 +95,6 @@ public class ContactScreen extends Application {
         tfCountry.relocate(500,270);
 
         btnEdit.setOnAction(E->{
-
             tfName.setText("");
             tfEmail.setText("");
             tfPhoneNumber.setText("");
@@ -123,21 +122,18 @@ public class ContactScreen extends Application {
 
         });
 
-
         btnFind.setOnAction(E->{
             String name = tfName.getText();
-            lblFoundContact.setText(name);
-            lblFoundContact.setOnMouseClicked(event->{
-                taContactsFullDetail.setText(Addressbook.displayContact(name) + "\n");
+            Label lblFoundContactExtra = new Label(name);
+            lblFoundContactExtra.setOnMouseClicked(event->{
+                taContactsFullDetail.appendText(Addressbook.displayContact(name) + "\n");
             });
-            taContacts.setText("");
-            lblFoundContact.relocate(104,95);
-            contact.getChildren().add(lblFoundContact);
+            lblFoundContactExtra.relocate(600,600);
+            contact.getChildren().addAll(lblFoundContactExtra);
+
         });
 
         btnList.setOnAction(E->{
-            lblFoundContact.setText("");
-            taContacts.setText("");
             taContacts.appendText(Addressbook.list());
         });
 
@@ -152,7 +148,6 @@ public class ContactScreen extends Application {
 
         contact.getChildren().addAll(btnList, btnSave,btnBack, lblphonenumber, tfPhoneNumber, tfContact,btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblpostelcode,lblcity,lblcountry,tfCity,tfCountry,tfEmail,tfName,tfPostelCode,tfStreet,taContacts, taContactsFullDetail);
         btnBack.relocate(0,570);
-
 
 
         btnBack.setOnAction(e -> {
