@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import sample.contacts.Contacts;
+import sample.contacts.ContactScreen;
 import sample.inlogScreen.Main;
 import sample.livestock.Livestock;
 import sample.market.Marketplace;
@@ -90,9 +90,9 @@ public class Homescreen extends Application {
         }
     }
     public void goContacts(Stage stage){
-        Contacts contacts = new Contacts();
+        ContactScreen contactScreen = new ContactScreen();
         try {
-            contacts.start(stage);
+            contactScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
