@@ -22,6 +22,8 @@ public class ContactScreen extends Application {
         Button btnAdd = new Button("Add");
         Button btnEdit = new Button("Save");
         Button btnFind = new Button("Find");
+        Button btnList = new Button("List");
+        Button btnEdit2 = new Button("Edit");
 
         TextField tfContact = new TextField();
 
@@ -53,6 +55,9 @@ public class ContactScreen extends Application {
 
         btnAdd.relocate(500,300);
         btnEdit.relocate(545,300);
+
+        btnEdit2.relocate(100,490);
+        btnList.relocate(310,50);
 
         btnFind.relocate(260,50);
         tfContact.relocate(100,50);
@@ -99,17 +104,25 @@ public class ContactScreen extends Application {
             Addressbook.find(name);
             Label label = new Label(name);
             label.setOnMouseClicked(event->{
-                taContactsFullDetail.setText(Addressbook.displayContact(name));
+                taContactsFullDetail.setText(Addressbook.displayContact(name) + "\n");
             });
             taContacts.setText("");
             taContacts.setText(name);
+            label.relocate(400,400);
+            contact.getChildren().add(label);
+        });
+
+        btnList.setOnAction(E->{
+        });
+
+        btnEdit2.setOnAction(E->{
         });
 
         btnEdit.setOnAction(E->{
             Addressbook.edit(tfName.getText(), tfEmail.getText(), tfPhoneNumber.getText(), tfStreet.getText(),tfPostelCode.getText(),tfCity.getText(),tfCountry.getText());
         });
 
-        contact.getChildren().addAll(btnBack, lblphonenumber, tfPhoneNumber, tfContact,btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblpostelcode,lblcity,lblcountry,tfCity,tfCountry,tfEmail,tfName,tfPostelCode,tfStreet,taContacts, taContactsFullDetail);
+        contact.getChildren().addAll(btnList, btnEdit2,btnBack, lblphonenumber, tfPhoneNumber, tfContact,btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblpostelcode,lblcity,lblcountry,tfCity,tfCountry,tfEmail,tfName,tfPostelCode,tfStreet,taContacts, taContactsFullDetail);
         btnBack.relocate(0,570);
 
 
