@@ -3,7 +3,6 @@ package sample.livestock;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.HorizontalDirection;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,8 +14,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.Homescreen;
-import sample.livestock.Addanimal;
-import sample.livestock.EditAnimal;
 import sample.market.MakeAuction;
 
 public class Livestock extends Application {
@@ -56,10 +53,25 @@ public class Livestock extends Application {
         });
 
         liveStockPane.getChildren().addAll(btnBack,btnAdd,lblName,lblHealth,lblWeight);
-        btnBack.relocate(0,570);
+        btnBack.relocate(10,565);
         btnBack.setOnAction(e -> {
             returnHome(stage);
         });
+        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1.0);
+                btnBack.setScaleY(1.0);
+            }
+        });
+        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleY(1.2);
+                btnBack.setScaleX(1.2);
+            }
+        });
+
         //Button to go back to make auction
         Button toMakeAuction = new Button("Go to make Auction");
         toMakeAuction.relocate(575, 500);
