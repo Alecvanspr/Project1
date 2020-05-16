@@ -19,35 +19,36 @@ public class AuctionList extends Application {
     ScrollPane scrollPane = new ScrollPane();
 
     public void start(Stage stage) throws Exception{
+        Pane auctionList = new Pane();
+
+        //Button back
         Button btnBack = new Button("Back");
         btnBack.relocate(750, 565);
-        Pane auctionList = new Pane();
         auctionList.getChildren().add(btnBack);
+        btnBack.setOnMouseEntered(E-> {
+            btnBack.setScaleX(1.2);
+            btnBack.setScaleY(1.2);
+        });
+        btnBack.setOnMouseExited(E-> {
+            btnBack.setScaleX(1.0);
+            btnBack.setScaleY(1.0);
+        });
+        btnBack.setOnAction(E-> {
+            goBack(stage);
+        });
+
+        //Start Label
         Label startLabel = new Label("Here you can see all the auctions");
         startLabel.setFont(Font.font("Arial",30));
         startLabel.relocate(200,0);
         auctionList.getChildren().add(startLabel);
 
-
-        btnBack.setOnMouseExited(E-> {
-                btnBack.setScaleX(1.5);
-                btnBack.setScaleY(1.5);
-        });
-        btnBack.setOnMouseExited(E-> {
-                btnBack.setScaleX(1.0);
-                btnBack.setScaleY(1.0);
-        });
-
-        btnBack.setOnAction(E-> {
-                goBack(stage);
-        });
-
         printLines(auctionList);
 
+        //Button to your bids
         Button btnToYourBids = new Button("To Your bids");
         btnToYourBids.relocate(650, 50);
         auctionList.getChildren().add(btnToYourBids);
-
         btnToYourBids.setOnMouseEntered(E->{
                 btnToYourBids.setScaleX(1.0);
                 btnToYourBids.setScaleY(1.0);
@@ -56,7 +57,6 @@ public class AuctionList extends Application {
                 btnToYourBids.setScaleX(1.2);
                 btnToYourBids.setScaleY(1.2);
         });
-
         btnToYourBids.setOnAction(E-> {
             goBidHistory(stage);
         });
@@ -74,8 +74,10 @@ public class AuctionList extends Application {
     public String checkIfDouble(String string){
         if (!string.contains("\\.")){
             String correctString = string + ".0";
+            return correctString;
+        }else{
+            return string;
         }
-        return string;
     }
     public void goBidHistory(Stage stage){
         BidHistory bidHistory = new BidHistory();
@@ -99,15 +101,6 @@ public class AuctionList extends Application {
         auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount,animal);
         textField.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
 
-        if (auction.getAmountMustBeHigher(amount, auction.getHighestBid().getAmount())) {
-            Alert bidIsToLow = new Alert(AlertType.ERROR);
-            bidIsToLow.setContentText("Bid is to low! needs to be higher then " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
-            bidIsToLow.show();
-        }else{
-            Alert bidIsPlaced = new Alert(AlertType.INFORMATION);
-            bidIsPlaced.setContentText("Bid of " + Auction.getAuctionList().get(x).getHighestBid().getAmount() + " has been placed!");
-            bidIsPlaced.show();
-        }
         txtBidAmount.setText("");
     }
     public void printLines(Pane auctionList){

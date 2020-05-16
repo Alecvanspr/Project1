@@ -10,12 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import sample.ArrayKeeper;
-import sample.market.AuctionList;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class BidHistory extends Application {
@@ -26,14 +21,15 @@ public class BidHistory extends Application {
     @Override
     public void start(Stage stage) throws  Exception{
         Pane bidHistoryPane = new Pane();
-        Button btnBack = new Button("Exit");
+
+        //Button back
+        Button btnBack = new Button("Back");
         btnBack.relocate(10,565);
-        bidHistoryPane.getChildren().add(btnBack);
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.5);
-                btnBack.setScaleY(1.5);
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
             }
         });
         btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -43,6 +39,7 @@ public class BidHistory extends Application {
                 btnBack.setScaleY(1.0);
             }
         });
+        bidHistoryPane.getChildren().add(btnBack);
         btnBack.setOnAction(E->{
             goBack(stage);
         });
@@ -55,9 +52,9 @@ public class BidHistory extends Application {
         stage.show();
     }
     public void goBack(Stage stage){
-        AuctionList auctionList = new AuctionList();
+        Marketplace marketplace = new Marketplace();
         try{
-            auctionList.start(stage);
+            marketplace.start(stage);
         }catch (Exception ex){
             ex.printStackTrace();
         }

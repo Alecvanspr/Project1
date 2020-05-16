@@ -3,20 +3,28 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import sample.ArrayKeeper;
+
+import java.util.ArrayList;
+
 public class UserAuctions extends Application{
     Scene userAuctions;
     Marketplace marketPlace = new Marketplace();
+    ScrollPane scrollPane = new ScrollPane();
     @Override
     public void start(Stage stage) throws Exception{
         Pane userAuctionsPane = new Pane();
         Button btnBack = new Button("Back");
         btnBack.relocate(10, 565);
         userAuctionsPane.getChildren().add(btnBack);
+        printLines(userAuctionsPane);
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -34,8 +42,9 @@ public class UserAuctions extends Application{
         btnBack.setOnAction(E->{
                 goBack(stage);
         });
+        scrollPane.setContent(userAuctionsPane);
 
-        userAuctions = new Scene(userAuctionsPane, 800, 600);
+        userAuctions = new Scene(scrollPane, 800, 600);
         stage.setTitle("Your Auctions");
         stage.setScene(userAuctions);
         stage.show();
@@ -48,4 +57,19 @@ public class UserAuctions extends Application{
             ex.printStackTrace();
         }
     }
+    public void printLines(Pane userAuctions){
+        ArrayList<Auction> userAuctionsList = new ArrayList<>();
+        for (int i = 0; i < Auction.getAuctionList().size();i++){
+            if(Auction.getAuctionList().get(i).getUserId() == ArrayKeeper.getCurrentUser()){
+                userAuctionsList.add(Auction.getAuctionList().get(i));
+            }
+
+        }
+        for (int i = 0; i < userAuctionsList.size(); i++){
+            TextField userAuctionText = new TextField(userAuctionsList.get(i).getForSale() + " : Highest bid: " + userAuctionsList.get(i).getHighestBid().getAmount() + " from " + userAuctionsList.get(i).getHighestBid().getUser());
+            userAuctionText.relocate(10, 50 + (30 * i));
+            userAuctions.getChildren().add(userAuctionText);
+        }
+    }
+
 }
