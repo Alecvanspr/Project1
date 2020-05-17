@@ -146,11 +146,3 @@ public class Animal {
     public static void main(String[] args) {
     }
 }
-class sheep extends Animal{
-    String woolQuality;
-    public sheep(String gender, Integer age, String name, String species, String race, Double weight,String dateWeight,String woolQuality){
-        super(name,gender, age,  species, race, weight,dateWeight);
-        this.woolQuality = woolQuality;
-    }
-
-}
