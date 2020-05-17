@@ -104,7 +104,7 @@ public class ForgotPassword extends Application {
     public int getUser(String username){
         int ret = 0;
         for(int i = 0; i<main.arraykeeper.Data.size();i++){
-            if(main.arraykeeper.getPersonaldata().get(i).getName().equals(username)){
+            if(main.arraykeeper.getPersonaldata().get(i).getUsername().equals(username)){
                 ret = i;
             }
         }

@@ -52,7 +52,8 @@ public class Main extends Application {
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
-        login.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord,btnLogin,btnSignUp, btnForgotPassword);
+        Label error = new Label("Sorry, try again");
+        login.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord,btnLogin,btnSignUp, btnForgotPassword,error);
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
         lblPassWord.relocate(100,95);
@@ -61,21 +62,28 @@ public class Main extends Application {
         btnSignUp.relocate(150,145);
         btnForgotPassword.relocate(100,175);
 
+        textFieldUserName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                login.getChildren().remove(error);
+            }
+        });
+        btnSignUp.setOnAction(e -> {
+            goSignUp();
+        });
+
         btnLogin.setOnAction(e -> {
             if(gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
                 try {
                     home.start(window);
                 } catch (Exception ex) {
                     ex.printStackTrace();
+
                 }
             }else{
-                Label error = new Label("Sorry, try again");
                 login.getChildren().add(error);
                 error.relocate(100,200);
             }
-        });
-        btnSignUp.setOnAction(e -> {
-            goSignUp();
         });
 
         btnForgotPassword.setOnMousePressed(e->{
