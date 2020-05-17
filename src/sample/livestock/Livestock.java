@@ -31,7 +31,6 @@ public class Livestock extends Application {
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
         Button btnAdd = new Button("Add animal");
-        Button btnShowAnimalsBySpiecies = new Button("Sort by spiecies");
         Label lblName = new Label("Name Animal");
         Label lblHealth = new Label("Last health");
         Label lblWeight = new Label("Last Weight");
@@ -58,7 +57,7 @@ public class Livestock extends Application {
             goNewAnimal(stage);
         });
 
-        liveStockPane.getChildren().addAll(btnBack,btnAdd,lblName,lblHealth,lblWeight,btnShowAnimalsBySpiecies);
+        liveStockPane.getChildren().addAll(btnBack,btnAdd,lblName,lblHealth,lblWeight);
         btnBack.relocate(10,565);
         btnBack.setOnAction(e -> {
             returnHome(stage);

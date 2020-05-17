@@ -107,7 +107,7 @@ public class Auction {
     public String highestBidToString(){
         return "The current highest bid is " + this.getHighestBid().getAmount() + " by " + this.getHighestBid().getUser() + ".";
     }
-
+/*
     public void printBidHistory() {
         for (int i = this.getBidHistory().size() - 1; i >= 0; i--) {
             if (i > 0) {
@@ -119,6 +119,8 @@ public class Auction {
             }
         }
     }
+
+ */
 
 
     public static void main(String[] args) {

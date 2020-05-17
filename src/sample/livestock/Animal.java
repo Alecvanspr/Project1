@@ -142,7 +142,4 @@ public class Animal {
     public String getDateWeight(int counter){
         return dateWeight.get(counter);
     }
-
-    public static void main(String[] args) {
-    }
 }
