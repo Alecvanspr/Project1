@@ -11,6 +11,7 @@ public class Addressbook {
         contacts.add(c);
     }
 
+
     public static List<Contact> find(String search){
         for(Contact contact : contacts) {
             if(contact.getName().equalsIgnoreCase(search)){
@@ -20,6 +21,9 @@ public class Addressbook {
         return null;
     }
 
+    public static String getContact(Contact contact){
+        return contact.getName();
+    }
 
     public void edit(String name,  String email , String number, String street, String postelcode, String city, String country){
         for(Contact contact : contacts) {
@@ -47,7 +51,7 @@ public class Addressbook {
     public static String displayContact(String c){
         for(Contact contact : contacts) {
             System.out.println(c);
-            if(contact.getName().equals(c))
+            if(contact.getName().toLowerCase().contains(c))
             return contact.getName() + "\n" + contact.getEmail()
                     + "\n" + contact.getPhoneNumber() + "\n" + contact.getAddress().getStreet()
                     + "\n" + contact.getAddress().getPostelCode() + "\n" + contact.getAddress().getCity()
@@ -56,7 +60,9 @@ public class Addressbook {
         return null;
     }
 
-
+    public static List<Contact> getListContact(){
+        return contacts;
+    }
 
     @Override
     public String toString() {

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.Homescreen;
 
@@ -93,17 +94,6 @@ public class ContactScreen extends Application {
         tfCountry.relocate(500,270);
 
 
-        btnEdit.setOnAction(E->{
-            tfName.setText("");
-            tfEmail.setText("");
-            tfPhoneNumber.setText("");
-            tfStreet.setText("");
-            tfPostelCode.setText("");
-            tfCity.setText("");
-            tfCountry.setText("");
-
-        });
-
         btnClear.setOnAction(E->{
             tfName.setText("");
             tfEmail.setText("");
@@ -116,17 +106,34 @@ public class ContactScreen extends Application {
         });
 
         Label lblFoundContactExtra = new Label();
+
+
         btnFind.setOnAction(E->{
             String name = tfContact.getText();
             lblFoundContactExtra.setText(name);
+            lblFoundContactExtra.setTextFill(Color.web("#0000FF"));
             lblFoundContactExtra.setOnMouseClicked(event->{
                 taContactsFullDetail.setText("");
                 taContactsFullDetail.appendText(Addressbook.displayContact(name) + "\n");
+                lblFoundContactExtra.setText("");
             });
             taContacts.setText("");
             lblFoundContactExtra.relocate(107,94);
             contact.getChildren().addAll(lblFoundContactExtra);
         });
+
+        btnEdit.setOnAction(E->{
+            Addressbook.getListContact();
+            tfName.appendText("");
+            tfEmail.setText("");
+            tfPhoneNumber.setText("");
+            tfStreet.setText("");
+            tfPostelCode.setText("");
+            tfCity.setText("");
+            tfCountry.setText("");
+
+        });
+
 
         btnAdd.setOnAction(E->{
             Address address = new Address(tfStreet.getText(), tfPostelCode.getText(), tfCity.getText(),tfCountry.getText());
@@ -166,16 +173,6 @@ public class ContactScreen extends Application {
         stage.setTitle("Contacts");
         stage.setScene(contactScene);
         stage.show();
-    }
-
-    public void displayAllContacts(){
-        for(int i = 0; i < Addressbook.list().length(); i++){
-            Label label = new Label(Addressbook.list());
-            label.setOnMouseClicked(E->{
-
-            });
-
-        }
     }
 
 
