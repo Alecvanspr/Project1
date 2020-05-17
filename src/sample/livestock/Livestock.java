@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.Homescreen;
 import sample.market.AuctionList;
-import sample.market.MakeAuction;
+
 
 public class Livestock extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();

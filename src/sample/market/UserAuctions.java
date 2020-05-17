@@ -8,8 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
-import javafx.scene.text.Font;
 import sample.ArrayKeeper;
 
 import java.util.ArrayList;

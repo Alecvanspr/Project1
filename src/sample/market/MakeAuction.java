@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -15,8 +14,6 @@ import javafx.stage.Stage;
 import sample.livestock.Livestock;
 import javafx.scene.paint.Color;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MakeAuction extends Application {
     Scene MakeAuction;

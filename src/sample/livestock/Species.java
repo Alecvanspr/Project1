@@ -1,5 +1,4 @@
 package sample.livestock;
-import sample.inlogScreen.PersonalData;
 
 import java.util.ArrayList;
 

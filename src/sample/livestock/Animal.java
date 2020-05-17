@@ -13,7 +13,6 @@ public class Animal {
     private Integer age;
     private String species;
     private String race;
-    private int currentUser;
     public ArrayList<Double> weight = new ArrayList<>();
     public ArrayList<String> health = new ArrayList<>();
     public ArrayList<String> dateHealth = new ArrayList<>();

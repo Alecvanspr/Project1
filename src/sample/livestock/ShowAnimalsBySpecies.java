@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
-import sample.inlogScreen.SignUpScreen;
 import sample.market.Auction;
 
 public class ShowAnimalsBySpecies extends Application {

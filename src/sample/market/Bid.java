@@ -1,6 +1,4 @@
 package sample.market;
-import java.text.DateFormat;
-import java.util.Date;
 import sample.ArrayKeeper;
 import sample.livestock.Animal;
 

@@ -1,13 +1,10 @@
 package sample.market;
 
 import java.util.ArrayList;
-import java.util.Timer;
-
 import javafx.scene.control.Alert;
 import sample.ArrayKeeper;
 import sample.livestock.Animal;
-import sample.market.AuctionList;
-import java.util.Scanner;
+
 
 public class Auction {
     private Animal forSale;

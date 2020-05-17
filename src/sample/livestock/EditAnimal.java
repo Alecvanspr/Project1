@@ -8,13 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
 
-import java.util.ArrayList;
-import java.util.Date;
 
 import static sample.ArrayKeeper.getCurrentUser;
 
