@@ -120,10 +120,7 @@ public class Marketplace extends Application {
 
 
         auctionButton.setOnAction(E->{
-                Animal animal = new Animal("Jasper","man", 18, "Human","Human",80.0, "healthy");
-                createNewAution(animal,1000.00); //ik heb een method gemaakt van de aution,die het automatisch in de Queue zet.
-                Animal animal2 = new Animal("Jasper","man", 18, "Kip","Kip",80.0, "healthy");
-                createNewAution(animal2,500);
+
                 goAutionlist(stage);
         });
         //Button to make Auction

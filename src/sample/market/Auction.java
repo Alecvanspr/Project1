@@ -1,13 +1,10 @@
 package sample.market;
 
 import java.util.ArrayList;
-import java.util.Timer;
-
 import javafx.scene.control.Alert;
 import sample.ArrayKeeper;
 import sample.livestock.Animal;
-import sample.market.AuctionList;
-import java.util.Scanner;
+
 
 public class Auction {
     private Animal forSale;
@@ -18,7 +15,7 @@ public class Auction {
     private int UserId;
     public Auction(Animal animalForSale,Double minPrice){
         this.forSale = animalForSale;
-        this.highestBid = firstBid(minPrice);
+        this.highestBid = firstBid(minPrice,animalForSale);
         ArrayList<Bid> bidHistory = new ArrayList<Bid>();
         this.bidHistory = bidHistory;
         ArrayList<Animal> forSaleQueue = new ArrayList<Animal>();
@@ -82,9 +79,9 @@ public class Auction {
         }
     }
 
-    public void makeBid(String user, Double amount){
+    public void makeBid(String user, Double amount ,Animal animal){
             if(isHigher(amount)) {
-                Bid newBid = new Bid(user, amount);
+                Bid newBid = new Bid(user, amount, animal);
                 this.setHighestBid(newBid);
                 this.getBidHistory().add(newBid);
                 System.out.println("Bid succesfully placed!");
@@ -102,15 +99,15 @@ public class Auction {
 
     }
 
-    public Bid firstBid(Double minPrice){
-        Bid startBid = new Bid("Nobody", minPrice);
+    public Bid firstBid(Double minPrice,Animal animal){
+        Bid startBid = new Bid("Nobody", minPrice,animal);
         return startBid;
     }
 
     public String highestBidToString(){
         return "The current highest bid is " + this.getHighestBid().getAmount() + " by " + this.getHighestBid().getUser() + ".";
     }
-
+/*
     public void printBidHistory() {
         for (int i = this.getBidHistory().size() - 1; i >= 0; i--) {
             if (i > 0) {
@@ -122,6 +119,8 @@ public class Auction {
             }
         }
     }
+
+ */
 
 
     public static void main(String[] args) {

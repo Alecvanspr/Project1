@@ -3,13 +3,12 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
-import javafx.scene.text.Font;
 import sample.ArrayKeeper;
 
 import java.util.ArrayList;
@@ -66,7 +65,8 @@ public class UserAuctions extends Application{
 
         }
         for (int i = 0; i < userAuctionsList.size(); i++){
-            TextField userAuctionText = new TextField(userAuctionsList.get(i).getForSale() + " : Highest bid: " + userAuctionsList.get(i).getHighestBid().getAmount() + " from " + userAuctionsList.get(i).getHighestBid().getUser());
+            Label userAuctionText = new Label(userAuctionsList.get(i).getForSale().getName() + " : Highest bid: " + userAuctionsList.get(i).getHighestBid().getAmount() + " from " + userAuctionsList.get(i).getHighestBid().getUser());
+            userAuctionText.setPrefWidth(300);
             userAuctionText.relocate(10, 50 + (30 * i));
             userAuctions.getChildren().add(userAuctionText);
         }

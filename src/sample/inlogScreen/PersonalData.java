@@ -2,11 +2,13 @@ package sample.inlogScreen;
 
 import sample.ArrayKeeper;
 import sample.livestock.Animal;
+import sample.livestock.Species;
 
 import java.util.ArrayList;
 
 public class PersonalData {
     ArrayList<Animal> animals= new ArrayList<>();
+    static ArrayList<Species> species= new ArrayList<>();
     private String Usernamename;
     private String name = "Not yet defined";
     private String password;
@@ -17,6 +19,9 @@ public class PersonalData {
     private String securtityQuestion;
     private String securityAnswer;
     public PersonalData(){
+    }
+    public static ArrayList<Species> getSpecies(){
+        return species;
     }
 
     public String getSecurityAnswer() {

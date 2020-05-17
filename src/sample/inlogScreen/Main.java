@@ -83,10 +83,6 @@ public class Main extends Application {
                 error.relocate(100,200);
             }
         });
-
-
-
-
         btnSignUp.setOnAction(e -> {
             goSignUp();
         });
