@@ -139,8 +139,8 @@ public class Animal {
         return  dateHealth.get(counter);
     }
 
-    public ArrayList<String> getDateWeight(){
-        return dateWeight;
+    public String getDateWeight(int counter){
+        return dateWeight.get(counter);
     }
 
     public static void main(String[] args) {
