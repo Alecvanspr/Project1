@@ -33,31 +33,30 @@ public class Animal {
         makeSpecies(species);
     }
     public void makeSpecies(String species){
-            if(!checkSpecies(species)){
-                Species speciesObject = new Species(species);
-                speciesObject.getArrayListOfSpecies().add(this);
+        if(!checkSpecies(species)){
+            Species speciesObject = new Species(species);
+            speciesObject.getArrayListOfSpecies().add(this);
 
-                PersonalData.getSpecies().add(speciesObject);
+            PersonalData.getSpecies().add(speciesObject);
 
-            }else{
-                for(int i =0; i < PersonalData.getSpecies().size(); i++){
-                    if (PersonalData.getSpecies().get(i).getSpecies().equalsIgnoreCase(this.species)){
-                        PersonalData.getSpecies().get(i).addAnimalToArray(this);
-                    }
+        }else{
+            for(int i =0; i < PersonalData.getSpecies().size(); i++){
+                if (PersonalData.getSpecies().get(i).getSpecies().equalsIgnoreCase(this.species)){
+                    PersonalData.getSpecies().get(i).addAnimalToArray(this);
                 }
             }
+        }
 
     }
-    public Boolean checkSpecies(String species){
-        for(int i =0; i < PersonalData.getSpecies().size(); i++){
-            if(PersonalData.getSpecies().get(i).getSpecies().equalsIgnoreCase(this.getSpecies())){
+    public Boolean checkSpecies(String species) {
+        boolean ret = false;
+        for (int i = 0; i < PersonalData.getSpecies().size(); i++) {
+            if (PersonalData.getSpecies().get(i).getSpecies().equalsIgnoreCase(this.getSpecies())) {
                 return true;
 
-            }else{
-                return false;
             }
         }
-        return false;
+        return ret;
     }
     public Integer getAnimalnr(){
         return animalnr;
@@ -84,15 +83,6 @@ public class Animal {
     }
 
     public Integer getUniqueNumber(){
-        /*
-        String number = "";
-        if((currentUser<100)&&(currentUser>=10)){
-            number = "0"+currentUser;
-        }else if(currentUser<10){
-            number = "00"+currentUser;
-        }
-
-         */
         return currentUser;
     }
 
@@ -141,5 +131,8 @@ public class Animal {
 
     public String getDateWeight(int counter){
         return dateWeight.get(counter);
+    }
+
+    public static void main(String[] args) {
     }
 }

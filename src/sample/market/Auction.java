@@ -119,8 +119,4 @@ public class Auction {
             }
         }
     }
-
-
-    public static void main(String[] args) {
-    }
 }
