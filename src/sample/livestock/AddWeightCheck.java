@@ -35,8 +35,7 @@ public class AddWeightCheck extends Application {
         btnBack.relocate(0,565);
 
         btnAply.setOnAction(E->{
-            arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addWeight(txtnewWeight.getText());
-            arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateWeight(""+java.time.LocalDate.now());
+            addWeightSituation(txtnewWeight.getText());
             goBack(stage);
         });
 
@@ -73,5 +72,9 @@ public class AddWeightCheck extends Application {
         } catch (Exception ex){
             ex.printStackTrace();
         }
+    }
+    public void addWeightSituation(String situation){
+        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addWeight(situation);
+        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateWeight(""+java.time.LocalDate.now());
     }
 }

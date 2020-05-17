@@ -37,8 +37,7 @@ public class AddHeathCheck extends Application {
 
 
         btnApply.setOnAction(E->{
-            arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addHealth(txtHealthSituation.getText());
-            arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateHealth(""+java.time.LocalDate.now());
+            addHealthSituation(txtHealthSituation.getText());
             goBack(stage);
         });
 
@@ -76,5 +75,9 @@ public class AddHeathCheck extends Application {
         } catch (Exception ex){
             ex.printStackTrace();
         }
+    }
+    public void addHealthSituation(String Situation){
+        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addHealth(Situation);
+        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateHealth(""+java.time.LocalDate.now());
     }
 }

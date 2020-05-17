@@ -64,9 +64,7 @@ public class Addanimal extends Application {
         btnAdd.setOnAction(E-> {
                     int intAge = Integer.parseInt(txtAge.getText());
                     double doubleWeight = Double.parseDouble(txtWeight.getText());
-                    Animal newAminal = new Animal(txtname.getText(),txtGender.getText(),intAge,textSpieses.getText(),txtRace.getText(),doubleWeight,txtHealth.getText());
-                    newAminal.setDateHealth(""+ java.time.LocalDate.now());
-                    main.arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().add(newAminal);
+                    makeNewAnimal(txtname.getText(),txtGender.getText(),intAge,textSpieses.getText(),txtRace.getText(),doubleWeight,txtHealth.getText());
                     goBack(stage);
                 });
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -99,5 +97,9 @@ public class Addanimal extends Application {
             ex.printStackTrace();
         }
     }
-
+    public void makeNewAnimal(String name,String gender,int age,String species,String race,double weight,String health){
+        Animal newAminal = new Animal(name,gender,age,species,race,weight,health);
+        newAminal.setDateHealth(""+ java.time.LocalDate.now());
+        main.arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().add(newAminal);
+    }
 }
