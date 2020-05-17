@@ -101,12 +101,7 @@ public class Livestock extends Application {
         toMakeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                AuctionList auctionList = new AuctionList();
-                try {
-                    auctionList.start(stage);
-                } catch (Exception ex){
-                    ex.printStackTrace();
-                }
+                goAuctionList(stage);
             }
         });
 
@@ -188,6 +183,14 @@ public class Livestock extends Application {
         try {
             showAnimalsBySpecies.start(stage);
         }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goAuctionList(Stage stage){
+        AuctionList auctionList = new AuctionList();
+        try {
+            auctionList.start(stage);
+        } catch (Exception ex){
             ex.printStackTrace();
         }
     }

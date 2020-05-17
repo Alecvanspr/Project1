@@ -44,17 +44,7 @@ public class ShowAnimalsBySpecies extends Application {
             makeAuction.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    if (Integer.valueOf(textField.getText()) <= PersonalData.getSpecies().get(x).getArrayListOfSpecies().size()){
-                        Auction auction = new Auction(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(0), Double.valueOf(textField1.getText()));
-                        for(int i = 1; i < Integer.valueOf(textField.getText()); i++){
-                            auction.addAnimalToQueue(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(i));
-                        }
-                        goShowAnimalsBySpiecies(stage);
-                    }else{
-                        playError();
-                    }
-
-
+                    displayBidFields(stage,Integer.valueOf(textField.getText()), Double.valueOf(textField1.getText()),x);
                 }
             });
         }
@@ -109,6 +99,17 @@ public class ShowAnimalsBySpecies extends Application {
             Alert toMany = new Alert(Alert.AlertType.ERROR);
             toMany.setContentText("You dont have that many Animals!");
             toMany.show();
+        }
+        public void displayBidFields(Stage stage,int amount,double price,int x){
+            if (amount <= PersonalData.getSpecies().get(x).getArrayListOfSpecies().size()){
+                Auction auction = new Auction(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(0), price);
+                for(int i = 1; i < amount; i++){
+                    auction.addAnimalToQueue(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(i));
+                }
+                goShowAnimalsBySpiecies(stage);
+            }else{
+                playError();
+            }
         }
     }
 

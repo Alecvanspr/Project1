@@ -93,9 +93,8 @@ public class AuctionList extends Application {
         }
     }
     public void makeBid(String bidAmount,Auction auction,Label label,Integer howMany,int x,TextField txtBidAmount){
-        Animal animal = makeAnimal("Jasper","man", 18, "Human","Human",80.0, "healthy");
         Double amount = stringToDouble(checkIfDouble(bidAmount));
-        auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount,animal);
+        auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount,auction.getForSale());
         label.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
 
         txtBidAmount.setText("");
