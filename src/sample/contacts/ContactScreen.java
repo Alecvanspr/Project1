@@ -12,6 +12,7 @@ public class ContactScreen extends Application {
 
     Scene contactScene;
     Addressbook addressbook = new Addressbook();
+    int currentUser=0;
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -123,15 +124,14 @@ public class ContactScreen extends Application {
         });
 
         btnEdit.setOnAction(E->{
-            Addressbook.getListContact();
-            tfName.appendText("");
-            tfEmail.setText("");
-            tfPhoneNumber.setText("");
-            tfStreet.setText("");
-            tfPostelCode.setText("");
-            tfCity.setText("");
-            tfCountry.setText("");
-
+            searchContact(tfContact.getText());
+            tfName.setText(Addressbook.getListContact().get(currentUser).getName());
+            tfEmail.setText(Addressbook.getListContact().get(currentUser).getEmail());
+            tfPhoneNumber.setText(Addressbook.getListContact().get(currentUser).getPhoneNumber());
+            tfStreet.setText(Addressbook.getListContact().get(currentUser).getAddress().getStreet());
+            tfPostelCode.setText(Addressbook.getListContact().get(currentUser).getAddress().getPostelCode());
+            tfCity.setText(Addressbook.getListContact().get(currentUser).getAddress().getCity());
+            tfCountry.setText(Addressbook.getListContact().get(currentUser).getAddress().getCountry());
         });
 
 
@@ -161,7 +161,7 @@ public class ContactScreen extends Application {
         });
 
 
-        contact.getChildren().addAll(btnClear,btnList, btnSave,btnBack, lblphonenumber, tfPhoneNumber, tfContact,btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblpostelcode,lblcity,lblcountry,tfCity,tfCountry,tfEmail,tfName,tfPostelCode,tfStreet,taContacts, taContactsFullDetail);
+        contact.getChildren().addAll(tfContact,tfName,tfEmail,tfPhoneNumber,tfStreet,tfPostelCode,tfCity,tfCountry, taContacts, taContactsFullDetail,btnClear,btnList, btnSave,btnBack, lblphonenumber, btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblpostelcode,lblcity,lblcountry);
         btnBack.relocate(0,570);
 
 
@@ -182,6 +182,13 @@ public class ContactScreen extends Application {
             homescreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
+        }
+    }
+    public void searchContact(String name){
+        for(int i=0; i<Addressbook.getListContact().size();i++){
+            if(name.equalsIgnoreCase(Addressbook.getListContact().get(i).getName())){
+                currentUser=i;
+            }
         }
     }
 }
