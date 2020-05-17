@@ -45,8 +45,8 @@ public class ShowAnimalsBySpecies extends Application {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     if (Integer.valueOf(textField.getText()) <= PersonalData.getSpecies().get(x).getArrayListOfSpecies().size()){
-                        Auction auction = new Auction(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(x), Double.valueOf(textField1.getText()));
-                        for(int i = 0; i < Integer.valueOf(textField.getText()); i++){
+                        Auction auction = new Auction(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(0), Double.valueOf(textField1.getText()));
+                        for(int i = 1; i < Integer.valueOf(textField.getText()); i++){
                             auction.addAnimalToQueue(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(i));
                         }
 
