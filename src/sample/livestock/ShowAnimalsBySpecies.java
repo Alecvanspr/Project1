@@ -22,21 +22,21 @@ public class ShowAnimalsBySpecies extends Application {
         Pane pane = new Pane();
         for(int i = 0; i < PersonalData.getSpecies().size(); i++){
             Label label = new Label("You got " + PersonalData.getSpecies().get(i).getArrayListOfSpecies().size() + " animals of " + PersonalData.getSpecies().get(i).getSpecies());
-            label.relocate(10, 50+(20*i));
+            label.relocate(10, 50+(25*i));
             pane.getChildren().add(label);
 
             TextField textField = new TextField("");
-            textField.relocate(250, 50+(20*i));
+            textField.relocate(250, 50+(25*i));
             textField.setPrefWidth(50);
             pane.getChildren().add(textField);
 
             TextField textField1 = new TextField("");
-            textField1.relocate(400, 50+(20*i));
+            textField1.relocate(400, 50+(25*i));
             textField1.setPrefWidth(75);
             pane.getChildren().add(textField1);
 
             Button makeAuction = new Button("Make auction");
-            makeAuction.relocate(500, 50+(20*i));
+            makeAuction.relocate(500, 50+(25*i));
             makeAuction.setPrefWidth(100);
             pane.getChildren().add(makeAuction);
 
