@@ -97,6 +97,3 @@ public class BidHistory extends Application {
         }
     }
 }
-
-
-

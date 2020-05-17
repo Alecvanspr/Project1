@@ -156,7 +156,4 @@ public class MakeAuction extends Application {
             ex.printStackTrace();
         }
     }
-
-
-
 }

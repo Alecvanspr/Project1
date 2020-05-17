@@ -39,7 +39,7 @@ public class UserAuctions extends Application{
             }
         });
         btnBack.setOnAction(E->{
-                goBack(stage);
+            goBack(stage);
         });
         scrollPane.setContent(userAuctionsPane);
 

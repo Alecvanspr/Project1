@@ -78,6 +78,7 @@ public class EditAnimal extends Application {
         btnBack.setOnAction(E-> {
             goBack(stage);
         });
+
         btnEdit.setOnAction(E->{
             pane.getChildren().addAll(txtfname,txtfAge,txtfGender,txtfSpecies,txtfRace,btnSaveChanges,btnDelete);
             try {
@@ -86,9 +87,7 @@ public class EditAnimal extends Application {
                     goBack(stage);
                 });
             }catch (java.lang.NumberFormatException e){
-                Label ErrorLabel = new Label("Age and weight have to be numbers");
-                ErrorLabel.relocate(250,310);
-                pane.getChildren().add(ErrorLabel);
+                pane.getChildren().add(makeError());
             }
             btnEdit.setVisible(false);
         });
@@ -121,7 +120,7 @@ public class EditAnimal extends Application {
         pane.getChildren().addAll(nameAnimal,ageAnimal,SpeciesAminal,lblGender,lblRace,btnEdit,btnBack);
 
         editscene = new Scene(pane,800,600);
-        stage.setTitle("Edit "+ ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName()); //+ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).animals.get().getName()
+        stage.setTitle("Edit "+ ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
         stage.setScene(editscene);
         stage.show();
     }
@@ -163,6 +162,11 @@ public class EditAnimal extends Application {
         }
         public void deleteAnimal(){
         ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().remove(currentAnimal);
+        }
+        public Label makeError(){
+            Label ErrorLabel = new Label("Age and weight have to be numbers");
+            ErrorLabel.relocate(250,310);
+            return ErrorLabel;
         }
     }
 

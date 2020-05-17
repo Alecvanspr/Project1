@@ -62,6 +62,7 @@ public class Livestock extends Application {
         btnBack.setOnAction(e -> {
             returnHome(stage);
         });
+
         btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -118,12 +119,7 @@ public class Livestock extends Application {
         makeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
-                try {
-                    showAnimalsBySpecies.start(stage);
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
+                goShowAnimalsBySpiecies(stage);
             }
         });
         makeAuction.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -184,6 +180,14 @@ public class Livestock extends Application {
         try {
             displayWeight.start(stage);
         } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goShowAnimalsBySpiecies(Stage stage){
+        ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
+        try {
+            showAnimalsBySpecies.start(stage);
+        }catch (Exception ex){
             ex.printStackTrace();
         }
     }

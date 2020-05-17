@@ -80,22 +80,22 @@ public class Auction {
     }
 
     public void makeBid(String user, Double amount ,Animal animal){
-            if(isHigher(amount)) {
-                Bid newBid = new Bid(user, amount, animal);
-                this.setHighestBid(newBid);
-                this.getBidHistory().add(newBid);
-                System.out.println("Bid succesfully placed!");
-                Alert bidIsPlaced = new Alert(Alert.AlertType.INFORMATION);
-                bidIsPlaced.setContentText("Bid of " + amount + " has been placed!");
-                bidIsPlaced.show();
+        if(isHigher(amount)) {
+            Bid newBid = new Bid(user, amount, animal);
+            this.setHighestBid(newBid);
+            this.getBidHistory().add(newBid);
+            System.out.println("Bid succesfully placed!");
+            Alert bidIsPlaced = new Alert(Alert.AlertType.INFORMATION);
+            bidIsPlaced.setContentText("Bid of " + amount + " has been placed!");
+            bidIsPlaced.show();
 
-            }
-            else{
-                System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
-                Alert bidIsToLow = new Alert(Alert.AlertType.ERROR);
-                bidIsToLow.setContentText("Bid is to low! needs to be higher then " + amount);
-                bidIsToLow.show();
-            }
+        }
+        else{
+            System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
+            Alert bidIsToLow = new Alert(Alert.AlertType.ERROR);
+            bidIsToLow.setContentText("Bid is to low! needs to be higher then " + amount);
+            bidIsToLow.show();
+        }
 
     }
 
@@ -107,7 +107,7 @@ public class Auction {
     public String highestBidToString(){
         return "The current highest bid is " + this.getHighestBid().getAmount() + " by " + this.getHighestBid().getUser() + ".";
     }
-/*
+
     public void printBidHistory() {
         for (int i = this.getBidHistory().size() - 1; i >= 0; i--) {
             if (i > 0) {
@@ -120,10 +120,7 @@ public class Auction {
         }
     }
 
- */
-
 
     public static void main(String[] args) {
     }
 }
-

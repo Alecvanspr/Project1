@@ -121,7 +121,7 @@ public class Marketplace extends Application {
 
         auctionButton.setOnAction(E->{
 
-                goAutionlist(stage);
+            goAutionlist(stage);
         });
         //Button to make Auction
         Button makeAuction = new Button("Make Auction");
@@ -154,9 +154,9 @@ public class Marketplace extends Application {
         stage.show();
     }
     public void createNewAution(Animal animal,double minPrice) {
-    Auction auction = new Auction(animal, minPrice);
+        Auction auction = new Auction(animal, minPrice);
 
-    auction.addAnimalToQueue(animal);
+        auction.addAnimalToQueue(animal);
     }
     public void goAutionlist(Stage stage){
         AuctionList auctionList = new AuctionList();

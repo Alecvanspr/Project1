@@ -22,21 +22,21 @@ public class ShowAnimalsBySpecies extends Application {
         Pane pane = new Pane();
         for(int i = 0; i < PersonalData.getSpecies().size(); i++){
             Label label = new Label("You got " + PersonalData.getSpecies().get(i).getArrayListOfSpecies().size() + " animals of " + PersonalData.getSpecies().get(i).getSpecies());
-            label.relocate(10, 50+(20*i));
+            label.relocate(10, 50+(25*i));
             pane.getChildren().add(label);
 
             TextField textField = new TextField("");
-            textField.relocate(250, 50+(20*i));
+            textField.relocate(250, 50+(25*i));
             textField.setPrefWidth(50);
             pane.getChildren().add(textField);
 
             TextField textField1 = new TextField("");
-            textField1.relocate(400, 50+(20*i));
+            textField1.relocate(400, 50+(25*i));
             textField1.setPrefWidth(75);
             pane.getChildren().add(textField1);
 
             Button makeAuction = new Button("Make auction");
-            makeAuction.relocate(500, 50+(20*i));
+            makeAuction.relocate(500, 50+(25*i));
             makeAuction.setPrefWidth(100);
             pane.getChildren().add(makeAuction);
 
@@ -49,23 +49,16 @@ public class ShowAnimalsBySpecies extends Application {
                         for(int i = 1; i < Integer.valueOf(textField.getText()); i++){
                             auction.addAnimalToQueue(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(i));
                         }
-
-                        ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
-                        try {
-                            showAnimalsBySpecies.start(stage);
-                        }catch (Exception ex){
-                            ex.printStackTrace();
-                        }
+                        goShowAnimalsBySpiecies(stage);
                     }else{
-                        Alert toMany = new Alert(Alert.AlertType.ERROR);
-                        toMany.setContentText("You dont have that many Animals!");
-                        toMany.show();
+                        playError();
                     }
 
 
                 }
             });
         }
+
         Label label2 = new Label("how many do you want to sale?");
         label2.relocate(200, 25);
         pane.getChildren().add(label2);
@@ -78,12 +71,7 @@ public class ShowAnimalsBySpecies extends Application {
         btnBack.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Livestock livestock = new Livestock();
-                try {
-                    livestock.start(stage);
-                } catch (Exception ex){
-                    ex.printStackTrace();
-                }
+                goBack(stage);
             }
         });
 
@@ -92,14 +80,37 @@ public class ShowAnimalsBySpecies extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public int checkForAminal(String species){
-        int ret = 0;
-        for(int i=0; i<arrayKeeper.getData(ArrayKeeper.getCurrentUser()).getAnimals().size();i++) {
-            if(arrayKeeper.getData(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getSpecies().equalsIgnoreCase(species)){
-                ret++;
+        public int checkForAminal (String species){
+            int ret = 0;
+            for (int i = 0; i < arrayKeeper.getData(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++) {
+                if (arrayKeeper.getData(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getSpecies().equalsIgnoreCase(species)) {
+                    ret++;
+                }
+            }
+            return ret;
+        }
+        public void goBack (Stage stage){
+            Livestock livestock = new Livestock();
+            try {
+                livestock.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
-        return ret;
+        public void goShowAnimalsBySpiecies (Stage stage){
+            ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
+            try {
+                showAnimalsBySpecies.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        public void playError(){
+            Alert toMany = new Alert(Alert.AlertType.ERROR);
+            toMany.setContentText("You dont have that many Animals!");
+            toMany.show();
+        }
     }
 
-}
+
+
