@@ -64,7 +64,10 @@ public class UserAuctions extends Application{
             }
         }
         for (int i = 0; i < userAuctionsList.size(); i++){
-            Label userAuctionText = new Label(userAuctionsList.get(i).getForSale().getName() + " : Highest bid: " + userAuctionsList.get(i).getHighestBid().getAmount() + " from " + userAuctionsList.get(i).getHighestBid().getUser());
+            Label userAuctionText = new Label("There are no bids yet");
+            if(userAuctionsList.size()<=1){
+                userAuctionText.setText(userAuctionsList.get(i).getForSale().getName() + " : Highest bid: " + userAuctionsList.get(i).getHighestBid().getAmount() + " from " + userAuctionsList.get(i).getHighestBid().getUser());
+            }
             userAuctionText.setPrefWidth(300);
             userAuctionText.relocate(10, 50 + (30 * i));
             userAuctions.getChildren().add(userAuctionText);
