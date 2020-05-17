@@ -62,7 +62,6 @@ public class UserAuctions extends Application{
             if(Auction.getAuctionList().get(i).getUserId() == ArrayKeeper.getCurrentUser()){
                 userAuctionsList.add(Auction.getAuctionList().get(i));
             }
-
         }
         for (int i = 0; i < userAuctionsList.size(); i++){
             Label userAuctionText = new Label(userAuctionsList.get(i).getForSale().getName() + " : Highest bid: " + userAuctionsList.get(i).getHighestBid().getAmount() + " from " + userAuctionsList.get(i).getHighestBid().getUser());

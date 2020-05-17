@@ -139,8 +139,8 @@ public class MakeAuction extends Application {
         stage.show();
     }
     public void makeAuction(){
-
     }
+
     public void goLiveStock(Stage stage){
         Livestock livestock = new Livestock();
         try{
