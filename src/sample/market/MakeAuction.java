@@ -37,12 +37,7 @@ public class MakeAuction extends Application {
         thirdLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Livestock livestock = new Livestock();
-                try{
-                    livestock.start(stage);
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
+                goLiveStock(stage);
             }
         });
         thirdLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -57,8 +52,6 @@ public class MakeAuction extends Application {
                 thirdLabel.setTextFill(Color.web("#000000"));
             }
         });
-
-
 
         //Button Back
         Button backBtn = new Button("Back");
@@ -147,6 +140,14 @@ public class MakeAuction extends Application {
     }
     public void makeAuction(){
 
+    }
+    public void goLiveStock(Stage stage){
+        Livestock livestock = new Livestock();
+        try{
+            livestock.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
     public void goBack(Stage stage){
         Marketplace marketplace = new Marketplace();

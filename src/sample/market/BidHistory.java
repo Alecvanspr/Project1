@@ -86,7 +86,6 @@ public class BidHistory extends Application {
                     }
                 }
             }
-
         }
 
         public int getUserInt(){
