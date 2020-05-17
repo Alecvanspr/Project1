@@ -103,7 +103,7 @@ public class AuctionList extends Application {
     public void printLines(Pane auctionList){
         for(int i = 0; i < Auction.getAuctionList().size(); i++) {
             Auction auction = Auction.getAuctionList().get(i);
-            Integer howMany = auction.getForSaleQueue().size() + 1; //De +1 is omdat de eerste animal van de auction niet in de queue komt
+            Integer howMany = auction.getForSaleQueue().size(); //De +1 is omdat de eerste animal van de auction niet in de queue komt
             Label textField = new Label(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(i).getHighestBid().getAmount());
             textField.relocate(10, 50 + (30 * i));
             auctionList.getChildren().add(textField);
