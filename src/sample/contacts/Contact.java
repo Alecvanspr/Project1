@@ -48,12 +48,10 @@ public class Contact{
 
     @Override
     public String toString() {
-        return "Contact {" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone number='" + phoneNumber + '\'' +
-                ", address=" + address +
-                '}';
+        return this.getName() + "\n" + this.getEmail()
+                + "\n" + this.getPhoneNumber() + "\n" + this.getAddress().getStreet()
+                + "\n" + this.getAddress().getPostelCode() + "\n" + this.getAddress().getCity()
+                + "\n" + this.getAddress().getCountry();
     }
 
 }
