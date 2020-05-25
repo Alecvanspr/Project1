@@ -10,9 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
-import sample.Homescreen;
 
-public class DisplayHealth extends Application {
+public class DisplayHealthScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     Scene healthScene;
     ScrollPane healthScroll = new ScrollPane();
@@ -69,7 +68,7 @@ public class DisplayHealth extends Application {
         stage.setScene(healthScene);
         stage.show();
     }
-    public DisplayHealth(int currentAnimal,int CurrentUser){
+    public DisplayHealthScreen(int currentAnimal, int CurrentUser){
         this.currentAnimal = currentAnimal;
         this.currentUser = CurrentUser;
     }
@@ -82,9 +81,9 @@ public class DisplayHealth extends Application {
         }
     }
     public void goHealthCheck(Stage stage){
-        AddHeathCheck addHeathCheck = new AddHeathCheck(currentAnimal);
+        AddHeathCheckScreen addHeathCheckScreen = new AddHeathCheckScreen(currentAnimal);
         try {
-            addHeathCheck.start(stage);
+            addHeathCheckScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }

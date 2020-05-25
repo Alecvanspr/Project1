@@ -5,22 +5,19 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 
-import java.util.ArrayList;
-
-public class AddHeathCheck extends Application {
+public class AddHeathCheckScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     Scene healthScene;
     Pane healthPane = new Pane();
     private int currentAnimal;
 
-    public AddHeathCheck(int currentAnimal){
+    public AddHeathCheckScreen(int currentAnimal){
         this.currentAnimal = currentAnimal;
     }
 
@@ -69,9 +66,9 @@ public class AddHeathCheck extends Application {
         stage.show();
     }
     public void goBack(Stage stage){
-        DisplayHealth displayHealth = new DisplayHealth(currentAnimal, ArrayKeeper.getCurrentUser());
+        DisplayHealthScreen displayHealthScreen = new DisplayHealthScreen(currentAnimal, ArrayKeeper.getCurrentUser());
         try {
-            displayHealth.start(stage);
+            displayHealthScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }

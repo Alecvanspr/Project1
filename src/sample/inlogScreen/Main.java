@@ -3,14 +3,12 @@ package sample.inlogScreen;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.transform.Scale;
@@ -20,6 +18,7 @@ import sample.Homescreen;
 
 public class Main extends Application {
     public ArrayKeeper arraykeeper = new ArrayKeeper();
+    MainMethods mainMethods = new MainMethods();
     Homescreen home = new Homescreen();
     Stage window;
     public Pane login = new Pane();
@@ -48,7 +47,7 @@ public class Main extends Application {
         Button btnLogin = new Button("Log in");
         Button btnSignUp = new Button("Create an account");
 
-        delettis(); //this is the demo account where we all can log in with, i used it to to test. but it need to be deleted afterwards
+        mainMethods.delettis(); //this is the demo account where we all can log in with, i used it to to test. but it need to be deleted afterwards
 
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
@@ -72,7 +71,7 @@ public class Main extends Application {
         });
 
         btnLogin.setOnAction(e -> {
-            if(gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
+            if(mainMethods.gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
                 try {
                     home.start(window);
                 } catch (Exception ex) {
@@ -116,24 +115,10 @@ public class Main extends Application {
 
     }
 
-    public boolean gegevensCheck(String password,String username){
-        boolean ret = false;
-        int s = 0;
-        for(int i = 0;i<arraykeeper.Data.size();i++){
-            if(ArrayKeeper.Data.get(i).getUsername().equals(username)){
-                if(arraykeeper.Data.get(i).getPassword().equals(password)){
-                    ret = true;
-                    s = i;
-                }
-            }
-        }
-        arraykeeper.setCurrentUser(s);
-        return ret;
-    }
     public void goForgetPassword(){
-        ForgotPassword forgotPassword = new ForgotPassword();
+        ForgotPasswordScreen forgotPasswordScreen = new ForgotPasswordScreen();
         try{
-            forgotPassword.start(window);
+            forgotPasswordScreen.start(window);
         } catch (Exception ex){
             ex.printStackTrace();
         }
@@ -147,18 +132,6 @@ public class Main extends Application {
         }
     }
 
-
-    public void delettis(){
-        //dit is om te testen, dit moet achteraf verwijderd worden.
-        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","You have to insert your username first");
-        PersonalData Admin = new PersonalData();
-        Admin.setUserName("admin");
-        Admin.setPassword("admin");
-        Admin.setBirthDate("admin");
-        Admin.setSecurtityQuestion("Oh yeah, Mister crabs");
-        Admin.setSecurityAnswer("dab");
-        arraykeeper.Data.add(Admin);
-    }
     public static void main(String[] args) {
         launch(args);
     }

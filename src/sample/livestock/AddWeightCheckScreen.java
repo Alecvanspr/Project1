@@ -5,20 +5,19 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 
-public class AddWeightCheck extends Application {
+public class AddWeightCheckScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     Scene healthScene;
     Pane healthPane = new Pane();
     int currentAnimal;
 
-    public AddWeightCheck(int currentAnimal){
+    public AddWeightCheckScreen(int currentAnimal){
         this.currentAnimal = currentAnimal;
     }
 
@@ -66,9 +65,9 @@ public class AddWeightCheck extends Application {
         stage.show();
     }
     public void goBack(Stage stage){
-        DisplayWeight displayWeight = new DisplayWeight(currentAnimal,ArrayKeeper.getCurrentUser());
+        DisplayWeightScreen displayWeightScreen = new DisplayWeightScreen(currentAnimal,ArrayKeeper.getCurrentUser());
         try {
-            displayWeight.start(stage);
+            displayWeightScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }

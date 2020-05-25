@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.inlogScreen.Main;
 
-public class Addanimal extends Application {
+public class AddanimalScreen extends Application {
     Scene animalScene;
     Main main = new Main();
 
