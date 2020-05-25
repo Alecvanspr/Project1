@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sample.MedicalSection.MedicalSection;
 import sample.contacts.ContactScreen;
 import sample.inlogScreen.Main;
 import sample.livestock.Livestock;
@@ -30,6 +32,7 @@ public class Homescreen extends Application {
         Button btnContacts = new Button("Contacts");
         Button btnMarketPlace = new Button("Marketplace");
         Button btnLiveStock = new Button("Livestock");
+        Button btnMedical = new Button("Medical section");
         Pane home = new Pane();
 
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
@@ -81,6 +84,32 @@ public class Homescreen extends Application {
             }
         });
 
+        //Button om naar Medische gedeelte te gaan
+        btnMedical.relocate(665, 565);
+        home.getChildren().add(btnMedical);
+        btnMedical.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnMedical, 1.0);
+            }
+        });
+        btnMedical.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnMedical, 1.2);
+            }
+        });
+        btnMedical.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                MedicalSection medicalSection = new MedicalSection();
+                try {
+                    medicalSection.start(stage);
+                }   catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
         //Market button
         setButtonLayout(btnMarketPlace);
         btnMarketPlace.relocate(450,200);
