@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class UserAuctions extends Application{
     Scene userAuctions;
-    Marketplace marketPlace = new Marketplace();
+    MarketplaceScreen marketPlace = new MarketplaceScreen();
     ScrollPane scrollPane = new ScrollPane();
     @Override
     public void start(Stage stage) throws Exception{
@@ -48,9 +48,9 @@ public class UserAuctions extends Application{
         stage.show();
     }
     public void goBack(Stage stage){
-        Marketplace marketplace = new Marketplace();
+        MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
         try{
-            marketplace.start(stage);
+            marketplaceScreen.start(stage);
         }catch (Exception ex){
             ex.printStackTrace();
         }

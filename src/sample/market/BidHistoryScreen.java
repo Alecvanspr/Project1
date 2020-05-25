@@ -9,8 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-import sample.ArrayKeeper;
-import java.util.ArrayList;
 
 public class BidHistoryScreen extends Application {
 
@@ -51,9 +49,9 @@ public class BidHistoryScreen extends Application {
         stage.show();
     }
     public void goBack(Stage stage){
-        Marketplace marketplace = new Marketplace();
+        MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
         try{
-            marketplace.start(stage);
+            marketplaceScreen.start(stage);
         }catch (Exception ex){
             ex.printStackTrace();
         }
