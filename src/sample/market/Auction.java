@@ -72,14 +72,14 @@ public class Auction {
     }
 
     public boolean isHigher(Double amount){
-        if(amount > getHighestBid().getAmount()){
+        if(amount >getHighestBid().getAmount()){
             return true;
         }else{
             return false;
         }
     }
 
-    public void makeBid(String user, Double amount ,Animal animal){
+    public void makeBid(String user, Double amount , Animal animal){
         if(isHigher(amount)) {
             Bid newBid = new Bid(user, amount, animal);
             this.setHighestBid(newBid);

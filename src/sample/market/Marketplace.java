@@ -92,9 +92,9 @@ public class Marketplace extends Application {
         auction.addAnimalToQueue(animal);
     }
     public void goAutionlist(Stage stage){
-        AuctionList auctionList = new AuctionList();
+        AuctionListScreen auctionListScreen = new AuctionListScreen();
         try {
-            auctionList.start(stage);
+            auctionListScreen.start(stage);
         }   catch (Exception ex){
             ex.printStackTrace();
         }
@@ -108,9 +108,9 @@ public class Marketplace extends Application {
         }
     }
     public void goBidHistory(Stage stage){
-        BidHistory bidHistory = new BidHistory();
+        BidHistoryScreen bidHistoryScreen = new BidHistoryScreen();
         try{
-            bidHistory.start(stage);
+            bidHistoryScreen.start(stage);
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -163,9 +163,9 @@ public class Marketplace extends Application {
         button.setPrefHeight(150);
     }
     public void goToMakeAuction(Stage stage){
-        MakeAuction makeAuction = new MakeAuction();
+        MakeAuctionScreen makeAuctionScreen = new MakeAuctionScreen();
         try {
-            makeAuction.start(stage);
+            makeAuctionScreen.start(stage);
         }catch (Exception ex){
             ex.printStackTrace();
         }

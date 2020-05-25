@@ -15,7 +15,7 @@ import sample.livestock.Livestock;
 import javafx.scene.paint.Color;
 
 
-public class MakeAuction extends Application {
+public class MakeAuctionScreen extends Application {
     Scene MakeAuction;
     Marketplace marketplace = new Marketplace();
 

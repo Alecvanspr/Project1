@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.Homescreen;
-import sample.market.AuctionList;
+import sample.market.AuctionListScreen;
 
 
 public class Livestock extends Application {
@@ -187,9 +187,9 @@ public class Livestock extends Application {
         }
     }
     public void goAuctionList(Stage stage){
-        AuctionList auctionList = new AuctionList();
+        AuctionListScreen auctionListScreen = new AuctionListScreen();
         try {
-            auctionList.start(stage);
+            auctionListScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
