@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 import sample.Homescreen;
 import sample.livestock.Animal;
 
-public class Marketplace extends Application {
+public class MarketplaceScreen extends Application {
     Scene marktScene;
     Homescreen homescreen = new Homescreen();
     @Override
@@ -155,7 +155,6 @@ public class Marketplace extends Application {
     }
     public void createNewAution(Animal animal,double minPrice) {
         Auction auction = new Auction(animal, minPrice);
-
         auction.addAnimalToQueue(animal);
     }
     public void goAutionlist(Stage stage){

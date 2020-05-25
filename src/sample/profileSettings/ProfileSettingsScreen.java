@@ -75,9 +75,9 @@ public class ProfileSettingsScreen extends Application {
         }
     }
     public void goEdit(Stage stage){
-        EditSettings editSettings = new EditSettings();
+        EditSettingsScreen editSettingsScreen = new EditSettingsScreen();
         try {
-            editSettings.start(stage);
+            editSettingsScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }

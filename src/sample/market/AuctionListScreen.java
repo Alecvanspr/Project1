@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
 
 public class AuctionListScreen extends Application {
     Scene AuctionList;
-    Marketplace marketplace = new Marketplace();
+    MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
     ScrollPane scrollPane = new ScrollPane();
     AuctionList auctionListClass = new AuctionList();
 
@@ -72,9 +72,9 @@ public class AuctionListScreen extends Application {
         }
     }
     public void goBack(Stage stage){
-        Marketplace marketplace = new Marketplace();
+        MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
         try {
-            marketplace.start(stage);
+            marketplaceScreen.start(stage);
         }catch (Exception ex){
             ex.printStackTrace();
         }
