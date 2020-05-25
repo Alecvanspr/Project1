@@ -124,7 +124,7 @@ public class ContactScreen extends Application {
         });
 
         btnEdit.setOnAction(E->{
-            searchContact(tfContact.getText());
+            addressbook.searchContact(tfContact.getText(),currentUser);
             tfName.setText(Addressbook.getListContact().get(currentUser).getName());
             tfEmail.setText(Addressbook.getListContact().get(currentUser).getEmail());
             tfPhoneNumber.setText(Addressbook.getListContact().get(currentUser).getPhoneNumber());
@@ -184,11 +184,5 @@ public class ContactScreen extends Application {
             ex.printStackTrace();
         }
     }
-    public void searchContact(String name){
-        for(int i=0; i<Addressbook.getListContact().size();i++){
-            if(name.equalsIgnoreCase(Addressbook.getListContact().get(i).getName())){
-                currentUser=i;
-            }
-        }
-    }
+
 }

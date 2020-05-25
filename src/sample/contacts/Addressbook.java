@@ -60,6 +60,14 @@ public class Addressbook {
         return null;
     }
 
+    public void searchContact(String name,int currentUser){
+        for(int i=0; i<getListContact().size();i++){
+            if(name.equalsIgnoreCase(getListContact().get(i).getName())){
+                currentUser=i;
+            }
+        }
+    }
+
     public static List<Contact> getListContact(){
         return contacts;
     }
