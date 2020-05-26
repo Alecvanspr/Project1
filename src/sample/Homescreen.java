@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.contacts.ContactScreen;
+import sample.educative.EducativeHomeScreen;
 import sample.inlogScreen.Main;
 import sample.livestock.Livestock;
 import sample.market.MarketplaceScreen;
@@ -30,11 +31,14 @@ public class Homescreen extends Application {
         Button btnContacts = new Button("Contacts");
         Button btnMarketPlace = new Button("Marketplace");
         Button btnLiveStock = new Button("Livestock");
+        Button btnEducative = new Button("Education");
         Pane home = new Pane();
 
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
-                btnMarketPlace,btnLiveStock,user);
+                btnMarketPlace,btnLiveStock,user,btnEducative);
         welcome.relocate(225,100);
+
+        btnEducative.relocate(400,400);
 
         user.relocate(660,35);
 
@@ -119,6 +123,22 @@ public class Homescreen extends Application {
             }
         });
 
+        btnEducative.setOnAction(e -> {
+            goEducation(stage);
+        });
+        btnEducative.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnEducative, 1.2);
+            }
+        });
+        btnEducative.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(btnEducative, 1.0);
+            }
+        });
+
         homeScene = new Scene(home,800,600);
         stage.setTitle("Homescreen");
         stage.setScene(homeScene);
@@ -169,6 +189,14 @@ public class Homescreen extends Application {
         Livestock livestock = new Livestock();
         try {
             livestock.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goEducation(Stage stage){
+        EducativeHomeScreen educativeHomeScreen = new EducativeHomeScreen();
+        try {
+            educativeHomeScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
