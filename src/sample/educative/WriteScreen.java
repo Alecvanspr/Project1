@@ -19,7 +19,7 @@ public class WriteScreen  extends Application {
     public void start(Stage stage) throws Exception {
         Random random = new Random();
         int getRandomLetter = random.nextInt(53);
-        Image displayLetter = new Image(getImage.getImage(getRandomLetter));
+        Image displayLetter = new Image(getImage.getLetterImage(getRandomLetter));
         ImageView imageView = new ImageView();
         imageView.setImage(displayLetter);
         Button btnBack = new Button("back");
