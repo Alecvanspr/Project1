@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.util.Random;
@@ -33,7 +34,7 @@ public class WriteAlphabetScreen extends Application {
         });
 
         btnClear.setOnAction(E->{
-
+            clearDrawing();
         });
 
         drawing();
@@ -47,7 +48,7 @@ public class WriteAlphabetScreen extends Application {
             goBack(stage);
         });
 
-        pane.getChildren().addAll(canvas,btnNextLetter,btnBack);
+        pane.getChildren().addAll(canvas,btnNextLetter,btnClear,btnBack);
         stage.setTitle("Write Screen");
         stage.setScene(scene);
         stage.show();
@@ -62,7 +63,7 @@ public class WriteAlphabetScreen extends Application {
     }
     public void drawing(){
         gc = canvas.getGraphicsContext2D();
-        gc.setStroke(Color.BLACK);
+        gc.setStroke(Color.BLUE);
         gc.setLineWidth(12);
 
         scene.setOnMousePressed(e->{
@@ -77,7 +78,7 @@ public class WriteAlphabetScreen extends Application {
         });
     }
     public void clearDrawing(){
-
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
     public void makeBackGround(){
         BackgroundImage displayLetter = new BackgroundImage(new Image(getImage.letterImages.get(letter)),
