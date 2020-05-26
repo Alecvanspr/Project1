@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.Homescreen;
 import sample.livestock.Livestock;
 
 public class EducativeHomeScreen extends Application {
@@ -16,14 +17,19 @@ public class EducativeHomeScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Button btnBack = new Button("Back");
         Button btnMath = new Button("math");
         Button btnRead = new Button("read");
         Button btnWrite = new Button("write");
 
+        btnBack.relocate(0,575);
         btnMath.relocate(100,100);
         btnRead.relocate(100,200);
         btnWrite.relocate(200,100);
 
+        btnBack.setOnAction(e -> {
+            returnHome(stage);
+        });
         btnMath.setOnAction(E->{
             goMathScreen(stage);
         });
@@ -34,7 +40,7 @@ public class EducativeHomeScreen extends Application {
             goWriteScreen(stage);
         });
 
-        pane.getChildren().addAll(btnMath,btnRead,btnWrite);
+        pane.getChildren().addAll(btnBack, btnMath, btnRead, btnWrite);
 
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Educative homescreen");
@@ -62,6 +68,14 @@ public class EducativeHomeScreen extends Application {
         try {
             writeScreen.start(stage);
         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void returnHome(Stage stage){
+        Homescreen homescreen = new Homescreen();
+        try {
+            homescreen.start(stage);
+        } catch (Exception ex){
             ex.printStackTrace();
         }
     }
