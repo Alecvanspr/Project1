@@ -2,6 +2,9 @@ package sample.MedicalSection;
 
 import javafx.scene.control.Alert;
 
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Docter {
