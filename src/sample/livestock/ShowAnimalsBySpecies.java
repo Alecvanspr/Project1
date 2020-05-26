@@ -14,10 +14,9 @@ import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
 import sample.market.Auction;
 
-public class ShowAnimalsBySpecies extends Application {
+public class ShowAnimalsBySpecies{
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     Scene scene;
-    @Override
     public void start(Stage stage) throws Exception {
         Pane pane = new Pane();
         for(int i = 0; i < PersonalData.getSpecies().size(); i++){

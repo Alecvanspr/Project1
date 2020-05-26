@@ -16,6 +16,7 @@ import sample.livestock.Animal;
 public class Marketplace extends Application {
     Scene marktScene;
     Homescreen homescreen = new Homescreen();
+    int buttonNumber = 0;
     @Override
     public void start(Stage stage) throws Exception{
         Font CfontArial = new Font("Arial", 50);
@@ -51,47 +52,13 @@ public class Marketplace extends Application {
 
         //go to the Auctions of the user
         Button yourAuctionBtn = new Button("Your auctions");
-        yourAuctionBtn.relocate(500, 400);
-        buttonSetLayout(yourAuctionBtn);
-        yourAuctionBtn.setFont(fontArial);
-        market.getChildren().add(yourAuctionBtn);
-        yourAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                yourAuctionBtn.setScaleX(1.2);
-                yourAuctionBtn.setScaleY(1.2);
-            }
-        });
-        yourAuctionBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                yourAuctionBtn.setScaleX(1.0);
-                yourAuctionBtn.setScaleY(1.0);
-            }
-        });
+        makeMenuButton(yourAuctionBtn, market);
         yourAuctionBtn.setOnAction(E-> {
             goYourAuction(stage);
         });
         //button to go to BidHistory
         Button bidHistoryBtn = new Button("Your bid history");
-        buttonSetLayout(bidHistoryBtn);
-        bidHistoryBtn.setFont(fontArial);
-        bidHistoryBtn.relocate(200, 400);
-        market.getChildren().add(bidHistoryBtn);
-        bidHistoryBtn.setOnMouseEntered((new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                bidHistoryBtn.setScaleX(1.2);
-                bidHistoryBtn.setScaleY(1.2);
-            }
-        }));
-        bidHistoryBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                bidHistoryBtn.setScaleX(1.0);
-                bidHistoryBtn.setScaleY(1.0);
-            }
-        });
+        makeMenuButton(bidHistoryBtn, market);
         bidHistoryBtn.setOnAction(E->{
             goBidHistory(stage);
         });
@@ -99,25 +66,7 @@ public class Marketplace extends Application {
 
         //button to go to auctionButton
         Button auctionButton = new Button("To Auction");
-        auctionButton.setFont(fontArial);
-        auctionButton.relocate(200,200);
-        buttonSetLayout(auctionButton);
-        market.getChildren().add(auctionButton);
-        auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                auctionButton.setScaleX(1.2);
-                auctionButton.setScaleY(1.2);
-            }
-        });
-        auctionButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                auctionButton.setScaleX(1.0);
-                auctionButton.setScaleY(1.0);
-            }
-        });
-
+        makeMenuButton(auctionButton,market);
 
         auctionButton.setOnAction(E->{
 
@@ -125,23 +74,7 @@ public class Marketplace extends Application {
         });
         //Button to make Auction
         Button makeAuction = new Button("Make Auction");
-        buttonSetLayout(makeAuction);
-        makeAuction.relocate(500, 200);
-        market.getChildren().add(makeAuction);
-        makeAuction.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                makeAuction.setScaleX(1.0);
-                makeAuction.setScaleY(1.0);
-            }
-        });
-        makeAuction.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                makeAuction.setScaleX(1.2);
-                makeAuction.setScaleY(1.2);
-            }
-        });
+        makeMenuButton(makeAuction, market);
         makeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -190,9 +123,44 @@ public class Marketplace extends Application {
             ex.printStackTrace();
         }
     }
+    public void makeMenuButton(Button button, Pane pane){
+        setButtonPosition(button, buttonNumber);
+        buttonSetLayout(button);
+        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(button, 1.2);
+            }
+        });
+        button.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                setButtonScaleChange(button, 1.0);
+            }
+        });
+        pane.getChildren().add(button);
+    }
+    public void setButtonScaleChange(Button button, Double scale){
+        button.setScaleX(scale);
+        button.setScaleY(scale);
+    }
+
+    public void setButtonPosition(Button button, int buttonNumber){
+        if(buttonNumber == 0){
+            button.relocate(200, 200);
+        }else if(buttonNumber == 1){
+            button.relocate(200,400);
+        }else if(buttonNumber == 2){
+            button.relocate(500, 200);
+        }else{
+            button.relocate(500, 400);
+        }
+        buttonNumber();
+    }
+    public void buttonNumber(){buttonNumber++;}
     public void buttonSetLayout(Button button){
-        button.setPrefWidth(100);
-        button.setPrefHeight(100);
+        button.setPrefWidth(150);
+        button.setPrefHeight(150);
     }
     public void goToMakeAuction(Stage stage){
         MakeAuction makeAuction = new MakeAuction();
