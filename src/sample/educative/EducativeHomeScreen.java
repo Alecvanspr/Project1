@@ -3,12 +3,9 @@ package sample.educative;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.Homescreen;
-import sample.livestock.Livestock;
 
 public class EducativeHomeScreen extends Application {
     Pane pane = new Pane();
@@ -64,9 +61,9 @@ public class EducativeHomeScreen extends Application {
         }
     }
     public void goWriteScreen(Stage stage){
-        WriteScreen writeScreen = new WriteScreen();
+        WriteMainScreen writeMainScreen = new WriteMainScreen();
         try {
-            writeScreen.start(stage);
+            writeMainScreen.start(stage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
