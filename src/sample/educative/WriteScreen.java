@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class WriteScreen  extends Application {
     Pane pane = new Pane();
     Scene scene;
@@ -15,11 +17,14 @@ public class WriteScreen  extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Image displayLetter = new Image(getImage.getImage(0));
+        Random random = new Random();
+        int getRandomLetter = random.nextInt(53);
+        Image displayLetter = new Image(getImage.getImage(getRandomLetter));
         ImageView imageView = new ImageView();
         imageView.setImage(displayLetter);
         Button btnBack = new Button("back");
         btnBack.relocate(0,575);
+
         btnBack.setOnAction(E->{
             goEducativeScreen(stage);
         });
