@@ -19,6 +19,7 @@ public class WriteNumbersScreen extends Application {
     GetImage getImage = new GetImage();
     Canvas canvas = new Canvas(800,600);
     GraphicsContext gc;
+    Image aaa;
 
     @Override
     public void start(Stage stage) throws Exception {
