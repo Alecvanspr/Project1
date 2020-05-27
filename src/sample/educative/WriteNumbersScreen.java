@@ -28,6 +28,7 @@ public class WriteNumbersScreen extends Application {
         drawing();
         makeBackGround();
 
+        Button btnLastNumber = new Button("Last");
         Button btnNewNumber = new Button("Next");
         Button btnClear = new Button("Clear");
         Button btnBack = new Button("back");
@@ -44,8 +45,14 @@ public class WriteNumbersScreen extends Application {
         btnBack.setOnAction(E->{
             goBack(stage);
         });
+        btnLastNumber.setOnAction(E->{
+            number-=2;
+            checkNumber();
+            clearDrawing();
+            makeBackGround();
+        });
 
-        pane.getChildren().addAll(canvas, btnBack, btnClear,btnNewNumber);
+        pane.getChildren().addAll(canvas, btnBack, btnClear,btnNewNumber,btnLastNumber);
         stage.setTitle("Write numbers screen");
         stage.setScene(scene);
         stage.show();
@@ -89,6 +96,8 @@ public class WriteNumbersScreen extends Application {
     public void checkNumber(){
         if(number>=10){
             number = 0;
+        }else if(number<0){
+            number = 9;
         }
     }
 }
