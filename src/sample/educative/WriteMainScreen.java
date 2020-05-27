@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class WriteMainScreen extends Application {
     Pane pane = new Pane();
-    Scene scene = new Scene(pane);
+    Scene scene = new Scene(pane,800,600);
 
     @Override
     public void start(Stage stage) throws Exception {

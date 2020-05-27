@@ -22,9 +22,17 @@ public class WriteRandomScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Button btnClear = new Button("Clear");
         Button btnNewLetter = new Button("Next");
+
+        btnClear.relocate(0,0);
+        btnNewLetter.relocate(75,575);
         btnNewLetter.setOnAction(E->{
             makeBackGround();
+            clearDrawing();
+        });
+        btnClear.setOnAction(e->{
+            clearDrawing();
         });
 
         drawing();
@@ -37,7 +45,7 @@ public class WriteRandomScreen extends Application {
             goback(stage);
         });
 
-        pane.getChildren().addAll(canvas,btnBack,btnNewLetter);
+        pane.getChildren().addAll(canvas,btnBack,btnNewLetter, btnClear);
         stage.setTitle("Write Screen");
         stage.setScene(scene);
         stage.show();
@@ -75,4 +83,8 @@ public class WriteRandomScreen extends Application {
         pane.setBackground(new Background(displayLetter));
         pane.getChildren().add(imageView);
     }
+    public void clearDrawing(){
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+
 }

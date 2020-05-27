@@ -31,6 +31,7 @@ public class WriteAlphabetScreen extends Application {
             letter++;
             checkCounter(letter);
             makeBackGround();
+            clearDrawing();
         });
 
         btnClear.setOnAction(E->{
