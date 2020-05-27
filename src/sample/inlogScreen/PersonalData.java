@@ -18,7 +18,14 @@ public class PersonalData {
     private String gender = "Not yet defined";
     private String securtityQuestion;
     private String securityAnswer;
+    private Boolean isDocter;
     public PersonalData(){
+    }
+    public Boolean getIsDocter(){
+        return this.isDocter;
+    }
+    public void setIsDocter(Boolean isDocter){
+        this.isDocter = isDocter;
     }
     public static ArrayList<Species> getSpecies(){
         return species;
