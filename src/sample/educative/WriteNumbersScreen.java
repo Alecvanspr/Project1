@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.util.Random;
 
 public class WriteNumbersScreen extends Application {
+    private int number = 0;
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
     GetImage getImage = new GetImage();
@@ -74,16 +75,20 @@ public class WriteNumbersScreen extends Application {
         });
     }
     public void makeBackGround(){
-        Random random = new Random();
-        int getRandomNumber = random.nextInt(getImage.numberImages.size()-1);
-        BackgroundImage displayNumber = new BackgroundImage(new Image(getImage.numberImages.get(getRandomNumber)),
+        BackgroundImage displayNumber = new BackgroundImage(new Image(getImage.numberImages.get(number)),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         ImageView imageView = new ImageView();
         pane.setBackground(new Background(displayNumber));
         pane.getChildren().add(imageView);
+        number++;
+        checkNumber();
     }
     public void clearDrawing(){
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
-
+    public void checkNumber(){
+        if(number>=10){
+            number = 0;
+        }
+    }
 }

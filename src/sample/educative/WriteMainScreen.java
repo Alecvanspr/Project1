@@ -41,7 +41,8 @@ public class WriteMainScreen extends Application {
         });
 
 
-        pane.getChildren().addAll(btnWriteRandom,btnWriteAlphabet,btnWriteWords,btnWriteNumbers);
+
+        pane.getChildren().addAll(btnWriteRandom,btnWriteAlphabet,btnWriteWords,btnWriteNumbers,btnBack);
         stage.setTitle("Write Main Screen");
         stage.setScene(scene);
         stage.show();
