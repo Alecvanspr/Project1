@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -12,7 +13,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.inlogScreen.Main;
-
+import sample.MedicalSection.Specialty;
 public class MakeAppointment extends Application {
     Scene makeAppointmentScene;
     Main main;
@@ -57,7 +58,20 @@ public class MakeAppointment extends Application {
         setLabel(dateLabel);
         Label timeLabel = new Label("Time: ");
         setLabel(timeLabel);
+
+        //Combobox for specialty's
         pane.getChildren().addAll(specialtyLabel,docterLabel,dateLabel,timeLabel);
+        ComboBox specialtyBox = new ComboBox();
+        Specialty diabetes = new Specialty("Diabetes");
+        Specialty skin = new Specialty("Skin");
+        Specialty eyes = new Specialty("Eyes");
+        Specialty ear = new Specialty("ear");
+        Specialty general = new Specialty("General");
+        specialtyBox.getItems().addAll(diabetes.getName(),skin.getName(),eyes.getName(),ear.getName(),general.getName());
+        specialtyBox.relocate(250, 110);
+        pane.getChildren().add(specialtyBox);
+
+        //Comboboxfor specialty's
 
         makeAppointmentScene = new Scene(pane, 800, 600);
         stage.setTitle("Make Appointment here");
