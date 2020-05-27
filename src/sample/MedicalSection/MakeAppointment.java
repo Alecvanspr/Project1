@@ -17,7 +17,7 @@ import sample.MedicalSection.Specialty;
 public class MakeAppointment extends Application {
     Scene makeAppointmentScene;
     Main main;
-    ArrayKeeper arrayKeeper;
+    ArrayKeeper arrayKeeper = new ArrayKeeper();
     private int labelNumber = 0;
     @Override
     public void start(Stage stage) throws Exception{
@@ -62,12 +62,9 @@ public class MakeAppointment extends Application {
         //Combobox for specialty's
         pane.getChildren().addAll(specialtyLabel,docterLabel,dateLabel,timeLabel);
         ComboBox specialtyBox = new ComboBox();
-        Specialty diabetes = new Specialty("Diabetes");
-        Specialty skin = new Specialty("Skin");
-        Specialty eyes = new Specialty("Eyes");
-        Specialty ear = new Specialty("ear");
-        Specialty general = new Specialty("General");
-        specialtyBox.getItems().addAll(diabetes.getName(),skin.getName(),eyes.getName(),ear.getName(),general.getName());
+        for(int i = 0; i < arrayKeeper.specialtiesArrayList.size(); i++){
+            specialtyBox.getItems().add(arrayKeeper.specialtiesArrayList.get(i).getName());
+        }
         specialtyBox.relocate(250, 110);
         pane.getChildren().add(specialtyBox);
 

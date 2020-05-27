@@ -1,13 +1,22 @@
 package sample;
 
+import sample.MedicalSection.Docter;
+import sample.MedicalSection.Specialty;
 import sample.inlogScreen.PersonalData;
 import sample.livestock.Animal;
+import sample.livestock.Species;
 
 import java.util.ArrayList;
 
 public class ArrayKeeper {
     public static ArrayList<PersonalData> Data = new ArrayList<>();
+    public  ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
+    public static ArrayList<Docter> doctersArrayList = new ArrayList<>();
     private static int currentUser;
+
+    public ArrayKeeper(){
+        makeSpecialties();
+    }
 
     public void SignUpData(String name,String password,String birth, String security,String securityQ){
         PersonalData personalData = new PersonalData();
@@ -19,6 +28,31 @@ public class ArrayKeeper {
         Data.add(personalData);
         currentUser++;
     }
+    public void makeSpecialties(){
+        Specialty diabetes = new Specialty("Diabetes");
+        Specialty ears = new Specialty("Ears");
+        Specialty eyes = new Specialty("Eyes");
+        Specialty skin = new Specialty("Skin");
+        Specialty general = new Specialty("General");
+        addSpecialty(diabetes);
+        addSpecialty(eyes);
+        addSpecialty(ears);
+        addSpecialty(skin);
+        addSpecialty(general);
+    }
+    public ArrayList<Specialty> getSpecialtiesArrayList(){
+        return this.getSpecialtiesArrayList();
+    }
+    public void addSpecialty(Specialty specialty){
+        specialtiesArrayList.add(specialty);
+    }
+    public ArrayList<Docter> getDoctersArrayList(){
+        return this.getDoctersArrayList();
+    }
+    public void addDocter(Docter docter){
+        doctersArrayList.add(docter);
+    }
+
     public void changePassword(int user,String password){
         Data.get(user).setPassword(password);
     }

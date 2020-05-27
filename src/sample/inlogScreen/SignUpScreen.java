@@ -1,15 +1,19 @@
 package sample.inlogScreen;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.ArrayKeeper;
 
 public class SignUpScreen extends Application {
     Scene SignUpp;
+    ArrayKeeper arraykeeper = new ArrayKeeper();
     Main main = new Main();
     //    String question1, question2, question3;
     public void start(Stage stage) throws Exception{
@@ -31,13 +35,33 @@ public class SignUpScreen extends Application {
         TextField textFieldBirth = new TextField();
 
         Button btnRegister = new Button("Register");
+        CheckBox docterCheck = new CheckBox("Docter?");
+        TextField docterName = new TextField("What is your docter name?");
+        Label specialtyText = new Label("What are your specialty's?");
+        ComboBox specialty1 = new ComboBox();
+        for(int i = 0; i < arraykeeper.specialtiesArrayList.size(); i++){
+            specialty1.getItems().add(arraykeeper.specialtiesArrayList.get(i).getName());
+        }
+        ComboBox specialty2 = new ComboBox();
+        for(int i = 0; i < arraykeeper.specialtiesArrayList.size(); i++){
+            specialty2.getItems().add(arraykeeper.specialtiesArrayList.get(i).getName());
+        }
         Pane register = new Pane();
 
         register.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf
                 , textFieldUserName, passwordField, passwordFieldConf,textFieldBirth,lblBirthdate,
-                securityQuestions, securityAnswer, lblSecurity,btnRegister,btnBack);
+                securityQuestions, securityAnswer, lblSecurity,btnRegister,btnBack, docterCheck);
+        Boolean isDocter = docterCheck.isSelected();
+        Boolean isDocter2 = docterCheck.isIndeterminate();
+
+
 
         lblUserName.relocate(100,50);
+        docterCheck.relocate(175, 50);
+        docterName.relocate(300, 50);
+        specialtyText.relocate(300, 75);
+        specialty1.relocate(300, 100);
+        specialty2.relocate(300, 130);
         textFieldUserName.relocate(100,70);
         lblPassWord.relocate(100,95);
         passwordField.relocate(100,115);
@@ -50,6 +74,12 @@ public class SignUpScreen extends Application {
         securityAnswer.relocate(100, 278);
         btnRegister.relocate(100,320);
         btnBack.relocate(0, 570);
+        docterCheck.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+            }
+        });
 
         btnRegister.setOnAction(e->{
             register(stage,register,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
