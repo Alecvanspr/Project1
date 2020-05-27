@@ -25,13 +25,35 @@ public class WriteAlphabetScreen extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Button btnNextLetter = new Button("Next letter");
+        Button buttonLastLetter = new Button("Last letter");
         Button btnClear = new Button("Clear");
+        Button btnCapital = new Button("Capital");
+        Button btnLowerCase = new Button("Lower Case");
+        btnCapital.relocate(150 ,575);
+        btnLowerCase.relocate(150,575);
         btnNextLetter.relocate(75,575);
+        btnClear.relocate(775,575);
         btnNextLetter.setOnAction(E->{
-            letter++;
-            checkCounter(letter);
+            letter=letter+2;
+            checkCounter();
             makeBackGround();
             clearDrawing();
+        });
+        btnLowerCase.setOnAction(E->{
+            letter++;
+            checkCounter();
+            makeBackGround();
+            clearDrawing();
+            pane.getChildren().add(btnCapital);
+            pane.getChildren().remove(btnLowerCase);
+        });
+        btnCapital.setOnAction(E->{
+            letter--;
+            checkCounter();
+            makeBackGround();
+            clearDrawing();
+            pane.getChildren().add(btnLowerCase);
+            pane.getChildren().remove(btnCapital);
         });
 
         btnClear.setOnAction(E->{
@@ -49,7 +71,7 @@ public class WriteAlphabetScreen extends Application {
             goBack(stage);
         });
 
-        pane.getChildren().addAll(canvas,btnNextLetter,btnClear,btnBack);
+        pane.getChildren().addAll(canvas,btnNextLetter,btnClear,btnLowerCase,btnBack);
         stage.setTitle("Write Screen");
         stage.setScene(scene);
         stage.show();
@@ -89,9 +111,10 @@ public class WriteAlphabetScreen extends Application {
         pane.setBackground(new Background(displayLetter));
         pane.getChildren().addAll(imageView);
     }
-    public void checkCounter(int counter){
-        if(counter>=getImage.letterImages.size()){
-            counter=0;
+    public void checkCounter(){
+        if(letter>getImage.letterImages.size()){
+            System.out.println(getImage.letterImages.size());
+            letter=0;
         }
     }
 }

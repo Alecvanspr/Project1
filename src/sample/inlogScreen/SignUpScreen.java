@@ -24,10 +24,13 @@ public class SignUpScreen extends Application {
                 "What was the name of your first pet?",
                 "What was your first city of residence?");
         TextField securityAnswer = new TextField();
+        CheckBox checkBox = new CheckBox();
+
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
         PasswordField passwordFieldConf = new PasswordField();
         TextField textFieldBirth = new TextField();
+
         Button btnRegister = new Button("Register");
         Pane register = new Pane();
 
@@ -56,6 +59,7 @@ public class SignUpScreen extends Application {
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
             BackToMain(stage);
         });
+
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -88,6 +92,7 @@ public class SignUpScreen extends Application {
 
             }
         });
+        register.getChildren().addAll(checkBox);
         SignUpp = new Scene(register, 800,600);
         stage.setTitle("Sign up");
         stage.setScene(SignUpp);
