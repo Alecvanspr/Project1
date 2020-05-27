@@ -24,10 +24,12 @@ public class SignUpScreen extends Application {
                 "What was the name of your first pet?",
                 "What was your first city of residence?");
         TextField securityAnswer = new TextField();
+
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
         PasswordField passwordFieldConf = new PasswordField();
         TextField textFieldBirth = new TextField();
+
         Button btnRegister = new Button("Register");
         Pane register = new Pane();
 
