@@ -1,69 +1,18 @@
 package sample.market;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.scene.text.Font;
 import sample.ArrayKeeper;
 import sample.livestock.Animal;
 
+public class AuctionList {
 
-public class AuctionList extends Application {
-    Scene AuctionList;
-    Marketplace marketplace = new Marketplace();
-    ScrollPane scrollPane = new ScrollPane();
-
-    public void start(Stage stage) throws Exception{
-        Pane auctionList = new Pane();
-
-        //Button back
-        Button btnBack = new Button("Back");
-        btnBack.relocate(750, 565);
-        auctionList.getChildren().add(btnBack);
-        btnBack.setOnMouseEntered(E-> {
-            btnBack.setScaleX(1.2);
-            btnBack.setScaleY(1.2);
-        });
-        btnBack.setOnMouseExited(E-> {
-            btnBack.setScaleX(1.0);
-            btnBack.setScaleY(1.0);
-        });
-        btnBack.setOnAction(E-> {
-            goBack(stage);
-        });
-
-        //Start Label
-        Label startLabel = new Label("Here you can see all the auctions");
-        startLabel.setFont(Font.font("Arial",30));
-        startLabel.relocate(200,0);
-        auctionList.getChildren().add(startLabel);
-
-        printLines(auctionList);
-
-        //Button to your bids
-        Button btnToYourBids = new Button("To Your bids");
-        btnToYourBids.relocate(650, 50);
-        auctionList.getChildren().add(btnToYourBids);
-        btnToYourBids.setOnMouseEntered(E->{
-                btnToYourBids.setScaleX(1.0);
-                btnToYourBids.setScaleY(1.0);
-        });
-        btnToYourBids.setOnMouseEntered(E-> {
-                btnToYourBids.setScaleX(1.2);
-                btnToYourBids.setScaleY(1.2);
-        });
-        btnToYourBids.setOnAction(E-> {
-            goBidHistory(stage);
-        });
-        scrollPane.setContent(auctionList);
-        AuctionList = new Scene(scrollPane, 800, 600);
-        stage.setTitle("Auction list");
-        stage.setScene(AuctionList);
-        stage.show();
+    public Animal makeAnimal(String name, String gender, int age, String species, String race, double weight, String health){ //dit moet achteaf verwijderd worden
+        Animal animal = new Animal(name,gender,age,species,race,weight,health);
+        return animal;
     }
-
     public double stringToDouble(String string){
         double d = Double.parseDouble(string);
         return d;
@@ -76,23 +25,7 @@ public class AuctionList extends Application {
             return string;
         }
     }
-    public void goBidHistory(Stage stage){
-        BidHistory bidHistory = new BidHistory();
-        try {
-            bidHistory.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goBack(Stage stage){
-        Marketplace marketplace = new Marketplace();
-        try {
-            marketplace.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void makeBid(String bidAmount,Auction auction,Label label,Integer howMany,int x,TextField txtBidAmount){
+    public void makeBid(String bidAmount, Auction auction, Label label, Integer howMany, int x, TextField txtBidAmount){
         Double amount = stringToDouble(checkIfDouble(bidAmount));
         auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount,auction.getForSale());
         label.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
@@ -118,9 +51,5 @@ public class AuctionList extends Application {
                 makeBid(bidAmount.getText(), auction, textField , howMany, x, bidAmount);
             });
         }
-    }
-    public Animal makeAnimal(String name,String gender,int age,String species,String race,double weight,String health){ //dit moet achteaf verwijderd worden
-        Animal animal = new Animal(name,gender,age,species,race,weight,health);
-        return animal;
     }
 }

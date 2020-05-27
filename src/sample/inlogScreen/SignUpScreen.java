@@ -1,16 +1,12 @@
 package sample.inlogScreen;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import sample.inlogScreen.Main;
-import sample.livestock.Animal;
-import sample.livestock.ShowAnimalsBySpecies;
 
 public class SignUpScreen extends Application {
     Scene SignUpp;
@@ -92,26 +88,6 @@ public class SignUpScreen extends Application {
 
             }
         });
-
-        //dit is een tijdelijke knop
-        /*Button btnshowAnimalsBySpecies = new Button("Go to livestock test");
-        btnshowAnimalsBySpecies.relocate(700, 500);
-        register.getChildren().add(btnshowAnimalsBySpecies);
-        btnshowAnimalsBySpecies.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Animal animal1 = new Animal("Jasper", "Man", 6, "chicken", "ok", 8.0, "ok");
-                Animal animal2 = new Animal("Jasper", "Man", 6, "chicken", "ok", 8.0, "ok");
-                Animal animal3 = new Animal("Jasper", "Man", 6, "chicken", "ok", 8.0, "ok");
-                Animal animal4 = new Animal("Jasper", "Man", 6, "chicken", "ok", 8.0, "ok");
-                ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
-                try {
-                    showAnimalsBySpecies.start(stage);
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            }
-        });*/
         SignUpp = new Scene(register, 800,600);
         stage.setTitle("Sign up");
         stage.setScene(SignUpp);

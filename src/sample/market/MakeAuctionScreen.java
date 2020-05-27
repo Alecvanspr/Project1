@@ -15,9 +15,9 @@ import sample.livestock.Livestock;
 import javafx.scene.paint.Color;
 
 
-public class MakeAuction extends Application {
+public class MakeAuctionScreen extends Application {
     Scene MakeAuction;
-    Marketplace marketplace = new Marketplace();
+    MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
 
     public void start(Stage stage) throws  Exception{
         Pane makeAuction = new Pane();
@@ -140,7 +140,6 @@ public class MakeAuction extends Application {
     }
     public void makeAuction(){
     }
-
     public void goLiveStock(Stage stage){
         Livestock livestock = new Livestock();
         try{
@@ -150,9 +149,9 @@ public class MakeAuction extends Application {
         }
     }
     public void goBack(Stage stage){
-        Marketplace marketplace = new Marketplace();
+        MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
         try {
-            marketplace.start(stage);
+            marketplaceScreen.start(stage);
         }catch (Exception ex){
             ex.printStackTrace();
         }

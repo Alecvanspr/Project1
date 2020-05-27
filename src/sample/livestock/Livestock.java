@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.Homescreen;
-import sample.market.AuctionList;
+import sample.market.AuctionListScreen;
 
 
 public class Livestock extends Application {
@@ -147,49 +147,49 @@ public class Livestock extends Application {
         }
     }
     public void goNewAnimal(Stage stage){
-        Addanimal addanimal = new Addanimal();
+        AddanimalScreen addanimalScreen = new AddanimalScreen();
         try {
-            addanimal.start(stage);
+            addanimalScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
     }
     public void goEditAnimal(Stage stage,int animal){
-        EditAnimal editAnimal = new EditAnimal(animal,ArrayKeeper.getCurrentUser());
+        EditAnimalScreen editAnimalScreen = new EditAnimalScreen(animal,ArrayKeeper.getCurrentUser());
         try {
-            editAnimal.start(stage);
+            editAnimalScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
     }
     public void goDisplayHealth(Stage stage,int animal){
-        DisplayHealth displayHealth = new DisplayHealth(animal,ArrayKeeper.getCurrentUser());
+        DisplayHealthScreen displayHealthScreen = new DisplayHealthScreen(animal,ArrayKeeper.getCurrentUser());
         try {
-            displayHealth.start(stage);
+            displayHealthScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
     }
     public void goDisplayWeight(Stage stage,int animal){
-        DisplayWeight displayWeight = new DisplayWeight(animal,ArrayKeeper.getCurrentUser());
+        DisplayWeightScreen displayWeightScreen = new DisplayWeightScreen(animal,ArrayKeeper.getCurrentUser());
         try {
-            displayWeight.start(stage);
+            displayWeightScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
     }
     public void goShowAnimalsBySpiecies(Stage stage){
-        ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
+        ShowAnimalsBySpeciesScreen showAnimalsBySpeciesScreen = new ShowAnimalsBySpeciesScreen();
         try {
-            showAnimalsBySpecies.start(stage);
+            showAnimalsBySpeciesScreen.start(stage);
         }catch (Exception ex){
             ex.printStackTrace();
         }
     }
     public void goAuctionList(Stage stage){
-        AuctionList auctionList = new AuctionList();
+        AuctionListScreen auctionListScreen = new AuctionListScreen();
         try {
-            auctionList.start(stage);
+            auctionListScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
@@ -209,7 +209,6 @@ public class Livestock extends Application {
     }
     public void displayHealth(Stage stage){
         for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size();i++){
-            System.out.println(1-arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getHealth().size());
             int lastOne = (arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getHealth().size()-1);
             Label label = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getHealth().get(lastOne));
             int animal = i;

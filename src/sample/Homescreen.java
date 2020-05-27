@@ -14,7 +14,7 @@ import sample.MedicalSection.MedicalSection;
 import sample.contacts.ContactScreen;
 import sample.inlogScreen.Main;
 import sample.livestock.Livestock;
-import sample.market.Marketplace;
+import sample.market.MarketplaceScreen;
 import sample.profileSettings.ProfileSettingsScreen;
 
 public class Homescreen extends Application {
@@ -171,7 +171,7 @@ public class Homescreen extends Application {
         button.setScaleX(scale);
     }
     public void goMarket(Stage stage){
-        Marketplace markt = new Marketplace();
+        MarketplaceScreen markt = new MarketplaceScreen();
         try {
             markt.start(stage);
         } catch (Exception ex){

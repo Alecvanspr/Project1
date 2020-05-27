@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 
-public class DisplayWeight extends Application {
+public class DisplayWeightScreen extends Application {
     Scene weightScene;
     ScrollPane weightScroll = new ScrollPane();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
@@ -59,7 +59,7 @@ public class DisplayWeight extends Application {
         stage.setScene(weightScene);
         stage.show();
     }
-    public DisplayWeight(int currentAnimal,int CurrentUser){
+    public DisplayWeightScreen(int currentAnimal, int CurrentUser){
         this.currentAnimal = currentAnimal;
         this.currentUser = CurrentUser;
     }
@@ -72,9 +72,9 @@ public class DisplayWeight extends Application {
         }
     }
     public void goAddWeight(Stage stage){
-        AddWeightCheck addWeightCheck = new AddWeightCheck(currentAnimal);
+        AddWeightCheckScreen addWeightCheckScreen = new AddWeightCheckScreen(currentAnimal);
         try {
-            addWeightCheck.start(stage);
+            addWeightCheckScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }

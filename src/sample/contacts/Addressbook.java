@@ -52,10 +52,17 @@ public class Addressbook {
         for(Contact contact : contacts) {
             System.out.println(c);
             if(contact.getName().toLowerCase().contains(c))
-            return contact.getName() + "\n" + contact.getEmail()
-                    + "\n" + contact.getPhoneNumber() + "\n" + contact.getAddress().getStreet()
-                    + "\n" + contact.getAddress().getPostelCode() + "\n" + contact.getAddress().getCity()
-                    + "\n" + contact.getAddress().getCountry();
+                return contact.toString();
+        }
+        return null;
+    }
+
+    public static Contact searchContact(String name,  int currentUser){
+        for(int i=0; i<getListContact().size();i++){
+            if(name.equalsIgnoreCase(getListContact().get(i).getName())){
+                currentUser=i;
+                return getListContact().get(i);
+            }
         }
         return null;
     }

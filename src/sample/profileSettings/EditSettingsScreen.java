@@ -18,8 +18,9 @@ import java.util.ArrayList;
 
 import static sample.ArrayKeeper.getCurrentUser;
 
-public class EditSettings extends Application {
+public class EditSettingsScreen extends Application {
     Scene changeSettings;
+    EditSetings editSetings = new EditSetings();
     public void start(Stage stage) throws Exception {
         //De code hieronder heeft te maken met de knoppen voor het edit Scherm
         Pane eSettings = new Pane();
@@ -70,41 +71,41 @@ public class EditSettings extends Application {
 
         //De code hieronder heeft te maken met de actie van de knoppen.
         btnChangeUsername.setOnAction(E->{
-            changeUsername(txtNewUsername.getText());
+            editSetings.changeUsername(txtNewUsername.getText());
             goProfileSettingScreen(stage);
         });
 
         btnChangePassword.setOnAction(E->{
-            changePassword(txtNewPassword.getText(),txtNewPasswordConfrm.getText());
+            editSetings.changePassword(txtNewPassword.getText(),txtNewPasswordConfrm.getText());
             goProfileSettingScreen(stage);
         });
         btnChangeBirthday.setOnAction(E->{
-            changeBirthday(txtNewBirthday.getText());
+            editSetings.changeBirthday(txtNewBirthday.getText());
             goProfileSettingScreen(stage);
         });
         btnChagnePhonenumber.setOnAction(E->{
-            changePhone(txtNewPhoneNumber.getText());
+            editSetings.changePhone(txtNewPhoneNumber.getText());
             goProfileSettingScreen(stage);
         });
         btnChangeSecurityQuestion.setOnAction(E->{
-            changeSecurityAnswer(txtSecurityQuestion.getText());
+            editSetings.changeSecurityAnswer(txtSecurityQuestion.getText());
             goProfileSettingScreen(stage);
         });
         btnChangeGender.setOnAction(E->{
-            changeGender(txtChangeGender.getText());
+            editSetings.changeGender(txtChangeGender.getText());
             goProfileSettingScreen(stage);
         });
         btnChangeName.setOnAction(E->{
 
         });
         btnApplyAll.setOnAction(E->{
-            changeUsername(txtNewUsername.getText());
-            changeName(txtNewName.getText());
-            changePassword(txtNewPassword.getText(),txtNewPasswordConfrm.getText());
-            changePhone(txtNewPhoneNumber.getText());
-            changeBirthday(txtNewBirthday.getText());
-            changeSecurityAnswer(txtSecurityQuestion.getText());
-            changeGender(txtChangeGender.getText());
+            editSetings.changeUsername(txtNewUsername.getText());
+            editSetings.changeName(txtNewName.getText());
+            editSetings.changePassword(txtNewPassword.getText(),txtNewPasswordConfrm.getText());
+            editSetings.changePhone(txtNewPhoneNumber.getText());
+            editSetings.changeBirthday(txtNewBirthday.getText());
+            editSetings.changeSecurityAnswer(txtSecurityQuestion.getText());
+            editSetings.changeGender(txtChangeGender.getText());
             goProfileSettingScreen(stage);
         });
 
@@ -142,69 +143,5 @@ public class EditSettings extends Application {
             ex.printStackTrace();
         }
     }
-    public void changeUsername(String newUsername){
-        if(CheckFilled(newUsername)) {
-            PersonalData personalData = new PersonalData();
-            personalData = ArrayKeeper.Data.get(getCurrentUser());
-            personalData.setUserName(newUsername);
-            ArrayKeeper.Data.set(ArrayKeeper.getCurrentUser(), personalData);
-        }
-    }
-    public void  changePassword(String newPassword,String confirmPassword){
-        if(CheckFilled(newPassword)) {
-            if (newPassword.equals(confirmPassword)) {
-                PersonalData personalData = new PersonalData();
-                personalData = ArrayKeeper.Data.get(getCurrentUser());
-                personalData.setPassword(newPassword);
-                ArrayKeeper.Data.set(getCurrentUser(), personalData);
-            }
-        }
-    }
-    public void changeName(String name){
-        if (CheckFilled(name)) {
-            PersonalData personalData = new PersonalData();
-            personalData = ArrayKeeper.Data.get(getCurrentUser());
-            personalData.setName(name);
-            ArrayKeeper.Data.set(getCurrentUser(), personalData);
-        }
-    }
-    public void changeBirthday(String birthday){
-        if (CheckFilled(birthday)) {
-            PersonalData personalData = new PersonalData();
-            personalData = ArrayKeeper.Data.get(getCurrentUser());
-            personalData.setBirthDate(birthday);
-            ArrayKeeper.Data.set(getCurrentUser(), personalData);
-        }
-    }
-    public void changePhone(String phoneNumber){
-        if(CheckFilled(phoneNumber)) {
-            PersonalData personalData = new PersonalData();
-            personalData = ArrayKeeper.Data.get(getCurrentUser());
-            personalData.setPhoneNumber(phoneNumber);
-            ArrayKeeper.Data.set(getCurrentUser(), personalData);
-        }
-    }
-    public void changeSecurityAnswer(String answer){
-        if(CheckFilled(answer)) {
-            PersonalData personalData = new PersonalData();
-            personalData = ArrayKeeper.Data.get(getCurrentUser());
-            personalData.setSecurityAnswer(answer);
-            //personalData.setSecurtityQuestion();
-            ArrayKeeper.Data.set(getCurrentUser(), personalData);
-        }
-    }
-    public void changeGender(String gender){
-        if(CheckFilled(gender)){
-            PersonalData personalData = ArrayKeeper.Data.get(getCurrentUser());
-            personalData.setGender(gender);
-            ArrayKeeper.Data.set(getCurrentUser(), personalData);
-        }
-    }
-    public boolean CheckFilled(String isempety){
-        boolean ret = true;
-        if(isempety.equals("")){
-            ret = false;
-        }
-        return  ret;
-    }
+
 }
