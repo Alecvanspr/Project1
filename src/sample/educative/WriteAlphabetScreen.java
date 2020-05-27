@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import java.util.Random;
 
 public class WriteAlphabetScreen extends Application {
+    BackgroundImage backgroundImage;
+    Image image;
+    ImageView imageView;
     private int letter = 0;
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
@@ -24,8 +27,10 @@ public class WriteAlphabetScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Image backgroundLines = new Image("images/education/DrawLinesLetter.png");
+        backgroundImage = new BackgroundImage(backgroundLines,BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Button btnNextLetter = new Button("Next letter");
-        Button buttonLastLetter = new Button("Last letter");
+        Button btnLastLetter = new Button("Last letter");
         Button btnClear = new Button("Clear");
         Button btnCapital = new Button("Capital");
         Button btnLowerCase = new Button("Lower Case");
@@ -33,6 +38,13 @@ public class WriteAlphabetScreen extends Application {
         btnLowerCase.relocate(150,575);
         btnNextLetter.relocate(75,575);
         btnClear.relocate(775,575);
+        btnLastLetter.setOnAction(E->{
+            letter= letter-2;
+            checkCounter();
+            makeBackGround();
+            clearDrawing();
+        });
+
         btnNextLetter.setOnAction(E->{
             letter=letter+2;
             checkCounter();
@@ -71,7 +83,7 @@ public class WriteAlphabetScreen extends Application {
             goBack(stage);
         });
 
-        pane.getChildren().addAll(canvas,btnNextLetter,btnClear,btnLowerCase,btnBack);
+        pane.getChildren().addAll(canvas,btnNextLetter,btnClear,btnLastLetter,btnLowerCase,btnBack);
         stage.setTitle("Write Screen");
         stage.setScene(scene);
         stage.show();
@@ -104,11 +116,11 @@ public class WriteAlphabetScreen extends Application {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
     public void makeBackGround(){
+        pane.getChildren().remove(imageView);
         clearDrawing();
-        BackgroundImage displayLetter = new BackgroundImage(new Image(getImage.letterImages.get(letter)),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        ImageView imageView = new ImageView();
-        pane.setBackground(new Background(displayLetter));
+        image = new Image(getImage.getLetterImage(letter));
+        imageView = new ImageView(image);
+        pane.setBackground(new Background(backgroundImage));
         pane.getChildren().addAll(imageView);
     }
     public void checkCounter(){
