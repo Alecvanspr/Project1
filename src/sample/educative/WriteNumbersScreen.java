@@ -24,21 +24,26 @@ public class WriteNumbersScreen extends Application {
     public void start(Stage stage) throws Exception {
 
         drawing();
+        makeBackGround();
 
-        Random random = new Random();
-        int getRandomLetter = random.nextInt(getImage.letterImages.size()-1);
-        BackgroundImage displayLetter = new BackgroundImage(new Image(getImage.letterImages.get(getRandomLetter)),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        ImageView imageView = new ImageView();
-        pane.setBackground(new Background(displayLetter));
+        Button btnNewNumber = new Button("Next");
+        Button btnClear = new Button("Clear");
         Button btnBack = new Button("back");
         btnBack.relocate(0,575);
+        btnNewNumber.relocate(75,575);
 
+        btnNewNumber.setOnAction(E->{
+            makeBackGround();
+            clearDrawing();
+        });
+        btnClear.setOnAction(e->{
+            clearDrawing();
+        });
         btnBack.setOnAction(E->{
             goBack(stage);
         });
 
-        pane.getChildren().addAll(canvas, imageView,btnBack);
+        pane.getChildren().addAll(canvas, btnBack, btnClear,btnNewNumber);
         stage.setTitle("Write numbers screen");
         stage.setScene(scene);
         stage.show();
@@ -67,4 +72,17 @@ public class WriteNumbersScreen extends Application {
             gc.stroke();
         });
     }
+    public void makeBackGround(){
+        Random random = new Random();
+        int getRandomNumber = random.nextInt(getImage.numberImages.size()-1);
+        BackgroundImage displayNumber = new BackgroundImage(new Image(getImage.numberImages.get(getRandomNumber)),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        ImageView imageView = new ImageView();
+        pane.setBackground(new Background(displayNumber));
+        pane.getChildren().add(imageView);
+    }
+    public void clearDrawing(){
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+
 }
