@@ -81,6 +81,7 @@ public class WriteAlphabetScreen extends Application {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
     public void makeBackGround(){
+        clearDrawing();
         BackgroundImage displayLetter = new BackgroundImage(new Image(getImage.letterImages.get(letter)),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         ImageView imageView = new ImageView();
