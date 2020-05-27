@@ -71,10 +71,10 @@ public class WriteMainScreen extends Application {
             ex.printStackTrace();
         }
     }
-    public void goWords(Stage stage){ //Deze werkt nog niet
-        WriteRandomScreen writeRandomScreen = new WriteRandomScreen();
+    public void goWords(Stage stage){ //Deze werkt nog niet, wel aan bezig nu
+        WriteWordsScreen writeWordsScreen = new WriteWordsScreen();
         try {
-            writeRandomScreen.start(stage);
+            writeWordsScreen.start(stage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

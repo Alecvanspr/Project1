@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class GetImage {
     ArrayList<String> letterImages = new ArrayList<>();
     ArrayList<String> numberImages = new ArrayList<>();
+    ArrayList<String> animalImages = new ArrayList<>();
     public GetImage(){
         setLetterImages();
         setNumberImages();
+        setAnimalImages();
     }
     public void setNumberImages(){
         numberImages.add("images/education/Numbers/0.jpg");
@@ -77,10 +79,55 @@ public class GetImage {
         letterImages.add("images/education/Draw!.jpg");
         letterImages.add("images/education/DrawQuestionMark.jpg");
     }
+
+    public void setAnimalImages() {
+        animalImages.add("images/education/Animals/alligator.gif");
+        animalImages.add("images/education/Animals/bear.gif");
+        animalImages.add("images/education/Animals/bird.gif");
+        animalImages.add("images/education/Animals/cat.gif");
+        animalImages.add("images/education/Animals/chicken.gif");
+        animalImages.add("images/education/Animals/cow.gif");
+        animalImages.add("images/education/Animals/dog.gif");
+        animalImages.add("images/education/Animals/duck.gif");
+        animalImages.add("images/education/Animals/elephant.gif");
+        animalImages.add("images/education/Animals/fish.gif");
+        animalImages.add("images/education/Animals/fox.gif");
+        animalImages.add("images/education/Animals/frog.gif");
+        animalImages.add("images/education/Animals/giraffe.gif");
+        animalImages.add("images/education/Animals/goat.gif");
+        animalImages.add("images/education/Animals/hamster.gif");
+        animalImages.add("images/education/Animals/hippo.gif");
+        animalImages.add("images/education/Animals/horse.gif");
+        animalImages.add("images/education/Animals/kangaroo.gif");
+        animalImages.add("images/education/Animals/koala.gif");
+        animalImages.add("images/education/Animals/lion.gif");
+        animalImages.add("images/education/Animals/monkey.gif");
+        animalImages.add("images/education/Animals/mouse.gif");
+        animalImages.add("images/education/Animals/octopus.gif");
+        animalImages.add("images/education/Animals/panda.gif");
+        animalImages.add("images/education/Animals/penguin.gif");
+        animalImages.add("images/education/Animals/pig.gif");
+        animalImages.add("images/education/Animals/rabbit.gif");
+        animalImages.add("images/education/Animals/rhino.gif");
+        animalImages.add("images/education/Animals/seal.gif");
+        animalImages.add("images/education/Animals/shark.gif");
+        animalImages.add("images/education/Animals/sheep.gif");
+        animalImages.add("images/education/Animals/snake.gif");
+        animalImages.add("images/education/Animals/squirrel.gif");
+        animalImages.add("images/education/Animals/tiger.gif");
+        animalImages.add("images/education/Animals/turtle.gif");
+        animalImages.add("images/education/Animals/walrus.gif");
+        animalImages.add("images/education/Animals/whale.gif");
+        animalImages.add("images/education/Animals/zebra.gif");
+    }
+
     public String getLetterImage(int place){
         return  letterImages.get(place);
     }
     public String getNumberImage(int place){
         return numberImages.get(place);
+    }
+    public String getAnimalImage(int place){
+        return animalImages.get(place);
     }
 }
