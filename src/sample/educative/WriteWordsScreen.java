@@ -24,7 +24,7 @@ public class WriteWordsScreen extends Application {
 
         makeBackGround();
         Button btnBack = new Button("back");
-        Button btnNewPic = new Button("new thing");
+        Button btnNewPic = new Button("new animal1");
         btnBack.relocate(0, 575);
         btnBack.setOnAction(E -> {
             goBack(stage);
