@@ -1,11 +1,13 @@
 package sample.educative;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 
 public class GetImage {
     ArrayList<String> letterImages = new ArrayList<>();
     ArrayList<String> numberImages = new ArrayList<>();
-    ArrayList<String> animalImages = new ArrayList<>();
+    ArrayList<FlashCards> animalImages = new ArrayList<>();
     public GetImage(){
         setLetterImages();
         setNumberImages();
@@ -81,44 +83,43 @@ public class GetImage {
     }
 
     public void setAnimalImages() {
-        animalImages.add("images/education/Animals/alligator.png");
-        animalImages.add("images/education/Animals/bear.png");
-        animalImages.add("images/education/Animals/bird.png");
-        animalImages.add("images/education/Animals/cat.png");
-        animalImages.add("images/education/Animals/chicken.png");
-        animalImages.add("images/education/Animals/cow.png");
-        animalImages.add("images/education/Animals/dog.png");
-        animalImages.add("images/education/Animals/duck.png");
-        animalImages.add("images/education/Animals/elephant.png");
-        animalImages.add("images/education/Animals/fish.png");
-        animalImages.add("images/education/Animals/fox.png");
-        animalImages.add("images/education/Animals/frog.png");
-        animalImages.add("images/education/Animals/giraffe.png");
-        animalImages.add("images/education/Animals/goat.png");
-        animalImages.add("images/education/Animals/hamster.png");
-        animalImages.add("images/education/Animals/hippo.png");
-        animalImages.add("images/education/Animals/horse.png");
-        animalImages.add("images/education/Animals/kangaroo.png");
-        animalImages.add("images/education/Animals/koala.png");
-        animalImages.add("images/education/Animals/lion.png");
-        animalImages.add("images/education/Animals/monkey.png");
-        animalImages.add("images/education/Animals/mouse.png");
-        animalImages.add("images/education/Animals/octopus.png");
-        animalImages.add("images/education/Animals/panda.png");
-        animalImages.add("images/education/Animals/penguin.png");
-        animalImages.add("images/education/Animals/pig.png");
-        animalImages.add("images/education/Animals/rabbit.png");
-        animalImages.add("images/education/Animals/rhino.png");
-        animalImages.add("images/education/Animals/seal.png");
-        animalImages.add("images/education/Animals/shark.png");
-        animalImages.add("images/education/Animals/sheep.png");
-        animalImages.add("images/education/Animals/snake.png");
-        animalImages.add("images/education/Animals/squirrel.png");
-        animalImages.add("images/education/Animals/tiger.png");
-        animalImages.add("images/education/Animals/turtle.png");
-        animalImages.add("images/education/Animals/walrus.png");
-        animalImages.add("images/education/Animals/whale.png");
-        animalImages.add("images/education/Animals/zebra.png");
+        animalImages.add(makeFlashCard("images/education/Animals/alligator.png","aligator"));
+        animalImages.add(makeFlashCard("images/education/Animals/bear.png","bear"));
+        animalImages.add(makeFlashCard("images/education/Animals/bird.png","bird"));
+        animalImages.add(makeFlashCard("images/education/Animals/cat.png","cat"));
+        animalImages.add(makeFlashCard("images/education/Animals/chicken.png","chicken"));
+        animalImages.add(makeFlashCard("images/education/Animals/cow.png","cow"));
+        animalImages.add(makeFlashCard("images/education/Animals/dog.png","dog"));
+        animalImages.add(makeFlashCard("images/education/Animals/duck.png","duck"));
+        animalImages.add(makeFlashCard("images/education/Animals/elephant.png","elephant"));
+        animalImages.add(makeFlashCard("images/education/Animals/fish.png","fish"));
+        animalImages.add(makeFlashCard("images/education/Animals/fox.png","fox"));
+        animalImages.add(makeFlashCard("images/education/Animals/frog.png","frog"));
+        animalImages.add(makeFlashCard("images/education/Animals/giraffe.png","giraffe"));
+        animalImages.add(makeFlashCard("images/education/Animals/goat.png","goat"));
+        animalImages.add(makeFlashCard("images/education/Animals/hamster.png","hamster"));
+        animalImages.add(makeFlashCard("images/education/Animals/hippo.png","hippo"));
+        animalImages.add(makeFlashCard("images/education/Animals/horse.png","horse"));
+        animalImages.add(makeFlashCard("images/education/Animals/kangaroo.png","kangaroo"));
+        animalImages.add(makeFlashCard("images/education/Animals/koala.png","koala"));
+        animalImages.add(makeFlashCard("images/education/Animals/lion.png","lion"));
+        animalImages.add(makeFlashCard("images/education/Animals/monkey.png","monkey"));
+        animalImages.add(makeFlashCard("images/education/Animals/mouse.png","mouse"));
+        animalImages.add(makeFlashCard("images/education/Animals/octopus.png","octopus"));
+        animalImages.add(makeFlashCard("images/education/Animals/penguin.png","penguin"));
+        animalImages.add(makeFlashCard("images/education/Animals/pig.png","pig"));
+        animalImages.add(makeFlashCard("images/education/Animals/rabbit.png","rabbit"));
+        animalImages.add(makeFlashCard("images/education/Animals/rhino.png","rhino"));
+        animalImages.add(makeFlashCard("images/education/Animals/seal.png","seal"));
+        animalImages.add(makeFlashCard("images/education/Animals/shark.png","shark"));
+        animalImages.add(makeFlashCard("images/education/Animals/sheep.png","sheep"));
+        animalImages.add(makeFlashCard("images/education/Animals/snake.png","snake"));
+        animalImages.add(makeFlashCard("images/education/Animals/squirrel.png","squirrel"));
+        animalImages.add(makeFlashCard("images/education/Animals/tiger.png","tiger"));
+        animalImages.add(makeFlashCard("images/education/Animals/turtle.png","turtle"));
+        animalImages.add(makeFlashCard("images/education/Animals/walrus.png","walrus"));
+        animalImages.add(makeFlashCard("images/education/Animals/whale.png","whale"));
+        animalImages.add(makeFlashCard("images/education/Animals/zebra.png","zebra"));
     }
 
     public String getLetterImage(int place){
@@ -127,7 +128,12 @@ public class GetImage {
     public String getNumberImage(int place){
         return numberImages.get(place);
     }
-    public String getAnimalImage(int place){
+    public FlashCards getAnimalImage(int place){
         return animalImages.get(place);
+    }
+
+    public FlashCards makeFlashCard(String image,String animalName){
+        FlashCards flashCards = new FlashCards((new Image(image)),animalName);
+        return flashCards;
     }
 }
