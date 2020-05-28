@@ -106,6 +106,7 @@ public class SignUpScreen extends Application {
             ex.printStackTrace();
         }
     }
+    //deze laat ik er in omdat het een javaFX class is.
     public void register(Stage stage,Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions){
         if((!(password.equals("")))&&(!(username.equals("")))){
             if(password.equals(PasswordConfig)) {

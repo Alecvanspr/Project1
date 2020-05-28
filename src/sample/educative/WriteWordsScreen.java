@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import java.util.Random;
 
 public class WriteWordsScreen  extends Application {
-
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
     Image image;
@@ -19,6 +18,7 @@ public class WriteWordsScreen  extends Application {
     WriteWordsCards writeWordsCards = new WriteWordsCards();
     GetImage getImage = new GetImage();
     Random random = new Random();
+    int counter = 0;
     int rng = random.nextInt(writeWordsCards.imageFlashcards.size() - 1);
 
     @Override
@@ -30,10 +30,6 @@ public class WriteWordsScreen  extends Application {
         btnBack.setOnAction(E -> {
             goBack(stage);
         });
-
-        //image = writeWordsCards.imageFlashcards.get(rng).getImage();
-        //imageView = new ImageView(image);
-        //imageView.setImage(image);
 
         pane.getChildren().addAll(imageView, btnBack);
 
@@ -52,16 +48,20 @@ public class WriteWordsScreen  extends Application {
     }
 
     public void makeBackGround() {
-        /*BackgroundImage displayPicture = new BackgroundImage
-                (writeWordsCards.imageFlashcards.get(rng).getImage(),
-        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                BackgroundSize.DEFAULT);*/
+        /*
         BackgroundImage displayPicture = new BackgroundImage
                 (new Image(getImage.animalImages.get(rng)),
                         BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                         BackgroundSize.DEFAULT);
         ImageView iv = new ImageView();
         pane.setBackground(new Background(displayPicture));
-
+         */
+    }
+    public void printSelectedImage(){
+        pane.getChildren().remove(imageView);
+        image = new Image(getImage.getAnimalImage(counter));
+        imageView = new ImageView(image);
+        pane.getChildren().add(imageView);
+        counter++;
     }
 }
