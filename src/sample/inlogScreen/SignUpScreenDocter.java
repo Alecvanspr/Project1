@@ -125,7 +125,7 @@ public class SignUpScreenDocter extends Application {
         register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).makeDoctor(docterName.getPromptText(),specialties);
+                arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).makeDoctor(docterName.getText(),specialties);
 
                 Main main = new Main();
                 try {
