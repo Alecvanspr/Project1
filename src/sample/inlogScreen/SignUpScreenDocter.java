@@ -43,6 +43,7 @@ public class SignUpScreenDocter extends Application {
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).setIsDocter(false);
                 Main main = new Main();
                 try {
                     main.start(stage);
@@ -124,7 +125,8 @@ public class SignUpScreenDocter extends Application {
         register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Docter docter = new Docter(docterName.getPromptText(), ArrayKeeper.getCurrentUser(), specialties);
+                arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).makeDoctor(docterName.getPromptText(),specialties);
+
                 Main main = new Main();
                 try {
                     main.start(stage);

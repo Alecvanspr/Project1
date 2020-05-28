@@ -22,7 +22,7 @@ public class MainMethods {
     }
     public void delettis(){
         //dit is om te testen, dit moet achteraf verwijderd worden.
-        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","You have to insert your username first");
+        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","You have to insert your username first", false);
         PersonalData Admin = new PersonalData();
         Admin.setUserName("admin");
         Admin.setPassword("admin");

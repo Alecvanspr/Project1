@@ -7,13 +7,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.Homescreen;
 
+
 public class ProfileSettingsScreen extends Application {
     Homescreen homescreen = new Homescreen();
     Scene Settings;
+    ArrayKeeper arrayKeeper = new ArrayKeeper();
     public int currentUser= ArrayKeeper.getCurrentUser();
 
     public void start(Stage stage) throws Exception{
@@ -33,7 +36,23 @@ public class ProfileSettingsScreen extends Application {
         textGender.relocate(100,175);
         textPhonenumber.relocate(100,200);
 
+        if(arrayKeeper.getPersonaldata().get(currentUser).getIsDocter()){
+            Label doctorStart = new Label("Docter info");
+            doctorStart.setFont(Font.font("Arail", 20));
+            doctorStart.relocate(300, 100);
+            Label doctorName = new Label("Name: " + arrayKeeper.getPersonaldata().get(currentUser).getDocter().getName());
+            doctorName.relocate(300, 125);
+            Label specialtiesLabel = new Label("Specialty's ");
+            specialtiesLabel.relocate(300, 150);
+            for (int i = 0; i < arrayKeeper.getPersonaldata().get(currentUser).getDocter().getSpecialties().size(); i++){
+                Label label = new Label(arrayKeeper.getPersonaldata().get(currentUser).getDocter().getSpecialties().get(i).getName());
+                label.relocate(300, 175+(25*i));
+                pSettings.getChildren().addAll(label);
+            }
+            pSettings.getChildren().addAll(doctorName,specialtiesLabel);
 
+
+        }
         btnBack.relocate(0,570);
         btnBack.setOnAction(e -> {
             goHomeScreen(stage);

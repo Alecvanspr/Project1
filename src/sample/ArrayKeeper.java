@@ -18,13 +18,14 @@ public class ArrayKeeper {
         makeSpecialties();
     }
 
-    public void SignUpData(String name,String password,String birth, String security,String securityQ){
+    public void SignUpData(String name,String password,String birth, String security,String securityQ,Boolean isDoctor){
         PersonalData personalData = new PersonalData();
         personalData.setUserName(name);
         personalData.setPassword(password);
         personalData.setBirthDate(birth);
         personalData.setSecurtityQuestion(securityQ);
         personalData.setSecurityAnswer(security);
+        personalData.setIsDocter(isDoctor);
         Data.add(personalData);
         currentUser++;
     }

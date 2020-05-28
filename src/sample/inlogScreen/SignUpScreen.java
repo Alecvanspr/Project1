@@ -127,10 +127,10 @@ public class SignUpScreen extends Application {
             ex.printStackTrace();
         }
     }
-    public void register(Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,Stage stage,boolean toDocter){
+    public void register(Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,Stage stage,Boolean toDocter){
         if((!(password.equals("")))&&(!(username.equals("")))){
             if(password.equals(PasswordConfig)) {
-                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions);
+                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions, false);
 
                 toDocter(toDocter,stage);
             }else {
