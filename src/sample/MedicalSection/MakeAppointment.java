@@ -52,29 +52,29 @@ public class MakeAppointment extends Application {
         pane.getChildren().add(exitButton);
         Label specialtyLabel = new Label("Specialty: ");
         setLabel(specialtyLabel);
-        Label docterLabel = new Label("Docter: ");
-        setLabel(docterLabel);
+        Label doctorLabel = new Label("Doctor: ");
+        setLabel(doctorLabel);
         Label dateLabel = new Label("Date: ");
         setLabel(dateLabel);
         Label timeLabel = new Label("Time: ");
         setLabel(timeLabel);
 
         //Combobox for specialty's
-        pane.getChildren().addAll(specialtyLabel,docterLabel,dateLabel,timeLabel);
+        pane.getChildren().addAll(specialtyLabel,doctorLabel,dateLabel,timeLabel);
         ComboBox specialtyBox = new ComboBox();
         Specialty diabetes = new Specialty("Diabetes");
         Specialty skin = new Specialty("Skin");
         Specialty eyes = new Specialty("Eyes");
-        Specialty ear = new Specialty("ear");
+        Specialty ear = new Specialty("Ear");
         Specialty general = new Specialty("General");
         specialtyBox.getItems().addAll(diabetes.getName(),skin.getName(),eyes.getName(),ear.getName(),general.getName());
         specialtyBox.relocate(250, 110);
         pane.getChildren().add(specialtyBox);
 
-        //Comboboxfor specialty's
+        //Combobox for specialty's
 
         makeAppointmentScene = new Scene(pane, 800, 600);
-        stage.setTitle("Make Appointment here");
+        stage.setTitle("Make appointment here");
         stage.setScene(makeAppointmentScene);
         stage.show();
     }

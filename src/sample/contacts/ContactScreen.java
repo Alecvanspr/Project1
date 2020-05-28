@@ -129,7 +129,7 @@ public class ContactScreen extends Application {
             tfEmail.setText(Addressbook.getListContact().get(currentUser).getEmail());
             tfPhoneNumber.setText(Addressbook.getListContact().get(currentUser).getPhoneNumber());
             tfStreet.setText(Addressbook.getListContact().get(currentUser).getAddress().getStreet());
-            tfPostelCode.setText(Addressbook.getListContact().get(currentUser).getAddress().getPostelCode());
+            tfPostelCode.setText(Addressbook.getListContact().get(currentUser).getAddress().getPostalCode());
             tfCity.setText(Addressbook.getListContact().get(currentUser).getAddress().getCity());
             tfCountry.setText(Addressbook.getListContact().get(currentUser).getAddress().getCountry());
         });

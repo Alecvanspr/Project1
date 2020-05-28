@@ -10,17 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import sample.ArrayKeeper;
-import sample.inlogScreen.PersonalData;
-import sample.profileSettings.ProfileSettingsScreen;
-
-import java.util.ArrayList;
-
-import static sample.ArrayKeeper.getCurrentUser;
 
 public class EditSettingsScreen extends Application {
     Scene changeSettings;
-    EditSetings editSetings = new EditSetings();
+    EditSettings editSetings = new EditSettings();
     public void start(Stage stage) throws Exception {
         //De code hieronder heeft te maken met de knoppen voor het edit Scherm
         Pane eSettings = new Pane();

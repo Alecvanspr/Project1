@@ -25,14 +25,14 @@ public class Addressbook {
         return contact.getName();
     }
 
-    public void edit(String name,  String email , String number, String street, String postelcode, String city, String country){
+    public void edit(String name,  String email , String number, String street, String postalcode, String city, String country){
         for(Contact contact : contacts) {
             if(contact.getName().equalsIgnoreCase(name)){
                 contact.setName(name);
                 contact.setEmail(email);
                 contact.setPhoneNumber(number);
                 contact.getAddress().setStreet(street);
-                contact.getAddress().setPostelCode(postelcode);
+                contact.getAddress().setPostalCode(postalcode);
                 contact.getAddress().setCity(city);
                 contact.getAddress().setCountry(country);
             }

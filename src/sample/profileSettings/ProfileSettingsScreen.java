@@ -17,15 +17,15 @@ public class ProfileSettingsScreen extends Application {
     public int currentUser= ArrayKeeper.getCurrentUser();
 
     public void start(Stage stage) throws Exception{
-        Label textName = new Label("Username : " + ArrayKeeper.Data.get(currentUser).getUsername());
-        Label txtRealName = new Label("Name : " + ArrayKeeper.Data.get(currentUser).getName());
-        Label txtBirthDate = new Label("Birth date : "+ArrayKeeper.Data.get(currentUser).getBirthDate());
-        Label textGender = new Label("Gender :" + ArrayKeeper.Data.get(currentUser).getGender());
-        Label textPhonenumber = new Label("Phone number : " + ArrayKeeper.Data.get(currentUser).getPhoneNumber());
+        Label textName = new Label("Username: " + ArrayKeeper.Data.get(currentUser).getUsername());
+        Label txtRealName = new Label("Name: " + ArrayKeeper.Data.get(currentUser).getName());
+        Label txtBirthDate = new Label("Birth date: "+ArrayKeeper.Data.get(currentUser).getBirthDate());
+        Label textGender = new Label("Gender: " + ArrayKeeper.Data.get(currentUser).getGender());
+        Label textPhonenumber = new Label("Phone number: " + ArrayKeeper.Data.get(currentUser).getPhoneNumber());
         Button btnBack = new Button("Back");
         Button btnEdit = new Button("Edit Profile");
         Pane pSettings = new Pane();
-        pSettings.getChildren().addAll( btnBack,btnEdit,textName,txtRealName,txtBirthDate,textGender,textPhonenumber);
+        pSettings.getChildren().addAll(btnBack,btnEdit,textName,txtRealName,txtBirthDate,textGender,textPhonenumber);
 
         textName.relocate(100,100);
         txtRealName.relocate(100,125);
