@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class WriteWordsCards {
 
+    FlashCards flashCards;
     ArrayList<FlashCards> imageFlashcards = new ArrayList<>();
     GetImage getImage = new GetImage();
 

@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.util.Random;
 
-public class WriteWordsScreen  extends Application {
+public class WriteWordsScreen extends Application {
 
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
@@ -31,11 +31,8 @@ public class WriteWordsScreen  extends Application {
             goBack(stage);
         });
 
-        //image = writeWordsCards.imageFlashcards.get(rng).getImage();
-        //imageView = new ImageView(image);
-        //imageView.setImage(image);
 
-        pane.getChildren().addAll(imageView, btnBack);
+        pane.getChildren().addAll(btnBack);
 
         stage.setTitle("Write words screen");
         stage.setScene(scene);
@@ -52,16 +49,9 @@ public class WriteWordsScreen  extends Application {
     }
 
     public void makeBackGround() {
-        /*BackgroundImage displayPicture = new BackgroundImage
-                (writeWordsCards.imageFlashcards.get(rng).getImage(),
-        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                BackgroundSize.DEFAULT);*/
-        BackgroundImage displayPicture = new BackgroundImage
-                (new Image(getImage.animalImages.get(rng)),
-                        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                        BackgroundSize.DEFAULT);
+        image = writeWordsCards.imageFlashcards.get(rng).getImage();
         ImageView iv = new ImageView();
-        pane.setBackground(new Background(displayPicture));
-
+        iv.setImage(image);
+        pane.getChildren().add(iv);
     }
 }
