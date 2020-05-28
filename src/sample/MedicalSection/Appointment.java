@@ -12,11 +12,14 @@ public class Appointment {
     private String user;
     private int userInt;
     private String notes;
+    private Doctor doctor;
 
 
-    public Appointment(Date date){
+    public Appointment(Doctor doctor, Date date, Time time){
         this.userInt = ArrayKeeper.getCurrentUser();
         this.appointmentDate = date;
+        this.appointmentTime = time;
+        this.doctor = doctor;
         this.user = ArrayKeeper.Data.get(userInt).getName();
     }
     public Date getAppointmentDate(){
@@ -42,6 +45,9 @@ public class Appointment {
     }
     public void setNotes(String notes){
         this.notes = notes;
+    }
+    public Doctor getDoctor(){
+        return doctor;
     }
 }
 

@@ -14,12 +14,13 @@ public class Doctor extends PersonalData {
     private int userInt;
     private ArrayList<Specialty> specialties = new ArrayList<>();
     private ArrayList<Appointment> appointments = new ArrayList<>();
+    private static ArrayList<Doctor> doctors = new ArrayList<>();
 
     public Doctor(String name, int age, int userInt) {
         this.name = name;
         this.age = age;
         this.userInt = userInt;
-
+        doctors.add(this);
     }
     public ArrayList<Appointment> getAppointments(){
         return this.appointments;
@@ -41,6 +42,10 @@ public class Doctor extends PersonalData {
 
     public ArrayList<Specialty> getSpecialties() {
         return this.specialties;
+    }
+
+    public static ArrayList<Doctor> getDoctors(){
+        return doctors;
     }
 
     public void addSpecialties(Specialty specialty) {
