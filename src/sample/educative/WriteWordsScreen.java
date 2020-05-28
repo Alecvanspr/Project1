@@ -20,14 +20,13 @@ public class WriteWordsScreen extends Application {
     Scene scene = new Scene(pane, 800, 600);
     GetImage getImage = new GetImage();
     Text target;
-    Text source;
+    Button source;
     ImageView iv;
     Image image;
 
     @Override
     public void start(Stage stage) throws Exception {
-
-        source = new Text(50, 100, "DRAG ME");
+        source = new Button("Dragging");
         source.setScaleX(2.0);
         source.setScaleY(2.0);
 
@@ -47,15 +46,21 @@ public class WriteWordsScreen extends Application {
         });
 
        //hieronder begint het
-        source.setOnDragDetected(new EventHandler <MouseEvent>() {
+        source.setOnMouseDragged(e->{
+            source.setLayoutX(e.getSceneX());
+            source.setLayoutY(e.getSceneY());
+        });
+
+
+        source.setOnMouseDragged(new EventHandler <MouseEvent>() {
             public void handle(MouseEvent event) {
-                /* drag was detected, start drag-and-drop gesture*/
+                // drag was detected, start drag-and-drop gesture
                 System.out.println("onDragDetected");
 
-                /* allow any transfer mode */
-                Dragboard db = source.startDragAndDrop(TransferMode.ANY);
+                // allow any transfer mode
+                Dragboard db = source.startDragAndDrop(TransferMode.MOVE);
 
-                /* put a string on dragboard */
+                // put a string on dragboard
                 ClipboardContent content = new ClipboardContent();
                 content.putString(source.getText());
                 db.setContent(content);
@@ -63,6 +68,7 @@ public class WriteWordsScreen extends Application {
                 event.consume();
             }
         });
+
 
         target.setOnDragOver(new EventHandler <DragEvent>() {
             public void handle(DragEvent event) {
@@ -158,7 +164,9 @@ public class WriteWordsScreen extends Application {
         pane.getChildren().remove(iv);
         Random random = new Random();
         int rng = random.nextInt(getImage.animalImages.size() - 1);
-        target = new Text(100, 100, "Target text");
+        int randomAnswer1 = random.nextInt(getImage.animalImages.size() - 1);
+        int randomAnswer2 = random.nextInt(getImage.animalImages.size() - 1);
+        target = new Text(250, 100, "Drop answer here");
         source.setText(getImage.animalImages.get(rng).getName());
         source.relocate(500,100);
         image = getImage.animalImages.get(rng).getImage();
