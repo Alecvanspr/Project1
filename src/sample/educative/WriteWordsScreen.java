@@ -4,39 +4,51 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.util.Random;
 
 public class WriteWordsScreen extends Application {
-
+    Label lblAnswer = new Label("");
+    Random random = new Random();
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
     GetImage getImage = new GetImage();
-    Text target;
-    Button source;
+    Button CorrectAnswer;
+    Button random1 = new Button("");
+    Button random2 = new Button("");
     ImageView iv;
     Image image;
+    int rng = random.nextInt(getImage.animalImages.size() - 1);
+
 
     @Override
     public void start(Stage stage) throws Exception {
-        source = new Button("Dragging");
-        source.setScaleX(2.0);
-        source.setScaleY(2.0);
+        Image enterFieldPng = new Image("images/education/answerField.png");
+        ImageView enterField = new ImageView(enterFieldPng);
+        enterField.relocate(475,80);
+        lblAnswer.relocate(475,50);
 
-        target = new Text(250, 100, "Drop answer here");
-        target.setScaleX(2.0);
-        target.setScaleY(2.0);
+        CorrectAnswer = new Button("Dragging");
+        CorrectAnswer.setScaleX(2.0);
+        CorrectAnswer.setScaleY(2.0);
+        random1.setScaleX(2.0);
+        random1.setScaleY(2.0);
+        random2.setScaleX(2.0);
+        random2.setScaleY(2.0);
 
         makeBackGround();
+
         Button btnBack = new Button("back");
-        Button btnNewPic = new Button("new animal1");
+        Button btnNewPic = new Button("next animal");
+
         btnBack.relocate(0, 575);
         btnBack.setOnAction(E -> {
             goBack(stage);
@@ -45,106 +57,11 @@ public class WriteWordsScreen extends Application {
             makeBackGround();
         });
 
-       //hieronder begint het
-        source.setOnMouseDragged(e->{
-            source.setLayoutX(e.getSceneX());
-            source.setLayoutY(e.getSceneY());
-        });
+        buttonMover(CorrectAnswer);
+        buttonMover(random1);
+        buttonMover(random2);
 
-
-        source.setOnMouseDragged(new EventHandler <MouseEvent>() {
-            public void handle(MouseEvent event) {
-                // drag was detected, start drag-and-drop gesture
-                System.out.println("onDragDetected");
-
-                // allow any transfer mode
-                Dragboard db = source.startDragAndDrop(TransferMode.MOVE);
-
-                // put a string on dragboard
-                ClipboardContent content = new ClipboardContent();
-                content.putString(source.getText());
-                db.setContent(content);
-
-                event.consume();
-            }
-        });
-
-
-        target.setOnDragOver(new EventHandler <DragEvent>() {
-            public void handle(DragEvent event) {
-                /* data is dragged over the target */
-                System.out.println("onDragOver");
-
-                /* accept it only if it is  not dragged from the same node
-                 * and if it has a string data */
-                if (event.getGestureSource() != target &&
-                        event.getDragboard().hasString()) {
-                    /* allow for both copying and moving, whatever user chooses */
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                }
-
-                event.consume();
-            }
-        });
-
-        target.setOnDragEntered(new EventHandler <DragEvent>() {
-            public void handle(DragEvent event) {
-                /* the drag-and-drop gesture entered the target */
-                System.out.println("onDragEntered");
-                /* show to the user that it is an actual gesture target */
-                if (event.getGestureSource() != target &&
-                        event.getDragboard().hasString()) {
-                    target.setFill(Color.GREEN);
-                }
-
-                event.consume();
-            }
-        });
-
-        target.setOnDragExited(new EventHandler <DragEvent>() {
-            public void handle(DragEvent event) {
-                /* mouse moved away, remove the graphical cues */
-                target.setFill(Color.BLACK);
-
-                event.consume();
-            }
-        });
-
-        target.setOnDragDropped(new EventHandler <DragEvent>() {
-            public void handle(DragEvent event) {
-                /* data dropped */
-                System.out.println("onDragDropped");
-                /* if there is a string data on dragboard, read it and use it */
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasString()) {
-                    target.setText(db.getString());
-                    success = true;
-                }
-                /* let the source know whether the string was successfully
-                 * transferred and used */
-                event.setDropCompleted(success);
-
-                event.consume();
-            }
-        });
-
-        source.setOnDragDone(new EventHandler <DragEvent>() {
-            public void handle(DragEvent event) {
-                /* the drag-and-drop gesture ended */
-                System.out.println("onDragDone");
-                /* if the data was successfully moved, clear it */
-                if (event.getTransferMode() == TransferMode.MOVE) {
-                    source.setText("");
-                }
-
-                event.consume();
-            }
-        });
-
-        //hier eindigd het
-
-        pane.getChildren().addAll(btnBack, btnNewPic,source,target);
+        pane.getChildren().addAll(enterField,btnBack, btnNewPic, CorrectAnswer , random1 , random2,lblAnswer);
 
         stage.setTitle("Write words screen");
         stage.setScene(scene);
@@ -160,15 +77,19 @@ public class WriteWordsScreen extends Application {
         }
     }
 
+    //deze method zorgt voor de verandering van de dieren.
     public void makeBackGround() {
+        lblAnswer.setText("");
         pane.getChildren().remove(iv);
-        Random random = new Random();
-        int rng = random.nextInt(getImage.animalImages.size() - 1);
+        rng = random.nextInt(getImage.animalImages.size() - 1);
         int randomAnswer1 = random.nextInt(getImage.animalImages.size() - 1);
         int randomAnswer2 = random.nextInt(getImage.animalImages.size() - 1);
-        target = new Text(250, 100, "Drop answer here");
-        source.setText(getImage.animalImages.get(rng).getName());
-        source.relocate(500,100);
+        CorrectAnswer.setText(getImage.animalImages.get(rng).getName());
+        random1.setText(getImage.animalImages.get(randomAnswer1).getName());
+        random2.setText(getImage.animalImages.get(randomAnswer2).getName());
+
+        RandomizePositions();
+
         image = getImage.animalImages.get(rng).getImage();
         iv = new ImageView();
         iv.setImage(image);
@@ -176,5 +97,90 @@ public class WriteWordsScreen extends Application {
         iv.setFitHeight(300);
         iv.relocate(350,250);
         pane.getChildren().add(iv);
+    }
+
+    //deze methode zorgt dat je de knop die je beweegt ziet.
+    public void buttonMover(Button button){
+        //hieronder begint het
+        button.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                button.setLayoutX(mouseEvent.getSceneX());
+                button.setLayoutY(mouseEvent.getSceneY());
+            }
+        });
+
+        //deze method zorgt ervoor dat er gekeken wordt of de button in de image zit
+        button.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(checkEntered(button.getLayoutX(), button.getLayoutY())){ // deze checkt de coördinaten
+                    checkCorrect(button.getText());//deze maakt het label aan, Goed of fout
+                }
+            }
+        });
+    }
+    //deze method haalt de verschillende senario's te voorschijn.
+    // hmmm, hoe vaak zou nummer 1 uigevoerd worden?
+    public void RandomizePositions(){
+        int place = random.nextInt(100);
+        if(place%5==0){
+            senario5();
+        }else if(place%4==0){
+            senario4();
+        }else if(place%3==0){
+            senario3();
+        }else if(place%2==0){
+            senario2();
+        }else{
+            senario1();
+        }
+    }
+    //met een paar aanpassingen kan dit in een andere class
+    public void checkCorrect(String text){
+        if(text.equals(CorrectAnswer.getText())){
+            lblAnswer.setText("That is the Correct Animal");
+            lblAnswer.setTextFill(Paint.valueOf("green"));
+        }else{
+            lblAnswer.setText("That is the Wrong Animal");
+            lblAnswer.setTextFill(Paint.valueOf("red"));
+        }
+    }
+    //deze kan in een andere class
+    public boolean checkEntered(double x,double y){
+        boolean ret = false;
+        if(x>475&&x<675){
+            if(y>80&&y<130){
+                ret = true;
+            }
+        }
+        return  ret;
+    }
+
+    //deze moeten eigenlijk in een andere class, dit ziet er niet mooi uit.
+    public void senario1(){
+        CorrectAnswer.relocate(100,100);
+        random1.relocate(100,300);
+        random2.relocate(100,500);
+    }
+    public void senario2(){
+        CorrectAnswer.relocate(100,300);
+        random1.relocate(100,500);
+        random2.relocate(100,100);
+    }
+    public void senario3(){
+        CorrectAnswer.relocate(100,500);
+        random1.relocate(100,100);
+        random2.relocate(100,300);
+    }
+    public void senario4(){
+        CorrectAnswer.relocate(100,100);
+        random1.relocate(100,500);
+        random2.relocate(100,300);
+    }
+    public void senario5(){
+        CorrectAnswer.relocate(100,300);
+        random1.relocate(100,100);
+        random2.relocate(100,500);
     }
 }
