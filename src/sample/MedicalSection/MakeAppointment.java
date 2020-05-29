@@ -58,9 +58,9 @@ public class MakeAppointment extends Application {
         setLabel(dateLabel);
         Label timeLabel = new Label("Time: ");
         setLabel(timeLabel);
-
-        //Combobox for specialty's
         pane.getChildren().addAll(specialtyLabel,docterLabel,dateLabel,timeLabel);
+        /*//Combobox for specialty's
+
         ComboBox specialtyBox = new ComboBox();
         for(int i = 0; i < arrayKeeper.specialtiesArrayList.size(); i++){
             specialtyBox.getItems().add(arrayKeeper.specialtiesArrayList.get(i).getName());
@@ -68,11 +68,31 @@ public class MakeAppointment extends Application {
         specialtyBox.relocate(250, 110);
         pane.getChildren().add(specialtyBox);
 
+        for(int i = 0; i < arrayKeeper.getDoctorsArrayList().size(); i++){
+            if(arrayKeeper.getDoctorsArrayList().get(i).checkSpecialty(getSpecialty(specialtyBox.getPromptText()))){
+                Label doctorLabel = new Label(arrayKeeper.getDoctorsArrayList().get(i).getName());
+                doctorLabel.relocate(250, 150 + (i*25));
+                pane.getChildren().add(docterLabel);
+            }
+        }*/
+
+        ComboBox specialtyBox = new ComboBox();
+        for(int i = 0; i < arrayKeeper.specialtiesArrayList.size(); i++){
+
+        }
 
         makeAppointmentScene = new Scene(pane, 800, 600);
         stage.setTitle("Make Appointment here");
         stage.setScene(makeAppointmentScene);
         stage.show();
+    }
+    public Specialty getSpecialty(String name){
+        for(int i = 0; i < arrayKeeper.specialtiesArrayList.size(); i++){
+            if(arrayKeeper.specialtiesArrayList.get(i).getName().equals(name)){
+                return arrayKeeper.specialtiesArrayList.get(i);
+            }
+        }
+        return arrayKeeper.specialtiesArrayList.get(0);
     }
     public void setButtonScale(Button button, Double scale){
         button.setScaleY(scale);

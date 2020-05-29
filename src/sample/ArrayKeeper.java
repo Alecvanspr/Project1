@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ArrayKeeper {
     public static ArrayList<PersonalData> Data = new ArrayList<>();
     public  ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
-    public static ArrayList<Doctor> doctersArrayList = new ArrayList<>();
+    public static ArrayList<Doctor> doctorsArrayList = new ArrayList<>();
     private static int currentUser;
 
     public ArrayKeeper(){
@@ -52,7 +52,7 @@ public class ArrayKeeper {
         return this.getDoctorsArrayList();
     }
     public void addDoctor(Doctor doctor){
-        doctersArrayList.add(doctor);
+        doctorsArrayList.add(doctor);
     }
 
     public void changePassword(int user,String password){
