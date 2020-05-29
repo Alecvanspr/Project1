@@ -68,7 +68,6 @@ public class MakeAppointment extends Application {
         specialtyBox.relocate(250, 110);
         pane.getChildren().add(specialtyBox);
 
-        //Comboboxfor specialty's
 
         makeAppointmentScene = new Scene(pane, 800, 600);
         stage.setTitle("Make Appointment here");
@@ -96,5 +95,6 @@ public class MakeAppointment extends Application {
         labelNumber++;
 
     }
+
 
 }

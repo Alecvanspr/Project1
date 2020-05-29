@@ -21,6 +21,7 @@ public class Docter extends PersonalData {
         this.name = name;
         this.specialties = specialties;
         this.userInt = userInt;
+        arraykeeper.addDocter(this);
 
     }
     public ArrayList<Appointment> getAppointments(){
