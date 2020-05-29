@@ -50,7 +50,7 @@ public class Contact{
     public String toString() {
         return this.getName() + "\n" + this.getEmail()
                 + "\n" + this.getPhoneNumber() + "\n" + this.getAddress().getStreet()
-                + "\n" + this.getAddress().getPostalCode() + "\n" + this.getAddress().getCity()
+                + "\n" + this.getAddress().getPostelCode() + "\n" + this.getAddress().getCity()
                 + "\n" + this.getAddress().getCountry();
     }
 

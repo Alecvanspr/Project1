@@ -14,14 +14,10 @@ import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.inlogScreen.Main;
 import sample.MedicalSection.Specialty;
-
-import java.sql.Time;
-import java.util.Date;
-
 public class MakeAppointment extends Application {
     Scene makeAppointmentScene;
     Main main;
-    ArrayKeeper arrayKeeper;
+    ArrayKeeper arrayKeeper = new ArrayKeeper();
     private int labelNumber = 0;
     @Override
     public void start(Stage stage) throws Exception{
@@ -53,72 +49,39 @@ public class MakeAppointment extends Application {
                 }
             }
         });
-
         pane.getChildren().add(exitButton);
         Label specialtyLabel = new Label("Specialty: ");
         setLabel(specialtyLabel);
-        Label doctorLabel = new Label("Doctor: ");
-        setLabel(doctorLabel);
+        Label docterLabel = new Label("Docter: ");
+        setLabel(docterLabel);
         Label dateLabel = new Label("Date: ");
         setLabel(dateLabel);
         Label timeLabel = new Label("Time: ");
         setLabel(timeLabel);
 
-        //Combobox for specialties
-        pane.getChildren().addAll(specialtyLabel,doctorLabel,dateLabel,timeLabel);
+        //Combobox for specialty's
+        pane.getChildren().addAll(specialtyLabel,docterLabel,dateLabel,timeLabel);
         ComboBox specialtyBox = new ComboBox();
-        Specialty diabetes = new Specialty("Diabetes");
-        Specialty skin = new Specialty("Skin");
-        Specialty eyes = new Specialty("Eyes");
-        Specialty ear = new Specialty("Ear");
-        Specialty general = new Specialty("General");
-        specialtyBox.getItems().addAll(diabetes.getName(),skin.getName(),eyes.getName(),ear.getName(),general.getName());
-        specialtyBox.relocate(250, 108);
+        for(int i = 0; i < arrayKeeper.specialtiesArrayList.size(); i++){
+            specialtyBox.getItems().add(arrayKeeper.specialtiesArrayList.get(i).getName());
+        }
+        specialtyBox.relocate(250, 110);
         pane.getChildren().add(specialtyBox);
 
-        //Combobox for Doctors
-        //DE DOKTER COMBOBOX FILTERT NOG NIET OP SPECIALTIES!!!
-        ComboBox doctorBox = new ComboBox();
-        for(int i = 0; i < Doctor.getDoctors().size(); i++){
-                doctorBox.getItems().add(Doctor.getDoctors().get(i).getName());
-        }
-        doctorBox.relocate(250, 157);
-        pane.getChildren().add(doctorBox);
-
-        //Combobox for dates
-        ComboBox dateBox = new ComboBox();
-
-        dateBox.relocate(250, 207);
-        pane.getChildren().add(dateBox);
-        //Combobox for times
-        ComboBox timeBox = new ComboBox();
-
-        timeBox.relocate(250, 260);
-        pane.getChildren().add(timeBox);
-
-        Button makeAppointment = new Button("Make appointment");
-        makeAppointment.setOnKeyPressed(E -> {
-            Appointment newAppointment = new Appointment((Doctor) doctorBox.getValue(), (Date) specialtyBox.getValue(), (Time) timeBox.getValue());
-            goBack(stage);
-        });
-        pane.getChildren().add(makeAppointment);
 
         makeAppointmentScene = new Scene(pane, 800, 600);
-        stage.setTitle("Make appointment here");
+        stage.setTitle("Make Appointment here");
         stage.setScene(makeAppointmentScene);
         stage.show();
     }
-
     public void setButtonScale(Button button, Double scale){
         button.setScaleY(scale);
         button.setScaleX(scale);
     }
-
     public void setLabel(Label label){
         label.setFont(Font.font("Arial", 30));
         setLabelLocation(label);
     }
-
     public void setLabelLocation(Label label){
         if(this.labelNumber == 0){
             label.relocate(100, 100);
@@ -130,14 +93,8 @@ public class MakeAppointment extends Application {
             label.relocate(100, 250);
         }
         labelNumber++;
+
     }
 
-    public void goBack(Stage stage) {
-        MedicalSection medicalSection = new MedicalSection();
-        try {
-            medicalSection.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
 }

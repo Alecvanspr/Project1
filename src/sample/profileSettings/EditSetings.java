@@ -5,7 +5,7 @@ import sample.inlogScreen.PersonalData;
 
 import static sample.ArrayKeeper.getCurrentUser;
 
-public class EditSettings {
+public class EditSetings {
     public void changeUsername(String newUsername){
         if(CheckFilled(newUsername)) {
             PersonalData personalData = new PersonalData();

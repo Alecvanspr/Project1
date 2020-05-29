@@ -1,6 +1,7 @@
 package sample.MedicalSection;
 
 import javafx.scene.control.Alert;
+import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
 
 import java.sql.Time;
@@ -8,19 +9,20 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Doctor extends PersonalData {
+public class Docter extends PersonalData {
     private String name;
-    private int age;
+    private String age;
     private int userInt;
+    ArrayKeeper arraykeeper = new ArrayKeeper();
     private ArrayList<Specialty> specialties = new ArrayList<>();
     private ArrayList<Appointment> appointments = new ArrayList<>();
-    private static ArrayList<Doctor> doctors = new ArrayList<>();
 
-    public Doctor(String name, int age, int userInt) {
+    public Docter(String name, int userInt, ArrayList<Specialty> specialties) {
         this.name = name;
-        this.age = age;
+        this.specialties = specialties;
         this.userInt = userInt;
-        doctors.add(this);
+        arraykeeper.addDocter(this);
+
     }
     public ArrayList<Appointment> getAppointments(){
         return this.appointments;
@@ -32,11 +34,9 @@ public class Doctor extends PersonalData {
     public int getUserInt(){
         return this.userInt;
     }
-    public int getAge() {
-        return this.age;
-    }
 
-    public void setName(int age) {
+
+    public void setName(String age) {
         this.age = age;
     }
 
@@ -44,20 +44,23 @@ public class Doctor extends PersonalData {
         return this.specialties;
     }
 
-    public static ArrayList<Doctor> getDoctors(){
-        return doctors;
-    }
-
     public void addSpecialties(Specialty specialty) {
         if (checkSpecialty(specialty)) {
             this.specialties.add(specialty);
         } else {
-            Alert doctorAlreadyHasSpecialty = new Alert(Alert.AlertType.ERROR);
-            doctorAlreadyHasSpecialty.setContentText("This Doctor already has this specialty");
-            doctorAlreadyHasSpecialty.show();
+            Alert docterAlreadyHasSpecialt = new Alert(Alert.AlertType.ERROR);
+            docterAlreadyHasSpecialt.setContentText("This Doctor already has this specialty");
+            docterAlreadyHasSpecialt.show();
         }
     }
-
+    public Specialty getSpecialty(String name){
+        for(int i = 0; i < arraykeeper.specialtiesArrayList.size(); i++){
+            if(arraykeeper.specialtiesArrayList.get(i).getName().equals(name)){
+                return arraykeeper.specialtiesArrayList.get(i);
+            }
+        }
+        return arraykeeper.specialtiesArrayList.get(0);
+    }
     public Boolean checkSpecialty(Specialty specialty){
         for(int i = 0; i < specialties.size(); i++){
             if(specialties.get(i).equals(specialty)){
