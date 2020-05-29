@@ -1,6 +1,7 @@
 package sample;
 
-import sample.MedicalSection.Docter;
+
+import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
 import sample.inlogScreen.PersonalData;
 import sample.livestock.Animal;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class ArrayKeeper {
     public static ArrayList<PersonalData> Data = new ArrayList<>();
     public  ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
-    public static ArrayList<Docter> doctersArrayList = new ArrayList<>();
+    public static ArrayList<Doctor> doctersArrayList = new ArrayList<>();
     private static int currentUser;
 
     public ArrayKeeper(){
@@ -47,11 +48,11 @@ public class ArrayKeeper {
     public void addSpecialty(Specialty specialty){
         specialtiesArrayList.add(specialty);
     }
-    public ArrayList<Docter> getDoctersArrayList(){
-        return this.getDoctersArrayList();
+    public ArrayList<Doctor> getDoctorsArrayList(){
+        return this.getDoctorsArrayList();
     }
-    public void addDocter(Docter docter){
-        doctersArrayList.add(docter);
+    public void addDoctor(Doctor doctor){
+        doctersArrayList.add(doctor);
     }
 
     public void changePassword(int user,String password){

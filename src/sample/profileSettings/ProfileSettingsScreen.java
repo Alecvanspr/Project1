@@ -40,12 +40,12 @@ public class ProfileSettingsScreen extends Application {
             Label doctorStart = new Label("Docter info");
             doctorStart.setFont(Font.font("Arail", 20));
             doctorStart.relocate(300, 100);
-            Label doctorName = new Label("Name: " + arrayKeeper.getPersonaldata().get(currentUser).getDocter().getName());
+            Label doctorName = new Label("Name: " + arrayKeeper.getPersonaldata().get(currentUser).getDoctor().getName());
             doctorName.relocate(300, 125);
             Label specialtiesLabel = new Label("Specialty's ");
             specialtiesLabel.relocate(300, 150);
-            for (int i = 0; i < arrayKeeper.getPersonaldata().get(currentUser).getDocter().getSpecialties().size(); i++){
-                Label label = new Label(arrayKeeper.getPersonaldata().get(currentUser).getDocter().getSpecialties().get(i).getName());
+            for (int i = 0; i < arrayKeeper.getPersonaldata().get(currentUser).getDoctor().getSpecialties().size(); i++){
+                Label label = new Label(arrayKeeper.getPersonaldata().get(currentUser).getDoctor().getSpecialties().get(i).getName());
                 label.relocate(300, 175+(25*i));
                 pSettings.getChildren().addAll(label);
             }

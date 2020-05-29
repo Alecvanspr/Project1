@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.Homescreen;
-import sample.MedicalSection.Docter;
+import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
 
 import java.util.ArrayList;

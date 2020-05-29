@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Docter extends PersonalData {
+public class Doctor extends PersonalData {
     private String name;
     private String age;
     private int userInt;
@@ -17,11 +17,11 @@ public class Docter extends PersonalData {
     private ArrayList<Specialty> specialties = new ArrayList<>();
     private ArrayList<Appointment> appointments = new ArrayList<>();
 
-    public Docter(String name, int userInt, ArrayList<Specialty> specialties) {
+    public Doctor(String name, int userInt, ArrayList<Specialty> specialties) {
         this.name = name;
         this.specialties = specialties;
         this.userInt = userInt;
-        arraykeeper.addDocter(this);
+        arraykeeper.addDoctor(this);
 
     }
     public ArrayList<Appointment> getAppointments(){
@@ -48,9 +48,9 @@ public class Docter extends PersonalData {
         if (checkSpecialty(specialty)) {
             this.specialties.add(specialty);
         } else {
-            Alert docterAlreadyHasSpecialt = new Alert(Alert.AlertType.ERROR);
-            docterAlreadyHasSpecialt.setContentText("This Doctor already has this specialty");
-            docterAlreadyHasSpecialt.show();
+            Alert doctorAlreadyHasSpecialt = new Alert(Alert.AlertType.ERROR);
+            doctorAlreadyHasSpecialt.setContentText("This Doctor already has this specialty");
+            doctorAlreadyHasSpecialt.show();
         }
     }
     public Specialty getSpecialty(String name){

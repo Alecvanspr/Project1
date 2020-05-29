@@ -1,7 +1,7 @@
 package sample.inlogScreen;
 
 import sample.ArrayKeeper;
-import sample.MedicalSection.Docter;
+import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
 import sample.livestock.Animal;
 import sample.livestock.Species;
@@ -21,7 +21,7 @@ public class PersonalData {
     private String securtityQuestion;
     private String securityAnswer;
     private Boolean isDocter= false;
-    private Docter docter;
+    private Doctor doctor;
     public PersonalData(){
     }
     public Boolean getIsDocter(){
@@ -31,12 +31,12 @@ public class PersonalData {
         this.isDocter = isDocter;
     }
     public void makeDoctor(String name, ArrayList<Specialty> specialties) {
-        Docter docter = new Docter(name, ArrayKeeper.getCurrentUser(), specialties);
-        this.docter = docter;
+        Doctor docter = new Doctor(name, ArrayKeeper.getCurrentUser(), specialties);
+        this.doctor = docter;
         setIsDocter(true);
     }
-    public Docter getDocter(){
-        return this.docter;
+    public Doctor getDoctor(){
+        return this.doctor;
     }
 
     public static ArrayList<Species> getSpecies(){
