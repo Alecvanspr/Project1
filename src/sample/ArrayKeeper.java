@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ArrayKeeper {
     public static ArrayList<PersonalData> Data = new ArrayList<>();
-    public  ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
+    public static ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
     public static ArrayList<Doctor> doctorsArrayList = new ArrayList<>();
     private static int currentUser;
 
@@ -43,13 +43,13 @@ public class ArrayKeeper {
         addSpecialty(general);
     }
     public ArrayList<Specialty> getSpecialtiesArrayList(){
-        return this.getSpecialtiesArrayList();
+        return this.specialtiesArrayList;
     }
     public void addSpecialty(Specialty specialty){
         specialtiesArrayList.add(specialty);
     }
     public ArrayList<Doctor> getDoctorsArrayList(){
-        return this.getDoctorsArrayList();
+        return this.doctorsArrayList;
     }
     public void addDoctor(Doctor doctor){
         doctorsArrayList.add(doctor);

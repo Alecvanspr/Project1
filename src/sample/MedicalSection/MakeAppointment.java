@@ -78,8 +78,10 @@ public class MakeAppointment extends Application {
 
         ComboBox specialtyBox = new ComboBox();
         for(int i = 0; i < arrayKeeper.specialtiesArrayList.size(); i++){
-
+            specialtyBox.getItems().add(arrayKeeper.specialtiesArrayList.get(i));
         }
+        specialtyBox.relocate(250, 110);
+        pane.getChildren().add(specialtyBox);
 
         makeAppointmentScene = new Scene(pane, 800, 600);
         stage.setTitle("Make Appointment here");
