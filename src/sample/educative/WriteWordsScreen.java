@@ -136,7 +136,7 @@ public class WriteWordsScreen extends Application {
             senario1();
         }
     }
-    
+
     //met een paar aanpassingen kan dit in een andere class
     public void checkCorrect(String text){
         if(text.equals(CorrectAnswer.getText())){
