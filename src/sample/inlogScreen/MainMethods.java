@@ -30,5 +30,14 @@ public class MainMethods {
         Admin.setSecurtityQuestion("Oh yeah, Mister crabs");
         Admin.setSecurityAnswer("dab");
         arraykeeper.Data.add(Admin);
+
+        arraykeeper.SignUpData("dr","dr","dr","dr","dr",true);
+        PersonalData DoctorMario = new PersonalData();
+        DoctorMario.setUserName("dokter");
+        DoctorMario.setPassword("dokter");
+        DoctorMario.setBirthDate("dokter");
+        DoctorMario.setSecurtityQuestion("hahahaha");
+        DoctorMario.setSecurityAnswer("dokter");
+        arraykeeper.Data.add(DoctorMario);
     }
 }
