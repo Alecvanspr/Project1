@@ -1,6 +1,7 @@
 package sample.inlogScreen;
 
 import sample.ArrayKeeper;
+import sample.MedicalSection.Specialty;
 
 import java.util.ArrayList;
 
@@ -33,11 +34,32 @@ public class MainMethods {
 
         arraykeeper.SignUpData("dr","dr","dr","dr","dr",true);
         PersonalData DoctorMario = new PersonalData();
-        DoctorMario.setUserName("dokter");
-        DoctorMario.setPassword("dokter");
-        DoctorMario.setBirthDate("dokter");
+        DoctorMario.setUserName("mario");
+        DoctorMario.setPassword("mario");
+        DoctorMario.setBirthDate("mario");
         DoctorMario.setSecurtityQuestion("hahahaha");
-        DoctorMario.setSecurityAnswer("dokter");
+        DoctorMario.setSecurityAnswer("mario");
+        Specialty db = new Specialty("Diabetes");
+        Specialty ey = new Specialty("Eyes");
+        ArrayList<Specialty> specialtiesDoc1 = new ArrayList<Specialty>();
+        specialtiesDoc1.add(db);
+        specialtiesDoc1.add(ey);
+        DoctorMario.makeDoctor("Dr. Mario", specialtiesDoc1);
         arraykeeper.Data.add(DoctorMario);
+
+        arraykeeper.SignUpData("luigi","luigi","luigi","luigi","luigi",true);
+        PersonalData DoctorLuigi = new PersonalData();
+        DoctorLuigi.setUserName("luigi");
+        DoctorLuigi.setPassword("luigi");
+        DoctorLuigi.setBirthDate("luigi");
+        DoctorLuigi.setSecurtityQuestion("luigi");
+        DoctorLuigi.setSecurityAnswer("luigi");
+        Specialty ear = new Specialty("Ears");
+        Specialty skin = new Specialty("Skin");
+        ArrayList<Specialty> specialtiesDoc2 = new ArrayList<>();
+        specialtiesDoc2.add(ear);
+        specialtiesDoc2.add(skin);
+        DoctorLuigi.makeDoctor("Dr. Luigi", specialtiesDoc2);
+        arraykeeper.Data.add(DoctorLuigi);
     }
 }
