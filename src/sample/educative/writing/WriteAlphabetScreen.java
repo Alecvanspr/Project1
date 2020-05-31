@@ -1,4 +1,4 @@
-package sample.educative;
+package sample.educative.writing;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -9,10 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-
-import java.util.Random;
+import sample.educative.GetImage;
 
 public class WriteAlphabetScreen extends Application {
     BackgroundImage backgroundImage;
@@ -124,8 +122,8 @@ public class WriteAlphabetScreen extends Application {
         pane.getChildren().addAll(imageView);
     }
     public void checkCounter(){
-        if(letter>getImage.letterImages.size()){
-            System.out.println(getImage.letterImages.size());
+        if(letter>getImage.getLetterImages().size()){
+            System.out.println(getImage.getLetterImages().size());
             letter=0;
         }
     }

@@ -1,10 +1,9 @@
-package sample.educative;
+package sample.educative.writing;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,6 +11,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import sample.educative.GetImage;
+import sample.educative.writing.WriteMainScreen;
 
 import java.util.Random;
 
@@ -26,7 +27,7 @@ public class WriteWordsScreen extends Application {
     Button random2 = new Button("");
     ImageView iv;
     Image image;
-    int rng = random.nextInt(getImage.animalImages.size() - 1);
+    int rng = random.nextInt(getImage.getAnimalImages().size() - 1);
 
 
     @Override
@@ -81,16 +82,16 @@ public class WriteWordsScreen extends Application {
     public void makeBackGround() {
         lblAnswer.setText("");
         pane.getChildren().remove(iv);
-        rng = random.nextInt(getImage.animalImages.size() - 1);
-        int randomAnswer1 = random.nextInt(getImage.animalImages.size() - 1);
-        int randomAnswer2 = random.nextInt(getImage.animalImages.size() - 1);
-        CorrectAnswer.setText(getImage.animalImages.get(rng).getName());
-        random1.setText(getImage.animalImages.get(randomAnswer1).getName());
-        random2.setText(getImage.animalImages.get(randomAnswer2).getName());
+        rng = random.nextInt(getImage.getAnimalImages().size() - 1);
+        int randomAnswer1 = random.nextInt(getImage.getAnimalImages().size() - 1);
+        int randomAnswer2 = random.nextInt(getImage.getAnimalImages().size() - 1);
+        CorrectAnswer.setText(getImage.getAnimalImages().get(rng).getName());
+        random1.setText(getImage.getAnimalImages().get(randomAnswer1).getName());
+        random2.setText(getImage.getAnimalImages().get(randomAnswer2).getName());
 
         RandomizePositions();
 
-        image = getImage.animalImages.get(rng).getImage();
+        image = getImage.getAnimalImages().get(rng).getImage();
         iv = new ImageView();
         iv.setImage(image);
         iv.setPreserveRatio(true);

@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.Homescreen;
+import sample.educative.read.ReadScreen;
+import sample.educative.writing.WriteMainScreen;
 
 public class EducativeHomeScreen extends Application {
     Pane pane = new Pane();

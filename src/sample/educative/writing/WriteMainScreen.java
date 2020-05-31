@@ -1,10 +1,13 @@
-package sample.educative;
+package sample.educative.writing;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.educative.EducativeHomeScreen;
 
 public class WriteMainScreen extends Application {
     Pane pane = new Pane();
@@ -12,37 +15,42 @@ public class WriteMainScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Button btnWriteRandom = new Button("Random");
-        Button btnWriteAlphabet = new Button("Learn Alphabet");
-        Button btnWriteWords = new Button("Write words");
-        Button btnWriteNumbers = new Button("Write Numbers");
+        Image imgbtnAnimals = new Image("images/buttons/btnGuessAnimals.png");
+        Image imgbtnLetters = new Image("images/buttons/btnWriteLetters.png");
+        Image imgbtnNumbers = new Image("images/buttons/btnWriteNumbers.png");
+        Image imgBtnRandom = new Image("images/buttons/btnWriteRandom.png");
+        ImageView btnGuessAnimals = new ImageView(imgbtnAnimals);
+        ImageView btnWriteAlphabet = new ImageView(imgbtnLetters);
+        ImageView btnWriteRandom = new ImageView(imgBtnRandom);
+        ImageView btnWriteNumbers = new ImageView(imgbtnNumbers);
+
         Button btnBack = new Button("Go back");
 
-        btnWriteRandom.relocate(100,100);
-        btnWriteAlphabet.relocate(100,200);
-        btnWriteWords.relocate(200,100);
-        btnWriteNumbers.relocate(200,200);
-        btnBack.relocate(300,200);
+        btnWriteRandom.relocate(200,200);
+        btnWriteAlphabet.relocate(200,400);
+        btnGuessAnimals.relocate(400,200);
+        btnWriteNumbers.relocate(400,400);
+        btnBack.relocate(0,575);
 
         btnBack.setOnAction(E->{
             goBack(stage);
         });
-        btnWriteAlphabet.setOnAction(E->{
+        btnWriteAlphabet.setOnMouseClicked(E->{
             goAlphabet(stage);
         });
-        btnWriteRandom.setOnAction(E->{
+        btnWriteRandom.setOnMouseClicked(E->{
             goRandom(stage);
         });
-        btnWriteNumbers.setOnAction(E->{
+        btnWriteNumbers.setOnMouseClicked(E->{
             goNumbers(stage);
         });
-        btnWriteWords.setOnAction(E->{
+        btnGuessAnimals.setOnMouseClicked(E->{
             goWords(stage);
         });
 
 
 
-        pane.getChildren().addAll(btnWriteRandom,btnWriteAlphabet,btnWriteWords,btnWriteNumbers,btnBack);
+        pane.getChildren().addAll(btnWriteRandom,btnWriteAlphabet,btnGuessAnimals,btnWriteNumbers,btnBack);
         stage.setTitle("Write Main Screen");
         stage.setScene(scene);
         stage.show();

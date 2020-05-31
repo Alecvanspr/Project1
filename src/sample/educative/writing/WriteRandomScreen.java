@@ -1,4 +1,4 @@
-package sample.educative;
+package sample.educative.writing;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -10,54 +10,49 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.educative.GetImage;
+import sample.educative.writing.WriteMainScreen;
 
 import java.util.Random;
 
-public class WriteNumbersScreen extends Application {
-    private int number = 0;
+public class WriteRandomScreen extends Application {
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
     GetImage getImage = new GetImage();
     Canvas canvas = new Canvas(800,600);
     GraphicsContext gc;
-    Image aaa;
 
     @Override
     public void start(Stage stage) throws Exception {
-
-        drawing();
-        makeBackGround();
-
-        Button btnLastNumber = new Button("Last");
-        Button btnNewNumber = new Button("Next");
         Button btnClear = new Button("Clear");
-        Button btnBack = new Button("back");
-        btnBack.relocate(0,575);
-        btnNewNumber.relocate(75,575);
+        Button btnNewLetter = new Button("Next");
 
-        btnNewNumber.setOnAction(E->{
+        btnClear.relocate(0,0);
+        btnNewLetter.relocate(75,575);
+        btnNewLetter.setOnAction(E->{
             makeBackGround();
             clearDrawing();
         });
         btnClear.setOnAction(e->{
             clearDrawing();
         });
+
+        drawing();
+        makeBackGround();
+
+        Button btnBack = new Button("back");
+        btnBack.relocate(0,575);
+
         btnBack.setOnAction(E->{
-            goBack(stage);
-        });
-        btnLastNumber.setOnAction(E->{
-            number-=2;
-            checkNumber();
-            clearDrawing();
-            makeBackGround();
+            goback(stage);
         });
 
-        pane.getChildren().addAll(canvas, btnBack, btnClear,btnNewNumber,btnLastNumber);
-        stage.setTitle("Write numbers screen");
+        pane.getChildren().addAll(canvas,btnBack,btnNewLetter, btnClear);
+        stage.setTitle("Write Screen");
         stage.setScene(scene);
         stage.show();
     }
-    public void goBack(Stage stage){
+    public void goback(Stage stage){
         WriteMainScreen writeMainScreen = new WriteMainScreen();
         try {
             writeMainScreen.start(stage);
@@ -82,22 +77,16 @@ public class WriteNumbersScreen extends Application {
         });
     }
     public void makeBackGround(){
-        BackgroundImage displayNumber = new BackgroundImage(new Image(getImage.numberImages.get(number)),
+        Random random = new Random();
+        int getRandomLetter = random.nextInt(getImage.getLetterImages().size()-1);
+        BackgroundImage displayLetter = new BackgroundImage(new Image(getImage.getLetterImages().get(getRandomLetter)),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         ImageView imageView = new ImageView();
-        pane.setBackground(new Background(displayNumber));
+        pane.setBackground(new Background(displayLetter));
         pane.getChildren().add(imageView);
-        number++;
-        checkNumber();
     }
     public void clearDrawing(){
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
-    public void checkNumber(){
-        if(number>=10){
-            number = 0;
-        }else if(number<0){
-            number = 9;
-        }
-    }
+
 }

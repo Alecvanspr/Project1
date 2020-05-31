@@ -132,7 +132,19 @@ public class GetImage {
         return animalImages.get(place);
     }
 
-    public FlashCards makeFlashCard(String image,String animalName){
+    public ArrayList<String> getLetterImages() {
+        return letterImages;
+    }
+
+    public ArrayList<String> getNumberImages() {
+        return numberImages;
+    }
+
+    public ArrayList<FlashCards> getAnimalImages() {
+        return animalImages;
+    }
+
+    public FlashCards makeFlashCard(String image, String animalName){
         FlashCards flashCards = new FlashCards((new Image(image)),animalName);
         return flashCards;
     }
