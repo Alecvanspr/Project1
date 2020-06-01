@@ -42,13 +42,13 @@ public class GrammarScreen  extends Application {
         Button btnFactors = new Button("Factors");
 
         btnSimplePast.relocate(pastX,getPastY());
+        btnPastPerfect.relocate(pastX,getPastY());
         btnPresentSimple.relocate(presentX,getPresentY());
         btnContinues.relocate(presentX,getPresentY());
         btnPresentProgressive.relocate(presentX,getPresentY());
         btnPastProgressive.relocate(pastX,getPastY());
         btnPresentPerfect.relocate(presentX,getPresentY());
         btnPresentPerfectProgressive.relocate(presentX,getPresentY());
-        btnPastPerfect.relocate(presentX,getPresentY());
         btnPastPerfectProgressive.relocate(pastX,getPastY());
         btnFutureWill.relocate(futureX,getFutureY());
         btnFutureGoingTo.relocate(futureX,getFutureY());
@@ -62,6 +62,15 @@ public class GrammarScreen  extends Application {
 
         btnSimplePast.setOnAction(E->{
             goExplainTenseScreen(stage,0);
+        });
+        btnPastPerfect.setOnAction(E->{
+            goExplainTenseScreen(stage,1);
+        });
+        btnPastPerfectProgressive.setOnAction(E->{
+            goExplainTenseScreen(stage,2);
+        });
+        btnContinues.setOnAction(E->{
+            goExplainTenseScreen(stage,3);
         });
 
 
