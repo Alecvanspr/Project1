@@ -30,7 +30,9 @@ import java.util.HashMap;
 public class HangmanScreen extends Application {
     StackPane pane = new StackPane();
     //Scene scene = new Scene(pane, 800, 600);
-    Scene scene = new Scene(createContent());
+
+    private static final int appW = 800;
+    private static final int appH = 600;
 
     private static final int pointsPerLetter = 100;
     private static final float bonusModifier = 0.2f;
@@ -204,13 +206,14 @@ public class HangmanScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Scene scene = new Scene(createContent());
         Button btnBack = new Button("back");
         btnBack.setAlignment(Pos.BOTTOM_LEFT);
         btnBack.setOnAction(E->{
             goEducativeScreen(stage);
         });
 
-        scene.setOnKeyTyped((KeyEvent event) -> {
+        scene.setOnKeyPressed((KeyEvent event) -> {
             if(event.getText().isEmpty()) {
                 return;
             }
@@ -251,6 +254,8 @@ public class HangmanScreen extends Application {
         pane.getChildren().addAll(btnBack);
 
         stage.setTitle("Hangman screen");
+        stage.setWidth(appW);
+        stage.setHeight(appH);
         stage.setScene(scene);
         stage.show();
     }
