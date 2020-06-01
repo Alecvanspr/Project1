@@ -19,6 +19,7 @@ public class ExplainTenseScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        tenseKeeper.setStage(stage);
         Label lblExplain = new Label(tenseKeeper.tensesExplained.get(currentTense));
         Button btnBack = new Button("back");
 
@@ -29,7 +30,7 @@ public class ExplainTenseScreen extends Application {
             goBack(stage);
         });
 
-        pane.getChildren().addAll(btnBack,lblExplain);
+        pane.getChildren().addAll(btnBack,lblExplain,tenseKeeper.buttons.get(currentTense));
         Scene scene = new Scene(pane, 800, 600);
         stage.setTitle(tenseKeeper.tenseName.get(currentTense));
         stage.setScene(scene);

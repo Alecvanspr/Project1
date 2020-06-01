@@ -28,10 +28,10 @@ public class ReadScreen  extends Application {
             goEducativeScreen(stage);
         });
         btnGrammar.setOnAction(e->{
-
+            goGrammer(stage);
         });
 
-        pane.getChildren().addAll(btnBack,btnHangman);
+        pane.getChildren().addAll(btnBack,btnHangman,btnGrammar);
 
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Read screen");
