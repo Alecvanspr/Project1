@@ -12,10 +12,10 @@ public class MathGame {
     private Boolean startBtn = false;
     private int wrongAnswers = 0;
     private int wrightAnswers = 0;
-    private int randAnswer1 = random.nextInt(50);
-    private int randAnswer2 = random.nextInt(50);
-    private int randAnswer3 = random.nextInt(50);
-    private int randAnswer4 = random.nextInt(50);
+    private int randAnswer1;
+    private int randAnswer2;
+    private int randAnswer3;
+    private int randAnswer4;
     private int answer = randNumb1 + randNumb2;
 
     public void setGame(Boolean game) {
@@ -51,7 +51,7 @@ public class MathGame {
             return randAnswer4;
         }
     }
-    public void setRandNumb(){
+    public void setRandNumb() {
         this.randNumb1 = random.nextInt(50);
         this.randNumb2 = random.nextInt(50);
         this.randButNumb = random.nextInt(3);
@@ -59,7 +59,7 @@ public class MathGame {
         this.randAnswer2 = random.nextInt(50);
         this.randAnswer3 = random.nextInt(50);
         this.randAnswer4 = random.nextInt(50);
-        //this.answer = randNumb1 + randNumb2;
+        this.answer = randNumb1 + randNumb2;
     }
 
     public Boolean getGame() {
