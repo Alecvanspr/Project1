@@ -9,6 +9,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.educative.EducativeHomeScreen;
 import sample.educative.read.tenseScreens.ExplainTenseScreen;
+import sample.educative.read.tenseScreens.IrregularWords.IrregularVerbs;
+import sample.educative.read.tenseScreens.IrregularWords.IrregularVerbsScreen;
 
 public class GrammarScreen  extends Application {
     Pane pane = new Pane();
@@ -40,6 +42,7 @@ public class GrammarScreen  extends Application {
         Button btnFuturePerfect = new Button("Future perfect");
 
         Button btnFactors = new Button("Factors");
+        Button btnIrregularVerbs = new Button("Irregular verbs");
 
         btnSimplePast.relocate(pastX,getPastY());
         btnPastPerfect.relocate(pastX,getPastY());
@@ -54,6 +57,7 @@ public class GrammarScreen  extends Application {
         btnFutureGoingTo.relocate(futureX,getFutureY());
         btnFutureProgressive.relocate(futureX,getFutureY());
         btnFuturePerfect.relocate(futureX,getFutureY());
+        btnIrregularVerbs.relocate(100,400);
 
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
@@ -72,13 +76,16 @@ public class GrammarScreen  extends Application {
         btnContinues.setOnAction(E->{
             goExplainTenseScreen(stage,3);
         });
+        btnIrregularVerbs.setOnAction(E->{
+            goIrregularVerbScreen(stage);
+        });
 
 
 
         pane.getChildren().addAll(btnBack,btnSimplePast,btnPresentSimple,btnContinues,
                 btnPresentProgressive,btnPastProgressive,btnPresentPerfect,btnPastPerfectProgressive,
                 btnPresentPerfectProgressive,btnPastPerfect,btnFutureWill,btnFutureGoingTo,
-                btnFutureProgressive,btnFuturePerfect
+                btnFutureProgressive,btnFuturePerfect,btnIrregularVerbs
                 );
 
         scene = new Scene(pane, 800, 600);
@@ -90,6 +97,14 @@ public class GrammarScreen  extends Application {
         ReadScreen readScreen = new ReadScreen();
         try {
             readScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goIrregularVerbScreen(Stage stage){
+        IrregularVerbsScreen irregularVerbsScreen = new IrregularVerbsScreen();
+        try {
+            irregularVerbsScreen.start(stage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
