@@ -196,8 +196,6 @@ public class MathScreen  extends Application {
     public void checkAnswer(Button button){
         if(mathGame.getGame()) {
             int buttonInt = Integer.parseInt(button.getText());
-            System.out.println(buttonInt);
-            System.out.println(mathGame.getAnswer());
             if(mathGame.getAnswer() == buttonInt) {
                 System.out.println("True");
                 button.setStyle("-fx-background-color: #00ff00; ");
