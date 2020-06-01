@@ -36,34 +36,27 @@ public class WriteAlphabetScreen extends Application {
         btnLowerCase.relocate(150,575);
         btnNextLetter.relocate(75,575);
         btnClear.relocate(775,575);
+
         btnLastLetter.setOnAction(E->{
             letter= letter-2;
-            checkCounter();
-            makeBackGround();
-            clearDrawing();
+            clearAndNext();
         });
 
         btnNextLetter.setOnAction(E->{
             letter=letter+2;
-            checkCounter();
-            makeBackGround();
-            clearDrawing();
+            clearAndNext();
         });
         btnLowerCase.setOnAction(E->{
             letter++;
-            checkCounter();
-            makeBackGround();
-            clearDrawing();
+            clearAndNext();
             pane.getChildren().add(btnCapital);
             pane.getChildren().remove(btnLowerCase);
         });
         btnCapital.setOnAction(E->{
             letter--;
-            checkCounter();
-            makeBackGround();
-            clearDrawing();
             pane.getChildren().add(btnLowerCase);
             pane.getChildren().remove(btnCapital);
+            clearAndNext();
         });
 
         btnClear.setOnAction(E->{
@@ -113,6 +106,7 @@ public class WriteAlphabetScreen extends Application {
     public void clearDrawing(){
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
+
     public void makeBackGround(){
         pane.getChildren().remove(imageView);
         clearDrawing();
@@ -123,8 +117,12 @@ public class WriteAlphabetScreen extends Application {
     }
     public void checkCounter(){
         if(letter>getImage.getLetterImages().size()){
-            System.out.println(getImage.getLetterImages().size());
             letter=0;
         }
+    } // als dit weg kan zou het fijn zijn.
+    public void clearAndNext(){
+        checkCounter();
+        makeBackGround();
+        clearDrawing();
     }
 }

@@ -34,10 +34,10 @@ public class WriteNumbersScreen extends Application {
         Button btnBack = new Button("back");
         btnBack.relocate(0,575);
         btnNewNumber.relocate(75,575);
+        btnLastNumber.relocate(45,575);
 
         btnNewNumber.setOnAction(E->{
-            makeBackGround();
-            clearDrawing();
+            clearAndNext();
         });
         btnClear.setOnAction(e->{
             clearDrawing();
@@ -47,9 +47,7 @@ public class WriteNumbersScreen extends Application {
         });
         btnLastNumber.setOnAction(E->{
             number-=2;
-            checkNumber();
-            clearDrawing();
-            makeBackGround();
+            clearAndNext();
         });
 
         pane.getChildren().addAll(canvas, btnBack, btnClear,btnNewNumber,btnLastNumber);
@@ -99,5 +97,10 @@ public class WriteNumbersScreen extends Application {
         }else if(number<0){
             number = 9;
         }
+    }
+    public void clearAndNext(){
+        checkNumber();
+        makeBackGround();
+        clearDrawing();
     }
 }

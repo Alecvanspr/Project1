@@ -79,7 +79,7 @@ public class WriteMainScreen extends Application {
             ex.printStackTrace();
         }
     }
-    public void goWords(Stage stage){ //Deze werkt nog niet, wel aan bezig nu
+    public void goWords(Stage stage){
         WriteWordsScreen writeWordsScreen = new WriteWordsScreen();
         try {
             writeWordsScreen.start(stage);

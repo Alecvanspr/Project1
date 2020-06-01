@@ -16,17 +16,17 @@ public class ReadScreen  extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Button btnBack = new Button("back");
-        Button btnGrammar = new Button("grammer");
+        Button btnGrammar = new Button("Grammar");
         btnBack.relocate(0,575);
         btnGrammar.relocate(200,200);
         btnBack.setOnAction(E->{
             goEducativeScreen(stage);
         });
         btnGrammar.setOnAction(e->{
-
+            goGrammar(stage);
         });
 
-        pane.getChildren().addAll(btnBack);
+        pane.getChildren().addAll(btnBack,btnGrammar);
 
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Read screen");
@@ -41,7 +41,7 @@ public class ReadScreen  extends Application {
             ex.printStackTrace();
         }
     }
-    public void goGrammer(Stage stage){
+    public void goGrammar(Stage stage){
         GrammarScreen grammarScreen = new GrammarScreen();
         try {
             grammarScreen.start(stage);
