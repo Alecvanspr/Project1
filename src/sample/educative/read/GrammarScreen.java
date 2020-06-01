@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.educative.EducativeHomeScreen;
+import sample.educative.read.tenseScreens.ExplainTenseScreen;
 
 public class GrammarScreen  extends Application {
     Pane pane = new Pane();
@@ -59,6 +60,12 @@ public class GrammarScreen  extends Application {
             goEducativeScreen(stage);
         });
 
+        btnSimplePast.setOnAction(E->{
+            goExplainTenseScreen(stage,0);
+        });
+
+
+
         pane.getChildren().addAll(btnBack,btnSimplePast,btnPresentSimple,btnContinues,
                 btnPresentProgressive,btnPastProgressive,btnPresentPerfect,btnPastPerfectProgressive,
                 btnPresentPerfectProgressive,btnPastPerfect,btnFutureWill,btnFutureGoingTo,
@@ -89,5 +96,13 @@ public class GrammarScreen  extends Application {
     public int getFutureY(){
         this.futureY+=40;
         return futureY;
+    }
+    public void goExplainTenseScreen(Stage stage,int tense){
+        ExplainTenseScreen explainTenseScreen = new ExplainTenseScreen(tense);
+        try {
+            explainTenseScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import sample.educative.read.GrammarScreen;
 import sample.educative.read.ReadScreen;
 
-public class FutureProgressiveScreen extends Application {
+public class PastPerfectProgressiveScreen extends Application {
     Pane pane = new Pane();
     @Override
     public void start(Stage stage) throws Exception {
