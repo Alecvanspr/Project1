@@ -86,14 +86,14 @@ public class MathGame {
     }
 
     public void setWrongAnswers() {
-        this.wrongAnswers = +1;
+        this.wrongAnswers +=1;
     }
     public int getWrightAnswers() {
         return wrightAnswers;
     }
 
     public void setWrightAnswers() {
-        this.wrightAnswers = +1;
+        this.wrightAnswers +=1;
     }
 
     public String MathQuestion(){
