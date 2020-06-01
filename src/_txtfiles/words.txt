@@ -7,7 +7,7 @@
  excrete
  exercise
  face
- first aid
+ first-aid
  foot
  hair
  head

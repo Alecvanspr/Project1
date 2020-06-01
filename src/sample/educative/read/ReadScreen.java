@@ -17,8 +17,13 @@ public class ReadScreen  extends Application {
     public void start(Stage stage) throws Exception {
         Button btnBack = new Button("back");
         Button btnGrammar = new Button("grammer");
+        Button btnHangman = new Button("Hangman");
+        btnHangman.relocate(200,350);
         btnBack.relocate(0,575);
         btnGrammar.relocate(200,200);
+        btnHangman.setOnAction(e->{
+            goHangmanScreen(stage);
+        });
         btnBack.setOnAction(E->{
             goEducativeScreen(stage);
         });
@@ -26,7 +31,7 @@ public class ReadScreen  extends Application {
 
         });
 
-        pane.getChildren().addAll(btnBack);
+        pane.getChildren().addAll(btnBack,btnHangman);
 
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Read screen");
@@ -37,6 +42,14 @@ public class ReadScreen  extends Application {
         EducativeHomeScreen educativeHomeScreen = new EducativeHomeScreen();
         try {
             educativeHomeScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goHangmanScreen(Stage stage){
+        HangmanScreen hangmanScreen = new HangmanScreen();
+        try {
+            hangmanScreen.start(stage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
