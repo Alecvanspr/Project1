@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
@@ -29,18 +30,28 @@ import java.util.HashMap;
 
 public class HangmanScreen extends Application {
     StackPane pane = new StackPane();
-    //Scene scene = new Scene(pane, 800, 600);
+    Button btnBack = new Button("back");
 
     private static final int appW = 800;
     private static final int appH = 600;
+    private static final Font defaultFont = new Font("Segoe UI",36);
 
     private static final int pointsPerLetter = 100;
     private static final float bonusModifier = 0.2f;
+
+    //next correct guess worth
     private float scoreModifier = 1.0f;
 
+    //word that needs to be guessed
     private SimpleStringProperty word = new SimpleStringProperty();
+
+    //checks if game is playable(if you can start a new game/go to a new word)
     private SimpleBooleanProperty playable = new SimpleBooleanProperty();
+
+    //amount of letters left to guess
     private SimpleIntegerProperty lettersToGuess = new SimpleIntegerProperty();
+
+    //the current score
     private SimpleIntegerProperty score = new SimpleIntegerProperty();
 
     private ObservableList<Node> letters;
@@ -49,6 +60,13 @@ public class HangmanScreen extends Application {
     private WordReader wordReader = new WordReader();
 
     public Parent createContent(){
+
+        btnBack = new Button("back");
+
+        HBox rowBack = new HBox();
+        btnBack.setAlignment(Pos.BOTTOM_LEFT);
+        rowBack.getChildren().add(btnBack);
+
         HBox rowLetters = new HBox();
         rowLetters.setAlignment(Pos.CENTER);
         letters = rowLetters.getChildren();
@@ -76,11 +94,13 @@ public class HangmanScreen extends Application {
         rowAlphabet.setAlignment(Pos.CENTER);
         for(char c = 'A'; c<= 'Z'; c++){
             Text t = new Text(String.valueOf(c));
+            t.setFont(defaultFont);
             alphabet.put(c,t);
             rowAlphabet.getChildren().add(t);
         }
 
         Text hyphen = new Text("-");
+        hyphen.setFont(defaultFont);
         alphabet.put('-', hyphen);
         rowAlphabet.getChildren().add(hyphen);
 
@@ -91,7 +111,7 @@ public class HangmanScreen extends Application {
         rowHangman.setAlignment(Pos.CENTER);
 
         VBox vBox = new VBox(10);
-        vBox.getChildren().addAll(row1,rowLetters,row3,rowAlphabet,rowHangman);
+        vBox.getChildren().addAll(row1,rowLetters,row3,rowAlphabet,rowHangman,rowBack);
         return vBox;
     }
 
@@ -148,14 +168,14 @@ public class HangmanScreen extends Application {
             rightArm.setEndY(spineEndY+10);
 
             Line leftLeg = new Line();
-            leftLeg.setStartX(spineStartX);
-            leftLeg.setStartY(spineStartY);
+            leftLeg.setStartX(spineEndX);
+            leftLeg.setStartY(spineEndY);
             leftLeg.setEndX(spineEndX+25);
             leftLeg.setEndY(spineEndY+50);
 
             Line rightLeg = new Line();
-            rightLeg.setStartX(spineStartX);
-            rightLeg.setStartY(spineStartY);
+            rightLeg.setStartX(spineEndX);
+            rightLeg.setStartY(spineEndY);
             rightLeg.setEndX(spineEndX-25);
             rightLeg.setEndY(spineEndY+50);
 
@@ -186,6 +206,7 @@ public class HangmanScreen extends Application {
             bg.setStroke(Color.BLUE);
 
             text = new Text(String.valueOf(letter).toUpperCase());
+            text.setFont(defaultFont);
             text.setVisible(false);
 
             setAlignment(Pos.CENTER);
@@ -207,8 +228,7 @@ public class HangmanScreen extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Scene scene = new Scene(createContent());
-        Button btnBack = new Button("back");
-        btnBack.setAlignment(Pos.BOTTOM_LEFT);
+
         btnBack.setOnAction(E->{
             goEducativeScreen(stage);
         });
@@ -251,7 +271,6 @@ public class HangmanScreen extends Application {
             }
         });
 
-        pane.getChildren().addAll(btnBack);
 
         stage.setTitle("Hangman screen");
         stage.setWidth(appW);

@@ -1,76 +1,76 @@
- blood
- body
- cell
- digestion
- disease
- drug
- excrete
- exercise
- face
- first-aid
- foot
- hair
- head
- health
- hygiene
- injury
- muscle
- nerve
- organ
- reproduction
- respiration
- sense
- skeleton
- tooth
- action
- anger
- behavior
- belief
- care
- emotion
- fear
- happiness
- hate
- knowledge
- learn
- love
- mind
- morals
- personality
- sadness
- thought
- airplane
- boat
- building
- car
- city
- clothing
- community
- cooking
- drink
- family
- food
- furniture
- game
- home
- jewelry
- leisure
- relationship
- room
- school
- sport
- tool
- transportation
- art
- book
- color
- communication
- dance
- film
- grammar
- instrument
- language
- literature
- music
- photography
- theater
+blood
+body
+cell
+digestion
+disease
+drug
+excrete
+exercise
+face
+first-aid
+foot
+hair
+head
+health
+hygiene
+injury
+muscle
+nerve
+organ
+reproduction
+respiration
+sense
+skeleton
+tooth
+action
+anger
+behavior
+belief
+care
+emotion
+fear
+happiness
+hate
+knowledge
+learn
+love
+mind
+morals
+personality
+sadness
+thought
+airplane
+boat
+building
+car
+city
+clothing
+community
+cooking
+drink
+family
+food
+furniture
+game
+home
+jewelry
+leisure
+relationship
+room
+school
+sport
+tool
+transportation
+art
+book
+color
+communication
+dance
+film
+grammar
+instrument
+language
+literature
+music
+photography
+theater
