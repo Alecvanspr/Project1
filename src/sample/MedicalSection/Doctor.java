@@ -13,7 +13,7 @@ public class Doctor extends PersonalData {
     private String name;
     private String age;
     private int userInt;
-    static ArrayKeeper arraykeeper = new ArrayKeeper();
+    ArrayKeeper arraykeeper = new ArrayKeeper();
     private ArrayList<Specialty> specialties = new ArrayList<>();
     private ArrayList<Appointment> appointments = new ArrayList<>();
 

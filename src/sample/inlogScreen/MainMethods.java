@@ -18,6 +18,7 @@ public class MainMethods {
                 }
             }
         }
+        arraykeeper.makeSpecialties();
         arraykeeper.setCurrentUser(s);
         return ret;
     }

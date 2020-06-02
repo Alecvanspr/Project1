@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class PersonalData {
     ArrayList<Animal> animals= new ArrayList<>();
+    ArrayKeeper arrayKeeper = new ArrayKeeper();
     static ArrayList<Species> species= new ArrayList<>();
     private String Usernamename;
     private String name = "Not yet defined";
@@ -31,8 +32,8 @@ public class PersonalData {
         this.isDocter = isDocter;
     }
     public void makeDoctor(String name, ArrayList<Specialty> specialties) {
-        Doctor docter = new Doctor(name, ArrayKeeper.getCurrentUser(), specialties);
-        this.doctor = docter;
+        Doctor doctor = new Doctor(name, ArrayKeeper.getCurrentUser(), specialties);
+        this.doctor = doctor;
         setIsDocter(true);
     }
     public Doctor getDoctor(){

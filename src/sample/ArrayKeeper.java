@@ -16,7 +16,6 @@ public class ArrayKeeper {
     private static int currentUser;
 
     public ArrayKeeper(){
-        makeSpecialties();
     }
 
     public void SignUpData(String name,String password,String birth, String security,String securityQ,Boolean isDoctor){
