@@ -19,6 +19,7 @@ public class VideoTest extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        //voeg volgende toe aan run config om te laten werken --add-modules javafx.controls,javafx.media
         Button btnBack = new Button("back");
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
