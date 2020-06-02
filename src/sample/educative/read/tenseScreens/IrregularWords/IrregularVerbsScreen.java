@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.educative.read.GrammarScreen;
 
 
 public class IrregularVerbsScreen extends Application {
@@ -24,6 +25,13 @@ public class IrregularVerbsScreen extends Application {
         btnPractice.relocate(300,0);
 
         PrintIrregularVerbs();
+        btnBack.setOnAction(E->{
+            goBack(stage);
+        });
+
+        btnPractice.setOnAction(E->{
+            goPractice(stage);
+        });
 
 
         pane.getChildren().addAll(btnBack,btnPractice);
@@ -57,6 +65,22 @@ public class IrregularVerbsScreen extends Application {
             placementY+=35;
 
             pane.getChildren().addAll(lblInfinitive,lblPast,lblPastParticle);
+        }
+    }
+    public void goPractice(Stage stage){
+        PracticeScreen practiceScreen = new PracticeScreen();
+        try {
+            practiceScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goBack(Stage stage){
+        GrammarScreen grammarScreen = new GrammarScreen();
+        try {
+            grammarScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }

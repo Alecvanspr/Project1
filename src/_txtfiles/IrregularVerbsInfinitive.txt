@@ -11,10 +11,12 @@ Bite
 Bleed
 Blow
 Break
+Bring
 Broadcast
 Build
 Burn
 Burst
+Bust
 Buy
 Catch
 Choose
@@ -33,6 +35,8 @@ Drink
 Drive
 Dwell
 Eat
+/////////////////////// fet
+/////////////////////// felt
 Fall
 Find
 Fling
