@@ -70,15 +70,13 @@ public class SignUpScreen extends Application {
 
         });
 
-        passwordField.setOnMouseClicked(E->{
-            lblError.setText("");
-        });
-        passwordFieldConf.setOnMouseClicked(E->{
-            lblError.setText("");
-        });
+        empetyError(textFieldBirth);
+        empetyError(textFieldUserName);
+        empetyError(passwordField);
+        empetyError(passwordFieldConf);
+        empetyError(securityAnswer);
 
         //check if docter box is checked
-
             btnRegister.setOnAction(e->{
                 register(register,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
                         textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString(),stage,docterCheck.isSelected(),lblError);
@@ -115,7 +113,6 @@ public class SignUpScreen extends Application {
             public void handle(MouseEvent mouseEvent) {
                 btnRegister.setScaleX(1);
                 btnRegister.setScaleY(1);
-
             }
         });
         register.getChildren().addAll(lblError);
@@ -131,6 +128,11 @@ public class SignUpScreen extends Application {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+    public void empetyError(TextField textField){
+        textField.setOnMouseClicked(E->{
+            textField.setText("");
+        });
     }
     public void register(Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,Stage stage,Boolean toDocter,Label lblError){
         if((!(password.equals("")))&&(!(username.equals("")))){
