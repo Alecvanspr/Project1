@@ -17,6 +17,7 @@ import sample.inlogScreen.Main;
 import sample.MedicalSection.Specialty;
 
 import javax.swing.*;
+import java.time.LocalDate;
 
 public class MakeAppointment extends Application {
     Scene makeAppointmentScene;
@@ -77,6 +78,8 @@ public class MakeAppointment extends Application {
         doctorBox.setVisible(false);
 
         DatePicker datePicker = new DatePicker();
+        datePicker.setVisible(false);
+        datePicker.relocate(250, 260);
 
         selectSpecialty.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -88,11 +91,34 @@ public class MakeAppointment extends Application {
                 doctorBox.setVisible(true);
             }
         });
+        Button selectDate = new Button("Select date");
+        selectDate.relocate(450, 260);
+        selectDate.setVisible(false);
+        selectDoctor.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                datePicker.setVisible(true);
+                selectDate.setVisible(true);
+            }
+        });
+        selectDate.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                LocalDate date = datePicker.getValue();
+                Dates appointmentDate = new Dates(date);
+                for(int i = 0; i< arrayKeeper.getDoctorsArrayList().size(); i++){
+                    if(arrayKeeper.getDoctorsArrayList().get(i).getName().equalsIgnoreCase(doctorBox.getSelectionModel().getSelectedItem().toString())){
+                        arrayKeeper.getDoctorsArrayList().get(i).addLocalDate(appointmentDate);
+                    }
+                }
+                System.out.println(arrayKeeper.getDoctorsArrayList().get(0).getLocalDate().get(0).toString());
+            }
+        });
 
 
 
 
-        pane.getChildren().addAll(specialtyBox, selectSpecialty, selectDoctor, doctorBox);
+        pane.getChildren().addAll(specialtyBox, selectSpecialty, selectDoctor, doctorBox, datePicker, selectDate);
 
 
         makeAppointmentScene = new Scene(pane, 800, 600);

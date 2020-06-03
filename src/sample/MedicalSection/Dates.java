@@ -3,15 +3,18 @@ package sample.MedicalSection;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import sample.MedicalSection.Doctor;
 public class Dates{
-    private Date date;
+    private LocalDate date;
     ArrayList<String> timeTable = new ArrayList<>();
     ArrayList<Boolean> timeChosen = new ArrayList<>();
-    public Dates(Date date){
+    public Dates(LocalDate date){
         this.date = date;
         fillTimeTable();
+
 
     }
     public void fillTimeTable(){
@@ -27,6 +30,7 @@ public class Dates{
                 timeTable.add(hours+":"+min);
             }
             timeChosen.add(false);
+            x++;
         }
     }
     public Boolean checkIfChosen(String time){

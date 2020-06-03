@@ -16,7 +16,7 @@ public class Doctor extends PersonalData {
     ArrayKeeper arraykeeper = new ArrayKeeper();
     private ArrayList<Specialty> specialties = new ArrayList<>();
     private ArrayList<Appointment> appointments = new ArrayList<>();
-    private static ArrayList<Dates> dates = new ArrayList<>();
+    private ArrayList<Dates> dates = new ArrayList<>();
 
     public Doctor(String name, int userInt, ArrayList<Specialty> specialties) {
         this.name = name;
@@ -25,7 +25,12 @@ public class Doctor extends PersonalData {
         arraykeeper.addDoctor(this);
 
     }
-
+    public void addLocalDate(Dates date){
+        this.dates.add(date);
+    }
+    public ArrayList<Dates> getLocalDate(){
+        return this.dates;
+    }
     public ArrayList<Appointment> getAppointments(){
         return this.appointments;
     }
