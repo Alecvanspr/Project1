@@ -70,17 +70,19 @@ public class SignUpScreen extends Application {
 
         });
 
+        passwordField.setOnMouseClicked(E->{
+            lblError.setText("");
+        });
+        passwordFieldConf.setOnMouseClicked(E->{
+            lblError.setText("");
+        });
+
         //check if docter box is checked
 
             btnRegister.setOnAction(e->{
                 register(register,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
                         textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString(),stage,docterCheck.isSelected(),lblError);
             });
-
-
-
-
-
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
             BackToMain(stage);
         });
@@ -116,6 +118,7 @@ public class SignUpScreen extends Application {
 
             }
         });
+        register.getChildren().addAll(lblError);
         SignUpp = new Scene(register, 800,600);
         stage.setTitle("Sign up");
         stage.setScene(SignUpp);
@@ -133,16 +136,12 @@ public class SignUpScreen extends Application {
         if((!(password.equals("")))&&(!(username.equals("")))){
             if(password.equals(PasswordConfig)) {
                 main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions, false);
-
                 toDocter(toDocter,stage);
             }else {
                 lblError.setText("Passwords don't match");
-                register.getChildren().add(lblError);
-
             }
         }else{
             lblError.setText("Fields are empty");
-            register.getChildren().add(lblError);
         }
     }
     public void toDocter(boolean isDocter,Stage stage){
