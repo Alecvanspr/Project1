@@ -84,19 +84,25 @@ public class Auction {
             Bid newBid = new Bid(user, amount, animal);
             this.setHighestBid(newBid);
             this.getBidHistory().add(newBid);
-            System.out.println("Bid succesfully placed!");
-            Alert bidIsPlaced = new Alert(Alert.AlertType.INFORMATION);
-            bidIsPlaced.setContentText("Bid of " + amount + " has been placed!");
-            bidIsPlaced.show();
+            bidIsPlaced(amount);
 
         }
         else{
             System.out.println("The amount you want to bid MUST be higher than the current highest bid.");
-            Alert bidIsToLow = new Alert(Alert.AlertType.ERROR);
-            bidIsToLow.setContentText("Bid is to low! needs to be higher then " + amount);
-            bidIsToLow.show();
+            bidIsToLow(amount);
         }
 
+    }
+    public void bidIsToLow(Double amount){
+        Alert bidIsToLow = new Alert(Alert.AlertType.ERROR);
+        bidIsToLow.setContentText("Bid is to low! needs to be higher then " + amount);
+        bidIsToLow.show();
+    }
+    public void bidIsPlaced(Double amount){
+        System.out.println("Bid succesfully placed!");
+        Alert bidIsPlaced = new Alert(Alert.AlertType.INFORMATION);
+        bidIsPlaced.setContentText("Bid of " + amount + " has been placed!");
+        bidIsPlaced.show();
     }
 
     public Bid firstBid(Double minPrice,Animal animal){
