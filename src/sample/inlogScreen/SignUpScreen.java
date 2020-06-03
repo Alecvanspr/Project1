@@ -18,6 +18,7 @@ public class SignUpScreen extends Application {
     //    String question1, question2, question3;
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
+        Label lblError = new Label("");
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         Label lblPassWordConf = new Label("Confirm password");
@@ -50,6 +51,7 @@ public class SignUpScreen extends Application {
         lblUserName.relocate(100,50);
         docterCheck.relocate(175, 50);
         docterName.relocate(300, 50);
+        lblError.relocate(300,160);
 
         textFieldUserName.relocate(100,70);
         lblPassWord.relocate(100,95);
@@ -72,7 +74,7 @@ public class SignUpScreen extends Application {
 
             btnRegister.setOnAction(e->{
                 register(register,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
-                        textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString(),stage,docterCheck.isSelected());
+                        textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString(),stage,docterCheck.isSelected(),lblError);
             });
 
 
@@ -127,22 +129,20 @@ public class SignUpScreen extends Application {
             ex.printStackTrace();
         }
     }
-    public void register(Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,Stage stage,Boolean toDocter){
+    public void register(Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,Stage stage,Boolean toDocter,Label lblError){
         if((!(password.equals("")))&&(!(username.equals("")))){
             if(password.equals(PasswordConfig)) {
                 main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions, false);
 
                 toDocter(toDocter,stage);
             }else {
-                Label passwordWrong = new Label("Passwords don't match");
-                passwordWrong.relocate(100,265);
-                register.getChildren().add(passwordWrong);
+                lblError.setText("Passwords don't match");
+                register.getChildren().add(lblError);
 
             }
         }else{
-            Label emptyFields = new Label("Fields are empty");
-            emptyFields.relocate(100,265);
-            register.getChildren().add(emptyFields);
+            lblError.setText("Fields are empty");
+            register.getChildren().add(lblError);
         }
     }
     public void toDocter(boolean isDocter,Stage stage){
