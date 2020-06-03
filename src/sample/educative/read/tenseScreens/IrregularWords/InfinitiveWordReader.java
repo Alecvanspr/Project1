@@ -6,16 +6,27 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class InfinitiveWordReader {
-    private static final String filename = "/_txtfiles/IrregularVerbsInfinitive.txt";
+    /*
+    ik heb 2 verschillende dingen aangemaakt, dat heeft te maken met het open closed princaple,
+    nu kan je makkelijk 2 dingen aanpassen zonder dat je alles moet veranderen.
+     */
+    private static final String fileWordsName = "/_txtfiles/IrregularVerbsInfinitive.txt";
+    private static final String fileSentenceName = "/_txtfiles/SentenceInfinitive.txt";
 
     private ArrayList<String> words = new ArrayList<String>();
+    private ArrayList<String> sentences = new ArrayList<String>();
+
 
     public InfinitiveWordReader(){
+        makeArraylistFromText(words,fileWordsName);
+        makeArraylistFromText(sentences,fileSentenceName);
+    }
+    public void makeArraylistFromText(ArrayList<String> arrayList,String filename){
         try(InputStream in = getClass().getResourceAsStream(filename);
             BufferedReader bf = new BufferedReader(new InputStreamReader(in))){
             String line = "";
             while((line = bf.readLine()) != null)
-                words.add(line);
+                arrayList.add(line);
         }
         catch(Exception e){
             System.out.println("Couldn't find/read file: "+filename);
@@ -25,9 +36,5 @@ public class InfinitiveWordReader {
     public ArrayList<String> getWords() {
         return words;
     }
-
-    public String getRandomWord(){
-        if(words.isEmpty()) return "NO-DATA";
-        return words.get((int)(Math.random()*words.size()));
-    }
+    public ArrayList<String> getSentences(){return sentences;}
 }
