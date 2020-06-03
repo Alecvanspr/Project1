@@ -70,11 +70,11 @@ public class SignUpScreen extends Application {
 
         });
 
-        empetyError(textFieldBirth);
-        empetyError(textFieldUserName);
-        empetyError(passwordField);
-        empetyError(passwordFieldConf);
-        empetyError(securityAnswer);
+        empetyError(textFieldBirth,lblError);
+        empetyError(textFieldUserName,lblError);
+        empetyError(passwordField,lblError);
+        empetyError(passwordFieldConf,lblError);
+        empetyError(securityAnswer,lblError);
 
         //check if docter box is checked
             btnRegister.setOnAction(e->{
@@ -129,9 +129,10 @@ public class SignUpScreen extends Application {
             ex.printStackTrace();
         }
     }
-    public void empetyError(TextField textField){
+    public void empetyError(TextField textField,Label text){
         textField.setOnMouseClicked(E->{
             textField.setText("");
+            text.setText("");
         });
     }
     public void register(Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,Stage stage,Boolean toDocter,Label lblError){

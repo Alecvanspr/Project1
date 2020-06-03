@@ -16,7 +16,6 @@ import sample.market.Auction;
 
 public class ShowAnimalsBySpeciesScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
     Scene scene;
     @Override
     public void start(Stage stage) throws Exception {
