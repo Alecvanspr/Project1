@@ -4,13 +4,13 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.graalvm.compiler.asm.sparc.SPARCAssembler;
+import sample.educative.read.GrammarScreen;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class PracticeScreen extends Application {
@@ -37,12 +37,22 @@ public class PracticeScreen extends Application {
         Button btnNext = new Button("Next");
         lblSentence.setFont(new Font("Comic Sans MS",25));
 
+        btnInfinitive.setOnAction(E->{
+            checkButtonClick(btnInfinitive);
+        });
+        btnPastTense.setOnAction(E->{
+            checkButtonClick(btnPastTense);
+        });
+        btnPastParticle.setOnAction(E->{
+            checkButtonClick(btnPastParticle);
+        });
         btnBack.setOnAction(E->{
             goBack(stage);
         });
 
         btnNext.setOnAction(E->{
             newSentence();
+            clearAllbuttons();
         });
 
         btnNext.relocate(675,565);
@@ -56,7 +66,7 @@ public class PracticeScreen extends Application {
         btnPastParticle.relocate(500,400);
         lblExplain.relocate(200,300);
 
-        pane.getChildren().addAll(btnBack,btnInfinitive,btnPastTense,btnPastParticle,btnNext,lblSentence,lblPastTense,lblInfinitive,lblPastParticle,lblExplain);
+        pane.getChildren().addAll(btnBack,btnInfinitive,btnPastTense,btnPastParticle,btnNext,lblSentence,lblPastTense,lblInfinitive,lblPastParticle,lblExplain,lblWrong);
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pane);
         Scene scene = new Scene(scrollPane, 800, 600);
@@ -66,7 +76,7 @@ public class PracticeScreen extends Application {
     }
 
 public void newSentence(){
-        lblWrong.setText("");
+    lblWrong.setText("");
     Random random = new Random();
     currendWord = random.nextInt(infinitiveWordReader.getWords().size()-1);
     setSentenceLabel(currendWord,random.nextInt(2));
@@ -86,20 +96,36 @@ public void setSentenceLabel(int word,int wordType){
     }
     lblSentence.setText(sentence);
 }
+
 public void checkButtonClick(Button clicked){
         if(answer==0){
-            setButtonColor(clicked);
+            setButtonColor(clicked,infinitiveWordReader.getWords().get(currendWord));
+        }else if(answer == 1){
+            setButtonColor(clicked,pastWordReader.getWords().get(currendWord));
+        }else{
+            setButtonColor(clicked,pastParticipleReader.getWords().get(currendWord));
         }
 }
-public void setButtonColor(Button clicked){
-    if(infinitiveWordReader.getWords().get(currendWord).equals(clicked.getText())){
-
+public void setButtonColor(Button clicked, String correctAnswer){
+    if(correctAnswer.equals(clicked.getText())){
+        clicked.setStyle("-fx-background-color: #00ff00; ");
     }else{
         lblWrong.setText("Wrong, Try Again");
+        clicked.setStyle("-fx-background-color: #ff0000; ");
     }
-
+}
+public void clearAllbuttons(){ //ik weet niet wat de orginele dingen zijn...... help
+        btnInfinitive.setStyle("-fx-background-color: #00FFE5; ");
+        btnPastTense.setStyle("-fx-background-color: #FF2CC1; ");
+        btnPastParticle.setStyle("-fx-background-color: #FFFA00; ");
 }
 public void goBack(Stage stage){
-
+    IrregularVerbsScreen irregularVerbsScreen = new IrregularVerbsScreen();
+    try {
+        irregularVerbsScreen.start(stage);
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+}
 }
 }

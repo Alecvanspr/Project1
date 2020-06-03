@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class PastParticipleReader {
-    private static final String fileSentence = "/_txtfiles/SentencePastParticle.txt";
+    private static final String fileSentence = "/_txtfiles/SentensePastParticle.txt";
     private static final String fileWords = "/_txtfiles/IrregularVerbsPastParticiple.txt";
 
     private ArrayList<String> words = new ArrayList<String>();
