@@ -45,7 +45,7 @@ public class ShowAnimalsBySpeciesScreen extends Application {
             makeAuction.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    showAnimalsBySpecies.displayBidFields(stage,Integer.valueOf(textField.getText()), Double.valueOf(textField1.getText()),x);
+                    displayBidFields(stage,Integer.valueOf(textField.getText()), Double.valueOf(textField1.getText()),x);
                 }
             });
         }
@@ -92,6 +92,17 @@ public class ShowAnimalsBySpeciesScreen extends Application {
             toMany.setContentText("You dont have that many Animals!");
             toMany.show();
         }
+    public void displayBidFields(Stage stage, int amount, double price, int x){
+        if (amount <= PersonalData.getSpecies().get(x).getArrayListOfSpecies().size()){
+            Auction auction = new Auction(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(0), price);
+            for(int i = 1; i < amount; i++){
+                auction.addAnimalToQueue(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(i));
+            }
+            goShowAnimalsBySpiecies(stage);
+        }else{
+            playError();
+        }
+    }
 
     }
 
