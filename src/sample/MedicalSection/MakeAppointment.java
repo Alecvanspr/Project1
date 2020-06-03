@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -25,6 +26,7 @@ public class MakeAppointment extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Pane pane = new Pane();
+
 
         //Exit button
         Button exitButton = new Button("Back");
@@ -71,19 +73,26 @@ public class MakeAppointment extends Application {
         ComboBox doctorBox = new ComboBox();
         Button selectDoctor = new Button("Select");
         selectDoctor.relocate(350 , 210);
+        selectDoctor.setVisible(false);
+        doctorBox.setVisible(false);
+
+        DatePicker datePicker = new DatePicker();
 
         selectSpecialty.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                removeItems(doctorBox);
                 String selectedSpecialty = specialtyBox.getSelectionModel().getSelectedItem().toString();
-                makeDoctorBox(doctorBox,selectedSpecialty, pane,selectDoctor);
+                makeDoctorBox(doctorBox,selectedSpecialty, pane, selectDoctor);
+                selectDoctor.setVisible(true);
+                doctorBox.setVisible(true);
             }
         });
 
 
 
 
-        pane.getChildren().addAll(specialtyBox, selectSpecialty);
+        pane.getChildren().addAll(specialtyBox, selectSpecialty, selectDoctor, doctorBox);
 
 
         makeAppointmentScene = new Scene(pane, 800, 600);
@@ -91,6 +100,9 @@ public class MakeAppointment extends Application {
         stage.setScene(makeAppointmentScene);
         stage.show();
 
+    }
+    public void removeItems(ComboBox comboBox){
+        comboBox.getItems().clear();
     }
     public void makeSpecialtyBox(ComboBox comboBox){
         for( int i =0; i < arrayKeeper.getSpecialtiesArrayList().size(); i++){
@@ -130,13 +142,12 @@ public class MakeAppointment extends Application {
             for(int j = 0; j < arrayKeeper.getDoctorsArrayList().get(i).getSpecialties().size(); j++){
 
                 if(arrayKeeper.getDoctorsArrayList().get(i).getSpecialties().get(j).getName().equalsIgnoreCase(specialty)){
-                    System.out.println("Yes");
                     doctorBox.getItems().add(arrayKeeper.getDoctorsArrayList().get(i).getName());
                 }
             }
         }
+
         doctorBox.relocate(250,210);
-        pane.getChildren().addAll(doctorBox, button);
 
     }
 
