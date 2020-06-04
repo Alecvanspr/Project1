@@ -55,7 +55,7 @@ public class SignUpScreenDocter extends Application {
         pane.getChildren().add(exitBtn);
         //comboboxes for specialty
         Label specialtyText = new Label("What are your specialty's?");
-        ComboBox<String> specialty1 = new ComboBox<String>();
+        ComboBox<String> specialty1 = new ComboBox<>();
         for(int i = 0; i < arraykeeper.specialtiesArrayList.size(); i++){
             specialty1.getItems().add(arraykeeper.specialtiesArrayList.get(i).getName());
         }

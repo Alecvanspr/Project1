@@ -37,6 +37,13 @@ public class Dates{
             x++;
         }
     }
+    public void setChosenTimeOnTrue(String time){
+        for(int i = 0; i < timeTable.size(); i++){
+            if(timeTable.get(i).equalsIgnoreCase(time)){
+                timeChosen.set(i, true);
+            }
+        }
+    }
     public Boolean checkIfChosen(String time){
         for(int i = 0; i < timeTable.size(); i++){
             if(timeTable.get(i).equalsIgnoreCase(time)){

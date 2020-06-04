@@ -23,6 +23,9 @@ public class MakeAppointment extends Application {
     Scene makeAppointmentScene;
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    LocalDate date;
+    String chosenDoctor;
+
     private int labelNumber = 0;
     @Override
     public void start(Stage stage) throws Exception {
@@ -107,11 +110,13 @@ public class MakeAppointment extends Application {
         makeAppointment.relocate(400, 300);
         selectTime.setVisible(false);
         makeAppointment.setVisible(false);
+
+
         selectDate.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                LocalDate date = datePicker.getValue();
-                String chosenDoctor = doctorBox.getSelectionModel().getSelectedItem().toString();
+                chosenDoctor = doctorBox.getSelectionModel().getSelectedItem().toString();
+                date = datePicker.getValue();
                 if(getDoctor(chosenDoctor).checkLocalDate(date)){
                     for(int i = 0; i < getDoctor(chosenDoctor).getDate(date).timeTable.size();i++){
                         if(!getDoctor(chosenDoctor).getDate(date).timeChosen.get(i)){
@@ -127,6 +132,20 @@ public class MakeAppointment extends Application {
                 }
                 selectTime.setVisible(true);
                 makeAppointment.setVisible(true);
+            }
+        });
+        makeAppointment.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Appointment appointment = new Appointment(getDoctor(chosenDoctor), datePicker.getValue(),selectTime.getSelectionModel().getSelectedItem().toString());
+                getDoctor(chosenDoctor).getDate(date).setChosenTimeOnTrue(selectTime.getSelectionModel().getSelectedItem().toString());
+
+                MedicalSection medicalSection = new MedicalSection();
+                try {
+                    medicalSection.start(stage);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
             }
         });
 

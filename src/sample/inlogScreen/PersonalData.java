@@ -21,7 +21,7 @@ public class PersonalData {
     private String gender = "Not yet defined";
     private String securtityQuestion;
     private String securityAnswer;
-    private Boolean isDocter= false;
+    private Boolean isDocter = false;
     private Doctor doctor;
     public PersonalData(){
     }
