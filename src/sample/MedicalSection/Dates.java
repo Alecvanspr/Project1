@@ -23,11 +23,11 @@ public class Dates{
     }
     public void fillTimeTable(){
         int x = 0;
-        int min = 0;
+        int min;
         while (x < 16){
             int hours = 9 + (int)((0.5)*x);
             if(x%2 == 0){
-
+                min =0;
                 timeTable.add(hours+":"+min);
             }else{
                 min = 30;
