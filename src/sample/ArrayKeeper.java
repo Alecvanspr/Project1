@@ -74,4 +74,14 @@ public class ArrayKeeper {
     public PersonalData getData(int user) {
         return Data.get(user);
     }
+
+    public static Doctor findDoctor(String doctorName){
+        for(int i = 0; i < ArrayKeeper.doctorsArrayList.size(); i++){
+            if(ArrayKeeper.doctorsArrayList.get(i).getName().equals(doctorName)){
+                return ArrayKeeper.doctorsArrayList.get(i);
+            }
+        }
+        return null;
+    }
+
 }

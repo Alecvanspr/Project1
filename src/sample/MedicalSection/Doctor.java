@@ -84,9 +84,9 @@ public class Doctor extends PersonalData {
         }
         return arraykeeper.specialtiesArrayList.get(0);
     }
-    public Boolean checkSpecialty(Specialty specialty){
-        for(int i = 0; i < specialties.size(); i++){
-            if(specialties.get(i).equals(specialty)){
+    public Boolean checkSpecialty(Specialty specialty) {
+        for (int i = 0; i < specialties.size(); i++) {
+            if (specialties.get(i).equals(specialty)) {
                 return true;
             }
         }

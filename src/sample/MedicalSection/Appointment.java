@@ -9,14 +9,14 @@ import java.util.Date;
 
 public class Appointment {
     private LocalDate appointmentDate;
-    private Time appointmentTime;
+    private String appointmentTime;
     private String user;
     private int userInt;
     private String notes;
     private Doctor doctor;
 
 
-    public Appointment(Doctor doctor, LocalDate date, Time time){
+    public Appointment(Doctor doctor, LocalDate date, String time){
         this.userInt = ArrayKeeper.getCurrentUser();
         this.appointmentDate = date;
         this.appointmentTime = time;
@@ -25,21 +25,21 @@ public class Appointment {
         doctor.getAppointments().add(this);
     }
     public LocalDate getAppointmentDate(){
-        return this.appointmentDate;
+        return appointmentDate;
     }
-    public Time getAppointmentTime(){
-        return this.appointmentTime;
+    public String getAppointmentTime(){
+        return appointmentTime;
     }
     public String getUser(){
-        return this.user;
+        return user;
     }
     public int getUserInt(){
-        return this.userInt;
+        return userInt;
     }
     public String getNotes(){
-        return this.notes;
+        return notes;
     }
-    public void setAppointmentTime(Time time){
+    public void setAppointmentTime(String time){
         this.appointmentTime = time;
     }
     public void setAppointmentDate(LocalDate date){
