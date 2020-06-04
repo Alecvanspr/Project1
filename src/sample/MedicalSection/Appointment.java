@@ -25,19 +25,19 @@ public class Appointment {
         doctor.getAppointments().add(this);
     }
     public LocalDate getAppointmentDate(){
-        return this.appointmentDate;
+        return appointmentDate;
     }
     public String getAppointmentTime(){
-        return this.appointmentTime;
+        return appointmentTime;
     }
     public String getUser(){
-        return this.user;
+        return user;
     }
     public int getUserInt(){
-        return this.userInt;
+        return userInt;
     }
     public String getNotes(){
-        return this.notes;
+        return notes;
     }
     public void setAppointmentTime(String time){
         this.appointmentTime = time;

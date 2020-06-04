@@ -1,5 +1,6 @@
 package sample.inlogScreen;
 
+import sample.MedicalSection.Appointment;
 import sample.ArrayKeeper;
 import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
@@ -12,6 +13,7 @@ public class PersonalData {
     ArrayList<Animal> animals= new ArrayList<>();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     static ArrayList<Species> species= new ArrayList<>();
+    private ArrayList<Appointment> appointments = new ArrayList<>();
     private String Usernamename;
     private String name = "Not yet defined";
     private String password;
@@ -117,5 +119,12 @@ public class PersonalData {
 
     public void setAnimals(ArrayList<Animal> animals){
         this.animals = animals;
+    }
+
+    public ArrayList<Appointment> getAppointments(){
+        return appointments;
+    }
+
+    public static void main(String[] args) {
     }
 }

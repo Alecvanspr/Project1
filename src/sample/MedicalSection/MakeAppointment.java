@@ -4,10 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -17,7 +14,10 @@ import sample.inlogScreen.Main;
 import sample.MedicalSection.Specialty;
 
 import javax.swing.*;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Optional;
 
 public class MakeAppointment extends Application {
     Scene makeAppointmentScene;
@@ -118,16 +118,14 @@ public class MakeAppointment extends Application {
                 chosenDoctor = doctorBox.getSelectionModel().getSelectedItem().toString();
                 date = datePicker.getValue();
                 if(getDoctor(chosenDoctor).checkLocalDate(date)){
-                    for(int i = 0; i < getDoctor(chosenDoctor).getDate(date).timeTable.size();i++){
-                        if(!getDoctor(chosenDoctor).getDate(date).timeChosen.get(i)){
-                            selectTime.getItems().add(getDoctor(chosenDoctor).getDate(date).timeTable.get(i));
-                        }
+                    for(int i = 0; i < getDoctor(chosenDoctor).getDate(date).getTimeTable().size();i++){
+                        selectTime.getItems().add(getDoctor(chosenDoctor).getDate(date).getTimeTable().get(i));
                     }
                 }else{
                     Dates appointmentDate = new Dates(date);
                     getDoctor(chosenDoctor).addLocalDate(appointmentDate);
-                    for(int i = 0; i < appointmentDate.timeTable.size();i++){
-                        selectTime.getItems().add(appointmentDate.timeTable.get(i));
+                    for(int i = 0; i < appointmentDate.getTimeTable().size();i++){
+                        selectTime.getItems().add(appointmentDate.getTimeTable().get(i));
                     }
                 }
                 selectTime.setVisible(true);
@@ -149,11 +147,27 @@ public class MakeAppointment extends Application {
             }
         });
 
+        makeAppointment.setOnMouseClicked(E -> {
+            Alert alertConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
+            alertConfirmation.setTitle("Confirm appointment");
+            alertConfirmation.setHeaderText("Are you sure you want to make an appointment with " + doctorBox.getValue() + " at " + selectTime.getValue() + " on " + datePicker.getValue() + " for " + specialtyBox.getValue());
 
-
+            Optional<ButtonType> option = alertConfirmation.showAndWait();
+            if(option.get() != null){
+                if(option.get() == ButtonType.OK){
+                    Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor((String) doctorBox.getValue()), datePicker.getValue(), (String) selectTime.getValue());
+                    getDoctor((String) doctorBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable((String) selectTime.getValue());
+                    MedicalSection medicalSection = new MedicalSection();
+                    try {
+                        medicalSection.start(stage);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
 
         pane.getChildren().addAll(specialtyBox, selectSpecialty, selectDoctor, doctorBox, datePicker, selectDate,selectTime, makeAppointment);
-
 
         makeAppointmentScene = new Scene(pane, 800, 600);
         stage.setTitle("Make appointment");
@@ -200,15 +214,12 @@ public class MakeAppointment extends Application {
     public void makeDoctorBox(ComboBox doctorBox, String specialty,Pane pane, Button button){
         for(int i = 0; i < arrayKeeper.getDoctorsArrayList().size(); i++){
             for(int j = 0; j < arrayKeeper.getDoctorsArrayList().get(i).getSpecialties().size(); j++){
-
                 if(arrayKeeper.getDoctorsArrayList().get(i).getSpecialties().get(j).getName().equalsIgnoreCase(specialty)){
                     doctorBox.getItems().add(arrayKeeper.getDoctorsArrayList().get(i).getName());
                 }
             }
         }
-
         doctorBox.relocate(250,210);
-
     }
 
     public void setButtonScale(Button button, Double scale){
@@ -230,8 +241,5 @@ public class MakeAppointment extends Application {
             label.relocate(100, 300);
         }
         labelNumber++;
-
     }
-
-
 }
