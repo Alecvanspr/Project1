@@ -9,11 +9,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 import sample.Homescreen;
 
 public class ProfileSettingsScreen extends Application {
     Homescreen homescreen = new Homescreen();
     Scene Settings;
+    GoToScreens goToScreens = new GoToScreens();
     public int currentUser= ArrayKeeper.getCurrentUser();
 
     public void start(Stage stage) throws Exception{
@@ -36,12 +38,12 @@ public class ProfileSettingsScreen extends Application {
 
         btnBack.relocate(0,570);
         btnBack.setOnAction(e -> {
-            goHomeScreen(stage);
+            goToScreens.goHomeScreen(stage);
         });
 
         btnEdit.relocate(100,235);
         btnEdit.setOnAction(e -> {
-            goEdit(stage);
+            goToScreens.goEditSettings(stage);
         });
 
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -60,26 +62,9 @@ public class ProfileSettingsScreen extends Application {
 
             }
         });
-
         Settings = new Scene(pSettings,800,600);
         stage.setTitle("Profile settings");
         stage.setScene(Settings);
         stage.show();
-    }
-    public void goHomeScreen(Stage stage){
-        Homescreen homescreen = new Homescreen();
-        try {
-            homescreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goEdit(Stage stage){
-        EditSettingsScreen editSettingsScreen = new EditSettingsScreen();
-        try {
-            editSettingsScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
     }
 }

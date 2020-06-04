@@ -9,12 +9,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import sample.GoToScreens;
 
 public class BidHistoryScreen extends Application {
-
     Scene bidHistory;
     BidHistory userBids = new BidHistory();
     AuctionListScreen auctionListScreen = new AuctionListScreen();
+    GoToScreens goToScreens = new GoToScreens();
+
     @Override
     public void start(Stage stage) throws  Exception{
         Pane bidHistoryPane = new Pane();
@@ -38,7 +40,7 @@ public class BidHistoryScreen extends Application {
         });
         bidHistoryPane.getChildren().add(btnBack);
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.goMarketplace(stage);
         });
 
         printBidHistory(bidHistoryPane);
@@ -48,14 +50,7 @@ public class BidHistoryScreen extends Application {
         stage.setScene(bidHistory);
         stage.show();
     }
-    public void goBack(Stage stage){
-        MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
-        try{
-            marketplaceScreen.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
     public void printBidHistory(Pane bidHistoryPane){
         for (int i = 0; i < userBids.getUserBidHistoryList().size(); i++){
             Label bidLabel = new Label("Bid #"+(i+1)+": " +

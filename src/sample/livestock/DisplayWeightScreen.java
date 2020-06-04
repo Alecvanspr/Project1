@@ -10,12 +10,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 
 public class DisplayWeightScreen extends Application {
     Scene weightScene;
     ScrollPane weightScroll = new ScrollPane();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     Pane weightPane = new Pane();
+    GoToScreens goToScreens = new GoToScreens();
     int plaats = 100;
     int currentAnimal;
     int currentUser;
@@ -29,11 +31,11 @@ public class DisplayWeightScreen extends Application {
         ShowWeight();
 
         btnAdd.setOnAction(E->{
-            goAddWeight(stage);
+            goToScreens.goAddWeight(stage,currentAnimal);
         });
 
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.goLiveStock(stage);
         });
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -63,22 +65,7 @@ public class DisplayWeightScreen extends Application {
         this.currentAnimal = currentAnimal;
         this.currentUser = CurrentUser;
     }
-    public void goBack(Stage stage){
-        Livestock livestock = new Livestock();
-        try {
-            livestock.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goAddWeight(Stage stage){
-        AddWeightCheckScreen addWeightCheckScreen = new AddWeightCheckScreen(currentAnimal);
-        try {
-            addWeightCheckScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
     public void ShowWeight(){
         for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getWeight().size(); i++){
             Label Weight = new Label(""+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getWeight().get(i));

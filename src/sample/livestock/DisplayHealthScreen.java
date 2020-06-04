@@ -10,9 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 
 public class DisplayHealthScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;
     ScrollPane healthScroll = new ScrollPane();
     Pane healthPane = new Pane();
@@ -36,11 +38,11 @@ public class DisplayHealthScreen extends Application {
         lblDateAnouncement.relocate(300,80);
 
         btnAdd.setOnAction(E->{
-            goHealthCheck(stage);
+            goToScreens.goHealthCheck(stage,currentAnimal);
                 });
 
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.goLiveStock(stage);
         });
 
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -56,7 +58,6 @@ public class DisplayHealthScreen extends Application {
             public void handle(MouseEvent mouseEvent) {
                 btnBack.setScaleX(1);
                 btnBack.setScaleY(1);
-
             }
         });
 
@@ -72,22 +73,7 @@ public class DisplayHealthScreen extends Application {
         this.currentAnimal = currentAnimal;
         this.currentUser = CurrentUser;
     }
-    public void goBack(Stage stage){
-        Livestock livestock = new Livestock();
-        try {
-            livestock.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goHealthCheck(Stage stage){
-        AddHeathCheckScreen addHeathCheckScreen = new AddHeathCheckScreen(currentAnimal);
-        try {
-            addHeathCheckScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
     public void ShowHealth(){
         for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().size(); i++){
             Label Health = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().get(i));

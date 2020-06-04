@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.livestock.Livestock;
 import javafx.scene.paint.Color;
 
@@ -18,6 +19,7 @@ import javafx.scene.paint.Color;
 public class MakeAuctionScreen extends Application {
     Scene MakeAuction;
     MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
+    GoToScreens goToScreens = new GoToScreens();
 
     public void start(Stage stage) throws  Exception{
         Pane makeAuction = new Pane();
@@ -37,7 +39,7 @@ public class MakeAuctionScreen extends Application {
         thirdLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                goLiveStock(stage);
+                goToScreens.goLiveStock(stage);
             }
         });
         thirdLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -68,7 +70,7 @@ public class MakeAuctionScreen extends Application {
         backBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                goBack(stage);
+                goToScreens.goMarketplace(stage);
             }
         });
         //TextField voor Item
@@ -137,23 +139,5 @@ public class MakeAuctionScreen extends Application {
         stage.setTitle("Make Auction");
         stage.setScene(MakeAuction);
         stage.show();
-    }
-    public void makeAuction(){
-    }
-    public void goLiveStock(Stage stage){
-        Livestock livestock = new Livestock();
-        try{
-            livestock.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goBack(Stage stage){
-        MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
-        try {
-            marketplaceScreen.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
     }
 }

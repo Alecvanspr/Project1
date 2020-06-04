@@ -10,9 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 
 public class AddHeathCheckScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;
     Pane healthPane = new Pane();
     private int currentAnimal;
@@ -35,11 +37,11 @@ public class AddHeathCheckScreen extends Application {
 
         btnApply.setOnAction(E->{
             addHealthSituation(txtHealthSituation.getText());
-            goBack(stage);
+            goToScreens.goHealthCheck(stage,currentAnimal);
         });
 
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.goHealthCheck(stage,currentAnimal);
         });
 
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -65,14 +67,7 @@ public class AddHeathCheckScreen extends Application {
         stage.setScene(healthScene);
         stage.show();
     }
-    public void goBack(Stage stage){
-        DisplayHealthScreen displayHealthScreen = new DisplayHealthScreen(currentAnimal, ArrayKeeper.getCurrentUser());
-        try {
-            displayHealthScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
     public void addHealthSituation(String Situation){
         arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addHealth(Situation);
         arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateHealth(""+java.time.LocalDate.now());

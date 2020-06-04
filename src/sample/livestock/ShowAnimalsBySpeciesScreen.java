@@ -11,12 +11,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 import sample.inlogScreen.PersonalData;
 import sample.market.Auction;
 
 public class ShowAnimalsBySpeciesScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
+    GoToScreens goToScreens = new GoToScreens();
     Scene scene;
     @Override
     public void start(Stage stage) throws Exception {
@@ -62,7 +64,7 @@ public class ShowAnimalsBySpeciesScreen extends Application {
         btnBack.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                goBack(stage);
+                goToScreens.goLiveStock(stage);
             }
         });
 
@@ -71,22 +73,6 @@ public class ShowAnimalsBySpeciesScreen extends Application {
         stage.setScene(scene);
         stage.show();
     }
-        public void goBack (Stage stage){
-            Livestock livestock = new Livestock();
-            try {
-                livestock.start(stage);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-        public void goShowAnimalsBySpiecies (Stage stage){
-            ShowAnimalsBySpeciesScreen showAnimalsBySpeciesScreen = new ShowAnimalsBySpeciesScreen();
-            try {
-                showAnimalsBySpeciesScreen.start(stage);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
         public void playError(){
             Alert toMany = new Alert(Alert.AlertType.ERROR);
             toMany.setContentText("You dont have that many Animals!");

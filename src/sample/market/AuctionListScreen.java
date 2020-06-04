@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
+import sample.GoToScreens;
 
 
 public class AuctionListScreen extends Application {
@@ -13,6 +14,7 @@ public class AuctionListScreen extends Application {
     MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
     ScrollPane scrollPane = new ScrollPane();
     AuctionList auctionListClass = new AuctionList();
+    GoToScreens goToScreens = new GoToScreens();
 
     public void start(Stage stage) throws Exception{
         Pane auctionList = new Pane();
@@ -30,7 +32,7 @@ public class AuctionListScreen extends Application {
             btnBack.setScaleY(1.0);
         });
         btnBack.setOnAction(E-> {
-            goBack(stage);
+            goToScreens.goMarketplace(stage);
         });
 
         //Start Label
@@ -54,30 +56,13 @@ public class AuctionListScreen extends Application {
                 btnToYourBids.setScaleY(1.2);
         });
         btnToYourBids.setOnAction(E-> {
-            goBidHistory(stage);
+            goToScreens.goBidHistory(stage);
         });
         scrollPane.setContent(auctionList);
         AuctionList = new Scene(scrollPane, 800, 600);
         stage.setTitle("Auction list");
         stage.setScene(AuctionList);
         stage.show();
-    }
-
-    public void goBidHistory(Stage stage){
-        BidHistoryScreen bidHistoryScreen = new BidHistoryScreen();
-        try {
-            bidHistoryScreen.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goBack(Stage stage){
-        MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
-        try {
-            marketplaceScreen.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
     }
 
 }

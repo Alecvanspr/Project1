@@ -129,7 +129,6 @@ public class EditSettingsScreen extends Application {
             public void handle(MouseEvent mouseEvent) {
                 btnBack.setScaleX(1);
                 btnBack.setScaleY(1);
-
             }
         });
 

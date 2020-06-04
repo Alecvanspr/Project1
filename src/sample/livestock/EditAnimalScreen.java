@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 import sample.inlogScreen.PersonalData;
 
 
@@ -21,6 +22,7 @@ public class EditAnimalScreen extends Application {
     private int currentUser;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     EditAnimal editAnimal = new EditAnimal();
+    GoToScreens goToScreens = new GoToScreens();
 
     public EditAnimalScreen(int currentAnimal, int currentUser){
         this.currentAnimal = currentAnimal;
@@ -72,12 +74,12 @@ public class EditAnimalScreen extends Application {
 
         btnDelete.setOnAction(E->{
             editAnimal.deleteAnimal();
-            goBack(stage);
+            goToScreens.goLiveStock(stage);
         });
 
 
         btnBack.setOnAction(E-> {
-            goBack(stage);
+            goToScreens.goLiveStock(stage);
         });
 
         btnEdit.setOnAction(E->{
@@ -85,7 +87,7 @@ public class EditAnimalScreen extends Application {
             try {
                 btnSaveChanges.setOnAction(e -> {
                     editAnimal.SaveEdits(txtfname, txtfAge, txtfGender, txtfSpecies, txtfRace,currentAnimal);
-                    goBack(stage);
+                    goToScreens.goLiveStock(stage);
                 });
             }catch (java.lang.NumberFormatException e){
                 pane.getChildren().add(makeError());
@@ -127,14 +129,6 @@ public class EditAnimalScreen extends Application {
     }
     public void setCurrentAnimal(int invoerAnimal){
         this.currentAnimal = invoerAnimal;
-    }
-    public void goBack(Stage stage){
-        Livestock livestock = new Livestock();
-        try {
-            livestock.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
     }
 
         public Label makeError(){

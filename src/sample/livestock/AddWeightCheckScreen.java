@@ -10,9 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 
 public class AddWeightCheckScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;
     Pane healthPane = new Pane();
     int currentAnimal;
@@ -35,11 +37,11 @@ public class AddWeightCheckScreen extends Application {
 
         btnAply.setOnAction(E->{
             addWeightSituation(txtnewWeight.getText());
-            goBack(stage);
+            goToScreens.displayWeight(stage,currentAnimal);
         });
 
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.displayWeight(stage,currentAnimal);
         });
 
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -64,14 +66,7 @@ public class AddWeightCheckScreen extends Application {
         stage.setScene(healthScene);
         stage.show();
     }
-    public void goBack(Stage stage){
-        DisplayWeightScreen displayWeightScreen = new DisplayWeightScreen(currentAnimal,ArrayKeeper.getCurrentUser());
-        try {
-            displayWeightScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
     public void addWeightSituation(String situation){
         arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addWeight(situation);
         arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateWeight(""+java.time.LocalDate.now());

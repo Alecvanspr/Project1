@@ -10,12 +10,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import sample.GoToScreens;
 import sample.Homescreen;
 import sample.livestock.Animal;
 
 public class MarketplaceScreen extends Application {
     Scene marktScene;
     Homescreen homescreen = new Homescreen();
+    GoToScreens goToScreens = new GoToScreens();
     @Override
     public void start(Stage stage) throws Exception{
         Font CfontArial = new Font("Arial", 50);
@@ -46,7 +48,7 @@ public class MarketplaceScreen extends Application {
             }
         });
         btnBack.setOnAction(e -> {
-            goBack(stage);
+            goToScreens.goHomeScreen(stage);
         });
 
         //go to the Auctions of the user
@@ -70,7 +72,7 @@ public class MarketplaceScreen extends Application {
             }
         });
         yourAuctionBtn.setOnAction(E-> {
-            goYourAuction(stage);
+            goToScreens.goYourAuction(stage);
         });
         //button to go to BidHistory
         Button bidHistoryBtn = new Button("Your bid history");
@@ -93,7 +95,7 @@ public class MarketplaceScreen extends Application {
             }
         });
         bidHistoryBtn.setOnAction(E->{
-            goBidHistory(stage);
+            goToScreens.goBidHistory(stage);
         });
 
 
@@ -121,7 +123,7 @@ public class MarketplaceScreen extends Application {
 
         auctionButton.setOnAction(E->{
 
-            goAutionlist(stage);
+            goToScreens.goAutionlist(stage);
         });
         //Button to make Auction
         Button makeAuction = new Button("Make Auction");
@@ -145,7 +147,7 @@ public class MarketplaceScreen extends Application {
         makeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                goToMakeAuction(stage);
+                goToScreens.goToMakeAuction(stage);
             }
         });
         marktScene = new Scene(market,800,600);
@@ -157,48 +159,9 @@ public class MarketplaceScreen extends Application {
         Auction auction = new Auction(animal, minPrice);
         auction.addAnimalToQueue(animal);
     }
-    public void goAutionlist(Stage stage){
-        AuctionListScreen auctionListScreen = new AuctionListScreen();
-        try {
-            auctionListScreen.start(stage);
-        }   catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goBack(Stage stage){
-        Homescreen homescreen = new Homescreen();
-        try {
-            homescreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goBidHistory(Stage stage){
-        BidHistoryScreen bidHistoryScreen = new BidHistoryScreen();
-        try{
-            bidHistoryScreen.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goYourAuction(Stage stage){
-        UserAuctions userAuctions = new UserAuctions();
-        try{
-            userAuctions.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
     public void buttonSetLayout(Button button){
         button.setPrefWidth(100);
         button.setPrefHeight(100);
     }
-    public void goToMakeAuction(Stage stage){
-        MakeAuctionScreen makeAuctionScreen = new MakeAuctionScreen();
-        try {
-            makeAuctionScreen.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
 }

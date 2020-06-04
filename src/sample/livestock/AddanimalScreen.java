@@ -12,11 +12,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 import sample.inlogScreen.Main;
 
 public class AddanimalScreen extends Application {
     Scene animalScene;
     Main main = new Main();
+    GoToScreens goToScreens = new GoToScreens();
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -58,14 +60,14 @@ public class AddanimalScreen extends Application {
         btnBack.relocate(0,565);
 
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.goLiveStock(stage);
         });
 
         btnAdd.setOnAction(E-> {
                     int intAge = Integer.parseInt(txtAge.getText());
                     double doubleWeight = Double.parseDouble(txtWeight.getText());
                     makeNewAnimal(txtname.getText(),txtGender.getText(),intAge,textSpieses.getText(),txtRace.getText(),doubleWeight,txtHealth.getText());
-                    goBack(stage);
+                    goToScreens.goLiveStock(stage);
                 });
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -89,14 +91,7 @@ public class AddanimalScreen extends Application {
         stage.setScene(animalScene);
         stage.show();
     }
-    public void goBack(Stage stage){
-        Livestock livestock = new Livestock();
-        try {
-            livestock.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
     public void makeNewAnimal(String name,String gender,int age,String species,String race,double weight,String health){
         Animal newAminal = new Animal(name,gender,age,species,race,weight,health);
         newAminal.setDateHealth(""+ java.time.LocalDate.now());
