@@ -8,12 +8,14 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sample.educative.GoToEducative;
 import sample.educative.read.GrammarScreen;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class PracticeScreen extends Application {
+    GoToEducative goToEducative = new GoToEducative();
     InfinitiveWordReader infinitiveWordReader = new InfinitiveWordReader();
     PastParticipleReader pastParticipleReader = new PastParticipleReader();
     PastWordReader pastWordReader = new PastWordReader();
@@ -47,7 +49,7 @@ public class PracticeScreen extends Application {
             checkButtonClick(btnPastParticle);
         });
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToEducative.goIrregularVerbScreen(stage);
         });
 
         btnNext.setOnAction(E->{
@@ -118,13 +120,5 @@ public void clearAllbuttons(){ //ik weet niet wat de orginele dingen zijn...... 
         btnInfinitive.setStyle("-fx-background-color: #00FFE5; ");
         btnPastTense.setStyle("-fx-background-color: #FF2CC1; ");
         btnPastParticle.setStyle("-fx-background-color: #FFFA00; ");
-}
-public void goBack(Stage stage){
-    IrregularVerbsScreen irregularVerbsScreen = new IrregularVerbsScreen();
-    try {
-        irregularVerbsScreen.start(stage);
-    } catch (Exception ex) {
-        ex.printStackTrace();
-    }
 }
 }

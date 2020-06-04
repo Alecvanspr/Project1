@@ -7,10 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.educative.GoToEducative;
 import sample.educative.read.GrammarScreen;
 
 
 public class IrregularVerbsScreen extends Application {
+    GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
     PastWordReader pastWordReader = new PastWordReader();
     InfinitiveWordReader infinitiveWordReader = new InfinitiveWordReader();
@@ -26,11 +28,11 @@ public class IrregularVerbsScreen extends Application {
 
         PrintIrregularVerbs();
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToEducative.goGrammar(stage);
         });
 
         btnPractice.setOnAction(E->{
-            goPractice(stage);
+            goToEducative.goPractice(stage);
         });
 
 
@@ -42,15 +44,6 @@ public class IrregularVerbsScreen extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    /*
-    ergens mis ik een redelijk rijtje met irregular verbs.
-    je moet nog even kijken welke ik mis.
-    https://engelslerenonline.com/werkwoorden/onregelmatige-werkwoorden/
-    en mischien moeten we niet alles er in verwerken. dit is ok. ik maak er wel een leuke opdracht bij ofzo.
-    maar claudio zij ook dat het anders te veel loos werk is.
-    als we echt op een punt komen dat we alles hebben gedaan en dat we echt niks te doen hebben.is het mischien leuk om te doen.
-    ok doei.
-     */
 
     public void PrintIrregularVerbs(){
         for(int i = 0; infinitiveWordReader.getWords().size()>i;i++) {
@@ -65,22 +58,6 @@ public class IrregularVerbsScreen extends Application {
             placementY+=35;
 
             pane.getChildren().addAll(lblInfinitive,lblPast,lblPastParticle);
-        }
-    }
-    public void goPractice(Stage stage){
-        PracticeScreen practiceScreen = new PracticeScreen();
-        try {
-            practiceScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goBack(Stage stage){
-        GrammarScreen grammarScreen = new GrammarScreen();
-        try {
-            grammarScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
 }

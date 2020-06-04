@@ -6,10 +6,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.Homescreen;
+import sample.educative.GoToEducative;
 
 public class ContactScreen extends Application {
-
+    GoToScreens goToScreens = new GoToScreens();
     Scene contactScene;
     Addressbook addressbook = new Addressbook();
     int currentUser=0;
@@ -166,7 +168,7 @@ public class ContactScreen extends Application {
 
 
         btnBack.setOnAction(e -> {
-            goHomeScreen(stage);
+            goToScreens.goHomeScreen(stage);
         });
 
         contactScene = new Scene(contact,800,600);
@@ -174,15 +176,4 @@ public class ContactScreen extends Application {
         stage.setScene(contactScene);
         stage.show();
     }
-
-
-    public void goHomeScreen(Stage stage){
-        Homescreen homescreen = new Homescreen();
-        try {
-            homescreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
 }

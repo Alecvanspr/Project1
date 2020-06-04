@@ -4,6 +4,7 @@ import javafx.stage.Stage;
 import sample.educative.read.GrammarScreen;
 import sample.educative.read.tenseScreens.ExplainTenseScreen;
 import sample.educative.read.tenseScreens.IrregularWords.IrregularVerbsScreen;
+import sample.educative.read.tenseScreens.IrregularWords.PracticeScreen;
 import sample.educative.read.tenseScreens.PastPerfectProgressiveScreen;
 import sample.educative.read.tenseScreens.PastPerfectScreen;
 import sample.educative.read.tenseScreens.SimplePastScreen;
@@ -53,6 +54,14 @@ public class GoToEducative {
         PastPerfectProgressiveScreen pastPerfectProgressiveScreen = new PastPerfectProgressiveScreen();
         try {
             pastPerfectProgressiveScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goPractice(Stage stage){
+        PracticeScreen practiceScreen = new PracticeScreen();
+        try {
+            practiceScreen.start(stage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
