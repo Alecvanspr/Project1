@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 import sample.inlogScreen.PersonalData;
 import sample.profileSettings.ProfileSettingsScreen;
 
@@ -21,6 +22,8 @@ import static sample.ArrayKeeper.getCurrentUser;
 public class EditSettingsScreen extends Application {
     Scene changeSettings;
     EditSetings editSetings = new EditSetings();
+    GoToScreens goToScreens = new GoToScreens();
+
     public void start(Stage stage) throws Exception {
         //De code hieronder heeft te maken met de knoppen voor het edit Scherm
         Pane eSettings = new Pane();
@@ -72,28 +75,28 @@ public class EditSettingsScreen extends Application {
         //De code hieronder heeft te maken met de actie van de knoppen.
         btnChangeUsername.setOnAction(E->{
             editSetings.changeUsername(txtNewUsername.getText());
-            goProfileSettingScreen(stage);
+            goToScreens.goProfileSettingScreen(stage);
         });
 
         btnChangePassword.setOnAction(E->{
             editSetings.changePassword(txtNewPassword.getText(),txtNewPasswordConfrm.getText());
-            goProfileSettingScreen(stage);
+            goToScreens.goProfileSettingScreen(stage);
         });
         btnChangeBirthday.setOnAction(E->{
             editSetings.changeBirthday(txtNewBirthday.getText());
-            goProfileSettingScreen(stage);
+            goToScreens.goProfileSettingScreen(stage);
         });
         btnChagnePhonenumber.setOnAction(E->{
             editSetings.changePhone(txtNewPhoneNumber.getText());
-            goProfileSettingScreen(stage);
+            goToScreens.goProfileSettingScreen(stage);
         });
         btnChangeSecurityQuestion.setOnAction(E->{
             editSetings.changeSecurityAnswer(txtSecurityQuestion.getText());
-            goProfileSettingScreen(stage);
+            goToScreens.goProfileSettingScreen(stage);
         });
         btnChangeGender.setOnAction(E->{
             editSetings.changeGender(txtChangeGender.getText());
-            goProfileSettingScreen(stage);
+            goToScreens.goProfileSettingScreen(stage);
         });
         btnChangeName.setOnAction(E->{
 
@@ -106,12 +109,12 @@ public class EditSettingsScreen extends Application {
             editSetings.changeBirthday(txtNewBirthday.getText());
             editSetings.changeSecurityAnswer(txtSecurityQuestion.getText());
             editSetings.changeGender(txtChangeGender.getText());
-            goProfileSettingScreen(stage);
+            goToScreens.goProfileSettingScreen(stage);
         });
 
         btnBack.relocate(0,570);
         btnBack.setOnAction(e -> {
-            goProfileSettingScreen(stage);
+            goToScreens.goProfileSettingScreen(stage);
         });
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -135,13 +138,4 @@ public class EditSettingsScreen extends Application {
         stage.setScene(changeSettings);
         stage.show();
     }
-    public void goProfileSettingScreen(Stage stage){
-        ProfileSettingsScreen profileSettingsScreen = new ProfileSettingsScreen();
-        try {
-            profileSettingsScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
 }
