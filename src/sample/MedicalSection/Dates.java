@@ -21,7 +21,7 @@ public class Dates{
         int x = 0;
         int min = 0;
         while (x < 16){
-            int hours = 9 + ((1/2)*x);
+            int hours = 9 + (int)((0.5)*x);
             if(x%2 == 0){
 
                 timeTable.add(hours+":"+min);
