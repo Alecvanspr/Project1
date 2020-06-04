@@ -7,16 +7,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class MathScreen  extends Application {
     Pane pane = new Pane();
     GoToScreens goToScreens = new GoToScreens();
+    ButtonSettings buttonSettings = new ButtonSettings();
     Scene scene;
 
     @Override
     public void start(Stage stage) throws Exception {
         Button btnBack = new Button("back");
+        buttonSettings.onMouse(btnBack);
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
             goToScreens.goEducativeScreen(stage);

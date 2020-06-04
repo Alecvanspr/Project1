@@ -10,9 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class DisplayWeightScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     Scene weightScene;
     ScrollPane weightScroll = new ScrollPane();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
@@ -37,22 +39,8 @@ public class DisplayWeightScreen extends Application {
         btnBack.setOnAction(E->{
             goToScreens.goLiveStock(stage);
         });
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
-
-            }
-        });
+        buttonSettings.onMouse(btnAdd);
+        buttonSettings.onMouse(btnBack);
 
         weightPane.getChildren().addAll(btnBack,btnAdd);
         weightScroll.setContent(weightPane);

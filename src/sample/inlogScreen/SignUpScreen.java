@@ -7,11 +7,13 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class SignUpScreen extends Application {
     Scene SignUpp;
     Main main = new Main();
+    ButtonSettings buttonSettings = new ButtonSettings();
     GoToScreens goToScreens = new GoToScreens();
     //    String question1, question2, question3;
     public void start(Stage stage) throws Exception{
@@ -62,38 +64,10 @@ public class SignUpScreen extends Application {
             goToScreens.goMain(stage);
         });
 
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
+        buttonSettings.onMouse(btnBack);
+        buttonSettings.onMouse(btnRegister);
 
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
 
-            }
-        });
-        btnRegister.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnRegister.setScaleX(1.2);
-                btnRegister.setScaleY(1.2);
-
-            }
-        });
-        btnRegister.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnRegister.setScaleX(1);
-                btnRegister.setScaleY(1);
-
-            }
-        });
         register.getChildren().addAll(checkBox);
         SignUpp = new Scene(register, 800,600);
         stage.setTitle("Sign up");

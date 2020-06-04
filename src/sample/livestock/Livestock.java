@@ -13,12 +13,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
+import sample.GoToScreens;
 import sample.Homescreen;
 import sample.market.AuctionListScreen;
 
 
 public class Livestock extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    GoToScreens goToScreens = new GoToScreens();
+    ButtonSettings buttonSettings = new ButtonSettings();
     Scene stockScene;
     private int placeName = 75;
     private int placeHealth = 75;
@@ -54,29 +58,15 @@ public class Livestock extends Application {
         displayAllAnimals(stage);
 
         btnAdd.setOnAction(E->{
-            goNewAnimal(stage);
+            goToScreens.goNewAnimal(stage);
         });
 
         liveStockPane.getChildren().addAll(btnBack,btnAdd,lblName,lblHealth,lblWeight);
         btnBack.relocate(10,565);
         btnBack.setOnAction(e -> {
-            returnHome(stage);
+            goToScreens.goHomeScreen(stage);
         });
-
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.0);
-                btnBack.setScaleY(1.0);
-            }
-        });
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleY(1.2);
-                btnBack.setScaleX(1.2);
-            }
-        });
+        buttonSettings.onMouse(btnBack);
 
         //Button to go back to make auction
         Button toMakeAuction = new Button("Go to Auctions");
@@ -84,24 +74,11 @@ public class Livestock extends Application {
         toMakeAuction.setPrefWidth(150);
         toMakeAuction.setPrefHeight(50);
         liveStockPane.getChildren().add(toMakeAuction);
-        toMakeAuction.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                toMakeAuction.setScaleY(1.2);
-                toMakeAuction.setScaleX(1.2);
-            }
-        });
-        toMakeAuction.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                toMakeAuction.setScaleY(1.0);
-                toMakeAuction.setScaleX(1.0);
-            }
-        });
+        buttonSettings.onMouse(toMakeAuction);
         toMakeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                goAuctionList(stage);
+                goToScreens.goAutionlist(stage);
             }
         });
 
@@ -114,23 +91,10 @@ public class Livestock extends Application {
         makeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                goShowAnimalsBySpiecies(stage);
+                goToScreens.goShowAnimalsBySpiecies(stage);
             }
         });
-        makeAuction.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                makeAuction.setScaleX(1.2);
-                makeAuction.setScaleY(1.2);
-            }
-        });
-        makeAuction.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                makeAuction.setScaleY(1.0);
-                makeAuction.setScaleX(1.0);
-            }
-        });
+        buttonSettings.onMouse(makeAuction);
 
         liveStockScroll.setContent(liveStockPane);
         stockScene = new Scene(liveStockScroll,800,600);
@@ -138,69 +102,14 @@ public class Livestock extends Application {
         stage.setScene(stockScene);
         stage.show();
     }
-    public void returnHome(Stage stage){
-        Homescreen homescreen = new Homescreen();
-        try {
-            homescreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goNewAnimal(Stage stage){
-        AddanimalScreen addanimalScreen = new AddanimalScreen();
-        try {
-            addanimalScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goEditAnimal(Stage stage,int animal){
-        EditAnimalScreen editAnimalScreen = new EditAnimalScreen(animal,ArrayKeeper.getCurrentUser());
-        try {
-            editAnimalScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goDisplayHealth(Stage stage,int animal){
-        DisplayHealthScreen displayHealthScreen = new DisplayHealthScreen(animal,ArrayKeeper.getCurrentUser());
-        try {
-            displayHealthScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goDisplayWeight(Stage stage,int animal){
-        DisplayWeightScreen displayWeightScreen = new DisplayWeightScreen(animal,ArrayKeeper.getCurrentUser());
-        try {
-            displayWeightScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goShowAnimalsBySpiecies(Stage stage){
-        ShowAnimalsBySpeciesScreen showAnimalsBySpeciesScreen = new ShowAnimalsBySpeciesScreen();
-        try {
-            showAnimalsBySpeciesScreen.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goAuctionList(Stage stage){
-        AuctionListScreen auctionListScreen = new AuctionListScreen();
-        try {
-            auctionListScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
     public void displayAllAnimals(Stage stage){
         for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++){
             Label label = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getName());
             int animal = i;
             currentAnimal = animal;
             label.setOnMouseClicked(E -> {
-                goEditAnimal(stage, animal);
+                goToScreens.goEditAnimal(stage, animal);
             });
             label.relocate(100, placeName);
             liveStockPane.getChildren().add(label);
@@ -213,7 +122,7 @@ public class Livestock extends Application {
             Label label = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getHealth().get(lastOne));
             int animal = i;
             label.setOnMouseClicked(E -> {
-                goDisplayHealth(stage, animal);
+                goToScreens.displayHealth(stage, animal);
             });
             label.relocate(300, placeHealth);
             placeHealth = placeHealth + 35;
@@ -226,7 +135,7 @@ public class Livestock extends Application {
             Label label = new Label("" + arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getWeight().get(lastOne));
             int animal = i;
             label.setOnMouseClicked(E -> {
-                goDisplayWeight(stage, animal);
+                goToScreens.displayWeight(stage, animal);
             });
             label.relocate(500, plaaceWeight);
             plaaceWeight = plaaceWeight + 35;

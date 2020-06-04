@@ -1,13 +1,16 @@
 package sample;
 
 import javafx.stage.Stage;
+import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
 import sample.educative.MathScreen;
 import sample.educative.read.HangmanScreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.read.VideoTest;
 import sample.educative.writing.*;
+import sample.inlogScreen.ForgotPasswordScreen;
 import sample.inlogScreen.Main;
+import sample.inlogScreen.SignUpScreen;
 import sample.livestock.*;
 import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
@@ -212,6 +215,54 @@ public class GoToScreens {
         try {
             videoTest.start(stage);
         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goProfile(Stage stage){
+        ProfileSettingsScreen pScreen = new ProfileSettingsScreen();
+        try {
+            pScreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goContacts(Stage stage){
+        ContactScreen contactScreen = new ContactScreen();
+        try {
+            contactScreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goForgetPassword(Stage stage){
+        ForgotPasswordScreen forgotPasswordScreen = new ForgotPasswordScreen();
+        try{
+            forgotPasswordScreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goSignUp(Stage stage){
+        SignUpScreen signUpScreen = new SignUpScreen();
+        try{
+            signUpScreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goNewAnimal(Stage stage){
+        AddanimalScreen addanimalScreen = new AddanimalScreen();
+        try {
+            addanimalScreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goEditAnimal(Stage stage,int animal){
+        EditAnimalScreen editAnimalScreen = new EditAnimalScreen(animal,ArrayKeeper.getCurrentUser());
+        try {
+            editAnimalScreen.start(stage);
+        } catch (Exception ex){
             ex.printStackTrace();
         }
     }

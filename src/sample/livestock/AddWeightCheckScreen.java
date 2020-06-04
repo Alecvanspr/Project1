@@ -10,9 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class AddWeightCheckScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;
@@ -44,22 +46,8 @@ public class AddWeightCheckScreen extends Application {
             goToScreens.displayWeight(stage,currentAnimal);
         });
 
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
-
-            }
-        });
+        buttonSettings.onMouse(btnAply);
+        buttonSettings.onMouse(btnBack);
         healthPane.getChildren().addAll(txtnewWeight,btnAply,lblWeight,btnBack);
         healthScene = new Scene(healthPane,800,600);
         stage.setTitle("Add health check");

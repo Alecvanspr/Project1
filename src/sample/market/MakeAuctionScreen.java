@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 import sample.livestock.Livestock;
 import javafx.scene.paint.Color;
@@ -19,6 +20,7 @@ import javafx.scene.paint.Color;
 public class MakeAuctionScreen extends Application {
     Scene MakeAuction;
     MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
+    ButtonSettings buttonSettings = new ButtonSettings();
     GoToScreens goToScreens = new GoToScreens();
 
     public void start(Stage stage) throws  Exception{
@@ -59,14 +61,7 @@ public class MakeAuctionScreen extends Application {
         Button backBtn = new Button("Back");
         backBtn.relocate(10, 565);
         makeAuction.getChildren().add(backBtn);
-        backBtn.setOnMouseEntered(E-> {
-            backBtn.setScaleX(1.2);
-            backBtn.setScaleY(1.2);
-        });
-        backBtn.setOnMouseExited(E-> {
-            backBtn.setScaleX(1.0);
-            backBtn.setScaleY(1.0);
-        });
+        buttonSettings.onMouse(backBtn);
         backBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

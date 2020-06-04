@@ -17,6 +17,8 @@ import sample.market.MarketplaceScreen;
 import sample.profileSettings.ProfileSettingsScreen;
 
 public class Homescreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
+    GoToScreens goToScreens = new GoToScreens();
     Scene homeScene;
     Main main;
     ArrayKeeper arrayKeeper;
@@ -26,7 +28,7 @@ public class Homescreen extends Application {
         welcome.setFont(Font.font("Arial",30));
         //buttons to navigate to different things
         Button btnLogOut = new Button("Log out");
-        Label user = new Label("Welcome back " + ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername());//en dit zou dan de naam weer moeten geven
+        Label user = new Label("Welcome back " + ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername());
         Button btnProfile = new Button("Profile");
         Button btnContacts = new Button("Contacts");
         Button btnMarketPlace = new Button("Marketplace");
@@ -37,106 +39,50 @@ public class Homescreen extends Application {
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
                 btnMarketPlace,btnLiveStock,user,btnEducative);
         welcome.relocate(225,100);
-
         btnEducative.relocate(400,400);
-
         user.relocate(660,35);
+
+        buttonSettings.onMouse(btnContacts);
+        buttonSettings.onMouse(btnEducative);
+        buttonSettings.onMouse(btnLiveStock);
+        buttonSettings.onMouse(btnLogOut);
+        buttonSettings.onMouse(btnMarketPlace);
+        buttonSettings.onMouse(btnProfile);
 
         btnLogOut.relocate(738,5);
         btnLogOut.setOnAction(e -> {
-            goMain(stage);
+            goToScreens.goMain(stage);
         });
 
         //Profile Button
-        setButtonLayout(btnProfile);
+        buttonSettings.setButtonLayout(btnProfile);
         btnProfile.relocate(225,200);
         btnProfile.setOnAction(e -> {
-            goProfile(stage);
-        });
-        btnProfile.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnProfile, 1.0);
-            }
-        });
-        btnProfile.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnProfile, 1.2);
-            }
+            goToScreens.goProfile(stage);
         });
 
         //Contact button
-        setButtonLayout(btnContacts);
+        buttonSettings.setButtonLayout(btnContacts);
         btnContacts.relocate(225,400);
         btnContacts.setOnAction(e -> {
-            goContacts(stage);
-        });
-        btnContacts.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnContacts, 1.2);
-            }
-        });
-        btnContacts.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnContacts, 1.0);
-            }
+            goToScreens.goContacts(stage);
         });
 
         //Market button
-        setButtonLayout(btnMarketPlace);
+        buttonSettings.setButtonLayout(btnMarketPlace);
         btnMarketPlace.relocate(450,200);
         btnMarketPlace.setOnAction(e ->{
-            goMarket(stage);
-        });
-        btnMarketPlace.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnMarketPlace, 1.0);
-            }
-        });
-        btnMarketPlace.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnMarketPlace, 1.2);
-            }
+            goToScreens.goMarketplace(stage);
         });
 
         //Livestoch button
-        setButtonLayout(btnLiveStock);
+        buttonSettings.setButtonLayout(btnLiveStock);
         btnLiveStock.relocate(450,400);
         btnLiveStock.setOnAction(e -> {
-            goLivestock(stage);
+            goToScreens.goLiveStock(stage);
         });
-        btnLiveStock.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnLiveStock, 1.2);
-            }
-        });
-        btnLiveStock.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnLiveStock, 1.0);
-            }
-        });
-
-        btnEducative.setOnAction(e -> {
-            goEducation(stage);
-        });
-        btnEducative.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnEducative, 1.2);
-            }
-        });
-        btnEducative.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnEducative, 1.0);
-            }
+        btnEducative.setOnAction(E->{
+            goToScreens.goEducativeScreen(stage);
         });
 
         homeScene = new Scene(home,800,600);
@@ -149,54 +95,6 @@ public class Homescreen extends Application {
         Main main = new Main();
         try {
             main.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void setButtonLayout(Button button){
-        button.setPrefHeight(150);
-        button.setPrefWidth(150);
-    }
-    public void setButtonScaleChange(Button button, Double scale){
-        button.setScaleY(scale);
-        button.setScaleX(scale);
-    }
-    public void goMarket(Stage stage){
-        MarketplaceScreen markt = new MarketplaceScreen();
-        try {
-            markt.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goProfile(Stage stage){
-        ProfileSettingsScreen pScreen = new ProfileSettingsScreen();
-        try {
-            pScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goContacts(Stage stage){
-        ContactScreen contactScreen = new ContactScreen();
-        try {
-            contactScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goLivestock(Stage stage){
-        Livestock livestock = new Livestock();
-        try {
-            livestock.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goEducation(Stage stage){
-        EducativeHomeScreen educativeHomeScreen = new EducativeHomeScreen();
-        try {
-            educativeHomeScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }

@@ -14,12 +14,14 @@ import javafx.scene.layout.Region;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 import sample.Homescreen;
 
 public class Main extends Application {
     public ArrayKeeper arraykeeper = new ArrayKeeper();
     MainMethods mainMethods = new MainMethods();
     Homescreen home = new Homescreen();
+    GoToScreens goToScreens = new GoToScreens();
     Stage window;
     public Pane login = new Pane();
 
@@ -83,16 +85,13 @@ public class Main extends Application {
             }
         });
         btnSignUp.setOnAction(e -> {
-            goSignUp();
+            goToScreens.goSignUp(window);
         });
 
         btnForgotPassword.setOnMousePressed(e->{
-            goForgetPassword();
+            goToScreens.goForgetPassword(window);
         });
 
-        //login.setMinSize(800,600);
-        //window.setMinHeight(600);
-        //window.setMinWidth(800);
         Scene loginScene = new Scene(root,800,600);
         window.setResizable(true);
         window.setScene(loginScene);
@@ -114,24 +113,6 @@ public class Main extends Application {
 
 
     }
-
-    public void goForgetPassword(){
-        ForgotPasswordScreen forgotPasswordScreen = new ForgotPasswordScreen();
-        try{
-            forgotPasswordScreen.start(window);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goSignUp(){
-        SignUpScreen signUpScreen = new SignUpScreen();
-        try{
-            signUpScreen.start(window);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
     public static void main(String[] args) {
         launch(args);
     }

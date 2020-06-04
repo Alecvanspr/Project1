@@ -10,10 +10,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class DisplayHealthScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    ButtonSettings buttonSettings = new ButtonSettings();
     GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;
     ScrollPane healthScroll = new ScrollPane();
@@ -45,21 +47,8 @@ public class DisplayHealthScreen extends Application {
             goToScreens.goLiveStock(stage);
         });
 
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
-            }
-        });
+        buttonSettings.onMouse(btnAdd);
+        buttonSettings.onMouse(btnBack);
 
 
         healthPane.getChildren().addAll(btnBack,NameAnimal,lblDateAnouncement,lblHealthAnouncement,btnAdd);

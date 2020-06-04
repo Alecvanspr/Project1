@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 import sample.inlogScreen.PersonalData;
 import sample.profileSettings.ProfileSettingsScreen;
@@ -23,6 +24,7 @@ public class EditSettingsScreen extends Application {
     Scene changeSettings;
     EditSetings editSetings = new EditSetings();
     GoToScreens goToScreens = new GoToScreens();
+    ButtonSettings buttonSettings = new ButtonSettings();
 
     public void start(Stage stage) throws Exception {
         //De code hieronder heeft te maken met de knoppen voor het edit Scherm
@@ -116,22 +118,15 @@ public class EditSettingsScreen extends Application {
         btnBack.setOnAction(e -> {
             goToScreens.goProfileSettingScreen(stage);
         });
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
-            }
-        });
-
+        buttonSettings.onMouse(btnApplyAll);
+        buttonSettings.onMouse(btnBack);
+        buttonSettings.onMouse(btnChagnePhonenumber);
+        buttonSettings.onMouse(btnChangeBirthday);
+        buttonSettings.onMouse(btnChangeGender);
+        buttonSettings.onMouse(btnChangeName);
+        buttonSettings.onMouse(btnChangePassword);
+        buttonSettings.onMouse(btnChangeSecurityQuestion);
+        buttonSettings.onMouse(btnChangeUsername);
 
 
         changeSettings = new Scene(eSettings,800,600);

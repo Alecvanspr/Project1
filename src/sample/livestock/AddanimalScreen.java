@@ -12,10 +12,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 import sample.inlogScreen.Main;
 
 public class AddanimalScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     Scene animalScene;
     Main main = new Main();
     GoToScreens goToScreens = new GoToScreens();
@@ -69,22 +71,8 @@ public class AddanimalScreen extends Application {
                     makeNewAnimal(txtname.getText(),txtGender.getText(),intAge,textSpieses.getText(),txtRace.getText(),doubleWeight,txtHealth.getText());
                     goToScreens.goLiveStock(stage);
                 });
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
-
-            }
-        });
+        buttonSettings.onMouse(btnAdd);
+        buttonSettings.onMouse(btnBack);
 
         animal.getChildren().addAll(btnAdd,lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,lblHealth,txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight,txtHealth,btnBack);
         stage.setTitle("Add animal");

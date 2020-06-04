@@ -9,9 +9,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class BidHistoryScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     Scene bidHistory;
     BidHistory userBids = new BidHistory();
     AuctionListScreen auctionListScreen = new AuctionListScreen();
@@ -24,26 +26,14 @@ public class BidHistoryScreen extends Application {
         //Button back
         Button btnBack = new Button("Back");
         btnBack.relocate(10,565);
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.0);
-                btnBack.setScaleY(1.0);
-            }
-        });
+
         bidHistoryPane.getChildren().add(btnBack);
         btnBack.setOnAction(E->{
             goToScreens.goMarketplace(stage);
         });
 
         printBidHistory(bidHistoryPane);
+        buttonSettings.onMouse(btnBack);
 
         bidHistory = new Scene(bidHistoryPane, 800, 600);
         stage.setTitle("Bid History");

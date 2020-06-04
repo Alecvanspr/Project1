@@ -9,11 +9,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 import sample.Homescreen;
 
 public class ProfileSettingsScreen extends Application {
     Homescreen homescreen = new Homescreen();
+    ButtonSettings buttonSettings = new ButtonSettings();
     Scene Settings;
     GoToScreens goToScreens = new GoToScreens();
     public int currentUser= ArrayKeeper.getCurrentUser();
@@ -46,22 +48,8 @@ public class ProfileSettingsScreen extends Application {
             goToScreens.goEditSettings(stage);
         });
 
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
-
-            }
-        });
+        buttonSettings.onMouse(btnBack);
+        buttonSettings.onMouse(btnEdit);
         Settings = new Scene(pSettings,800,600);
         stage.setTitle("Profile settings");
         stage.setScene(Settings);

@@ -10,11 +10,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class ForgotPasswordScreen extends Application {
     Scene ForgotPassword;
     ForgotPassword forgotPassword = new ForgotPassword();
+    ButtonSettings buttonSettings = new ButtonSettings();
     GoToScreens goToScreens = new GoToScreens();
     Main main = new Main();
     public int changingUser;
@@ -66,38 +68,9 @@ public class ForgotPasswordScreen extends Application {
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
             goToScreens.goMain(stage);
         });
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.1);
-                btnBack.setScaleY(1.1);
 
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
+        buttonSettings.onMouse(btnBack);
 
-            }
-        });
-        ChangePassword.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                ChangePassword.setScaleX(1.1);
-                ChangePassword.setScaleY(1.1);
-
-            }
-        });
-        ChangePassword.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                ChangePassword.setScaleX(1);
-                ChangePassword.setScaleY(1);
-
-            }
-        });
 
         ForgotPassword = new Scene(Forgot, 800, 600);
         stage.setTitle("Reset Password");

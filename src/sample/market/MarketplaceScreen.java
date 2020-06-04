@@ -10,11 +10,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 import sample.Homescreen;
 import sample.livestock.Animal;
 
 public class MarketplaceScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     Scene marktScene;
     Homescreen homescreen = new Homescreen();
     GoToScreens goToScreens = new GoToScreens();
@@ -32,21 +34,7 @@ public class MarketplaceScreen extends Application {
         Button btnBack = new Button("Back");
         btnBack.relocate(10,565);
         market.getChildren().add(btnBack);
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
-            }
-        });
+        buttonSettings.onMouse(btnBack);
         btnBack.setOnAction(e -> {
             goToScreens.goHomeScreen(stage);
         });

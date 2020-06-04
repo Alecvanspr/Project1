@@ -6,10 +6,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 
 
 public class AuctionListScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     Scene AuctionList;
     MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
     ScrollPane scrollPane = new ScrollPane();
@@ -23,14 +25,7 @@ public class AuctionListScreen extends Application {
         Button btnBack = new Button("Back");
         btnBack.relocate(750, 565);
         auctionList.getChildren().add(btnBack);
-        btnBack.setOnMouseEntered(E-> {
-            btnBack.setScaleX(1.2);
-            btnBack.setScaleY(1.2);
-        });
-        btnBack.setOnMouseExited(E-> {
-            btnBack.setScaleX(1.0);
-            btnBack.setScaleY(1.0);
-        });
+        buttonSettings.onMouse(btnBack);
         btnBack.setOnAction(E-> {
             goToScreens.goMarketplace(stage);
         });
@@ -47,14 +42,7 @@ public class AuctionListScreen extends Application {
         Button btnToYourBids = new Button("To Your bids");
         btnToYourBids.relocate(650, 50);
         auctionList.getChildren().add(btnToYourBids);
-        btnToYourBids.setOnMouseEntered(E->{
-                btnToYourBids.setScaleX(1.0);
-                btnToYourBids.setScaleY(1.0);
-        });
-        btnToYourBids.setOnMouseEntered(E-> {
-                btnToYourBids.setScaleX(1.2);
-                btnToYourBids.setScaleY(1.2);
-        });
+        buttonSettings.onMouse(btnToYourBids);
         btnToYourBids.setOnAction(E-> {
             goToScreens.goBidHistory(stage);
         });

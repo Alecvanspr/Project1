@@ -5,12 +5,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 import sample.Homescreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.writing.WriteMainScreen;
 
 public class EducativeHomeScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     Pane pane = new Pane();
     GoToScreens goToScreens = new GoToScreens();
     Scene scene;
@@ -28,8 +30,13 @@ public class EducativeHomeScreen extends Application {
         btnRead.relocate(100,200);
         btnWrite.relocate(200,100);
 
+        buttonSettings.onMouse(btnBack);
+        buttonSettings.onMouse(btnMath);
+        buttonSettings.onMouse(btnRead);
+        buttonSettings.onMouse(btnWrite);
+
         btnBack.setOnAction(e -> {
-            goToScreens.goEducativeScreen(stage);
+            goToScreens.goHomeScreen(stage);
         });
         btnMath.setOnAction(E->{
             goToScreens.goMathScreen(stage);

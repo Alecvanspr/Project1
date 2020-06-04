@@ -11,11 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
 import sample.GoToScreens;
 import sample.inlogScreen.PersonalData;
 import sample.market.Auction;
 
 public class ShowAnimalsBySpeciesScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
     GoToScreens goToScreens = new GoToScreens();
@@ -39,6 +41,7 @@ public class ShowAnimalsBySpeciesScreen extends Application {
             pane.getChildren().add(textField1);
 
             Button makeAuction = new Button("Make auction");
+            buttonSettings.onMouse(makeAuction);
             makeAuction.relocate(500, 50+(25*i));
             makeAuction.setPrefWidth(100);
             pane.getChildren().add(makeAuction);
@@ -67,6 +70,8 @@ public class ShowAnimalsBySpeciesScreen extends Application {
                 goToScreens.goLiveStock(stage);
             }
         });
+
+        buttonSettings.onMouse(btnBack);
 
         scene = new Scene(pane,800,600);
         stage.setTitle("Show Animals by spieces");
