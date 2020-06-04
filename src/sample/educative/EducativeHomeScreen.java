@@ -5,12 +5,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.Homescreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.writing.WriteMainScreen;
 
 public class EducativeHomeScreen extends Application {
     Pane pane = new Pane();
+    GoToScreens goToScreens = new GoToScreens();
     Scene scene;
     GetImage getImage = new GetImage();
 
@@ -27,16 +29,16 @@ public class EducativeHomeScreen extends Application {
         btnWrite.relocate(200,100);
 
         btnBack.setOnAction(e -> {
-            returnHome(stage);
+            goToScreens.goEducativeScreen(stage);
         });
         btnMath.setOnAction(E->{
-            goMathScreen(stage);
+            goToScreens.goMathScreen(stage);
         });
         btnRead.setOnAction(E->{
-            goReadScreen(stage);
+            goToScreens.goReadScreen(stage);
         });
         btnWrite.setOnAction(E->{
-            goWriteScreen(stage);
+            goToScreens.goWriteScreen(stage);
         });
 
         pane.getChildren().addAll(btnBack, btnMath, btnRead, btnWrite);
@@ -46,36 +48,5 @@ public class EducativeHomeScreen extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public void goMathScreen(Stage stage){
-        MathScreen mathScreen = new MathScreen();
-        try {
-            mathScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goReadScreen(Stage stage){
-        ReadScreen readScreen = new ReadScreen();
-        try {
-            readScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goWriteScreen(Stage stage){
-        WriteMainScreen writeMainScreen = new WriteMainScreen();
-        try {
-            writeMainScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void returnHome(Stage stage){
-        Homescreen homescreen = new Homescreen();
-        try {
-            homescreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
 }

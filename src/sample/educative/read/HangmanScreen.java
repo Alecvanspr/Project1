@@ -25,11 +25,13 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sample.GoToScreens;
 
 import java.util.HashMap;
 
 public class HangmanScreen extends Application {
     StackPane pane = new StackPane();
+    GoToScreens goToScreens = new GoToScreens();
     Button btnBack = new Button("back");
 
     private static int appW = 800;
@@ -233,7 +235,7 @@ public class HangmanScreen extends Application {
         Scene scene = new Scene(createContent());
 
         btnBack.setOnAction(E->{
-            goEducativeScreen(stage);
+            goToScreens.goEducativeScreen(stage);
         });
 
         scene.setOnKeyPressed((KeyEvent event) -> {
@@ -280,14 +282,5 @@ public class HangmanScreen extends Application {
         stage.setHeight(appH);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void goEducativeScreen(Stage stage){
-        ReadScreen readScreen = new ReadScreen();
-        try {
-            readScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 }

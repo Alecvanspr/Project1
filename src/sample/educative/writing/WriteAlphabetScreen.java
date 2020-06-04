@@ -10,9 +10,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.educative.GetImage;
 
 public class WriteAlphabetScreen extends Application {
+    GoToScreens goToScreens = new GoToScreens();
     BackgroundImage backgroundImage;
     Image image;
     ImageView imageView;
@@ -71,21 +73,13 @@ public class WriteAlphabetScreen extends Application {
         btnBack.relocate(0,575);
 
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.goWriteScreen(stage);
         });
 
         pane.getChildren().addAll(canvas,btnNextLetter,btnClear,btnLastLetter,btnLowerCase,btnBack);
         stage.setTitle("Write Screen");
         stage.setScene(scene);
         stage.show();
-    }
-    public void goBack(Stage stage){
-        WriteMainScreen writeMainScreen = new WriteMainScreen();
-        try {
-            writeMainScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
     public void drawing(){
         gc = canvas.getGraphicsContext2D();

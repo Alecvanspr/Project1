@@ -7,10 +7,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.educative.EducativeHomeScreen;
+import sample.educative.GoToEducative;
 
 public class WriteMainScreen extends Application {
     Pane pane = new Pane();
+    GoToScreens goToScreens = new GoToScreens();
+    GoToEducative goToEducative = new GoToEducative();
     Scene scene = new Scene(pane,800,600);
 
     @Override
@@ -33,66 +37,24 @@ public class WriteMainScreen extends Application {
         btnBack.relocate(0,575);
 
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.goEducativeScreen(stage);
         });
         btnWriteAlphabet.setOnMouseClicked(E->{
-            goAlphabet(stage);
+            goToScreens.goAlphabet(stage);
         });
         btnWriteRandom.setOnMouseClicked(E->{
-            goRandom(stage);
+            goToScreens.goRandom(stage);
         });
         btnWriteNumbers.setOnMouseClicked(E->{
-            goNumbers(stage);
+            goToScreens.goNumbers(stage);
         });
         btnGuessAnimals.setOnMouseClicked(E->{
-            goWords(stage);
+            goToScreens.goWords(stage);
         });
-
-
 
         pane.getChildren().addAll(btnWriteRandom,btnWriteAlphabet,btnGuessAnimals,btnWriteNumbers,btnBack);
         stage.setTitle("Write Main Screen");
         stage.setScene(scene);
         stage.show();
-    }
-    public void goRandom(Stage stage){
-        WriteRandomScreen writeRandomScreen = new WriteRandomScreen();
-        try {
-            writeRandomScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goNumbers(Stage stage){
-        WriteNumbersScreen writeNumbersScren = new WriteNumbersScreen();
-        try {
-            writeNumbersScren.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goAlphabet(Stage stage){
-        WriteAlphabetScreen writeAlphabetScreen = new WriteAlphabetScreen();
-        try {
-            writeAlphabetScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goWords(Stage stage){
-        WriteWordsScreen writeWordsScreen = new WriteWordsScreen();
-        try {
-            writeWordsScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goBack(Stage stage){
-        EducativeHomeScreen educativeHomeScreen = new EducativeHomeScreen();
-        try {
-            educativeHomeScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 }

@@ -5,10 +5,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.educative.GoToEducative;
 import sample.educative.read.GrammarScreen;
 import sample.educative.read.ReadScreen;
 
 public class PastPerfectScreen extends Application {
+    GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
 
     @Override
@@ -16,7 +18,7 @@ public class PastPerfectScreen extends Application {
         Button btnBack = new Button();
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToEducative.goGrammar(stage);
         });
 
         pane.getChildren().addAll(btnBack);
@@ -24,13 +26,5 @@ public class PastPerfectScreen extends Application {
         stage.setTitle("Grammar screen");
         stage.setScene(scene);
         stage.show();
-    }
-    public void goBack(Stage stage){
-        GrammarScreen grammarScreen = new GrammarScreen();
-        try {
-            grammarScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 }

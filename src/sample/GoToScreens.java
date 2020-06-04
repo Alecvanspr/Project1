@@ -1,6 +1,13 @@
 package sample;
 
 import javafx.stage.Stage;
+import sample.educative.EducativeHomeScreen;
+import sample.educative.MathScreen;
+import sample.educative.read.HangmanScreen;
+import sample.educative.read.ReadScreen;
+import sample.educative.read.VideoTest;
+import sample.educative.writing.*;
+import sample.inlogScreen.Main;
 import sample.livestock.*;
 import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
@@ -116,6 +123,95 @@ public class GoToScreens {
         try {
             displayHealthScreen.start(stage);
         } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goMain(Stage stage){
+        Main main = new Main();
+        try {
+            main.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goEducativeScreen(Stage stage){
+        EducativeHomeScreen educativeHomeScreen = new EducativeHomeScreen();
+        try {
+            educativeHomeScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goMathScreen(Stage stage){
+        MathScreen mathScreen = new MathScreen();
+        try {
+            mathScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goReadScreen(Stage stage){
+        ReadScreen readScreen = new ReadScreen();
+        try {
+            readScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goWriteScreen(Stage stage){
+        WriteMainScreen writeMainScreen = new WriteMainScreen();
+        try {
+            writeMainScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goRandom(Stage stage){
+        WriteRandomScreen writeRandomScreen = new WriteRandomScreen();
+        try {
+            writeRandomScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goNumbers(Stage stage){
+        WriteNumbersScreen writeNumbersScren = new WriteNumbersScreen();
+        try {
+            writeNumbersScren.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goAlphabet(Stage stage){
+        WriteAlphabetScreen writeAlphabetScreen = new WriteAlphabetScreen();
+        try {
+            writeAlphabetScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goWords(Stage stage){
+        WriteWordsScreen writeWordsScreen = new WriteWordsScreen();
+        try {
+            writeWordsScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goHangmanScreen(Stage stage){
+        HangmanScreen hangmanScreen = new HangmanScreen();
+        try {
+            hangmanScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void goVideo(Stage stage) {
+        VideoTest videoTest = new VideoTest();
+        try {
+            videoTest.start(stage);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

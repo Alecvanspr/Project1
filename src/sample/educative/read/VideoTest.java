@@ -8,11 +8,13 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.educative.EducativeHomeScreen;
 
 import java.io.File;
 
 public class VideoTest extends Application {
+    GoToScreens goToScreens = new GoToScreens();
     Pane pane = new Pane();
     Scene scene = new Scene(pane,800,600);
     MediaPlayer mediaPlayer;
@@ -23,7 +25,7 @@ public class VideoTest extends Application {
         Button btnBack = new Button("back");
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
-            goReadScreen(stage);
+            goToScreens.goReadScreen(stage);
             mediaPlayer.dispose();
         });
         String path = System.getProperty("user.dir");
@@ -41,12 +43,4 @@ public class VideoTest extends Application {
         stage.show();
     }
 
-    public void goReadScreen(Stage stage){
-        ReadScreen readScreen = new ReadScreen();
-        try {
-            readScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
 }

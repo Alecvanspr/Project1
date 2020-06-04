@@ -5,10 +5,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.educative.EducativeHomeScreen;
+import sample.educative.GoToEducative;
 
 public class ReadScreen  extends Application {
     Pane pane = new Pane();
+    GoToScreens goToScreens = new GoToScreens();
+    GoToEducative goToEducative = new GoToEducative();
     Scene scene;
 
     @Override
@@ -19,19 +23,19 @@ public class ReadScreen  extends Application {
         Button btnYouCantSeeMe = new Button("you cant see mee");
         btnYouCantSeeMe.relocate(300,350);
         btnYouCantSeeMe.setOnAction(e->{
-            goVideo(stage);
+            goToScreens.goVideo(stage);
         });
         btnHangman.relocate(200,350);
         btnBack.relocate(0,575);
         btnGrammar.relocate(200,200);
         btnHangman.setOnAction(e->{
-            goHangmanScreen(stage);
+            goToScreens.goHangmanScreen(stage);
         });
         btnBack.setOnAction(E->{
-            goEducativeScreen(stage);
+            goToScreens.goEducativeScreen(stage);
         });
         btnGrammar.setOnAction(e->{
-            goGrammer(stage);
+            goToEducative.goGrammar(stage);
         });
 
         pane.getChildren().addAll(btnBack,btnHangman,btnGrammar,btnYouCantSeeMe);
@@ -40,39 +44,5 @@ public class ReadScreen  extends Application {
         stage.setTitle("Read screen");
         stage.setScene(scene);
         stage.show();
-    }
-    public void goEducativeScreen(Stage stage){
-        EducativeHomeScreen educativeHomeScreen = new EducativeHomeScreen();
-        try {
-            educativeHomeScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goHangmanScreen(Stage stage){
-        HangmanScreen hangmanScreen = new HangmanScreen();
-        try {
-            hangmanScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void goVideo(Stage stage) {
-        VideoTest videoTest = new VideoTest();
-        try {
-            videoTest.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void goGrammer(Stage stage){
-        GrammarScreen grammarScreen = new GrammarScreen();
-        try {
-            grammarScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 }

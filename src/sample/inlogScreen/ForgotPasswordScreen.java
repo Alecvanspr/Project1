@@ -10,10 +10,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 
 public class ForgotPasswordScreen extends Application {
     Scene ForgotPassword;
     ForgotPassword forgotPassword = new ForgotPassword();
+    GoToScreens goToScreens = new GoToScreens();
     Main main = new Main();
     public int changingUser;
     public Label lblError = new Label();
@@ -62,7 +64,7 @@ public class ForgotPasswordScreen extends Application {
         });
 
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
-            goBack(stage);
+            goToScreens.goMain(stage);
         });
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -109,20 +111,12 @@ public class ForgotPasswordScreen extends Application {
         if(secutiry.equalsIgnoreCase(main.arraykeeper.getPersonaldata().get(changingUser).getSecurityAnswer())) {
             if (password.equals(passwordcheck)) {
                 main.arraykeeper.changePassword(changingUser, password);
-                goBack(stage);
+                goToScreens.goMain(stage);
             } else {
                 lblError.setText("Passwords do not match");
             }
         }else{
             lblError.setText("Question Wrong");
-        }
-    }
-    public void goBack(Stage stage){
-        Main main = new Main();
-        try {
-            main.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
 }

@@ -7,10 +7,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 
 public class SignUpScreen extends Application {
     Scene SignUpp;
     Main main = new Main();
+    GoToScreens goToScreens = new GoToScreens();
     //    String question1, question2, question3;
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
@@ -57,7 +59,7 @@ public class SignUpScreen extends Application {
                     textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString());
         });
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
-            BackToMain(stage);
+            goToScreens.goMain(stage);
         });
 
         btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -98,20 +100,13 @@ public class SignUpScreen extends Application {
         stage.setScene(SignUpp);
         stage.show();
     }
-    public void BackToMain(Stage stage){
-        Main main = new Main();
-        try {
-            main.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+
     //deze laat ik er in omdat het een javaFX class is.
     public void register(Stage stage,Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions){
         if((!(password.equals("")))&&(!(username.equals("")))){
             if(password.equals(PasswordConfig)) {
                 main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions);
-                BackToMain(stage);
+                goToScreens.goMain(stage);
             }else {
                 Label passwordWrong = new Label("Passwords don't match");
                 passwordWrong.relocate(100,265);

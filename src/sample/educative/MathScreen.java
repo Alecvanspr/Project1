@@ -7,9 +7,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 
 public class MathScreen  extends Application {
     Pane pane = new Pane();
+    GoToScreens goToScreens = new GoToScreens();
     Scene scene;
 
     @Override
@@ -17,7 +19,7 @@ public class MathScreen  extends Application {
         Button btnBack = new Button("back");
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
-            goEducativeScreen(stage);
+            goToScreens.goEducativeScreen(stage);
         });
 
         pane.getChildren().addAll(btnBack);
@@ -25,13 +27,5 @@ public class MathScreen  extends Application {
         stage.setTitle("Math screen");
         stage.setScene(scene);
         stage.show();
-    }
-    public void goEducativeScreen(Stage stage){
-        EducativeHomeScreen educativeHomeScreen = new EducativeHomeScreen();
-        try {
-            educativeHomeScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 }

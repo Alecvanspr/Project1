@@ -10,10 +10,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.educative.GetImage;
+import sample.educative.GoToEducative;
 import sample.educative.writing.WriteMainScreen;
 
 public class WriteNumbersScreen extends Application {
+    GoToScreens goToScreens = new GoToScreens();
+    GoToEducative goToEducative = new GoToEducative();
     private int number = 0;
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
@@ -43,7 +47,7 @@ public class WriteNumbersScreen extends Application {
             clearDrawing();
         });
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.goWriteScreen(stage);
         });
         btnLastNumber.setOnAction(E->{
             number-=2;
@@ -54,14 +58,6 @@ public class WriteNumbersScreen extends Application {
         stage.setTitle("Write numbers screen");
         stage.setScene(scene);
         stage.show();
-    }
-    public void goBack(Stage stage){
-        WriteMainScreen writeMainScreen = new WriteMainScreen();
-        try {
-            writeMainScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
     public void drawing(){
         gc = canvas.getGraphicsContext2D();

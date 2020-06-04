@@ -7,12 +7,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.educative.EducativeHomeScreen;
+import sample.educative.GoToEducative;
 import sample.educative.read.tenseScreens.ExplainTenseScreen;
 import sample.educative.read.tenseScreens.IrregularWords.IrregularVerbs;
 import sample.educative.read.tenseScreens.IrregularWords.IrregularVerbsScreen;
 
 public class GrammarScreen  extends Application {
+    GoToScreens goToScreens = new GoToScreens();
+    GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
     Scene scene;
     int pastY = 65;
@@ -61,23 +65,23 @@ public class GrammarScreen  extends Application {
 
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
-            goEducativeScreen(stage);
+            goToScreens.goReadScreen(stage);
         });
 
         btnSimplePast.setOnAction(E->{
-            goExplainTenseScreen(stage,0);
+            goToEducative.goExplainTenseScreen(stage,0);
         });
         btnPastPerfect.setOnAction(E->{
-            goExplainTenseScreen(stage,1);
+            goToEducative.goExplainTenseScreen(stage,1);
         });
         btnPastPerfectProgressive.setOnAction(E->{
-            goExplainTenseScreen(stage,2);
+            goToEducative.goExplainTenseScreen(stage,2);
         });
         btnContinues.setOnAction(E->{
-            goExplainTenseScreen(stage,3);
+            goToEducative.goExplainTenseScreen(stage,3);
         });
         btnIrregularVerbs.setOnAction(E->{
-            goIrregularVerbScreen(stage);
+            goToEducative.goIrregularVerbScreen(stage);
         });
 
 
@@ -93,22 +97,6 @@ public class GrammarScreen  extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public void goEducativeScreen(Stage stage){
-        ReadScreen readScreen = new ReadScreen();
-        try {
-            readScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goIrregularVerbScreen(Stage stage){
-        IrregularVerbsScreen irregularVerbsScreen = new IrregularVerbsScreen();
-        try {
-            irregularVerbsScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
     public int getPastY(){
         this.pastY+=40;
         return pastY;
@@ -120,13 +108,5 @@ public class GrammarScreen  extends Application {
     public int getFutureY(){
         this.futureY+=40;
         return futureY;
-    }
-    public void goExplainTenseScreen(Stage stage,int tense){
-        ExplainTenseScreen explainTenseScreen = new ExplainTenseScreen(tense);
-        try {
-            explainTenseScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 }

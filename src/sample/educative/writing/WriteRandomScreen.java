@@ -10,12 +10,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.educative.GetImage;
+import sample.educative.GoToEducative;
 import sample.educative.writing.WriteMainScreen;
 
 import java.util.Random;
 
 public class WriteRandomScreen extends Application {
+    GoToScreens goToScreens = new GoToScreens();
+    GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
     GetImage getImage = new GetImage();
@@ -53,12 +57,7 @@ public class WriteRandomScreen extends Application {
         stage.show();
     }
     public void goback(Stage stage){
-        WriteMainScreen writeMainScreen = new WriteMainScreen();
-        try {
-            writeMainScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+       goToScreens.goWriteScreen(stage);
     }
     public void drawing(){
         gc = canvas.getGraphicsContext2D();

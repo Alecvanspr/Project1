@@ -11,12 +11,16 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.educative.GetImage;
+import sample.educative.GoToEducative;
 import sample.educative.writing.WriteMainScreen;
 
 import java.util.Random;
 
 public class WriteWordsScreen extends Application {
+    GoToScreens goToScreens = new GoToScreens();
+    GoToEducative goToEducative = new GoToEducative();
     Label lblAnswer = new Label("");
     Random random = new Random();
     Pane pane = new Pane();
@@ -70,12 +74,7 @@ public class WriteWordsScreen extends Application {
     }
 
     public void goBack(Stage stage) {
-        WriteMainScreen writeMainScreen = new WriteMainScreen();
-        try {
-            writeMainScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        goToScreens.goWriteScreen(stage);
     }
 
     //deze method zorgt voor de verandering van de dieren.
