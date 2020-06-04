@@ -114,9 +114,7 @@ public class MakeAppointment extends Application {
                 String chosenDoctor = doctorBox.getSelectionModel().getSelectedItem().toString();
                 if(getDoctor(chosenDoctor).checkLocalDate(date)){
                     for(int i = 0; i < getDoctor(chosenDoctor).getDate(date).getTimeTable().size();i++){
-                        if(!getDoctor(chosenDoctor).getDate(date).getTimeChosen().get(i)){
-                            selectTime.getItems().add(getDoctor(chosenDoctor).getDate(date).getTimeTable().get(i));
-                        }
+                        selectTime.getItems().add(getDoctor(chosenDoctor).getDate(date).getTimeTable().get(i));
                     }
                 }else{
                     Dates appointmentDate = new Dates(date);

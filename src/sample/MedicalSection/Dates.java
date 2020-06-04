@@ -12,7 +12,6 @@ import sample.MedicalSection.Doctor;
 public class Dates{
     private LocalDate date;
     private ArrayList<String> timeTable = new ArrayList<>();
-    private ArrayList<Boolean> timeChosen = new ArrayList<>();
     public Dates(LocalDate date){
         this.date = date;
         fillTimeTable();
@@ -20,10 +19,6 @@ public class Dates{
 
     public ArrayList<String> getTimeTable(){
         return timeTable;
-    }
-
-    public ArrayList<Boolean> getTimeChosen(){
-        return timeChosen;
     }
 
     public LocalDate getDate(){
@@ -43,27 +38,8 @@ public class Dates{
                 min = 30;
                 timeTable.add(hours + ":" + min);
             }
-            timeChosen.add(false);
             x++;
         }
-    }
-
-    public Boolean checkIfChosen(String time){
-        for(int i = 0; i < timeTable.size(); i++){
-            if(timeTable.get(i).equalsIgnoreCase(time)){
-                if(timeChosen.get(i)){
-                    return false;
-                }
-                else{
-                    timeChosen.set(i, true);
-                    return true;
-                }
-            }
-            else{
-                return false;
-            }
-        }
-        return false;
     }
 
     public void removeTimeFromTimeTable(String chosenTime){
