@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+
 import sample.MedicalSection.Doctor;
 public class Dates{
     private LocalDate date;
@@ -16,6 +17,9 @@ public class Dates{
         fillTimeTable();
 
 
+    }
+    public LocalDate getDate(){
+        return this.date;
     }
     public void fillTimeTable(){
         int x = 0;

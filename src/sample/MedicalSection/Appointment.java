@@ -4,10 +4,11 @@ import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Appointment {
-    private Date appointmentDate;
+    private LocalDate appointmentDate;
     private Time appointmentTime;
     private String user;
     private int userInt;
@@ -15,14 +16,15 @@ public class Appointment {
     private Doctor doctor;
 
 
-    public Appointment(Doctor doctor, Date date, Time time){
+    public Appointment(Doctor doctor, LocalDate date, Time time){
         this.userInt = ArrayKeeper.getCurrentUser();
         this.appointmentDate = date;
         this.appointmentTime = time;
         this.doctor = doctor;
         this.user = ArrayKeeper.Data.get(userInt).getName();
+        doctor.getAppointments().add(this);
     }
-    public Date getAppointmentDate(){
+    public LocalDate getAppointmentDate(){
         return this.appointmentDate;
     }
     public Time getAppointmentTime(){
@@ -40,7 +42,7 @@ public class Appointment {
     public void setAppointmentTime(Time time){
         this.appointmentTime = time;
     }
-    public void setAppointmentDate(Date date){
+    public void setAppointmentDate(LocalDate date){
         this.appointmentDate = date;
     }
     public void setNotes(String notes){

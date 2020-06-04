@@ -25,6 +25,22 @@ public class Doctor extends PersonalData {
         arraykeeper.addDoctor(this);
 
     }
+    public Dates getDate(LocalDate date){
+        for (int i =0; i < dates.size(); i++){
+            if(dates.get(i).equals(date)){
+                return dates.get(i);
+            }
+        }
+        return dates.get(0);
+    }
+    public Boolean checkLocalDate(LocalDate date){
+        for (int i = 0; i < dates.size(); i++){
+            if(date.equals(dates.get(i).getDate())){
+                return true;
+            }
+        }
+        return false;
+    }
     public void addLocalDate(Dates date){
         this.dates.add(date);
     }

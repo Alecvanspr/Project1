@@ -101,24 +101,39 @@ public class MakeAppointment extends Application {
                 selectDate.setVisible(true);
             }
         });
+        ComboBox selectTime = new ComboBox();
+        Button makeAppointment = new Button("Make Appointment");
+        selectTime.relocate(260, 300);
+        makeAppointment.relocate(400, 300);
+        selectTime.setVisible(false);
+        makeAppointment.setVisible(false);
         selectDate.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 LocalDate date = datePicker.getValue();
-                Dates appointmentDate = new Dates(date);
-                for(int i = 0; i< arrayKeeper.getDoctorsArrayList().size(); i++){
-                    if(arrayKeeper.getDoctorsArrayList().get(i).getName().equalsIgnoreCase(doctorBox.getSelectionModel().getSelectedItem().toString())){
-                        arrayKeeper.getDoctorsArrayList().get(i).addLocalDate(appointmentDate);
+                String chosenDoctor = doctorBox.getSelectionModel().getSelectedItem().toString();
+                if(getDoctor(chosenDoctor).checkLocalDate(date)){
+                    for(int i = 0; i < getDoctor(chosenDoctor).getDate(date).timeTable.size();i++){
+                        if(!getDoctor(chosenDoctor).getDate(date).timeChosen.get(i)){
+                            selectTime.getItems().add(getDoctor(chosenDoctor).getDate(date).timeTable.get(i));
+                        }
+                    }
+                }else{
+                    Dates appointmentDate = new Dates(date);
+                    getDoctor(chosenDoctor).addLocalDate(appointmentDate);
+                    for(int i = 0; i < appointmentDate.timeTable.size();i++){
+                        selectTime.getItems().add(appointmentDate.timeTable.get(i));
                     }
                 }
-                System.out.println(arrayKeeper.getDoctorsArrayList().get(0).getLocalDate().get(0).toString());
+                selectTime.setVisible(true);
+                makeAppointment.setVisible(true);
             }
         });
 
 
 
 
-        pane.getChildren().addAll(specialtyBox, selectSpecialty, selectDoctor, doctorBox, datePicker, selectDate);
+        pane.getChildren().addAll(specialtyBox, selectSpecialty, selectDoctor, doctorBox, datePicker, selectDate,selectTime, makeAppointment);
 
 
         makeAppointmentScene = new Scene(pane, 800, 600);
