@@ -90,15 +90,6 @@ public class Homescreen extends Application {
         stage.setScene(homeScene);
         stage.show();
     }
-
-    public void goMain(Stage stage){
-        Main main = new Main();
-        try {
-            main.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
 }
 
 
