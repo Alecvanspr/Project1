@@ -133,6 +133,8 @@ public class EditSettingsScreen extends Application {
             }
         });
 
+
+
         changeSettings = new Scene(eSettings,800,600);
         stage.setTitle("Change Settings");
         stage.setScene(changeSettings);
