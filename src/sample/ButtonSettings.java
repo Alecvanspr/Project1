@@ -28,3 +28,4 @@ public class ButtonSettings {
         button.setPrefWidth(150);
     }
 }
+
