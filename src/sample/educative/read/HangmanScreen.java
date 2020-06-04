@@ -32,12 +32,12 @@ public class HangmanScreen extends Application {
     StackPane pane = new StackPane();
     Button btnBack = new Button("back");
 
-    private static final int appW = 800;
-    private static final int appH = 600;
-    private static final Font defaultFont = new Font("Segoe UI",36);
+    private static int appW = 800;
+    private static int appH = 600;
+    private static Font defaultFont = new Font("Segoe UI",36);
 
-    private static final int pointsPerLetter = 100;
-    private static final float bonusModifier = 0.2f;
+    private static int pointsPerLetter = 100;
+    private static float bonusModifier = 0.2f;
 
     //next correct guess worth
     private float scoreModifier = 1.0f;
@@ -59,6 +59,7 @@ public class HangmanScreen extends Application {
     private HangmanImage hangman = new HangmanImage();
     private WordReader wordReader = new WordReader();
 
+    //creates the layout of the screen
     public Parent createContent(){
 
         btnBack = new Button("back");
@@ -71,13 +72,13 @@ public class HangmanScreen extends Application {
         rowLetters.setAlignment(Pos.CENTER);
         letters = rowLetters.getChildren();
 
-        playable.bind(hangman.lives.greaterThan(0).and(lettersToGuess.greaterThan(0)));
+        playable.bind(hangman.tries.greaterThan(0).and(lettersToGuess.greaterThan(0)));
         playable.addListener((obs, old, newValue) -> {
             if(!newValue.booleanValue())
                 stopGame();
         });
 
-        Button btnAgain = new Button("New Game");
+        Button btnAgain = new Button("New Word");
         btnAgain.disableProperty().bind(playable);
         btnAgain.setOnAction(e -> startGame());
 
@@ -138,13 +139,14 @@ public class HangmanScreen extends Application {
         }
     }
 
+    //the way hangman image is drawn using javafx and responsible for tries per word
     private static class HangmanImage extends Parent{
         private static final int spineStartX = 100;
         private static final int spineStartY = 20;
         private static final int spineEndX = spineStartX;
         private static final int spineEndY = spineStartY+50;
 
-        private SimpleIntegerProperty lives = new SimpleIntegerProperty();
+        private SimpleIntegerProperty tries = new SimpleIntegerProperty();
         public HangmanImage(){
             Circle head = new Circle(20);
             head.setTranslateX(spineStartX);
@@ -180,23 +182,24 @@ public class HangmanScreen extends Application {
             rightLeg.setEndY(spineEndY+50);
 
             getChildren().addAll(head,spine,leftArm,rightArm,leftLeg,rightLeg);
-            lives.set(getChildren().size());
+            tries.set(getChildren().size());
         }
         public void reset(){
             getChildren().forEach(node -> node.setVisible(false));
-            lives.set(getChildren().size());
+            tries.set(getChildren().size());
         }
         public void takeAwayLife(){
             for(Node n : getChildren()){
                 if(!n.isVisible()){
                     n.setVisible(true);
-                    lives.set(lives.get()-1);
+                    tries.set(tries.get()-1);
                     break;
                 }
             }
         }
     }
 
+    //makes the letter and the box
     private static class Letter extends StackPane{
         private Rectangle bg = new Rectangle(40,60);
         private Text text;
@@ -246,7 +249,7 @@ public class HangmanScreen extends Application {
                 if(t.isStrikethrough()){
                     return;
                 }
-                 t.setFill(Color.BLUE);
+                t.setFill(Color.BLUE);
                 t.setStrikethrough(true);
 
                 boolean found = false;
