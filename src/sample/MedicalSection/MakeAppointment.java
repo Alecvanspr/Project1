@@ -125,19 +125,27 @@ public class MakeAppointment extends Application {
                 selectTime.getItems().clear();
                 chosenDoctor = doctorBox.getSelectionModel().getSelectedItem().toString();
                 date = datePicker.getValue();
-                if(getDoctor(chosenDoctor).checkLocalDate(date)){
-                    for(int i = 0; i < getDoctor(chosenDoctor).getDate(date).getTimeTable().size();i++){
-                        selectTime.getItems().add(getDoctor(chosenDoctor).getDate(date).getTimeTable().get(i));
+                if(checkDate(date)){
+                    if(getDoctor(chosenDoctor).checkLocalDate(date)){
+                        for(int i = 0; i < getDoctor(chosenDoctor).getDate(date).getTimeTable().size();i++){
+                            selectTime.getItems().add(getDoctor(chosenDoctor).getDate(date).getTimeTable().get(i));
+                        }
+                    }else{
+                        Dates appointmentDate = new Dates(date);
+                        getDoctor(chosenDoctor).addLocalDate(appointmentDate);
+                        for(int i = 0; i < appointmentDate.getTimeTable().size();i++){
+                            selectTime.getItems().add(appointmentDate.getTimeTable().get(i));
+                        }
                     }
+                    selectTime.setVisible(true);
+                    makeAppointment.setVisible(true);
                 }else{
-                    Dates appointmentDate = new Dates(date);
-                    getDoctor(chosenDoctor).addLocalDate(appointmentDate);
-                    for(int i = 0; i < appointmentDate.getTimeTable().size();i++){
-                        selectTime.getItems().add(appointmentDate.getTimeTable().get(i));
-                    }
+                    Alert dateNotCorrect = new Alert(Alert.AlertType.ERROR);
+                    dateNotCorrect.setTitle("Date not correct!");
+                    dateNotCorrect.setHeaderText("Date is not correct. Please select another one!");
+                    dateNotCorrect.show();
                 }
-                selectTime.setVisible(true);
-                makeAppointment.setVisible(true);
+
             }
         });
 
@@ -240,5 +248,13 @@ public class MakeAppointment extends Application {
             label.relocate(100, 300);
         }
         labelNumber++;
+    }
+    public Boolean checkDate(LocalDate date){
+        LocalDate today = LocalDate.now();
+        if(date.getYear() >= today.getYear() && date.getMonth().getValue() >= today.getMonth().getValue() && date.getDayOfMonth() > today.getDayOfMonth()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
