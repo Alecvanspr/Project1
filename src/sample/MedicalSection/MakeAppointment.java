@@ -80,6 +80,9 @@ public class MakeAppointment extends Application {
         selectDoctor.setVisible(false);
         doctorBox.setVisible(false);
 
+        ComboBox selectTime = new ComboBox();
+
+
         DatePicker datePicker = new DatePicker();
         datePicker.setVisible(false);
         datePicker.relocate(250, 260);
@@ -87,6 +90,9 @@ public class MakeAppointment extends Application {
         selectSpecialty.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                selectTime.getItems().clear();
+                doctorBox.getItems().clear();
+                datePicker.getEditor().clear();
                 removeItems(doctorBox);
                 String selectedSpecialty = specialtyBox.getSelectionModel().getSelectedItem().toString();
                 makeDoctorBox(doctorBox,selectedSpecialty, pane, selectDoctor);
@@ -97,14 +103,16 @@ public class MakeAppointment extends Application {
         Button selectDate = new Button("Select date");
         selectDate.relocate(450, 260);
         selectDate.setVisible(false);
+
         selectDoctor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 datePicker.setVisible(true);
                 selectDate.setVisible(true);
+                datePicker.getEditor().clear();
+                selectTime.getItems().clear();
             }
         });
-        ComboBox selectTime = new ComboBox();
         Button makeAppointment = new Button("Make Appointment");
         selectTime.relocate(260, 300);
         makeAppointment.relocate(400, 300);
