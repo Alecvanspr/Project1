@@ -80,9 +80,9 @@ public class DisplayWeightScreen extends Application {
         }
     }
     public void ShowWeight(){
-        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getWeight().size(); i++){
-            Label Weight = new Label(""+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getWeight().get(i));
-            Label CheckDate = new Label(""+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getDateWeight(i));
+        for(int i = 0; i<arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getWeight().size(); i++){
+            Label Weight = new Label(""+arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getWeight().get(i));
+            Label CheckDate = new Label(""+arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getDateWeight(i));
             Weight.relocate(100, plaats);
             CheckDate.relocate(300,plaats);
             plaats = plaats+35;

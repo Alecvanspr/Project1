@@ -27,7 +27,7 @@ public class AuctionList {
     }
     public void makeBid(String bidAmount, Auction auction, Label label, Integer howMany, int x, TextField txtBidAmount){
         Double amount = stringToDouble(checkIfDouble(bidAmount));
-        auction.makeBid(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername(), amount,auction.getForSale());
+        auction.makeBid(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getUsername(), amount,auction.getForSale());
         label.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
 
         txtBidAmount.setText("");

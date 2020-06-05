@@ -88,11 +88,10 @@ public class ShowAnimalsBySpeciesScreen extends Application {
             }
         }
         public void playError(){
-            Alert toMany = new Alert(Alert.AlertType.ERROR);
-            toMany.setContentText("You dont have that many Animals!");
-            toMany.show();
+            Alert tooMany = new Alert(Alert.AlertType.ERROR);
+            tooMany.setContentText("You dont have that many Animals!");
+            tooMany.show();
         }
-
     }
 
 

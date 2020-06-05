@@ -74,7 +74,7 @@ public class AddHeathCheckScreen extends Application {
         }
     }
     public void addHealthSituation(String Situation){
-        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addHealth(Situation);
-        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateHealth(""+java.time.LocalDate.now());
+        arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addHealth(Situation);
+        arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateHealth(""+java.time.LocalDate.now());
     }
 }

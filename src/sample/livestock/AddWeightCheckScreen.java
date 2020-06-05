@@ -73,7 +73,7 @@ public class AddWeightCheckScreen extends Application {
         }
     }
     public void addWeightSituation(String situation){
-        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addWeight(situation);
-        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateWeight(""+java.time.LocalDate.now());
+        arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addWeight(situation);
+        arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateWeight(""+java.time.LocalDate.now());
     }
 }

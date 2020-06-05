@@ -10,9 +10,9 @@ public class MainMethods {
     public boolean gegevensCheck(String password,String username){
         boolean ret = false;
         int s = 0;
-        for(int i = 0;i<arraykeeper.Data.size();i++){
-            if(ArrayKeeper.Data.get(i).getUsername().equals(username)){
-                if(arraykeeper.Data.get(i).getPassword().equals(password)){
+        for(int i = 0;i<ArrayKeeper.getData().size();i++){
+            if(ArrayKeeper.getData().get(i).getUsername().equals(username)){
+                if(ArrayKeeper.getData().get(i).getPassword().equals(password)){
                     ret = true;
                     s = i;
                 }
@@ -31,7 +31,7 @@ public class MainMethods {
         Admin.setBirthDate("admin");
         Admin.setSecurtityQuestion("Oh yeah, Mister crabs");
         Admin.setSecurityAnswer("dab");
-        arraykeeper.Data.add(Admin);
+        arraykeeper.getData().add(Admin);
 
         arraykeeper.SignUpData("dr","dr","dr","dr","dr",true);
         PersonalData DoctorMario = new PersonalData();
@@ -46,7 +46,7 @@ public class MainMethods {
         specialtiesDoc1.add(db);
         specialtiesDoc1.add(ey);
         DoctorMario.makeDoctor("Dr. Mario", specialtiesDoc1);
-        arraykeeper.Data.add(DoctorMario);
+        arraykeeper.getData().add(DoctorMario);
 
         arraykeeper.SignUpData("luigi","luigi","luigi","luigi","luigi",true);
         PersonalData DoctorLuigi = new PersonalData();
@@ -61,6 +61,6 @@ public class MainMethods {
         specialtiesDoc2.add(ear);
         specialtiesDoc2.add(skin);
         DoctorLuigi.makeDoctor("Dr. Luigi", specialtiesDoc2);
-        arraykeeper.Data.add(DoctorLuigi);
+        arraykeeper.getData().add(DoctorLuigi);
     }
 }

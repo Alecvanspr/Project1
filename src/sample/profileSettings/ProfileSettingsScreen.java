@@ -20,11 +20,11 @@ public class ProfileSettingsScreen extends Application {
     public int currentUser= ArrayKeeper.getCurrentUser();
 
     public void start(Stage stage) throws Exception{
-        Label textName = new Label("Username: " + ArrayKeeper.Data.get(currentUser).getUsername());
-        Label txtRealName = new Label("Name: " + ArrayKeeper.Data.get(currentUser).getName());
-        Label txtBirthDate = new Label("Birth date: "+ArrayKeeper.Data.get(currentUser).getBirthDate());
-        Label textGender = new Label("Gender: " + ArrayKeeper.Data.get(currentUser).getGender());
-        Label textPhonenumber = new Label("Phone number: " + ArrayKeeper.Data.get(currentUser).getPhoneNumber());
+        Label textName = new Label("Username: " + ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getUsername());
+        Label txtRealName = new Label("Name: " + ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName());
+        Label txtBirthDate = new Label("Birth date: "+ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getBirthDate());
+        Label textGender = new Label("Gender: " + ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getGender());
+        Label textPhonenumber = new Label("Phone number: " + ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getPhoneNumber());
         Button btnBack = new Button("Back");
         Button btnEdit = new Button("Edit Profile");
         Pane pSettings = new Pane();
@@ -36,16 +36,16 @@ public class ProfileSettingsScreen extends Application {
         textGender.relocate(100,175);
         textPhonenumber.relocate(100,200);
 
-        if(arrayKeeper.getPersonaldata().get(currentUser).getIsDocter()){
+        if(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getIsDocter()){
             Label doctorStart = new Label("Docter info");
             doctorStart.setFont(Font.font("Arail", 20));
             doctorStart.relocate(300, 100);
-            Label doctorName = new Label("Name: " + arrayKeeper.getPersonaldata().get(currentUser).getDoctor().getName());
+            Label doctorName = new Label("Name: " + ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getDoctor().getName());
             doctorName.relocate(300, 125);
             Label specialtiesLabel = new Label("Specialty's ");
             specialtiesLabel.relocate(300, 150);
-            for (int i = 0; i < arrayKeeper.getPersonaldata().get(currentUser).getDoctor().getSpecialties().size(); i++){
-                Label label = new Label(arrayKeeper.getPersonaldata().get(currentUser).getDoctor().getSpecialties().get(i).getName());
+            for (int i = 0; i < ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getDoctor().getSpecialties().size(); i++){
+                Label label = new Label(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getDoctor().getSpecialties().get(i).getName());
                 label.relocate(300, 175+(25*i));
                 pSettings.getChildren().addAll(label);
             }

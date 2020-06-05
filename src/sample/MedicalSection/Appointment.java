@@ -14,15 +14,17 @@ public class Appointment {
     private int userInt;
     private String notes;
     private Doctor doctor;
+    private PersonalData patient;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
 
 
-    public Appointment(Doctor doctor, LocalDate date, String time){
+    public Appointment(Doctor doctor, LocalDate date, String time, PersonalData patient){
         this.userInt = ArrayKeeper.getCurrentUser();
         this.appointmentDate = date;
         this.appointmentTime = time;
         this.doctor = doctor;
-        this.user = ArrayKeeper.Data.get(userInt).getName();
+        this.user = ArrayKeeper.getData().get(userInt).getName();
+        this.patient = patient;
 
     }
     public LocalDate getAppointmentDate(){
@@ -40,6 +42,12 @@ public class Appointment {
     public String getNotes(){
         return notes;
     }
+    public Doctor getDoctor(){
+        return doctor;
+    }
+    public PersonalData getPatient(){
+        return patient;
+    }
     public void setAppointmentTime(String time){
         this.appointmentTime = time;
     }
@@ -48,9 +56,6 @@ public class Appointment {
     }
     public void setNotes(String notes){
         this.notes = notes;
-    }
-    public Doctor getDoctor(){
-        return doctor;
     }
 }
 
