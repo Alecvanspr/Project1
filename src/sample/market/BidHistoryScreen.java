@@ -18,23 +18,15 @@ public class BidHistoryScreen extends Application {
     BidHistory userBids = new BidHistory();
     AuctionListScreen auctionListScreen = new AuctionListScreen();
     GoToScreens goToScreens = new GoToScreens();
+    Pane bidHistoryPane = new Pane();
 
     @Override
     public void start(Stage stage) throws  Exception{
-        Pane bidHistoryPane = new Pane();
-
-        //Button back
-        Button btnBack = new Button("Back");
-        btnBack.relocate(10,565);
-
-        bidHistoryPane.getChildren().add(btnBack);
-        btnBack.setOnAction(E->{
-            goToScreens.goMarketplace(stage);
-        });
-
+        makeBtnBack(stage);
         printBidHistory(bidHistoryPane);
-        buttonSettings.onMouse(btnBack);
-
+        fin(stage);
+    }
+    public void fin(Stage stage){
         bidHistory = new Scene(bidHistoryPane, 800, 600);
         stage.setTitle("Bid History");
         stage.setScene(bidHistory);
@@ -54,6 +46,15 @@ public class BidHistoryScreen extends Application {
             bidHistoryPane.getChildren().add(bidLabel);
             bidLabel.setFont(Font.font("Arial", 20));
         }
+    }
+    public void makeBtnBack(Stage stage){
+        Button btnBack = new Button("Back");
+        btnBack.relocate(10,565);
+        bidHistoryPane.getChildren().add(btnBack);
+        btnBack.setOnAction(E->{
+            goToScreens.goMarketplace(stage);
+        });
+        buttonSettings.onMouse(btnBack);
     }
 
 }

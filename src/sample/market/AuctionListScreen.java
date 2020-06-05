@@ -17,11 +17,36 @@ public class AuctionListScreen extends Application {
     ScrollPane scrollPane = new ScrollPane();
     AuctionList auctionListClass = new AuctionList();
     GoToScreens goToScreens = new GoToScreens();
+    Pane auctionList = new Pane();
 
     public void start(Stage stage) throws Exception{
-        Pane auctionList = new Pane();
+        makeButtons(stage);
 
-        //Button back
+        auctionListClass.printLines(auctionList);
+        makeLabels();
+        fin(stage);
+    }
+    public void fin(Stage stage){
+        scrollPane.setContent(auctionList);
+        AuctionList = new Scene(scrollPane, 800, 600);
+        stage.setTitle("Auction list");
+        stage.setScene(AuctionList);
+        stage.show();
+    }
+    public void makeButtons(Stage stage){
+        makeButtonBack(stage);
+        makeToYourBids(stage);
+    }
+    public void makeLabels(){
+        makeStartLabel();
+    }
+    public void makeStartLabel(){
+        Label startLabel = new Label("Here you can see all the auctions");
+        startLabel.setFont(Font.font("Arial",30));
+        startLabel.relocate(200,0);
+        auctionList.getChildren().add(startLabel);
+    }
+    public void  makeButtonBack(Stage stage){
         Button btnBack = new Button("Back");
         btnBack.relocate(750, 565);
         auctionList.getChildren().add(btnBack);
@@ -29,16 +54,9 @@ public class AuctionListScreen extends Application {
         btnBack.setOnAction(E-> {
             goToScreens.goMarketplace(stage);
         });
+    }
 
-        //Start Label
-        Label startLabel = new Label("Here you can see all the auctions");
-        startLabel.setFont(Font.font("Arial",30));
-        startLabel.relocate(200,0);
-        auctionList.getChildren().add(startLabel);
-
-        auctionListClass.printLines(auctionList);
-
-        //Button to your bids
+    public void makeToYourBids(Stage stage){
         Button btnToYourBids = new Button("To Your bids");
         btnToYourBids.relocate(650, 50);
         auctionList.getChildren().add(btnToYourBids);
@@ -46,11 +64,5 @@ public class AuctionListScreen extends Application {
         btnToYourBids.setOnAction(E-> {
             goToScreens.goBidHistory(stage);
         });
-        scrollPane.setContent(auctionList);
-        AuctionList = new Scene(scrollPane, 800, 600);
-        stage.setTitle("Auction list");
-        stage.setScene(AuctionList);
-        stage.show();
     }
-
 }

@@ -22,42 +22,34 @@ public class MakeAuctionScreen extends Application {
     MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
     ButtonSettings buttonSettings = new ButtonSettings();
     GoToScreens goToScreens = new GoToScreens();
+    Pane makeAuction = new Pane();
 
     public void start(Stage stage) throws  Exception{
-        Pane makeAuction = new Pane();
-        //Start Labels
-        Label startLabel = new Label("Here you can make your own Auction");
-        startLabel.relocate(175, 10);
-        startLabel.setFont(Font.font("Arial", 30));
-        makeAuction.getChildren().add(startLabel);
-        Label secondLabel = new Label("For selling your animals go to your livestock");
-        secondLabel.relocate(175, 50);
-        secondLabel.setFont( Font.font("Arial", 15));
-        makeAuction.getChildren().add(secondLabel);
-        Label thirdLabel = new Label("Click here to go to your livestock");
-        thirdLabel.relocate(175, 75);
-        thirdLabel.setFont(Font.font("Aral",15));
-        makeAuction.getChildren().add(thirdLabel);
-        thirdLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                goToScreens.goLiveStock(stage);
-            }
-        });
-        thirdLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent MouseEvent) {
-                thirdLabel.setTextFill(Color.web("00FFFF"));
-            }
-        });
-        thirdLabel.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                thirdLabel.setTextFill(Color.web("#000000"));
-            }
-        });
+        makeLabels(stage);
+        makeTextFields(stage);
 
-        //Button Back
+        fin(stage);
+    }
+    public void fin(Stage stage){
+        MakeAuction = new Scene(makeAuction, 800, 600);
+        stage.setTitle("Make Auction");
+        stage.setScene(MakeAuction);
+        stage.show();
+    }
+    public void makeAuctionButtons(Stage stage){
+        Button makeAuctionBtn = new Button("Make Auction");
+        makeAuctionBtn.relocate(400, 250);
+        makeAuctionBtn.setPrefWidth(150);
+        makeAuction.getChildren().add(makeAuctionBtn);
+        buttonSettings.onMouse(makeAuctionBtn);
+        makeAuctionBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+            }
+        });
+    }
+    public void makeButtonBack(Stage stage){
         Button backBtn = new Button("Back");
         backBtn.relocate(10, 565);
         makeAuction.getChildren().add(backBtn);
@@ -68,7 +60,58 @@ public class MakeAuctionScreen extends Application {
                 goToScreens.goMarketplace(stage);
             }
         });
-        //TextField voor Item
+    }
+    public void makeLabels(Stage stage){
+        firstLabel();
+        secondLabel();
+        makeThirtLabel(stage);
+    }
+    public void makeThirtLabel(Stage stage){
+        Label thirdLabel = new Label("Click here to go to your livestock");
+        thirdLabel.relocate(175, 75);
+        thirdLabel.setFont(Font.font("Aral",15));
+        makeAuction.getChildren().add(thirdLabel);
+        thirdLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                goToScreens.goLiveStock(stage);
+            }
+        });
+        setColorOnEntered(thirdLabel);
+    }
+    public void setColorOnEntered(Label label){
+        label.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent MouseEvent) {
+                label.setTextFill(Color.web("00FFFF"));
+            }
+        });
+        label.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                label.setTextFill(Color.web("#000000"));
+            }
+        });
+    }
+    public void secondLabel(){
+        Label secondLabel = new Label("For selling your animals go to your livestock");
+        secondLabel.relocate(175, 50);
+        secondLabel.setFont( Font.font("Arial", 15));
+        makeAuction.getChildren().add(secondLabel);
+    }
+    public void firstLabel(){
+        Label startLabel = new Label("Here you can make your own Auction");
+        startLabel.relocate(175, 10);
+        startLabel.setFont(Font.font("Arial", 30));
+        makeAuction.getChildren().add(startLabel);
+    }
+    public void makeTextFields(Stage stage){
+        makeTextFieldItem(stage);
+        makeTextFieldHowMany(stage);
+        makeTextFieldMinPrice(stage);
+        makeTextFieldTimeField(stage);
+    }
+    public void makeTextFieldItem(Stage stage){
         TextField itemField = new TextField();
         itemField.setPrefWidth(150);
         itemField.relocate(220,100);
@@ -76,8 +119,8 @@ public class MakeAuctionScreen extends Application {
         itemLabel.relocate(100,101);
         makeAuction.getChildren().add(itemField);
         makeAuction.getChildren().add(itemLabel);
-
-        //TextField voor de how many
+    }
+    public void makeTextFieldHowMany(Stage stage){
         TextField manyField = new TextField();
         manyField.setPrefWidth(150);
         manyField.relocate(220, 150);
@@ -86,8 +129,8 @@ public class MakeAuctionScreen extends Application {
         manyLabel.relocate(100,151);
         makeAuction.getChildren().add(manyField);
         makeAuction.getChildren().add(manyLabel);
-
-        //TextField voor de minPrice
+    }
+    public void makeTextFieldMinPrice(Stage stage){
         TextField priceField = new TextField();
         priceField.setPrefWidth(150);
         priceField.relocate(220, 200);
@@ -96,8 +139,8 @@ public class MakeAuctionScreen extends Application {
         priceLabel.relocate(100, 201);
         makeAuction.getChildren().add(priceField);
         makeAuction.getChildren().add(priceLabel);
-
-        //TextField voor de timer
+    }
+    public void makeTextFieldTimeField(Stage stage){
         TextField timerField = new TextField();
         timerField.setPrefWidth(150);
         timerField.relocate(220, 250);
@@ -106,33 +149,5 @@ public class MakeAuctionScreen extends Application {
         timerLabel.relocate(20, 251);
         makeAuction.getChildren().add(timerField);
         makeAuction.getChildren().add(timerLabel);
-
-        Button makeAuctionBtn = new Button("Make Auction");
-        makeAuctionBtn.relocate(400, 250);
-        makeAuctionBtn.setPrefWidth(150);
-        makeAuction.getChildren().add(makeAuctionBtn);
-        makeAuctionBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                makeAuctionBtn.setScaleY(1.2);
-                makeAuctionBtn.setScaleX(1.2);
-            }
-        });
-        makeAuctionBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                makeAuctionBtn.setScaleX(1.0);
-                makeAuctionBtn.setScaleY(1.0);
-            }
-        });
-        makeAuctionBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-            }
-        });
-        MakeAuction = new Scene(makeAuction, 800, 600);
-        stage.setTitle("Make Auction");
-        stage.setScene(MakeAuction);
-        stage.show();
     }
 }
