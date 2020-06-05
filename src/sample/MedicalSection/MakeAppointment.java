@@ -119,7 +119,6 @@ public class MakeAppointment extends Application {
         selectTime.setVisible(false);
         makeAppointment.setVisible(false);
 
-
         selectDate.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -173,9 +172,11 @@ public class MakeAppointment extends Application {
         stage.show();
 
     }
+
     public void removeItems(ComboBox comboBox){
         comboBox.getItems().clear();
     }
+
     public void makeSpecialtyBox(ComboBox comboBox){
         for( int i =0; i < arrayKeeper.getSpecialtiesArrayList().size(); i++){
             comboBox.getItems().add(arrayKeeper.getSpecialtiesArrayList().get(i).getName());

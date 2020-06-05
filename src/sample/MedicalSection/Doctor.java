@@ -11,11 +11,9 @@ import java.util.ArrayList;
 
 public class Doctor extends PersonalData {
     private String name;
-    private String age;
     private int userInt;
     ArrayKeeper arraykeeper = new ArrayKeeper();
     private ArrayList<Specialty> specialties = new ArrayList<>();
-    private ArrayList<Appointment> appointments = new ArrayList<>();
     private ArrayList<Dates> dates = new ArrayList<>();
 
     public Doctor(String name, int userInt, ArrayList<Specialty> specialties) {
@@ -23,8 +21,8 @@ public class Doctor extends PersonalData {
         this.specialties = specialties;
         this.userInt = userInt;
         arraykeeper.addDoctor(this);
-
     }
+
     public Dates getDate(LocalDate date){
         for (int i =0; i < dates.size(); i++){
             if(dates.get(i).equals(date)){
@@ -33,6 +31,7 @@ public class Doctor extends PersonalData {
         }
         return dates.get(0);
     }
+
     public Boolean checkLocalDate(LocalDate date){
         for (int i = 0; i < dates.size(); i++){
             if(date.equals(dates.get(i).getDate())){
@@ -41,26 +40,21 @@ public class Doctor extends PersonalData {
         }
         return false;
     }
+
     public void addLocalDate(Dates date){
         this.dates.add(date);
     }
+
     public ArrayList<Dates> getLocalDate(){
         return this.dates;
     }
-    public ArrayList<Appointment> getAppointments(){
-        return this.appointments;
-    }
+
     public String getName() {
         return this.name;
     }
 
     public int getUserInt(){
         return this.userInt;
-    }
-
-
-    public void setName(String age) {
-        this.age = age;
     }
 
     public ArrayList<Specialty> getSpecialties() {
@@ -76,6 +70,7 @@ public class Doctor extends PersonalData {
             doctorAlreadyHasSpecialt.show();
         }
     }
+
     public Specialty getSpecialty(String name){
         for(int i = 0; i < arraykeeper.specialtiesArrayList.size(); i++){
             if(arraykeeper.specialtiesArrayList.get(i).getName().equals(name)){
@@ -84,6 +79,7 @@ public class Doctor extends PersonalData {
         }
         return arraykeeper.specialtiesArrayList.get(0);
     }
+
     public Boolean checkSpecialty(Specialty specialty) {
         for (int i = 0; i < specialties.size(); i++) {
             if (specialties.get(i).equals(specialty)) {
