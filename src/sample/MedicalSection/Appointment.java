@@ -14,6 +14,7 @@ public class Appointment {
     private int userInt;
     private String notes;
     private Doctor doctor;
+    ArrayKeeper arrayKeeper = new ArrayKeeper();
 
 
     public Appointment(Doctor doctor, LocalDate date, String time){
@@ -22,7 +23,7 @@ public class Appointment {
         this.appointmentTime = time;
         this.doctor = doctor;
         this.user = ArrayKeeper.Data.get(userInt).getName();
-        doctor.getAppointments().add(this);
+
     }
     public LocalDate getAppointmentDate(){
         return appointmentDate;

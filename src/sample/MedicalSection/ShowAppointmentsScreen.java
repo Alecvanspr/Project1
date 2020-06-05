@@ -2,11 +2,14 @@ package sample.MedicalSection;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import sample.ArrayKeeper;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import sample.inlogScreen.Main;
+
+import java.util.ArrayList;
 
 
 public class ShowAppointmentsScreen extends Application {
@@ -19,19 +22,30 @@ public class ShowAppointmentsScreen extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Pane rootPane = new Pane();
+        Pane pane = new Pane();
         final int PaneWidth = 800;
         final int PaneHeight = 600;
-        rootPane.setMinSize(PaneWidth, PaneHeight);
+        pane.setMinSize(PaneWidth, PaneHeight);
 
-        Scene scene1 = new Scene(rootPane);
+        Scene scene1 = new Scene(pane);
+
+        Button buttonBack = new Button("Go back");
+        buttonBack.relocate(10,565);
+        FutureAppointments futureAppointments = new FutureAppointments();
+        for(int i =0; i < getFutureAppointments().size(); i++){
+            Label appointmentLabel = new Label("On " + getFutureAppointments().get(i).getAppointmentDate().toString() + " you have an appointment with " + getFutureAppointments().get(i).getDoctor().getName() +".");
+            Label timeLabel = new Label("You're expected on the time: " + getFutureAppointments().get(i).getAppointmentTime());
+            appointmentLabel.relocate(100, 100+(50*i));
+            timeLabel.relocate(100, 125+(50*i));
+            pane.getChildren().addAll(appointmentLabel, timeLabel);
+        }
+
+        pane.getChildren().addAll(buttonBack);
+
         primaryStage.setScene(scene1);
         primaryStage.setTitle("Your appointments");
         primaryStage.show();
-        for(int i = 0; i < ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAppointments().size(); i++){
-            System.out.println(ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAppointments().get(i).getDoctor());
-        }
-        Button buttonBack = new Button("Go back");
+
         buttonBack.setOnMouseClicked(E -> {
             MedicalSection medicalSection = new MedicalSection();
             try {
@@ -41,4 +55,9 @@ public class ShowAppointmentsScreen extends Application {
             }
         });
     }
+    public ArrayList<Appointment> getFutureAppointments(){
+        FutureAppointments futureAppointments = new FutureAppointments();
+        return futureAppointments.getFutureAppointments();
+    }
+
 }

@@ -132,20 +132,6 @@ public class MakeAppointment extends Application {
                 makeAppointment.setVisible(true);
             }
         });
-        makeAppointment.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Appointment appointment = new Appointment(getDoctor(chosenDoctor), datePicker.getValue(),selectTime.getSelectionModel().getSelectedItem().toString());
-                getDoctor(chosenDoctor).getDate(date).setChosenTimeOnTrue(selectTime.getSelectionModel().getSelectedItem().toString());
-
-                MedicalSection medicalSection = new MedicalSection();
-                try {
-                    medicalSection.start(stage);
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            }
-        });
 
         makeAppointment.setOnMouseClicked(E -> {
             Alert alertConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
@@ -155,7 +141,10 @@ public class MakeAppointment extends Application {
             Optional<ButtonType> option = alertConfirmation.showAndWait();
             if(option.get() != null){
                 if(option.get() == ButtonType.OK){
-                    Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor((String) doctorBox.getValue()), datePicker.getValue(), (String) selectTime.getValue());
+                    Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), selectTime.getSelectionModel().getSelectedItem().toString());
+                    ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).addAppointment(newAppointment);
+                    getDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()).getAppointments().add(newAppointment);
+
                     getDoctor((String) doctorBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable((String) selectTime.getValue());
                     MedicalSection medicalSection = new MedicalSection();
                     try {

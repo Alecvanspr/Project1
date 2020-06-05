@@ -124,6 +124,7 @@ public class PersonalData {
     public ArrayList<Appointment> getAppointments(){
         return appointments;
     }
+    public void addAppointment(Appointment appointment){this.appointments.add(appointment);}
 
     public static void main(String[] args) {
     }
