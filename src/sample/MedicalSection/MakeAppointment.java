@@ -115,6 +115,7 @@ public class MakeAppointment extends Application {
         selectDate.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                selectTime.getItems().clear();
                 chosenDoctor = doctorBox.getSelectionModel().getSelectedItem().toString();
                 date = datePicker.getValue();
                 if(getDoctor(chosenDoctor).checkLocalDate(date)){
