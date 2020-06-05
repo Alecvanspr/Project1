@@ -41,13 +41,16 @@ public class Homescreen extends Application {
                 btnMarketPlace,btnLiveStock,user,btnEducative);
         welcome.relocate(225,100);
         user.relocate(660,35);
+        makeButtons(stage);
+        fin(stage);
+    }
+    public void makeButtons(Stage stage){
         makeBtnLogOut(stage);
         makeBtnProfile(stage);
         makeBtnContacts(stage);
         makeBtnMarketplace(stage);
         makeBtnLivestock(stage);
         makeBtnEducative(stage);
-        fin(stage);
     }
     public void makeBtnEducative(Stage stage){
         btnEducative.relocate(400,400);
