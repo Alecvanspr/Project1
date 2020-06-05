@@ -8,6 +8,14 @@ public class MathGame {
     private int randNumb2 = random.nextInt(50);
     private int randButNumb = random.nextInt(3);
 
+    private int randOperator = random.nextInt(3);
+    private String operator;
+
+    private Boolean plusBtn = false;
+    private Boolean minusBtn = false;
+    private Boolean multiplyBtn = false;
+    private Boolean divideBtn = false;
+
     private Boolean game = false;
     private Boolean startBtn = false;
     private int wrongAnswers = 0;
@@ -16,7 +24,7 @@ public class MathGame {
     private int randAnswer2;
     private int randAnswer3;
     private int randAnswer4;
-    private int answer = randNumb1 + randNumb2;
+    private int answer;
 
     public void setGame(Boolean game) {
         this.game = game;
@@ -59,7 +67,7 @@ public class MathGame {
         this.randAnswer2 = random.nextInt(50);
         this.randAnswer3 = random.nextInt(50);
         this.randAnswer4 = random.nextInt(50);
-        this.answer = randNumb1 + randNumb2;
+        this.randOperator = random.nextInt(3);
     }
 
     public Boolean getGame() {
@@ -97,11 +105,38 @@ public class MathGame {
     }
 
     public String MathQuestion(){
-        return getRandNumb1() + " + " + getRandNumb2() + " = ?";
+        return getRandNumb1() + " " + operator + " " + getRandNumb2() + " = ?";
     }
 
-    public void CheckAnswer(){
-
+    public void setPlusBtn(Boolean plusBtn) {
+        this.plusBtn = plusBtn;
     }
 
+    public void setMinusBtn(Boolean minusBtn) {
+        this.minusBtn = minusBtn;
+    }
+
+    public void setMultiplyBtn(Boolean mulBtn) {
+        multiplyBtn = mulBtn;
+    }
+
+    public void setDivideBtn(Boolean divBtn) {
+        divideBtn = divBtn;
+    }
+    public void RandomOperator(){
+        switch (randOperator){
+            case 0: operator = "+";
+                    answer = randNumb1 + randNumb2;
+                break;
+            case 1: operator = "-";
+                    answer = randNumb1 - randNumb2;
+                break;
+            case 2: operator = "/";
+                    answer = randNumb1 / randNumb2;
+                break;
+            case 3: operator = "*";
+                    answer = randNumb1 * randNumb2;
+            default: operator = "";
+        }
+    }
 }
