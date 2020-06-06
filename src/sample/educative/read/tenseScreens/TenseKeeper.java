@@ -71,6 +71,73 @@ public class TenseKeeper {
         makeButtonPastContinious();
     }
 
+    public void makePresentSimple(){
+        tensesExplained.add("The present simple is something that is happening right now\n" +
+                "For example: \n I walk to the store.\n They eat ice cream together\n" +
+                " She goes to the doctor\n I look at it now\n We dance to the music\n He makes a sandcastle\n" +
+                "You make these verbs by taking the base form and adding 's' or 'es' " +
+                "depending on the subject");
+        tenseName.add("Present Simple");
+    }
+    //present continuous en present progressive zijn het zelfde
+    public void makePresentContinuous(){
+        tensesExplained.add("The present continuous is used to show that the action is still going on right now.\n" +
+                "For example:\n You are learning English now.\n I am sitting.\n They are watching television.\n " +
+                "Are you sleeping?\n We are going home" +
+                "You create the present continuous by using the correct form of to be followed by a verb ending in 'ing'");
+        tenseName.add("Present continuous");
+    }
+
+    public void makePresentPerfect(){
+        tensesExplained.add("The present perfect is used to talk about experiences or changes that have taken place.\n" +
+                "For example:\n I have seen that movie twenty times.\n People have traveled to the moon.\n " +
+                "I have been to France.\n Joan has studied two foreign languages.\n" +
+                " Our son has learned how to read.\n" +
+                "To make the present perfect, you first use has/have depending on the subject.\n" +
+                "You follow this with the past participle");
+        tenseName.add("Present Perfect");
+    }
+
+    public void makePresentPerfectProgressive(){
+        tensesExplained.add("The present perfect progressive (Also known as present perfect continuous) is used to show\n" +
+                " that an action has started in the past and still continues in the current moment.\n" +
+                "For example:\n They have been talking for the last hour.\n She has been working at that company for three years\n" +
+                " We have been waiting here for over two hours!\n To create the present perfect progressive, you first use the right form of to have depending on subject.\n" +
+                "This will be followed by 'been' followed by the present participle");
+        tenseName.add("Present Perfect PRogressive");
+    }
+
+    public void makeFutureGoingTo(){
+        tensesExplained.add("When talking about the future, you can use 'going to' to talk about a plan or a prediction.\n" +
+                "For example:\n He is going to spend his vacation on Hawaii.\n I'm going to be an actor when i grow up.\n" +
+                " The year 2020 is going to be a very unfortunate year.\n The next president is going to make the country better\n" +
+                "To make a future form using goign to, you start with the correct form of to be followed by going to followed by the base form of another verb.");
+        tenseName.add("Future Going To");
+    }
+
+    public void makeFutureWill(){
+        tensesExplained.add("Using will for sentences talking about the future is very similar to 'going to'. However there is a slight difference in meaning.\n" +
+                "Whereas 'going to' is mostly used for plans or predictions. Will is used for promises or voluntary actions.\nFor example:\n " +
+                "I will get the package from the post office.\n Will you make dinner?\n I will not tell anyone your secret.\n" +
+                " We will go to the mall together.\nTo make a sentence using will, you start with 'will' and follow it up by a verb in the present participle.");
+        tenseName.add("Future Will");
+    }
+
+    public void makeFuturePerfect(){
+        tensesExplained.add("The future perfect is very similar to the present perfect.\nFor example:\n " +
+                "You will have perfect your English by the time you come back from the U.S.\n In November, I will have received my promotion.\n " +
+                "She will have been in London for six months by the time she leaves.\n" +
+                "To create the future perfect you start with 'will have', followed by a verb in the past participle.");
+        tenseName.add("Future Perfect");
+    }
+
+    public void makeFutureProgressive(){
+        tensesExplained.add("The future progressive is used to specify an interrupted action in the future.\nFor example:\n " +
+                "I will be watching TV when she arrives tonight.\n At midnight tonight, we will still be driving through the desert.\n" +
+                "To construct a sentence with the future progressive you start with 'will be' followed by a verb in the present participle");
+        tenseName.add("Future progressive");
+    }
+
     public void makeButtonsPastSimple(){
         Button button = new Button("Practice Past simple");
         button.relocate(400,400);
