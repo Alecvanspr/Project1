@@ -20,14 +20,41 @@ public class AddanimalScreen extends Application {
     ButtonSettings buttonSettings = new ButtonSettings();
     Scene animalScene;
     Main main = new Main();
+    Pane animal = new Pane();
     GoToScreens goToScreens = new GoToScreens();
+    TextField txtname = new TextField();
+    TextField txtAge = new TextField("0");
+    TextField txtGender = new TextField();
+    TextField textSpieses = new TextField();
+    TextField txtRace = new TextField();
+    TextField txtWeight = new TextField("0.00");
+    TextField txtHealth = new TextField();
+
 
     @Override
     public void start(Stage stage) throws Exception{
-        Pane animal = new Pane();
+        makeTextFields();
+        makeLabels();
+        makeButtons(stage);
+        fin(stage);
+    }
+    public void fin(Stage stage){
         animalScene = new Scene(animal,800,600);
-        Button btnAdd = new Button("Add");
-        Button btnBack = new Button("Back");
+        stage.setTitle("Add animal");
+        stage.setScene(animalScene);
+        stage.show();
+    }
+    public void makeTextFields(){
+        txtname.relocate(300,100);
+        txtAge.relocate(300,135);
+        txtGender.relocate(300,170);
+        textSpieses.relocate(300 ,205);
+        txtRace.relocate(300,240);
+        txtWeight.relocate(300,270);
+        txtHealth.relocate(300,305);
+        animal.getChildren().addAll(txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight,txtHealth);
+    }
+    public void makeLabels(){
         Label lblname = new Label("Name animal");
         Label lblAge = new Label ("Age animal");
         Label lblgender = new Label("Gender animal");
@@ -35,49 +62,39 @@ public class AddanimalScreen extends Application {
         Label lblrace = new Label ("Race animal");
         Label lblweight = new Label("Weight animal");
         Label lblHealth = new Label("Current health situation animal");
-
-        TextField txtname = new TextField();
-        TextField txtAge = new TextField("0");
-        TextField txtGender = new TextField();
-        TextField textSpieses = new TextField();
-        TextField txtRace = new TextField();
-        TextField txtWeight = new TextField("0.00");
-        TextField txtHealth = new TextField();
-
-        btnAdd.relocate(300,500);
         lblname.relocate(100,100);
-        txtname.relocate(300,100);
         lblAge.relocate(100,135);
-        txtAge.relocate(300,135);
         lblgender.relocate(100,170);
-        txtGender.relocate(300,170);
         lblspiecies.relocate(100,205);
-        textSpieses.relocate(300 ,205);
         lblrace.relocate(100,240);
-        txtRace.relocate(300,240);
         lblweight.relocate(100,270);
-        txtWeight.relocate(300,270);
         lblHealth.relocate(100,305);
-        txtHealth.relocate(300,305);
-        btnBack.relocate(0,565);
-
+        animal.getChildren().addAll(lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,lblHealth);
+    }
+    public void makeButtons(Stage stage){
+        btnBack(stage);
+        btnAdd(stage);
+    }
+    public void btnAdd(Stage stage){
+        Button btnAdd = new Button("Add");
+        btnAdd.setOnAction(E-> {
+            int intAge = Integer.parseInt(txtAge.getText());
+            double doubleWeight = Double.parseDouble(txtWeight.getText());
+            makeNewAnimal(txtname.getText(),txtGender.getText(),intAge,textSpieses.getText(),txtRace.getText(),doubleWeight,txtHealth.getText());
+            goToScreens.goLiveStock(stage);
+        });
+        buttonSettings.onMouse(btnAdd);
+        btnAdd.relocate(300,500);
+        animal.getChildren().add(btnAdd);
+    }
+    public void btnBack(Stage stage){
+        Button btnBack = new Button("Back");
+        buttonSettings.onMouse(btnBack);
         btnBack.setOnAction(E->{
             goToScreens.goLiveStock(stage);
         });
-
-        btnAdd.setOnAction(E-> {
-                    int intAge = Integer.parseInt(txtAge.getText());
-                    double doubleWeight = Double.parseDouble(txtWeight.getText());
-                    makeNewAnimal(txtname.getText(),txtGender.getText(),intAge,textSpieses.getText(),txtRace.getText(),doubleWeight,txtHealth.getText());
-                    goToScreens.goLiveStock(stage);
-                });
-        buttonSettings.onMouse(btnAdd);
-        buttonSettings.onMouse(btnBack);
-
-        animal.getChildren().addAll(btnAdd,lblname,lblAge,lblgender,lblspiecies,lblrace,lblweight,lblHealth,txtname,txtAge,txtGender,textSpieses,txtRace,txtWeight,txtHealth,btnBack);
-        stage.setTitle("Add animal");
-        stage.setScene(animalScene);
-        stage.show();
+        btnBack.relocate(0,565);
+        animal.getChildren().add(btnBack);
     }
 
     public void makeNewAnimal(String name,String gender,int age,String species,String race,double weight,String health){
