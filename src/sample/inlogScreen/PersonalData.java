@@ -138,3 +138,4 @@ public class PersonalData {
     public void addAppointment(Appointment appointment){
         this.appointments.add(appointment);}
 }
+

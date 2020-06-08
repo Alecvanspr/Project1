@@ -10,10 +10,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.ButtonSettings;
+import sample.GoToScreens;
 
 public class ForgotPasswordScreen extends Application {
     Scene ForgotPassword;
     ForgotPassword forgotPassword = new ForgotPassword();
+    ButtonSettings buttonSettings = new ButtonSettings();
+    GoToScreens goToScreens = new GoToScreens();
     Main main = new Main();
     public int changingUser;
     public Label lblError = new Label();
@@ -23,7 +27,7 @@ public class ForgotPasswordScreen extends Application {
         Pane Forgot = new Pane();
         Button btnBack = new Button("Back");
         Label lblUsername = new Label("Username");
-        Label lblDateOfBirth = new Label("Birth date");
+        Label lblBirthDate = new Label("Birth date");
         Label lblSecurityQuestion = new Label("Click here to reveal your Security Question");
         Label lblnewPassword = new Label("New password");
         Label lblnewPasswordConfirm = new Label("Enter new password again");
@@ -37,7 +41,7 @@ public class ForgotPasswordScreen extends Application {
 
         lblUsername.relocate(100,50);
         txtUsername.relocate(100,75);
-        lblDateOfBirth.relocate(100,100);
+        lblBirthDate.relocate(100,100);
         txtBirth.relocate(100,125);
         lblSecurityQuestion.relocate(100,150);
         security.relocate(100,175);
@@ -53,7 +57,7 @@ public class ForgotPasswordScreen extends Application {
                 setSecurityQuestion(lblSecurityQuestion);
                 });
 
-        Forgot.getChildren().addAll(btnBack,lblUsername,txtUsername,lblDateOfBirth,txtBirth,lblSecurityQuestion,security
+        Forgot.getChildren().addAll(btnBack,lblUsername,txtUsername,lblBirthDate,txtBirth,lblSecurityQuestion,security
         ,txtPassword,txtPasswordConfirm,lblnewPassword,lblnewPasswordConfirm,ChangePassword,lblError);
         btnBack.relocate(0, 570);
 
@@ -62,40 +66,11 @@ public class ForgotPasswordScreen extends Application {
         });
 
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
-            goBack(stage);
+            goToScreens.goMain(stage);
         });
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.1);
-                btnBack.setScaleY(1.1);
 
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
+        buttonSettings.onMouse(btnBack);
 
-            }
-        });
-        ChangePassword.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                ChangePassword.setScaleX(1.1);
-                ChangePassword.setScaleY(1.1);
-
-            }
-        });
-        ChangePassword.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                ChangePassword.setScaleX(1);
-                ChangePassword.setScaleY(1);
-
-            }
-        });
 
         ForgotPassword = new Scene(Forgot, 800, 600);
         stage.setTitle("Reset Password");
@@ -103,30 +78,18 @@ public class ForgotPasswordScreen extends Application {
         stage.show();
     }
     public void setSecurityQuestion(Label label){
-        label.setText(main.arraykeeper.getData().get(changingUser).getSecurtityQuestion());
+        label.setText(main.arraykeeper.getPersonaldata().get(changingUser).getSecurtityQuestion());
     }
-    public void changePassword(String security,String password,String passwordcheck,Stage stage){
-        if(security.equalsIgnoreCase(main.arraykeeper.getData().get(changingUser).getSecurityAnswer())) {
-            if(password.equals(passwordcheck)){
+    public void changePassword(String secutiry,String password,String passwordcheck,Stage stage){
+        if(secutiry.equalsIgnoreCase(main.arraykeeper.getPersonaldata().get(changingUser).getSecurityAnswer())) {
+            if (password.equals(passwordcheck)) {
                 main.arraykeeper.changePassword(changingUser, password);
-                goBack(stage);
-            }
-            else{
+                goToScreens.goMain(stage);
+            } else {
                 lblError.setText("Passwords do not match");
             }
-        }
-        else{
+        }else{
             lblError.setText("Question Wrong");
-        }
-    }
-
-    public void goBack(Stage stage){
-        Main main = new Main();
-        try{
-            main.start(stage);
-        }
-        catch (Exception ex){
-            ex.printStackTrace();
         }
     }
 }

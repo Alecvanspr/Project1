@@ -10,9 +10,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
+import sample.GoToScreens;
 
 public class AddHeathCheckScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;
     Pane healthPane = new Pane();
     private int currentAnimal;
@@ -35,29 +39,15 @@ public class AddHeathCheckScreen extends Application {
 
         btnApply.setOnAction(E->{
             addHealthSituation(txtHealthSituation.getText());
-            goBack(stage);
+            goToScreens.goHealthCheck(stage,currentAnimal);
         });
 
         btnBack.setOnAction(E->{
-            goBack(stage);
+            goToScreens.goHealthCheck(stage,currentAnimal);
         });
 
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
-
-            }
-        });
+        buttonSettings.onMouse(btnApply);
+        buttonSettings.onMouse(btnBack);
 
         healthPane.getChildren().addAll(btnApply,txtHealthSituation,lblExplainTxt,btnBack);
         healthScene = new Scene(healthPane,800,600);
@@ -65,14 +55,7 @@ public class AddHeathCheckScreen extends Application {
         stage.setScene(healthScene);
         stage.show();
     }
-    public void goBack(Stage stage){
-        DisplayHealthScreen displayHealthScreen = new DisplayHealthScreen(currentAnimal, ArrayKeeper.getCurrentUser());
-        try {
-            displayHealthScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
     public void addHealthSituation(String Situation){
         arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addHealth(Situation);
         arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateHealth(""+java.time.LocalDate.now());

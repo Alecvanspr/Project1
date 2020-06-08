@@ -6,9 +6,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.GoToScreens;
 import sample.Homescreen;
+import sample.educative.GoToEducative;
 
 public class ContactScreen extends Application {
+    GoToScreens goToScreens = new GoToScreens();
     Scene contactScene;
     Addressbook addressbook = new Addressbook();
     int currentUser=0;
@@ -31,7 +34,7 @@ public class ContactScreen extends Application {
         Label lblemail = new Label("Email");
         Label lblphonenumber = new Label("Phone");
         Label lblstreet = new Label("Street");
-        Label lblPostalCode = new Label("Postalcode");
+        Label lblpostelcode = new Label("Postelcode");
         Label lblcity = new Label("City");
         Label lblcountry = new Label("Country");
 
@@ -81,7 +84,7 @@ public class ContactScreen extends Application {
         lblemail.relocate(430,120);
         lblphonenumber.relocate(430,150);
         lblstreet.relocate(430,180);
-        lblPostalCode.relocate(430,210);
+        lblpostelcode.relocate(430,210);
         lblcity.relocate(430,240);
         lblcountry.relocate(430,270);
 
@@ -128,7 +131,7 @@ public class ContactScreen extends Application {
             tfEmail.setText(Addressbook.getListContact().get(currentUser).getEmail());
             tfPhoneNumber.setText(Addressbook.getListContact().get(currentUser).getPhoneNumber());
             tfStreet.setText(Addressbook.getListContact().get(currentUser).getAddress().getStreet());
-            tfPostelCode.setText(Addressbook.getListContact().get(currentUser).getAddress().getPostalCode());
+            tfPostelCode.setText(Addressbook.getListContact().get(currentUser).getAddress().getPostelCode());
             tfCity.setText(Addressbook.getListContact().get(currentUser).getAddress().getCity());
             tfCountry.setText(Addressbook.getListContact().get(currentUser).getAddress().getCountry());
         });
@@ -160,12 +163,12 @@ public class ContactScreen extends Application {
         });
 
 
-        contact.getChildren().addAll(tfContact,tfName,tfEmail,tfPhoneNumber,tfStreet,tfPostelCode,tfCity,tfCountry, taContacts, taContactsFullDetail,btnClear,btnList, btnSave,btnBack, lblphonenumber, btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblPostalCode,lblcity,lblcountry);
+        contact.getChildren().addAll(tfContact,tfName,tfEmail,tfPhoneNumber,tfStreet,tfPostelCode,tfCity,tfCountry, taContacts, taContactsFullDetail,btnClear,btnList, btnSave,btnBack, lblphonenumber, btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblpostelcode,lblcity,lblcountry);
         btnBack.relocate(0,570);
 
 
         btnBack.setOnAction(e -> {
-            goHomeScreen(stage);
+            goToScreens.goHomeScreen(stage);
         });
 
         contactScene = new Scene(contact,800,600);
@@ -173,15 +176,4 @@ public class ContactScreen extends Application {
         stage.setScene(contactScene);
         stage.show();
     }
-
-
-    public void goHomeScreen(Stage stage){
-        Homescreen homescreen = new Homescreen();
-        try {
-            homescreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
 }

@@ -2,11 +2,13 @@ package sample.livestock;
 
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.GoToScreens;
 import sample.inlogScreen.PersonalData;
 import sample.market.Auction;
 
 public class ShowAnimalsBySpecies {
     ShowAnimalsBySpeciesScreen showAnimalsBySpeciesScreen = new ShowAnimalsBySpeciesScreen();
+    GoToScreens goToScreens = new GoToScreens();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
 
 
@@ -25,9 +27,10 @@ public class ShowAnimalsBySpecies {
             for(int i = 1; i < amount; i++){
                 auction.addAnimalToQueue(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(i));
             }
-            showAnimalsBySpeciesScreen.goShowAnimalsBySpiecies(stage);
+            goToScreens.goShowAnimalsBySpiecies(stage);
         }else{
             showAnimalsBySpeciesScreen.playError();
         }
     }
+
 }
