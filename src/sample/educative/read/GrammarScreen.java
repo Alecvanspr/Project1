@@ -19,94 +19,158 @@ public class GrammarScreen  extends Application {
     GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
     Scene scene;
+    int pastX = 100;
+    int presentX = 300;
+    int futureX = 500;
     int pastY = 65;
     int presentY = 65;
     int futureY = 65;
 
     @Override
     public void start(Stage stage) throws Exception {
-        int pastX = 100;
-        int presentX = 300;
-        int futureX = 500;
-
-        Button btnBack = new Button("back");
-        //these are all tenses
-        Button btnSimplePast = new Button("Past");
-        Button btnPresentSimple = new Button("Present");
-        Button btnContinues = new Button("Continues");
-        Button btnPresentProgressive = new Button("Present Progressive");
-        Button btnPastProgressive = new Button("Past Progressive");
-        Button btnPresentPerfect = new Button("Present Perfect");
-        Button btnPresentPerfectProgressive = new Button("Present Perfect Progressive");
-        Button btnPastPerfect = new Button("Past perfect");
-        Button btnPastPerfectProgressive = new Button("Past pefect Progressive");
-        Button btnFutureWill = new Button("Future will");
-        Button btnFutureGoingTo = new Button("Future going to");
-        Button btnFutureProgressive = new Button("Future progressive");
-        Button btnFuturePerfect = new Button("Future perfect");
-
         Button btnFactors = new Button("Factors");
-        Button btnIrregularVerbs = new Button("Irregular verbs");
+        makeButtons(stage);
+        fin(stage);
+    }
 
-        btnSimplePast.relocate(pastX,getPastY());
-        btnPastPerfect.relocate(pastX,getPastY());
-        btnPresentSimple.relocate(presentX,getPresentY());
-        btnContinues.relocate(presentX,getPresentY());
-        btnPresentProgressive.relocate(presentX,getPresentY());
-        btnPastProgressive.relocate(pastX,getPastY());
-        btnPresentPerfect.relocate(presentX,getPresentY());
-        btnPresentPerfectProgressive.relocate(presentX,getPresentY());
-        btnPastPerfectProgressive.relocate(pastX,getPastY());
-        btnFutureWill.relocate(futureX,getFutureY());
-        btnFutureGoingTo.relocate(futureX,getFutureY());
-        btnFutureProgressive.relocate(futureX,getFutureY());
-        btnFuturePerfect.relocate(futureX,getFutureY());
-        btnIrregularVerbs.relocate(100,400);
+    public int getPastY() {
+        this.pastY += 40;
+        return pastY;
+    }
 
-        btnBack.relocate(0,575);
-        btnBack.setOnAction(E->{
-            goToScreens.goReadScreen(stage);
-        });
+    public int getPresentY() {
+        this.presentY += 40;
+        return presentY;
+    }
 
-        btnSimplePast.setOnAction(E->{
-            goToEducative.goExplainTenseScreen(stage,0);
-        });
-        btnPastPerfect.setOnAction(E->{
-            goToEducative.goExplainTenseScreen(stage,1);
-        });
-        btnPastPerfectProgressive.setOnAction(E->{
-            goToEducative.goExplainTenseScreen(stage,2);
-        });
-        btnContinues.setOnAction(E->{
-            goToEducative.goExplainTenseScreen(stage,3);
-        });
-        btnIrregularVerbs.setOnAction(E->{
-            goToEducative.goIrregularVerbScreen(stage);
-        });
+    public int getFutureY() {
+        this.futureY += 40;
+        return futureY;
+    }
 
-
-
-        pane.getChildren().addAll(btnBack,btnSimplePast,btnPresentSimple,btnContinues,
-                btnPresentProgressive,btnPastProgressive,btnPresentPerfect,btnPastPerfectProgressive,
-                btnPresentPerfectProgressive,btnPastPerfect,btnFutureWill,btnFutureGoingTo,
-                btnFutureProgressive,btnFuturePerfect,btnIrregularVerbs
-                );
-
+    public void fin(Stage stage) {
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Grammar screen");
         stage.setScene(scene);
         stage.show();
     }
-    public int getPastY(){
-        this.pastY+=40;
-        return pastY;
+    public void makeButtons(Stage stage){
+        makeTenseButtons(stage);
+        makeBtnBack(stage);
     }
-    public int getPresentY(){
-        this.presentY+=40;
-        return presentY;
+
+    public void makeTenseButtons(Stage stage) {
+        makeBtnSimplePast(stage);
+        makeBtnPresentSimple(stage);
+        makeBtnContinues(stage);
+        makebtnPresentProgressive(stage);
+        makeBtnPastPerfect(stage);
+        makeBtnPastPerfectProgressive(stage);
+        makeFutureWill(stage);
+        makeBtnFutureGoingto(stage);
+        makeBtnFutureProgressive(stage);
+        makeBtnFuturePerfect(stage);
+        makebtnPresentPerfectProgressive(stage);
+        makebtnPastPerfectProgressive(stage);
     }
-    public int getFutureY(){
-        this.futureY+=40;
-        return futureY;
+    public void makeIrregualarVerb(Stage stage){
+        Button btnIrregularVerbs = new Button("Irregular verbs");
+        btnIrregularVerbs.relocate(100, 400);
+        btnIrregularVerbs.setOnAction(E -> {
+            goToEducative.goIrregularVerbScreen(stage);
+        });
+        pane.getChildren().addAll (btnIrregularVerbs);
+    }
+
+    public void makeBtnBack(Stage stage) {
+        Button btnBack = new Button("back");
+        btnBack.relocate(0, 575);
+        btnBack.setOnAction(E -> {
+            goToScreens.goReadScreen(stage);
+        });
+        pane.getChildren().add(btnBack);
+    }
+
+    public void makeBtnSimplePast(Stage stage) {
+        Button btnSimplePast = new Button("Past");
+        btnSimplePast.setOnAction(E -> {
+            goToEducative.goExplainTenseScreen(stage, 0);
+        });
+        btnSimplePast.relocate(pastX, getPastY());
+        pane.getChildren().add(btnSimplePast);
+    }
+
+    public void makeBtnPresentSimple(Stage stage) {
+        Button btnPresentSimple = new Button("Present");
+        btnPresentSimple.relocate(presentX, getPresentY());
+        pane.getChildren().add(btnPresentSimple);
+    }
+
+    public void makeBtnContinues(Stage stage) {
+        Button btnContinues = new Button("Continues");
+        btnContinues.setOnAction(E -> {
+            goToEducative.goExplainTenseScreen(stage, 3);
+        });
+        btnContinues.relocate(presentX, getPresentY());
+        pane.getChildren().add(btnContinues);
+    }
+
+    public void makebtnPresentProgressive(Stage stage){
+    Button btnPresentProgressive = new Button("Present Progressive");
+        btnPresentProgressive.relocate(presentX, getPresentY());
+        pane.getChildren().add(btnPresentProgressive);
+    }
+
+    public void makeBtnPastPerfectProgressive(Stage stage) {
+        Button btnPastProgressive = new Button("Past Progressive");
+        btnPastProgressive.relocate(pastX, getPastY());
+        pane.getChildren().add(btnPastProgressive);
+    }
+
+    public void makebuttonPresentPerfect(Stage stage){
+        Button btnPresentPerfect = new Button("Present Perfect");
+        btnPresentPerfect.relocate(presentX, getPresentY());
+        pane.getChildren().add(btnPresentPerfect);
+    }
+    public void makebtnPresentPerfectProgressive(Stage stage) {
+        Button btnPresentPerfectProgressive = new Button("Present Perfect Progressive");
+        btnPresentPerfectProgressive.relocate(presentX, getPresentY());
+        pane.getChildren().add(btnPresentPerfectProgressive);
+    }
+    public void makeBtnPastPerfect(Stage stage) {
+        Button btnPastPerfect = new Button("Past perfect");
+        btnPastPerfect.setOnAction(E -> {
+            goToEducative.goExplainTenseScreen(stage, 1);
+        });
+        btnPastPerfect.relocate(pastX, getPastY());
+        pane.getChildren().add(btnPastPerfect);
+    }
+    public void makebtnPastPerfectProgressive(Stage stage) {
+        Button btnPastPerfectProgressive = new Button("Past pefect Progressive");
+        btnPastPerfectProgressive.setOnAction(E -> {
+            goToEducative.goExplainTenseScreen(stage, 2);
+        });
+        btnPastPerfectProgressive.relocate(pastX, getPastY());
+        pane.getChildren().add(btnPastPerfectProgressive);
+    }
+    public void makeFutureWill(Stage stage) {
+        Button btnFutureWill = new Button("Future will");
+        btnFutureWill.relocate(futureX, getFutureY());
+        pane.getChildren().add(btnFutureWill);
+    }
+    public void makeBtnFutureGoingto(Stage stage) {
+        Button btnFutureGoingTo = new Button("Future going to");
+        btnFutureGoingTo.relocate(futureX, getFutureY());
+        pane.getChildren().add(btnFutureGoingTo);
+    }
+    public void makeBtnFutureProgressive(Stage stage) {
+        Button btnFutureProgressive = new Button("Future progressive");
+        btnFutureProgressive.relocate(futureX, getFutureY());
+        pane.getChildren().add(btnFutureProgressive);
+    }
+    public void makeBtnFuturePerfect(Stage stage) {
+        Button btnFuturePerfect = new Button("Future perfect");
+        btnFuturePerfect.relocate(futureX, getFutureY());
+        pane.getChildren().add(btnFuturePerfect);
     }
 }

@@ -22,20 +22,28 @@ public class ExplainTenseScreen extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         tenseKeeper.setStage(stage);
-        Label lblExplain = new Label(tenseKeeper.tensesExplained.get(currentTense));
-        Button btnBack = new Button("back");
-
-        btnBack.relocate(0,575);
-        lblExplain.relocate(100,100);
-
-        btnBack.setOnAction(E->{
-            goToEducative.goGrammar(stage);
-        });
-
-        pane.getChildren().addAll(btnBack,lblExplain,tenseKeeper.buttons.get(currentTense));
+        makeLabel();
+        pane.getChildren().addAll(tenseKeeper.buttons.get(currentTense));
+        makeBtnBack(stage);
+        fin(stage);
+    }
+    public void fin(Stage stage){
         Scene scene = new Scene(pane, 800, 600);
         stage.setTitle(tenseKeeper.tenseName.get(currentTense));
         stage.setScene(scene);
         stage.show();
+    }
+    public void makeLabel(){
+        Label lblExplain = new Label(tenseKeeper.tensesExplained.get(currentTense));
+        lblExplain.relocate(100,100);
+        pane.getChildren().add(lblExplain);
+    }
+    public void makeBtnBack(Stage stage){
+        Button btnBack = new Button("back");
+        btnBack.relocate(0,575);
+        btnBack.setOnAction(E->{
+            goToEducative.goGrammar(stage);
+        });
+        pane.getChildren().add(btnBack);
     }
 }

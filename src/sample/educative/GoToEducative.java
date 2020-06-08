@@ -31,30 +31,6 @@ public class GoToEducative {
             ex.printStackTrace();
         }
     }
-    public void goSimplePastScreen(Stage stage){
-        SimplePastScreen simplePastScreen = new SimplePastScreen();
-        try {
-            simplePastScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goPastPerfect(Stage stage){
-        PastPerfectScreen pastPerfectScreen = new PastPerfectScreen();
-        try {
-            pastPerfectScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    public void goPastProgressive(Stage stage) {
-        PastPerfectProgressiveScreen pastPerfectProgressiveScreen = new PastPerfectProgressiveScreen();
-        try {
-            pastPerfectProgressiveScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
     public void goPractice(Stage stage){
         PracticeScreen practiceScreen = new PracticeScreen();
         try {

@@ -24,12 +24,15 @@ public class EducativeHomeScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        makeButtons(stage);
+        pane.getChildren().addAll(btnBack, btnMath, btnRead, btnWrite);
+        fin(stage);
+    }
+    public void makeButtons(Stage stage){
         makeBtnBack(stage);
         makeBtnMath(stage);
         makeBtnRead(stage);
         makeBtnWrite(stage);
-        pane.getChildren().addAll(btnBack, btnMath, btnRead, btnWrite);
-        fin(stage);
     }
 
     public void makeBtnBack(Stage stage){

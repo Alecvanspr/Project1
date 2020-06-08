@@ -18,14 +18,20 @@ public class MathScreen  extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        btnBack(stage);
+
+        fin(stage);
+    }
+    public void btnBack(Stage stage){
         Button btnBack = new Button("back");
         buttonSettings.onMouse(btnBack);
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
             goToScreens.goEducativeScreen(stage);
         });
-
         pane.getChildren().addAll(btnBack);
+    }
+    public void fin(Stage stage){
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Math screen");
         stage.setScene(scene);

@@ -93,17 +93,19 @@ public class EditAppointment extends Application {
         editAppointmentButton.relocate(400, 300);
         editAppointmentButton.setOnAction(E-> {
             for(int i = 0; i < getAppointmentList().size(); i++){
-                String date = getAppointmentList().get(i).getAppointmentDate() + " " + getAppointmentList().get(i).getAppointmentTime();
-                if(date.equalsIgnoreCase(appointmentComboBox.getValue())){
-                    appointment = getAppointmentList().get(i);
-                    String oldTime = appointment.getAppointmentTime();
-                    getAppointmentList().get(i).EditAppointment(timeComboBox.getValue(), datePicker.getValue(),specialtyComboBox.getValue(),getDoctor(doctorComboBox.getValue()));
-                    removeAndAddTime(timeComboBox.getValue(),oldTime);
-
-                    goToScreens.goAppointmentsScreen(stage);
-                }
+                setEditAppointment(stage,i);
             }
         });
+    }
+    public void setEditAppointment(Stage stage,int i){
+        String date = getAppointmentList().get(i).getAppointmentDate() + " " + getAppointmentList().get(i).getAppointmentTime();
+        if(date.equalsIgnoreCase(appointmentComboBox.getValue())){
+            appointment = getAppointmentList().get(i);
+            String oldTime = appointment.getAppointmentTime();
+            getAppointmentList().get(i).EditAppointment(timeComboBox.getValue(), datePicker.getValue(),specialtyComboBox.getValue(),getDoctor(doctorComboBox.getValue()));
+            removeAndAddTime(timeComboBox.getValue(),oldTime);
+            goToScreens.goAppointmentsScreen(stage);
+        }
     }
 
     public void removeAndAddTime(String newTime, String oldTime){
