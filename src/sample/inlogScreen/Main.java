@@ -24,14 +24,15 @@ public class Main extends Application {
     GoToScreens goToScreens = new GoToScreens();
     Stage window;
     public Pane login = new Pane();
+    final Pane root = new Pane();
+
+    final int initWidth = 800;
+    final int initheight = 600;
 
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
-        final int initWidth = 800;
-        final int initheight = 600;
-        final Pane root = new Pane();
 
         login.setPrefWidth(initWidth);
         login.setPrefHeight(initheight);
@@ -92,12 +93,18 @@ public class Main extends Application {
             goToScreens.goForgetPassword(window);
         });
 
+
+
+
+    }
+    public void fin(Stage stage){
         Scene loginScene = new Scene(root,800,600);
         window.setResizable(true);
         window.setScene(loginScene);
         window.setTitle("Log in");
         window.show();
-
+    }
+    public void reziseAble(Scene loginScene){
         loginScene.rootProperty().addListener(new ChangeListener<Parent>() {
             @Override
             public void changed(ObservableValue<? extends Parent> observableValue, Parent parent, Parent t1) {
@@ -110,8 +117,6 @@ public class Main extends Application {
                 loginScene.rootProperty().addListener(this);
             }
         });
-
-
     }
     public static void main(String[] args) {
         launch(args);
