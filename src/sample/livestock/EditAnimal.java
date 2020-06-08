@@ -6,7 +6,7 @@ import sample.ArrayKeeper;
 import static sample.ArrayKeeper.getCurrentUser;
 
 public class EditAnimal {
-    private int currentAnimal;
+    private int currentAnimal; // deze kleiner.
     public void SaveEdits(TextField name, TextField age, TextField gender, TextField Species, TextField race,int currentAnimal) {
         this.currentAnimal = currentAnimal;
         int intAge = Integer.parseInt(age.getText());
