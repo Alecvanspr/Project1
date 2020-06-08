@@ -48,8 +48,9 @@ public class AddHeathCheckScreen extends Application {
 
         buttonSettings.onMouse(btnApply);
         buttonSettings.onMouse(btnBack);
-
         healthPane.getChildren().addAll(btnApply,txtHealthSituation,lblExplainTxt,btnBack);
+    }
+    public void fin(Stage stage){
         healthScene = new Scene(healthPane,800,600);
         stage.setTitle("Add health check");
         stage.setScene(healthScene);
