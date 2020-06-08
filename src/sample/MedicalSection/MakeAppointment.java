@@ -154,8 +154,9 @@ public class MakeAppointment extends Application {
             alertConfirmation.setTitle("Confirm appointment");
             alertConfirmation.setHeaderText("Are you sure you want to make an appointment with " + doctorBox.getValue() + " at " + selectTime.getValue() + " on " + datePicker.getValue() + " for " + specialtyBox.getValue());
 
-            Optional<ButtonType> option = alertConfirmation.showAndWait();
-            if(option.get() != null){
+
+            if(selectTime.getSelectionModel().getSelectedItem() != null){
+                Optional<ButtonType> option = alertConfirmation.showAndWait();
                 if(option.get() == ButtonType.OK){
                     Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), selectTime.getSelectionModel().getSelectedItem().toString(), ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()));
                     ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).addAppointment(newAppointment);
@@ -169,6 +170,11 @@ public class MakeAppointment extends Application {
                         ex.printStackTrace();
                     }
                 }
+            }else{
+                Alert timeAlert = new Alert(Alert.AlertType.ERROR);
+                timeAlert.setTitle("No time selected!");
+                timeAlert.setHeaderText("You must select a time before you can make an appointment!");
+                timeAlert.show();
             }
         });
 
