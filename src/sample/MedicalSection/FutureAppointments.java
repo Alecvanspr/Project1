@@ -1,5 +1,7 @@
 package sample.MedicalSection;
 
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import sample.ArrayKeeper;
 
 import java.text.SimpleDateFormat;

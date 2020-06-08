@@ -1,5 +1,7 @@
 package sample.MedicalSection;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,6 +39,7 @@ public class ShowAppointmentsScreen extends Application {
             Label timeLabel = new Label("You're expected on the time: " + getFutureAppointments().get(i).getAppointmentTime());
             appointmentLabel.relocate(100, 100+(50*i));
             timeLabel.relocate(100, 125+(50*i));
+            makeButton(pane, 100+(50*i));
             pane.getChildren().addAll(appointmentLabel, timeLabel);
         }
 
@@ -58,6 +61,17 @@ public class ShowAppointmentsScreen extends Application {
     public ArrayList<Appointment> getFutureAppointments(){
         FutureAppointments futureAppointments = new FutureAppointments();
         return futureAppointments.getFutureAppointments();
+    }
+    public void makeButton(Pane pane, int height){
+        Button button = new Button("Change");
+        button.relocate(50, height);
+        pane.getChildren().add(button);
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+            }
+        });
     }
 
 }
