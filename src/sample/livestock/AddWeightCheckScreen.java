@@ -20,6 +20,8 @@ public class AddWeightCheckScreen extends Application {
     Scene healthScene;
     Pane healthPane = new Pane();
     int currentAnimal;
+    Label lblWeight = new Label("Here you enter the weight of your animal");
+    TextField txtnewWeight = new TextField();
 
     public AddWeightCheckScreen(int currentAnimal){
         this.currentAnimal = currentAnimal;
@@ -27,32 +29,44 @@ public class AddWeightCheckScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Button btnBack = new Button("Back");
-        Button btnAply = new Button("Apply");
-        Label lblWeight = new Label("Here you enter the weight of your animal");
-        TextField txtnewWeight = new TextField();
-
-        btnAply.relocate(300,100);
-        lblWeight.relocate(100,55);
-        txtnewWeight.relocate(100,100);
-        btnBack.relocate(0,565);
-
-        btnAply.setOnAction(E->{
-            addWeightSituation(txtnewWeight.getText());
-            goToScreens.displayWeight(stage,currentAnimal);
-        });
-
-        btnBack.setOnAction(E->{
-            goToScreens.displayWeight(stage,currentAnimal);
-        });
-
-        buttonSettings.onMouse(btnAply);
-        buttonSettings.onMouse(btnBack);
-        healthPane.getChildren().addAll(txtnewWeight,btnAply,lblWeight,btnBack);
+        makeTextField();
+        makeLabels();
+        makeBtnBack(stage);
+        makeBtnApply(stage);
+        fin(stage);
+    }
+    public void fin(Stage stage){
         healthScene = new Scene(healthPane,800,600);
         stage.setTitle("Add health check");
         stage.setScene(healthScene);
         stage.show();
+    }
+    public void makeTextField(){
+        txtnewWeight.relocate(100,100);
+        healthPane.getChildren().addAll(txtnewWeight);
+    }
+    public void makeLabels(){
+        lblWeight.relocate(100,55);
+        healthPane.getChildren().addAll(lblWeight);
+    }
+    public void makeBtnBack(Stage stage){
+        Button btnBack = new Button("Back");
+        btnBack.relocate(0,565);
+        buttonSettings.onMouse(btnBack);
+        btnBack.setOnAction(E->{
+            goToScreens.displayWeight(stage,currentAnimal);
+        });
+        healthPane.getChildren().add(btnBack);
+    }
+    public void makeBtnApply(Stage stage){
+        Button btnAply = new Button("Apply");
+        btnAply.relocate(300,100);
+        btnAply.setOnAction(E->{
+            addWeightSituation(txtnewWeight.getText());
+            goToScreens.displayWeight(stage,currentAnimal);
+        });
+        buttonSettings.onMouse(btnAply);
+        healthPane.getChildren().add(btnAply);
     }
 
     public void addWeightSituation(String situation){

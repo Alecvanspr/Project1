@@ -26,41 +26,29 @@ public class WriteWordsScreen extends Application {
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
     GetImage getImage = new GetImage();
-    Button CorrectAnswer;
+    Button CorrectAnswer = new Button("Dragging");
     Button random1 = new Button("");
     Button random2 = new Button("");
     ImageView iv;
     Image image;
     int rng = random.nextInt(getImage.getAnimalImages().size() - 1);
+    Image enterFieldPng = new Image("images/education/answerField.png");
+    ImageView enterField = new ImageView(enterFieldPng);
+    Button btnBack = new Button("back");
+    Button btnNewPic = new Button("next animal");
 
 
     @Override
     public void start(Stage stage) throws Exception {
-        Image enterFieldPng = new Image("images/education/answerField.png");
-        ImageView enterField = new ImageView(enterFieldPng);
-        enterField.relocate(475,80);
-        lblAnswer.relocate(475,50);
-
-        CorrectAnswer = new Button("Dragging");
-        CorrectAnswer.setScaleX(2.0);
-        CorrectAnswer.setScaleY(2.0);
-        random1.setScaleX(2.0);
-        random1.setScaleY(2.0);
-        random2.setScaleX(2.0);
-        random2.setScaleY(2.0);
+        makeCorrectAnswer(stage);
+        makeRandom1(stage);
+        makeRandom2(stage);
+        makeEnterField(stage);
+        makeLblAnswer(stage);
+        makebtnBack(stage);
+        makebtnNewPic(stage);
 
         makeBackGround();
-
-        Button btnBack = new Button("back");
-        Button btnNewPic = new Button("next animal");
-
-        btnBack.relocate(0, 575);
-        btnBack.setOnAction(E -> {
-            goBack(stage);
-        });
-        btnNewPic.setOnAction(e->{
-            makeBackGround();
-        });
 
         buttonMover(CorrectAnswer);
         buttonMover(random1);
@@ -68,9 +56,7 @@ public class WriteWordsScreen extends Application {
 
         pane.getChildren().addAll(enterField,btnBack, btnNewPic, CorrectAnswer , random1 , random2,lblAnswer);
 
-        stage.setTitle("Write words screen");
-        stage.setScene(scene);
-        stage.show();
+        fin(stage);
     }
 
     public void goBack(Stage stage) {
@@ -183,5 +169,41 @@ public class WriteWordsScreen extends Application {
         CorrectAnswer.relocate(100,300);
         random1.relocate(100,100);
         random2.relocate(100,500);
+    }
+
+    public void makeCorrectAnswer(Stage stage){
+        CorrectAnswer.setScaleX(2.0);
+        CorrectAnswer.setScaleY(2.0);
+    }
+    public void makeRandom1(Stage stage){
+        random1.setScaleX(2.0);
+        random1.setScaleY(2.0);
+    }
+    public void makeRandom2(Stage stage){
+        random2.setScaleX(2.0);
+        random2.setScaleY(2.0);
+    }
+    public void makeEnterField(Stage stage){
+        enterField.relocate(475,80);
+    }
+    public void makeLblAnswer(Stage stage){
+        lblAnswer.relocate(475,50);
+    }
+    public void makebtnBack(Stage stage){
+        btnBack.relocate(0, 575);
+        btnBack.setOnAction(E -> {
+            goBack(stage);
+        });
+    }
+    public void makebtnNewPic(Stage stage){
+        btnNewPic.setOnAction(e->{
+            makeBackGround();
+        });
+    }
+
+    public void fin(Stage stage){
+        stage.setTitle("Write words screen");
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -46,14 +46,12 @@ public class Animal {
                 }
             }
         }
-
     }
     public Boolean checkSpecies(String species) {
         boolean ret = false;
         for (int i = 0; i < PersonalData.getSpecies().size(); i++) {
             if (PersonalData.getSpecies().get(i).getSpecies().equalsIgnoreCase(this.getSpecies())) {
                 return true;
-
             }
         }
         return ret;

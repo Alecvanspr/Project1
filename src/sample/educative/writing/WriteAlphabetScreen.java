@@ -15,7 +15,9 @@ import sample.educative.GetImage;
 
 public class WriteAlphabetScreen extends Application {
     GoToScreens goToScreens = new GoToScreens();
-    BackgroundImage backgroundImage;
+    Image backgroundLines = new Image("images/education/DrawLinesLetter.png");
+    BackgroundImage backgroundImage = new BackgroundImage(backgroundLines,BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+            BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
     Image image;
     ImageView imageView;
     private int letter = 0;
@@ -24,62 +26,28 @@ public class WriteAlphabetScreen extends Application {
     GetImage getImage = new GetImage();
     Canvas canvas = new Canvas(800,600);
     GraphicsContext gc;
+    Button btnNextLetter = new Button("Next letter");
+    Button btnLastLetter = new Button("Last letter");
+    Button btnClear = new Button("Clear");
+    Button btnCapital = new Button("Capital");
+    Button btnLowerCase = new Button("Lower Case");
+    Button btnBack = new Button("back");
 
     @Override
     public void start(Stage stage) throws Exception {
-        Image backgroundLines = new Image("images/education/DrawLinesLetter.png");
-        backgroundImage = new BackgroundImage(backgroundLines,BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Button btnNextLetter = new Button("Next letter");
-        Button btnLastLetter = new Button("Last letter");
-        Button btnClear = new Button("Clear");
-        Button btnCapital = new Button("Capital");
-        Button btnLowerCase = new Button("Lower Case");
-        btnCapital.relocate(150 ,575);
-        btnLowerCase.relocate(150,575);
-        btnNextLetter.relocate(75,575);
-        btnClear.relocate(775,575);
-
-        btnLastLetter.setOnAction(E->{
-            letter= letter-2;
-            clearAndNext();
-        });
-
-        btnNextLetter.setOnAction(E->{
-            letter=letter+2;
-            clearAndNext();
-        });
-        btnLowerCase.setOnAction(E->{
-            letter++;
-            clearAndNext();
-            pane.getChildren().add(btnCapital);
-            pane.getChildren().remove(btnLowerCase);
-        });
-        btnCapital.setOnAction(E->{
-            letter--;
-            pane.getChildren().add(btnLowerCase);
-            pane.getChildren().remove(btnCapital);
-            clearAndNext();
-        });
-
-        btnClear.setOnAction(E->{
-            clearDrawing();
-        });
+        makeBtnNextLetter(stage);
+        makeBtnLastLetter(stage);
+        makeBtnClear(stage);
+        makeBtnCapital(stage);
+        makeBtnLowerCase(stage);
+        makeBtnBack(stage);
 
         drawing();
         makeBackGround();
 
-
-        Button btnBack = new Button("back");
-        btnBack.relocate(0,575);
-
-        btnBack.setOnAction(E->{
-            goToScreens.goWriteScreen(stage);
-        });
-
         pane.getChildren().addAll(canvas,btnNextLetter,btnClear,btnLastLetter,btnLowerCase,btnBack);
-        stage.setTitle("Write Screen");
-        stage.setScene(scene);
-        stage.show();
+
+        fin(stage);
     }
     public void drawing(){
         gc = canvas.getGraphicsContext2D();
@@ -118,5 +86,53 @@ public class WriteAlphabetScreen extends Application {
         checkCounter();
         makeBackGround();
         clearDrawing();
+    }
+    public void makeBtnNextLetter(Stage stage){
+        btnNextLetter.relocate(75,575);
+        btnNextLetter.setOnAction(E->{
+            letter=letter+2;
+            clearAndNext();
+        });
+    }
+    public void makeBtnLastLetter(Stage stage){
+        btnLastLetter.setOnAction(E->{
+            letter= letter-2;
+            clearAndNext();
+        });
+    }
+    public void makeBtnClear(Stage stage){
+        btnClear.relocate(775,575);
+        btnClear.setOnAction(E->{
+            clearDrawing();
+        });
+    }
+    public void makeBtnCapital(Stage stage){
+        btnCapital.relocate(150 ,575);
+        btnCapital.setOnAction(E->{
+            letter--;
+            pane.getChildren().add(btnLowerCase);
+            pane.getChildren().remove(btnCapital);
+            clearAndNext();
+        });
+    }
+    public void makeBtnLowerCase(Stage stage){
+        btnLowerCase.relocate(150,575);
+        btnLowerCase.setOnAction(E->{
+            letter++;
+            clearAndNext();
+            pane.getChildren().add(btnCapital);
+            pane.getChildren().remove(btnLowerCase);
+        });
+    }
+    public void makeBtnBack(Stage stage){
+        btnBack.relocate(0,575);
+        btnBack.setOnAction(E->{
+            goToScreens.goWriteScreen(stage);
+        });
+    }
+    public void fin(Stage stage){
+        stage.setTitle("Write Screen");
+        stage.setScene(scene);
+        stage.show();
     }
 }
