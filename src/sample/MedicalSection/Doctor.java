@@ -64,7 +64,7 @@ public class Doctor extends PersonalData {
     public void addSpecialties(Specialty specialty) {
         if (checkSpecialty(specialty)) {
             this.specialties.add(specialty);
-        } else {
+        }else{
             Alert doctorAlreadyHasSpecialt = new Alert(Alert.AlertType.ERROR);
             doctorAlreadyHasSpecialt.setContentText("This Doctor already has this specialty");
             doctorAlreadyHasSpecialt.show();
@@ -80,7 +80,7 @@ public class Doctor extends PersonalData {
         return arraykeeper.getSpecialtiesArrayList().get(0);
     }
 
-    public Boolean checkSpecialty(Specialty specialty) {
+    public Boolean checkSpecialty(Specialty specialty){
         for (int i = 0; i < specialties.size(); i++) {
             if (specialties.get(i).equals(specialty)) {
                 return true;

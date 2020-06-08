@@ -6,11 +6,9 @@ import java.util.List;
 public class Addressbook {
     private static List<Contact> contacts = new ArrayList<>();
 
-
     public static void addContact(Contact c){
         contacts.add(c);
     }
-
 
     public static List<Contact> find(String search){
         for(Contact contact : contacts) {

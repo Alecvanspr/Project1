@@ -23,7 +23,7 @@ public class ForgotPasswordScreen extends Application {
         Pane Forgot = new Pane();
         Button btnBack = new Button("Back");
         Label lblUsername = new Label("Username");
-        Label lblBirthDate = new Label("Birth date");
+        Label lblDateOfBirth = new Label("Birth date");
         Label lblSecurityQuestion = new Label("Click here to reveal your Security Question");
         Label lblnewPassword = new Label("New password");
         Label lblnewPasswordConfirm = new Label("Enter new password again");
@@ -37,7 +37,7 @@ public class ForgotPasswordScreen extends Application {
 
         lblUsername.relocate(100,50);
         txtUsername.relocate(100,75);
-        lblBirthDate.relocate(100,100);
+        lblDateOfBirth.relocate(100,100);
         txtBirth.relocate(100,125);
         lblSecurityQuestion.relocate(100,150);
         security.relocate(100,175);
@@ -53,7 +53,7 @@ public class ForgotPasswordScreen extends Application {
                 setSecurityQuestion(lblSecurityQuestion);
                 });
 
-        Forgot.getChildren().addAll(btnBack,lblUsername,txtUsername,lblBirthDate,txtBirth,lblSecurityQuestion,security
+        Forgot.getChildren().addAll(btnBack,lblUsername,txtUsername,lblDateOfBirth,txtBirth,lblSecurityQuestion,security
         ,txtPassword,txtPasswordConfirm,lblnewPassword,lblnewPasswordConfirm,ChangePassword,lblError);
         btnBack.relocate(0, 570);
 
@@ -105,23 +105,27 @@ public class ForgotPasswordScreen extends Application {
     public void setSecurityQuestion(Label label){
         label.setText(main.arraykeeper.getData().get(changingUser).getSecurtityQuestion());
     }
-    public void changePassword(String secutiry,String password,String passwordcheck,Stage stage){
-        if(secutiry.equalsIgnoreCase(main.arraykeeper.getData().get(changingUser).getSecurityAnswer())) {
-            if (password.equals(passwordcheck)) {
+    public void changePassword(String security,String password,String passwordcheck,Stage stage){
+        if(security.equalsIgnoreCase(main.arraykeeper.getData().get(changingUser).getSecurityAnswer())) {
+            if(password.equals(passwordcheck)){
                 main.arraykeeper.changePassword(changingUser, password);
                 goBack(stage);
-            } else {
+            }
+            else{
                 lblError.setText("Passwords do not match");
             }
-        }else{
+        }
+        else{
             lblError.setText("Question Wrong");
         }
     }
+
     public void goBack(Stage stage){
         Main main = new Main();
-        try {
+        try{
             main.start(stage);
-        } catch (Exception ex) {
+        }
+        catch (Exception ex){
             ex.printStackTrace();
         }
     }
