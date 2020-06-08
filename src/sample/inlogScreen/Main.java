@@ -89,7 +89,7 @@ public class Main extends Application {
         Button btnLogin = new Button("Log in");
         btnLogin.relocate(100,145);
         btnLogin.setOnAction(e -> {
-            if(mainMethods.gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
+            if(mainMethods.dataCheck(passwordField.getText(),(textFieldUserName.getText()))){
                 goToScreens.goHomeScreen(window);
             }else{
                 login.getChildren().add(error);

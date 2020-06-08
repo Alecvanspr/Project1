@@ -25,39 +25,26 @@ public class WriteRandomScreen extends Application {
     GetImage getImage = new GetImage();
     Canvas canvas = new Canvas(800,600);
     GraphicsContext gc;
+    Button btnClear = new Button("Clear");
+    Button btnNewLetter = new Button("Next");
+    Button btnBack = new Button("back");
+
 
     @Override
     public void start(Stage stage) throws Exception {
-        Button btnClear = new Button("Clear");
-        Button btnNewLetter = new Button("Next");
-
-        btnClear.relocate(0,0);
-        btnNewLetter.relocate(75,575);
-        btnNewLetter.setOnAction(E->{
-            makeBackGround();
-            clearDrawing();
-        });
-        btnClear.setOnAction(e->{
-            clearDrawing();
-        });
+        makeBtnClear(stage);
+        makeBtnNewLetter(stage);
+        makeBtnBack(stage);
 
         drawing();
         makeBackGround();
 
-        Button btnBack = new Button("back");
-        btnBack.relocate(0,575);
-
-        btnBack.setOnAction(E->{
-            goback(stage);
-        });
-
         pane.getChildren().addAll(canvas,btnBack,btnNewLetter, btnClear);
-        stage.setTitle("Write Screen");
-        stage.setScene(scene);
-        stage.show();
+
+        fin(stage);
     }
     public void goback(Stage stage){
-       goToScreens.goWriteScreen(stage);
+        goToScreens.goWriteScreen(stage);
     }
     public void drawing(){
         gc = canvas.getGraphicsContext2D();
@@ -87,5 +74,28 @@ public class WriteRandomScreen extends Application {
     public void clearDrawing(){
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
-
+    public void makeBtnClear(Stage stage){
+        btnClear.relocate(0,0);
+        btnClear.setOnAction(e->{
+            clearDrawing();
+        });
+    }
+    public void makeBtnNewLetter(Stage stage){
+        btnNewLetter.relocate(75,575);
+        btnNewLetter.setOnAction(E->{
+            makeBackGround();
+            clearDrawing();
+        });
+    }
+    public void makeBtnBack(Stage stage){
+        btnBack.relocate(0,575);
+        btnBack.setOnAction(E->{
+            goback(stage);
+        });
+    }
+    public void fin(Stage stage){
+        stage.setTitle("Write Screen");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

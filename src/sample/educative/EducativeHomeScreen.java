@@ -17,39 +17,50 @@ public class EducativeHomeScreen extends Application {
     GoToScreens goToScreens = new GoToScreens();
     Scene scene;
     GetImage getImage = new GetImage();
+    Button btnBack = new Button("Back");
+    Button btnMath = new Button("math");
+    Button btnRead = new Button("read");
+    Button btnWrite = new Button("write");
 
     @Override
     public void start(Stage stage) throws Exception {
-        Button btnBack = new Button("Back");
-        Button btnMath = new Button("math");
-        Button btnRead = new Button("read");
-        Button btnWrite = new Button("write");
+        makeBtnBack(stage);
+        makeBtnMath(stage);
+        makeBtnRead(stage);
+        makeBtnWrite(stage);
+        pane.getChildren().addAll(btnBack, btnMath, btnRead, btnWrite);
+        fin(stage);
+    }
 
+    public void makeBtnBack(Stage stage){
         btnBack.relocate(0,575);
-        btnMath.relocate(100,100);
-        btnRead.relocate(100,200);
-        btnWrite.relocate(200,100);
-
         buttonSettings.onMouse(btnBack);
-        buttonSettings.onMouse(btnMath);
-        buttonSettings.onMouse(btnRead);
-        buttonSettings.onMouse(btnWrite);
-
         btnBack.setOnAction(e -> {
             goToScreens.goHomeScreen(stage);
         });
-        btnMath.setOnAction(E->{
-            goToScreens.goMathScreen(stage);
-        });
+    }
+    public void makeBtnRead(Stage stage){
+        btnRead.relocate(100,200);
+        buttonSettings.onMouse(btnRead);
         btnRead.setOnAction(E->{
             goToScreens.goReadScreen(stage);
         });
+    }
+    public void makeBtnWrite(Stage stage){
+        btnWrite.relocate(200,100);
+        buttonSettings.onMouse(btnWrite);
         btnWrite.setOnAction(E->{
             goToScreens.goWriteScreen(stage);
         });
-
-        pane.getChildren().addAll(btnBack, btnMath, btnRead, btnWrite);
-
+    }
+    public void makeBtnMath(Stage stage){
+        btnMath.relocate(100,100);
+        buttonSettings.onMouse(btnMath);
+        btnMath.setOnAction(E->{
+            goToScreens.goMathScreen(stage);
+        });
+    }
+    public void fin(Stage stage){
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Educative homescreen");
         stage.setScene(scene);
