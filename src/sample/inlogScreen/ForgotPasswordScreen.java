@@ -1,13 +1,11 @@
 package sample.inlogScreen;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ButtonSettings;
@@ -21,61 +19,77 @@ public class ForgotPasswordScreen extends Application {
     Main main = new Main();
     public int changingUser;
     public Label lblError = new Label();
+    Pane pane = new Pane();
+
+    TextField txtUsername = new TextField();
+    TextField txtBirth = new TextField();
+    TextField security = new TextField();
+    PasswordField txtPassword = new PasswordField();
+    PasswordField txtPasswordConfirm = new PasswordField();
 
     @Override
     public void start(Stage stage) throws Exception {
-        Pane Forgot = new Pane();
-        Button btnBack = new Button("Back");
-        Label lblUsername = new Label("Username");
-        Label lblBirthDate = new Label("Birth date");
-        Label lblSecurityQuestion = new Label("Click here to reveal your Security Question");
-        Label lblnewPassword = new Label("New password");
-        Label lblnewPasswordConfirm = new Label("Enter new password again");
-
-        TextField txtUsername = new TextField();
-        TextField txtBirth = new TextField();
-        TextField security = new TextField();
-        PasswordField txtPassword = new PasswordField();
-        PasswordField txtPasswordConfirm = new PasswordField();
-        Button ChangePassword = new Button("Change Password");
-
-        lblUsername.relocate(100,50);
-        txtUsername.relocate(100,75);
-        lblBirthDate.relocate(100,100);
-        txtBirth.relocate(100,125);
-        lblSecurityQuestion.relocate(100,150);
-        security.relocate(100,175);
-        lblnewPassword.relocate(100,200);
-        txtPassword.relocate(100,225);
-        lblnewPasswordConfirm.relocate(100,250);
-        txtPasswordConfirm.relocate(100,275);
-        ChangePassword.relocate(100,335);
-        lblError.relocate(100,314);
-
-        lblSecurityQuestion.setOnMouseClicked(e->{
-                changingUser= forgotPassword.getUser(txtUsername.getText());
-                setSecurityQuestion(lblSecurityQuestion);
-                });
-
-        Forgot.getChildren().addAll(btnBack,lblUsername,txtUsername,lblBirthDate,txtBirth,lblSecurityQuestion,security
-        ,txtPassword,txtPasswordConfirm,lblnewPassword,lblnewPasswordConfirm,ChangePassword,lblError);
-        btnBack.relocate(0, 570);
-
-        ChangePassword.setOnAction(e->{
-            changePassword(security.getText(),txtPassword.getText(),txtPasswordConfirm.getText(),stage);
-        });
-
-        btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
-            goToScreens.goMain(stage);
-        });
-
-        buttonSettings.onMouse(btnBack);
-
-
-        ForgotPassword = new Scene(Forgot, 800, 600);
+        makeTextFields();
+        makeButtons(stage);
+        fin(stage);
+    }
+    public void fin(Stage stage){
+        ForgotPassword = new Scene(pane, 800, 600);
         stage.setTitle("Reset Password");
         stage.setScene(ForgotPassword);
         stage.show();
+    }
+    public void makeButtons(Stage stage){
+        makeBtnBack(stage);
+        makeBtnChangePassword(stage);
+        makeSecurityLabel();
+    }
+    public void makeSecurityLabel(){
+        lblError.relocate(100,314);
+        Label lblSecurityQuestion = new Label("Click here to reveal your Security Question");
+        lblSecurityQuestion.relocate(100,150);
+        lblSecurityQuestion.setOnMouseClicked(e->{
+            changingUser= forgotPassword.getUser(txtUsername.getText());
+            setSecurityQuestion(lblSecurityQuestion);
+        });
+        pane.getChildren().add(lblSecurityQuestion);
+    }
+    public void makeTextFields(){
+        txtUsername.relocate(100,75);
+        txtBirth.relocate(100,125);
+        security.relocate(100,175);
+        txtPassword.relocate(100,225);
+        txtPasswordConfirm.relocate(100,275);
+        pane.getChildren().addAll(txtUsername,txtBirth,security
+                ,txtPassword,txtPasswordConfirm,lblError);
+    }
+    public void makeLabels(){
+        Label lblUsername = new Label("Username");
+        Label lblBirthDate = new Label("Birth date");
+        Label lblnewPassword = new Label("New password");
+        Label lblnewPasswordConfirm = new Label("Enter new password again");
+        lblUsername.relocate(100,50);
+        lblnewPasswordConfirm.relocate(100,250);
+        lblnewPassword.relocate(100,200);
+        lblBirthDate.relocate(100,100);
+        pane.getChildren().addAll(lblBirthDate,lblnewPassword,lblUsername,lblnewPasswordConfirm);
+    }
+    public void makeBtnChangePassword(Stage stage){
+        Button ChangePassword = new Button("Change Password");
+        ChangePassword.relocate(100,335);
+        pane.getChildren().add(ChangePassword);
+        ChangePassword.setOnAction(e->{
+            changePassword(security.getText(),txtPassword.getText(),txtPasswordConfirm.getText(),stage);
+        });
+    }
+    public void makeBtnBack(Stage stage){
+        Button btnBack = new Button("Back");
+        btnBack.setOnAction(e -> {
+            goToScreens.goMain(stage);
+        });
+        buttonSettings.onMouse(btnBack);
+        btnBack.relocate(0, 570);
+        pane.getChildren().add(btnBack);
     }
     public void setSecurityQuestion(Label label){
         label.setText(main.arraykeeper.getData().get(changingUser).getSecurtityQuestion());
