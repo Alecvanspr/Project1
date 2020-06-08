@@ -20,14 +20,15 @@ public class ReadScreen  extends Application {
         Button btnBack = new Button("back");
         Button btnGrammar = new Button("grammar");
         Button btnHangman = new Button("Hangman");
-        Button btnYouCantSeeMe = new Button("you cant see mee");
-        btnYouCantSeeMe.relocate(300,350);
-        btnYouCantSeeMe.setOnAction(e->{
-            goToScreens.goVideo(stage);
-        });
+        Button btnStories = new Button("Stories");
+
+        btnStories.relocate(300,200);
         btnHangman.relocate(200,350);
         btnBack.relocate(0,575);
         btnGrammar.relocate(200,200);
+        btnStories.setOnAction(e->{
+            goToScreens.goStoryScreen(stage);
+        });
         btnHangman.setOnAction(e->{
             goToScreens.goHangmanScreen(stage);
         });
@@ -38,7 +39,7 @@ public class ReadScreen  extends Application {
             goToEducative.goGrammar(stage);
         });
 
-        pane.getChildren().addAll(btnBack,btnHangman,btnGrammar,btnYouCantSeeMe);
+        pane.getChildren().addAll(btnBack,btnHangman,btnGrammar);
 
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Read screen");

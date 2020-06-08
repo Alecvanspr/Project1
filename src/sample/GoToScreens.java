@@ -6,6 +6,7 @@ import sample.educative.EducativeHomeScreen;
 import sample.educative.MathScreen;
 import sample.educative.read.HangmanScreen;
 import sample.educative.read.ReadScreen;
+import sample.educative.read.StoryScreen;
 import sample.educative.read.VideoTest;
 import sample.educative.writing.*;
 import sample.inlogScreen.ForgotPasswordScreen;
@@ -210,14 +211,6 @@ public class GoToScreens {
         }
     }
 
-    public void goVideo(Stage stage) {
-        VideoTest videoTest = new VideoTest();
-        try {
-            videoTest.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
     public void goProfile(Stage stage){
         ProfileSettingsScreen pScreen = new ProfileSettingsScreen();
         try {
@@ -262,6 +255,15 @@ public class GoToScreens {
         EditAnimalScreen editAnimalScreen = new EditAnimalScreen(animal,ArrayKeeper.getCurrentUser());
         try {
             editAnimalScreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void goStoryScreen(Stage stage){
+        StoryScreen storyScreen = new StoryScreen();
+        try {
+            storyScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
