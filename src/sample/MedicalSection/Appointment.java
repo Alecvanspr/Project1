@@ -81,7 +81,6 @@ public class Appointment {
         setAppointmentDate(date);
         setSpecialty(specialty);
         setDoctor(doctor);
-
     }
 }
 

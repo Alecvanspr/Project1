@@ -40,8 +40,11 @@ public class Dates{
     public void removeTimeFromTimeTable(String chosenTime){
         for(int i = 0; i < timeTable.size(); i++){
             if(timeTable.get(i).equals(chosenTime)){
-                this.getTimeTable().remove(i);
+                timeTable.remove(i);
             }
         }
+    }
+    public void addTimeToTimeTable(String chosenTime){
+        timeTable.add(chosenTime);
     }
 }

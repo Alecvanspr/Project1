@@ -9,6 +9,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
+import sample.GoToScreens;
 import sample.inlogScreen.Main;
 
 import java.time.LocalDate;
@@ -18,6 +20,9 @@ public class EditAppointment extends Application {
     Scene EditAppointment;
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    ButtonSettings buttonSettings = new ButtonSettings();
+    GoToScreens goToScreens = new GoToScreens();
+    Appointment appointment;
     Pane pane = new Pane();
     ComboBox<String> appointmentComboBox = new ComboBox<>();
     ComboBox<String> specialtyComboBox = new ComboBox<>();
@@ -28,38 +33,37 @@ public class EditAppointment extends Application {
     Button doctorButton = new Button("Select");
     Button editAppointmentButton = new Button("Edit Appointment");
     Button dateButton = new Button("Select");
+    Button exitButton = new Button("Back");
     DatePicker datePicker = new DatePicker();
 
     public void start(Stage stage) throws Exception{
         makeComboBoxes();
         makeDatePicker();
-        makeButtons();
+        makeButtons(stage);
 
         setNothingVisible();
-        pane.getChildren().addAll(dateButton, appointmentComboBox, specialtyButton, doctorComboBox,specialtyComboBox, timeComboBox, doctorButton, editAppointmentButton, datePicker, appointmentButton);
+        pane.getChildren().addAll(exitButton, dateButton, appointmentComboBox, specialtyButton, doctorComboBox,specialtyComboBox, timeComboBox, doctorButton, editAppointmentButton, datePicker, appointmentButton);
         fin(stage);
     }
-    public void makeButtons(){
+    public void makeButtons(Stage stage){
         makeSpecialtyButton();
         makeDoctorButton();
         makeAppointmentButton();
-        makeEditAppointmentButton();
+        makeEditAppointmentButton(stage);
         makeDateButton();
+        makeExitButton(stage);
+    }
+    public void makeExitButton(Stage stage){
+        exitButton.relocate(10, 565);
+        buttonSettings.onMouse(exitButton);
+        goToScreens.goAppointmentsScreen(stage);
     }
     public void makeDateButton(){
         dateButton.relocate(450,260);
         dateButton.setOnAction(E-> {
             if(checkDate(datePicker.getValue())){
                 timeComboBox.getItems().clear();
-                if(getDoctor(doctorComboBox.getValue()).checkLocalDate(datePicker.getValue())){
-                    fillTimeBox(timeComboBox, getDoctor(doctorComboBox.getValue()).getDate(datePicker.getValue()));
-                }else{
-
-                    Dates date = new Dates(datePicker.getValue());
-                    fillTimeBox(timeComboBox, date);
-                }
-                timeComboBox.setVisible(true);
-                editAppointmentButton.setVisible(true);
+                getTimeTable();
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Please select a correct date");
@@ -69,14 +73,42 @@ public class EditAppointment extends Application {
 
         });
     }
+    public void getTimeTable(){
+        if(getDoctor(doctorComboBox.getValue()).checkLocalDate(datePicker.getValue())){
+            fillTimeBox(timeComboBox, getDoctor(doctorComboBox.getValue()).getDate(datePicker.getValue()));
+        }else{
+
+            Dates date = new Dates(datePicker.getValue());
+            fillTimeBox(timeComboBox, date);
+        }
+        timeComboBox.setVisible(true);
+        editAppointmentButton.setVisible(true);
+    }
     public void fillTimeBox(ComboBox combobox, Dates date){
         for(int i = 0; i < date.getTimeTable().size(); i++){
             combobox.getItems().add(date.getTimeTable().get(i));
         }
     }
-    public void makeEditAppointmentButton(){
+    public void makeEditAppointmentButton(Stage stage){
         editAppointmentButton.relocate(400, 300);
+        editAppointmentButton.setOnAction(E-> {
+            for(int i = 0; i < getAppointmentList().size(); i++){
+                String date = getAppointmentList().get(i).getAppointmentDate() + " " + getAppointmentList().get(i).getAppointmentTime();
+                if(date.equalsIgnoreCase(appointmentComboBox.getValue())){
+                    appointment = getAppointmentList().get(i);
+                    String oldTime = appointment.getAppointmentTime();
+                    getAppointmentList().get(i).EditAppointment(timeComboBox.getValue(), datePicker.getValue(),specialtyComboBox.getValue(),getDoctor(doctorComboBox.getValue()));
+                    removeAndAddTime(timeComboBox.getValue(),oldTime);
 
+                    goToScreens.goAppointmentsScreen(stage);
+                }
+            }
+        });
+    }
+
+    public void removeAndAddTime(String newTime, String oldTime){
+        getDoctor(doctorComboBox.getValue()).getDate(datePicker.getValue()).addTimeToTimeTable(oldTime);
+        getDoctor(doctorComboBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable(newTime);
     }
     public void makeAppointmentButton(){
         appointmentButton.relocate(390, 110);
@@ -178,6 +210,7 @@ public class EditAppointment extends Application {
 
     }
     public void addAppointments(ComboBox comboBox){
+
         for(int i =0; i< getAppointmentList().size(); i++){
             comboBox.getItems().addAll(getAppointmentList().get(i).getAppointmentDate().toString()+" "+getAppointmentList().get(i).getAppointmentTime());
         }
