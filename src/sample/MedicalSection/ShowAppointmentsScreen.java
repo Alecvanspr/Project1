@@ -23,16 +23,19 @@ public class ShowAppointmentsScreen extends Application {
     ArrayKeeper arrayKeeper;
     Button editAppointment = new Button("Edit appointment");
     Button buttonBack = new Button("Go back");
+    Pane pane = new Pane();
 
 
     @Override
-    public void start(Stage primaryStage) throws  Exception{
-        Pane pane = new Pane();
-        pane.setMinSize(800, 600);
+    public void start(Stage stage) throws  Exception{
+        makeButton(stage);
+        makeAppointmentLabels();
+        pane.getChildren().addAll(buttonBack, editAppointment);
+        fin(stage);
 
-        Scene scene1 = new Scene(pane);
 
-        FutureAppointments futureAppointments = new FutureAppointments();
+    }
+    public void makeAppointmentLabels(){
         for(int i =0; i < getFutureAppointments().size(); i++){
             Label appointmentLabel = new Label("On " + getFutureAppointments().get(i).getAppointmentDate().toString() + " you have an appointment with " + getFutureAppointments().get(i).getDoctor().getName() +".");
             Label timeLabel = new Label("You're expected at the time of: " + getFutureAppointments().get(i).getAppointmentTime());
@@ -41,19 +44,10 @@ public class ShowAppointmentsScreen extends Application {
 
             pane.getChildren().addAll(appointmentLabel, timeLabel);
         }
-
-
-        pane.getChildren().addAll(buttonBack, editAppointment);
-        primaryStage.setScene(scene1);
-        primaryStage.setTitle("Your appointments");
-        primaryStage.show();
-
-
-
-
     }
     public void makeButton(Stage stage){
         makeBtnEditAppointment(stage);
+        makeExitButton(stage);
     }
     public void makeExitButton(Stage stage){
         buttonBack.relocate(10,565);
@@ -75,6 +69,12 @@ public class ShowAppointmentsScreen extends Application {
         FutureAppointments futureAppointments = new FutureAppointments();
         return futureAppointments.getFutureAppointments();
     }
-
+    public void fin(Stage stage){
+        pane.setMinSize(800, 600);
+        Scene scene1 = new Scene(pane);
+        stage.setScene(scene1);
+        stage.setTitle("Your appointments");
+        stage.show();
+    }
 
 }

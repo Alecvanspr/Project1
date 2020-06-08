@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.stage.Stage;
+import sample.MedicalSection.EditAppointment;
 import sample.MedicalSection.MakeAppointment;
 import sample.MedicalSection.MedicalSection;
 import sample.MedicalSection.ShowAppointmentsScreen;
@@ -18,6 +19,7 @@ import sample.livestock.*;
 import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
 import sample.profileSettings.ProfileSettingsScreen;
+import sun.jvm.hotspot.ui.EditableAtEndDocument;
 
 public class GoToScreens {
     public void goProfileSettingScreen(Stage stage){
@@ -294,9 +296,9 @@ public class GoToScreens {
         }
     }
     public void goEditAppointment(Stage stage){
-        EditSettingsScreen editSettingsScreen = new EditSettingsScreen();
+        EditAppointment editAppointment = new EditAppointment();
         try {
-            editSettingsScreen.start(stage);
+            editAppointment.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }
