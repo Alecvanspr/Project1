@@ -1,7 +1,6 @@
 package sample.MedicalSection;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,18 +35,22 @@ public class ShowAppointmentsScreen extends Application {
         FutureAppointments futureAppointments = new FutureAppointments();
         for(int i =0; i < getFutureAppointments().size(); i++){
             Label appointmentLabel = new Label("On " + getFutureAppointments().get(i).getAppointmentDate().toString() + " you have an appointment with " + getFutureAppointments().get(i).getDoctor().getName() +".");
-            Label timeLabel = new Label("You're expected on the time: " + getFutureAppointments().get(i).getAppointmentTime());
+            Label timeLabel = new Label("You're expected at the time of: " + getFutureAppointments().get(i).getAppointmentTime());
             appointmentLabel.relocate(100, 100+(50*i));
             timeLabel.relocate(100, 125+(50*i));
-            makeButton(pane, 100+(50*i));
+
             pane.getChildren().addAll(appointmentLabel, timeLabel);
         }
+        Button editAppointment = new Button("Edit appointment");
+        editAppointment.relocate(400, 500);
+        editAppointment.setPrefWidth(60);
 
-        pane.getChildren().addAll(buttonBack);
-
+        pane.getChildren().addAll(buttonBack, editAppointment);
         primaryStage.setScene(scene1);
         primaryStage.setTitle("Your appointments");
         primaryStage.show();
+
+
 
         buttonBack.setOnMouseClicked(E -> {
             MedicalSection medicalSection = new MedicalSection();
@@ -62,16 +65,6 @@ public class ShowAppointmentsScreen extends Application {
         FutureAppointments futureAppointments = new FutureAppointments();
         return futureAppointments.getFutureAppointments();
     }
-    public void makeButton(Pane pane, int height){
-        Button button = new Button("Change");
-        button.relocate(50, height);
-        pane.getChildren().add(button);
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
 
-            }
-        });
-    }
 
 }
