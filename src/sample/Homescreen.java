@@ -27,7 +27,7 @@ public class Homescreen extends Application {
         welcome.setFont(Font.font("Arial",30));
         //buttons to navigate to different things
         Button btnLogOut = new Button("Log out");
-        Label user = new Label("Welcome back " + ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername());//en dit zou dan de naam weer moeten geven
+        Label user = new Label("Welcome back " + ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getUsername());//en dit zou dan de naam weer moeten geven
         Button btnProfile = new Button("Profile");
         Button btnContacts = new Button("Contacts");
         Button btnMarketPlace = new Button("Marketplace");

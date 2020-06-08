@@ -43,7 +43,7 @@ public class SignUpScreenDocter extends Application {
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).setIsDocter(false);
+                arraykeeper.getPersonalData(ArrayKeeper.getCurrentUser()).setIsDocter(false);
                 Main main = new Main();
                 try {
                     main.start(stage);
@@ -56,13 +56,13 @@ public class SignUpScreenDocter extends Application {
         //comboboxes for specialty
         Label specialtyText = new Label("What are your specialty's?");
         ComboBox<String> specialty1 = new ComboBox<>();
-        for(int i = 0; i < arraykeeper.specialtiesArrayList.size(); i++){
-            specialty1.getItems().add(arraykeeper.specialtiesArrayList.get(i).getName());
+        for(int i = 0; i < arraykeeper.getSpecialtiesArrayList().size(); i++){
+            specialty1.getItems().add(arraykeeper.getSpecialtiesArrayList().get(i).getName());
         }
         ArrayList<Specialty> specialties = new ArrayList<>();
         Button addSpecialty = new Button("add");
         addSpecialty.relocate(400,100);
-        ArrayList<Specialty> allSpecialties = arraykeeper.specialtiesArrayList;
+        ArrayList<Specialty> allSpecialties = arraykeeper.getSpecialtiesArrayList();
         addSpecialty.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -125,7 +125,7 @@ public class SignUpScreenDocter extends Application {
         register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).makeDoctor(docterName.getText(),specialties);
+                arraykeeper.getPersonalData(ArrayKeeper.getCurrentUser()).makeDoctor(docterName.getText(),specialties);
 
                 Main main = new Main();
                 try {

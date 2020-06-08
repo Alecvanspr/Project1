@@ -24,7 +24,7 @@ public class DisplayHealthScreen extends Application {
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
         btnBack.relocate(0,565);
-        Label NameAnimal = new Label("Animal : "+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
+        Label NameAnimal = new Label("Animal : "+arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
         Button btnAdd = new Button("Add new health check");
         Label lblDateAnouncement = new Label("Date check");
         Label lblHealthAnouncement = new Label("Health situation");
@@ -64,7 +64,7 @@ public class DisplayHealthScreen extends Application {
         healthPane.getChildren().addAll(btnBack,NameAnimal,lblDateAnouncement,lblHealthAnouncement,btnAdd);
         healthScroll.setContent(healthPane);
         healthScene = new Scene(healthScroll,800,600);
-        stage.setTitle("Health of "+ arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
+        stage.setTitle("Health of "+ arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
         stage.setScene(healthScene);
         stage.show();
     }
@@ -89,9 +89,9 @@ public class DisplayHealthScreen extends Application {
         }
     }
     public void ShowHealth(){
-        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().size(); i++){
-            Label Health = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().get(i));
-            Label CheckDate = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getDateHealth(i));
+        for(int i = 0; i<arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().size(); i++){
+            Label Health = new Label(arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().get(i));
+            Label CheckDate = new Label(arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getDateHealth(i));
             Health.relocate(300, plaats);
             CheckDate.relocate(100,plaats);
             plaats = plaats+35;

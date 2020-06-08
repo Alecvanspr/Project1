@@ -15,12 +15,13 @@ public class FutureAppointments extends ShowAppointmentsScreen {
     public FutureAppointments(){
         fillFutureAppointments();
     }
+
     public ArrayList<Appointment> getFutureAppointments(){
         return this.futureAppointments;
     }
+
     public void fillFutureAppointments(){
         LocalDate dateNow = LocalDate.now();
-
         for(int i = 0; i < getUserAppointments().size(); i++){
             if(getUserAppointments().get(i).getAppointmentDate().getYear() >= dateNow.getYear()){
                 if(getUserAppointments().get(i).getAppointmentDate().getDayOfMonth() >= dateNow.getDayOfMonth() && getUserAppointments().get(i).getAppointmentDate().getMonth().getValue() >= dateNow.getMonth().getValue()){
@@ -29,8 +30,8 @@ public class FutureAppointments extends ShowAppointmentsScreen {
             }
         }
     }
-    public ArrayList<Appointment> getUserAppointments(){
-        return arrayKeeper.getData(ArrayKeeper.getCurrentUser()).getAppointments();
-    }
 
+    public ArrayList<Appointment> getUserAppointments(){
+        return ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAppointments();
+    }
 }

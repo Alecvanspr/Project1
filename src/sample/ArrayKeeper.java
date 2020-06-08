@@ -10,9 +10,9 @@ import sample.livestock.Species;
 import java.util.ArrayList;
 
 public class ArrayKeeper {
-    public static ArrayList<PersonalData> Data = new ArrayList<>();
-    public static ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
-    public static ArrayList<Doctor> doctorsArrayList = new ArrayList<>();
+    private static ArrayList<PersonalData> Data = new ArrayList<>();
+    private static ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
+    private static ArrayList<Doctor> doctorsArrayList = new ArrayList<>();
     private static int currentUser;
 
     public ArrayKeeper(){
@@ -58,10 +58,6 @@ public class ArrayKeeper {
         Data.get(user).setPassword(password);
     }
 
-    public ArrayList<PersonalData> getPersonaldata(){
-        return Data;
-    }
-
     public void setCurrentUser(int currentUser){
         this.currentUser = currentUser;
     }
@@ -70,8 +66,11 @@ public class ArrayKeeper {
         return currentUser;
     }
 
+    public static ArrayList<PersonalData> getData(){
+        return Data;
+    }
 
-    public PersonalData getData(int user) {
+    public static PersonalData getPersonalData(int user) {
         return Data.get(user);
     }
 
@@ -83,5 +82,4 @@ public class ArrayKeeper {
         }
         return null;
     }
-
 }

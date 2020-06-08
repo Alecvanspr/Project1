@@ -12,8 +12,8 @@ public class ShowAnimalsBySpecies {
 
     public int checkForAminal (String species){
         int ret = 0;
-        for (int i = 0; i < arrayKeeper.getData(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++) {
-            if (arrayKeeper.getData(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getSpecies().equalsIgnoreCase(species)) {
+        for (int i = 0; i < arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++) {
+            if (arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getSpecies().equalsIgnoreCase(species)) {
                 ret++;
             }
         }

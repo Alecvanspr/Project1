@@ -29,7 +29,7 @@ public class EditAnimalScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        PersonalData personalData = ArrayKeeper.Data.get(currentUser);
+        PersonalData personalData = ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser());
         Pane pane = new Pane();
         Button btnBack = new Button("Back");
         Button btnEdit = new Button("Edit Animal");
@@ -121,7 +121,7 @@ public class EditAnimalScreen extends Application {
         pane.getChildren().addAll(nameAnimal,ageAnimal,SpeciesAminal,lblGender,lblRace,btnEdit,btnBack);
 
         editscene = new Scene(pane,800,600);
-        stage.setTitle("Edit "+ ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
+        stage.setTitle("Edit "+ ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
         stage.setScene(editscene);
         stage.show();
     }

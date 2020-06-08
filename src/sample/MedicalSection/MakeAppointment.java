@@ -157,8 +157,8 @@ public class MakeAppointment extends Application {
             Optional<ButtonType> option = alertConfirmation.showAndWait();
             if(option.get() != null){
                 if(option.get() == ButtonType.OK){
-                    Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), selectTime.getSelectionModel().getSelectedItem().toString());
-                    ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).addAppointment(newAppointment);
+                    Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), selectTime.getSelectionModel().getSelectedItem().toString(), ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()));
+                    ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).addAppointment(newAppointment);
                     getDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()).getAppointments().add(newAppointment);
 
                     getDoctor((String) doctorBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable((String) selectTime.getValue());
@@ -194,7 +194,7 @@ public class MakeAppointment extends Application {
     }
     public Doctor getDoctor(String name){
         for(int i = 0; i < arrayKeeper.getDoctorsArrayList().size(); i++){
-            if(name.equalsIgnoreCase(arrayKeeper.doctorsArrayList.get(i).getName())){
+            if(name.equalsIgnoreCase(arrayKeeper.getDoctorsArrayList().get(i).getName())){
                 return arrayKeeper.getDoctorsArrayList().get(i);
             }
         }

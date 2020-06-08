@@ -195,8 +195,8 @@ public class Livestock extends Application {
         }
     }
     public void displayAllAnimals(Stage stage){
-        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++){
-            Label label = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getName());
+        for(int i = 0; i<arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().size(); i++){
+            Label label = new Label(arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getName());
             int animal = i;
             currentAnimal = animal;
             label.setOnMouseClicked(E -> {
@@ -208,9 +208,9 @@ public class Livestock extends Application {
         }
     }
     public void displayHealth(Stage stage){
-        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size();i++){
-            int lastOne = (arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getHealth().size()-1);
-            Label label = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getHealth().get(lastOne));
+        for(int i = 0; i<arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().size();i++){
+            int lastOne = (arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getHealth().size()-1);
+            Label label = new Label(arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getHealth().get(lastOne));
             int animal = i;
             label.setOnMouseClicked(E -> {
                 goDisplayHealth(stage, animal);
@@ -221,9 +221,9 @@ public class Livestock extends Application {
         }
     }
     public void displayWeight(Stage stage){
-        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().size();i++){
-            int lastOne = arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getWeight().size()-1;
-            Label label = new Label("" + arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getWeight().get(lastOne));
+        for(int i = 0; i<arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().size();i++){
+            int lastOne = arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getWeight().size()-1;
+            Label label = new Label("" + arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().get(i).getWeight().get(lastOne));
             int animal = i;
             label.setOnMouseClicked(E -> {
                 goDisplayWeight(stage, animal);
