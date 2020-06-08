@@ -17,32 +17,43 @@ public class ReadScreen  extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Button btnBack = new Button("back");
-        Button btnGrammar = new Button("grammar");
-        Button btnHangman = new Button("Hangman");
-        Button btnYouCantSeeMe = new Button("you cant see mee");
-        btnYouCantSeeMe.relocate(300,350);
-        btnYouCantSeeMe.setOnAction(e->{
-            goToScreens.goVideo(stage);
-        });
-        btnHangman.relocate(200,350);
-        btnBack.relocate(0,575);
-        btnGrammar.relocate(200,200);
-        btnHangman.setOnAction(e->{
-            goToScreens.goHangmanScreen(stage);
-        });
-        btnBack.setOnAction(E->{
-            goToScreens.goEducativeScreen(stage);
-        });
-        btnGrammar.setOnAction(e->{
-            goToEducative.goGrammar(stage);
-        });
-
-        pane.getChildren().addAll(btnBack,btnHangman,btnGrammar,btnYouCantSeeMe);
-
+        makeButtons(stage);
+        fin(stage);
+    }
+    public void fin(Stage stage){
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Read screen");
         stage.setScene(scene);
         stage.show();
+    }
+    public void makeButtons(Stage stage){
+        makeBtnGrammar(stage);
+        makeBtnBack(stage);
+        makeBtnHangman(stage);
+    }
+    public void makeBtnGrammar(Stage stage){
+        Button btnGrammar = new Button("grammar");
+        btnGrammar.setOnAction(e->{
+            goToEducative.goGrammar(stage);
+        });
+        btnGrammar.relocate(200,200);
+        pane.getChildren().add(btnGrammar);
+    }
+    public void makeBtnBack(Stage stage){
+        Button btnBack = new Button("back");
+        btnBack.relocate(0,575);
+        btnBack.setOnAction(E->{
+            goToScreens.goEducativeScreen(stage);
+        });
+        pane.getChildren().add(btnBack);
+    }
+    public void makeBtnHangman(Stage stage){
+        Button btnHangman = new Button("Hangman");
+        btnHangman.relocate(200,350);
+        btnHangman.setOnAction(e->{
+            goToScreens.goHangmanScreen(stage);
+        });
+
+        pane.getChildren().addAll(btnHangman);
     }
 }

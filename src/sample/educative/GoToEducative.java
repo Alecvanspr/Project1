@@ -5,9 +5,6 @@ import sample.educative.read.GrammarScreen;
 import sample.educative.read.tenseScreens.ExplainTenseScreen;
 import sample.educative.read.tenseScreens.IrregularWords.IrregularVerbsScreen;
 import sample.educative.read.tenseScreens.IrregularWords.PracticeScreen;
-import sample.educative.read.tenseScreens.PastPerfectProgressiveScreen;
-import sample.educative.read.tenseScreens.PastPerfectScreen;
-import sample.educative.read.tenseScreens.SimplePastScreen;
 
 public class GoToEducative {
     public void goGrammar(Stage stage){
