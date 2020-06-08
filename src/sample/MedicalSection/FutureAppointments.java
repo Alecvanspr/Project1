@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class FutureAppointments extends ShowAppointmentsScreen {
     ArrayList<Appointment> futureAppointments = new ArrayList<>();
-    ArrayKeeper arrayKeeper = new ArrayKeeper();
+    ArrayKeeper arrayKeeper;
 
     public FutureAppointments(){
         fillFutureAppointments();

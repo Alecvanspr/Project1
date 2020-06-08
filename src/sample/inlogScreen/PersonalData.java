@@ -25,19 +25,24 @@ public class PersonalData {
     private String securityAnswer;
     private Boolean isDocter = false;
     private Doctor doctor;
+
     public PersonalData(){
     }
+
     public Boolean getIsDocter(){
         return this.isDocter;
     }
+
     public void setIsDocter(Boolean isDocter){
         this.isDocter = isDocter;
     }
+
     public void makeDoctor(String name, ArrayList<Specialty> specialties) {
         Doctor doctor = new Doctor(name, ArrayKeeper.getCurrentUser(), specialties);
         this.doctor = doctor;
         setIsDocter(true);
     }
+
     public Doctor getDoctor(){
         return this.doctor;
     }
@@ -53,9 +58,11 @@ public class PersonalData {
     public void setSecurityAnswer(String securityAnswer) {
         this.securityAnswer = securityAnswer;
     }
+
     public void setSecurtityQuestion(String securtityQuestion){
         this.securtityQuestion = securtityQuestion;
     }
+
     public String getSecurtityQuestion() {
         return securtityQuestion;
     }
@@ -71,6 +78,7 @@ public class PersonalData {
     public void setName(String name){
         this.name = name;
     }
+
     public String getName(){
         return name;
     }
@@ -78,9 +86,11 @@ public class PersonalData {
     public void setPassword(String password){
         this.password = password;
     }
+
     public String getPassword(){
         return password;
     }
+
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
@@ -124,8 +134,7 @@ public class PersonalData {
     public ArrayList<Appointment> getAppointments(){
         return appointments;
     }
-    public void addAppointment(Appointment appointment){this.appointments.add(appointment);}
 
-    public static void main(String[] args) {
-    }
+    public void addAppointment(Appointment appointment){
+        this.appointments.add(appointment);}
 }

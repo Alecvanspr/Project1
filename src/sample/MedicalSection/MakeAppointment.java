@@ -155,22 +155,31 @@ public class MakeAppointment extends Application {
             alertConfirmation.setHeaderText("Are you sure you want to make an appointment with " + doctorBox.getValue() + " at " + selectTime.getValue() + " on " + datePicker.getValue() + " for " + specialtyBox.getValue());
 
 
-            if(selectTime.getSelectionModel().getSelectedItem() != null){
-                Optional<ButtonType> option = alertConfirmation.showAndWait();
-                if(option.get() == ButtonType.OK){
-                    Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), selectTime.getSelectionModel().getSelectedItem().toString(), ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()));
-                    ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).addAppointment(newAppointment);
-                    getDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()).getAppointments().add(newAppointment);
+            if(selectTime.getValue() != null){
+                if(Checks.checkIfTimeAvailable((String) selectTime.getValue())) {
+                    Optional<ButtonType> option = alertConfirmation.showAndWait();
+                    if (option.get() == ButtonType.OK) {
+                        Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), selectTime.getSelectionModel().getSelectedItem().toString(), ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()));
+                        ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).addAppointment(newAppointment);
+                        getDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()).getAppointments().add(newAppointment);
 
-                    getDoctor((String) doctorBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable((String) selectTime.getValue());
-                    MedicalSection medicalSection = new MedicalSection();
-                    try {
-                        medicalSection.start(stage);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
+                        getDoctor((String) doctorBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable((String) selectTime.getValue());
+                        MedicalSection medicalSection = new MedicalSection();
+                        try {
+                            medicalSection.start(stage);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
-            }else{
+                else{
+                    Alert notAvailableAlert = new Alert(Alert.AlertType.ERROR);
+                    notAvailableAlert.setTitle("Time not available");
+                    notAvailableAlert.setHeaderText("You already have an appointment at this time!");
+                    notAvailableAlert.show();
+                }
+            }
+            else{
                 Alert timeAlert = new Alert(Alert.AlertType.ERROR);
                 timeAlert.setTitle("No time selected!");
                 timeAlert.setHeaderText("You must select a time before you can make an appointment!");

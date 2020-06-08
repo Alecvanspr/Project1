@@ -30,30 +30,39 @@ public class Appointment {
     public LocalDate getAppointmentDate(){
         return appointmentDate;
     }
+
     public String getAppointmentTime(){
         return appointmentTime;
     }
+
     public String getUser(){
         return user;
     }
+
     public int getUserInt(){
         return userInt;
     }
+
     public String getNotes(){
         return notes;
     }
+
     public Doctor getDoctor(){
         return doctor;
     }
+
     public PersonalData getPatient(){
         return patient;
     }
+
     public void setAppointmentTime(String time){
         this.appointmentTime = time;
     }
+
     public void setAppointmentDate(LocalDate date){
         this.appointmentDate = date;
     }
+
     public void setNotes(String notes){
         this.notes = notes;
     }
