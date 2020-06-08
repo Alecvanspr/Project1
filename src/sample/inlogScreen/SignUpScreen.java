@@ -1,20 +1,18 @@
 package sample.inlogScreen;
-
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import sample.ButtonSettings;
-import sample.GoToScreens;
-
+import sample.ArrayKeeper;
 public class SignUpScreen extends Application {
     Scene SignUpp;
+    ArrayKeeper arraykeeper = new ArrayKeeper();
     Main main = new Main();
-    ButtonSettings buttonSettings = new ButtonSettings();
-    GoToScreens goToScreens = new GoToScreens();
     //    String question1, question2, question3;
     public void start(Stage stage) throws Exception{
         Button btnBack = new Button("Back");
@@ -28,21 +26,26 @@ public class SignUpScreen extends Application {
                 "What was the name of your first pet?",
                 "What was your first city of residence?");
         TextField securityAnswer = new TextField();
-        CheckBox checkBox = new CheckBox();
-
         TextField textFieldUserName = new TextField();
         PasswordField passwordField = new PasswordField();
         PasswordField passwordFieldConf = new PasswordField();
         TextField textFieldBirth = new TextField();
-
         Button btnRegister = new Button("Register");
-        Pane register = new Pane();
+        CheckBox docterCheck = new CheckBox("Docter?");
+        TextField docterName = new TextField("What is your docter name?");
 
+        Pane register = new Pane();
+        Boolean isDocter = docterCheck.isSelected();
         register.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf
                 , textFieldUserName, passwordField, passwordFieldConf,textFieldBirth,lblBirthdate,
-                securityQuestions, securityAnswer, lblSecurity,btnRegister,btnBack);
+                securityQuestions, securityAnswer, lblSecurity,btnRegister,btnBack, docterCheck);
+
+
+
 
         lblUserName.relocate(100,50);
+        docterCheck.relocate(175, 50);
+        docterName.relocate(300, 50);
         textFieldUserName.relocate(100,70);
         lblPassWord.relocate(100,95);
         passwordField.relocate(100,115);
@@ -55,36 +58,65 @@ public class SignUpScreen extends Application {
         securityAnswer.relocate(100, 278);
         btnRegister.relocate(100,320);
         btnBack.relocate(0, 570);
-
         btnRegister.setOnAction(e->{
-            register(stage,register,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
-                    textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString());
+            register(register,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
+                    textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString(),stage,docterCheck.isSelected());
         });
+
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
-            goToScreens.goMain(stage);
+            BackToMain(stage);
         });
-
-        buttonSettings.onMouse(btnBack);
-        buttonSettings.onMouse(btnRegister);
-
-
-        register.getChildren().addAll(checkBox);
+        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1.2);
+                btnBack.setScaleY(1.2);
+            }
+        });
+        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnBack.setScaleX(1);
+                btnBack.setScaleY(1);
+            }
+        });
+        btnRegister.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnRegister.setScaleX(1.2);
+                btnRegister.setScaleY(1.2);
+            }
+        });
+        btnRegister.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btnRegister.setScaleX(1);
+                btnRegister.setScaleY(1);
+            }
+        });
         SignUpp = new Scene(register, 800,600);
         stage.setTitle("Sign up");
         stage.setScene(SignUpp);
         stage.show();
     }
-
-    //deze laat ik er in omdat het een javaFX class is.
-    public void register(Stage stage,Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions){
+    public void BackToMain(Stage stage){
+        Main main = new Main();
+        try {
+            main.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void register(Pane register,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,Stage stage,boolean toDocter){
         if((!(password.equals("")))&&(!(username.equals("")))){
             if(password.equals(PasswordConfig)) {
-                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions);
-                goToScreens.goMain(stage);
+                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions, toDocter);
+                toDocter(toDocter,stage);
             }else {
                 Label passwordWrong = new Label("Passwords don't match");
                 passwordWrong.relocate(100,265);
                 register.getChildren().add(passwordWrong);
+
             }
         }else{
             Label emptyFields = new Label("Fields are empty");
@@ -92,4 +124,25 @@ public class SignUpScreen extends Application {
             register.getChildren().add(emptyFields);
         }
     }
+    public void toDocter(boolean isDocter,Stage stage){
+        if(isDocter) {
+            SignUpScreenDocter signUpScreenDocter = new SignUpScreenDocter();
+            try {
+                signUpScreenDocter.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }else{
+            Main main = new Main();
+            try {
+                main.start(stage);
+            } catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+    }
 }
+
+
+
+

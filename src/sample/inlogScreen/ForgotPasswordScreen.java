@@ -78,10 +78,10 @@ public class ForgotPasswordScreen extends Application {
         stage.show();
     }
     public void setSecurityQuestion(Label label){
-        label.setText(main.arraykeeper.getPersonaldata().get(changingUser).getSecurtityQuestion());
+        label.setText(main.arraykeeper.getData().get(changingUser).getSecurtityQuestion());
     }
     public void changePassword(String secutiry,String password,String passwordcheck,Stage stage){
-        if(secutiry.equalsIgnoreCase(main.arraykeeper.getPersonaldata().get(changingUser).getSecurityAnswer())) {
+        if(secutiry.equalsIgnoreCase(main.arraykeeper.getData().get(changingUser).getSecurityAnswer())) {
             if (password.equals(passwordcheck)) {
                 main.arraykeeper.changePassword(changingUser, password);
                 goToScreens.goMain(stage);

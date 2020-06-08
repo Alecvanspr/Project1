@@ -1,6 +1,9 @@
 package sample;
 
 import javafx.stage.Stage;
+import sample.MedicalSection.MakeAppointment;
+import sample.MedicalSection.MedicalSection;
+import sample.MedicalSection.ShowAppointmentsScreen;
 import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
 import sample.educative.MathScreen;
@@ -262,6 +265,38 @@ public class GoToScreens {
         EditAnimalScreen editAnimalScreen = new EditAnimalScreen(animal,ArrayKeeper.getCurrentUser());
         try {
             editAnimalScreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goMedicalSection(Stage stage){
+        MedicalSection medicalSection = new MedicalSection();
+        try {
+            medicalSection.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goMakeAppointment(Stage stage){
+        MakeAppointment makeAppointment = new MakeAppointment();
+        try {
+            makeAppointment.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goAppointmentsScreen(Stage stage){
+        ShowAppointmentsScreen showAppointmentsScreen = new ShowAppointmentsScreen();
+        try {
+            showAppointmentsScreen.start(stage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goEditAppointment(Stage stage){
+        EditSettingsScreen editSettingsScreen = new EditSettingsScreen();
+        try {
+            editSettingsScreen.start(stage);
         } catch (Exception ex){
             ex.printStackTrace();
         }

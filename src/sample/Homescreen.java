@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,15 +31,16 @@ public class Homescreen extends Application {
     Button btnMarketPlace = new Button("Marketplace");
     Button btnLiveStock = new Button("Livestock");
     Button btnEducative = new Button("Education");
+    Button btnMedicalSection = new Button("Medical Section");
     Pane home = new Pane();
 
 
     @Override
     public void start(Stage stage) throws Exception {
-        Label user = new Label("Welcome back " + ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername());
+        Label user = new Label("Welcome back " + ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getUsername());
         welcome.setFont(Font.font("Arial",30));
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
-                btnMarketPlace,btnLiveStock,user,btnEducative);
+                btnMarketPlace,btnLiveStock,user,btnEducative,btnMedicalSection);
         welcome.relocate(225,100);
         user.relocate(660,35);
         makeButtons(stage);
@@ -51,12 +53,23 @@ public class Homescreen extends Application {
         makeBtnMarketplace(stage);
         makeBtnLivestock(stage);
         makeBtnEducative(stage);
+        makeBtnMedicalSection(stage);
     }
     public void makeBtnEducative(Stage stage){
         btnEducative.relocate(400,400);
         buttonSettings.onMouse(btnEducative);
         btnEducative.setOnAction(E->{
             goToScreens.goEducativeScreen(stage);
+        });
+    }
+    public void makeBtnMedicalSection(Stage stage){
+        btnMedicalSection.relocate(500,500);
+        buttonSettings.onMouse(btnMedicalSection);
+        btnMedicalSection.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                goToScreens.goMedicalSection(stage);
+            }
         });
     }
     public void makeBtnLivestock(Stage stage){

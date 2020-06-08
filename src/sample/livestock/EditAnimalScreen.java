@@ -23,7 +23,7 @@ public class EditAnimalScreen extends Application {
     private int currentAnimal;
     private int currentUser;
     Pane pane = new Pane();
-    PersonalData personalData = ArrayKeeper.Data.get(currentUser);
+    PersonalData personalData = ArrayKeeper.getData().get(currentUser);
 
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     EditAnimal editAnimal = new EditAnimal();
@@ -54,7 +54,7 @@ public class EditAnimalScreen extends Application {
     }
     public void fin(Stage stage){
         editscene = new Scene(pane,800,600);
-        stage.setTitle("Edit "+ ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
+        stage.setTitle("Edit "+ ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
         stage.setScene(editscene);
         stage.show();
     }
@@ -87,11 +87,11 @@ public class EditAnimalScreen extends Application {
         pane.getChildren().add(btnBack);
     }
     public void setTextfieldsNames(){
-        txtfname = new TextField(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
-        txtfAge = new TextField(""+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getAge());
-        txtfSpecies = new TextField(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getGender());
-        txtfGender = new TextField(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getSpecies());
-        txtfRace = new TextField(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getRace());
+        txtfname = new TextField(arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getName());
+        txtfAge = new TextField(""+arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getAge());
+        txtfSpecies = new TextField(arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getGender());
+        txtfGender = new TextField(arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getSpecies());
+        txtfRace = new TextField(arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getRace());
     }
     public void makeLabels(){
         Label nameAnimal = new Label("Animal name ");
@@ -108,11 +108,11 @@ public class EditAnimalScreen extends Application {
     }
     public void makeLabelNames(){
         System.out.println(currentAnimal);
-        Label DataNameAnimal = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName()); // deze gaat fout
-        Label DataAgeAnimal = new Label(""+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getAge());
-        Label DataGenderAnimal = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getGender());
-        Label DataSpeciesAnimal = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getSpecies());
-        Label DataRaceAnimal = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getRace());
+        Label DataNameAnimal = new Label(arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getName()); // deze gaat fout
+        Label DataAgeAnimal = new Label(""+arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getAge());
+        Label DataGenderAnimal = new Label(arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getGender());
+        Label DataSpeciesAnimal = new Label(arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getSpecies());
+        Label DataRaceAnimal = new Label(arrayKeeper.getData().get(getCurrentUser()).getAnimals().get(currentAnimal).getRace());
         DataNameAnimal.relocate(250,100);
         DataAgeAnimal.relocate(250,135);
         DataGenderAnimal.relocate(250,170);

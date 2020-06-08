@@ -35,12 +35,12 @@ public class DisplayHealthScreen extends Application {
     public void fin(Stage stage){
         healthScroll.setContent(healthPane);
         healthScene = new Scene(healthScroll,800,600);
-        stage.setTitle("Health of "+ arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
+        stage.setTitle("Health of "+ arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
         stage.setScene(healthScene);
         stage.show();
     }
     public void makeLabels(){
-        Label NameAnimal = new Label("Animal : "+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
+        Label NameAnimal = new Label("Animal : "+arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
         Label lblDateAnouncement = new Label("Date check");
         Label lblHealthAnouncement = new Label("Health situation");
         NameAnimal.relocate(100,45);
@@ -72,9 +72,9 @@ public class DisplayHealthScreen extends Application {
     }
 
     public void ShowHealth(){
-        for(int i = 0; i<arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().size(); i++){
-            Label Health = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().get(i));
-            Label CheckDate = new Label(arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getDateHealth(i));
+        for(int i = 0; i<arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().size(); i++){
+            Label Health = new Label(arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getHealth().get(i));
+            Label CheckDate = new Label(arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getDateHealth(i));
             Health.relocate(300, plaats);
             CheckDate.relocate(100,plaats);
             plaats = plaats+35;

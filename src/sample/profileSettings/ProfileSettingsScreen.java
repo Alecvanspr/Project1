@@ -33,11 +33,11 @@ public class ProfileSettingsScreen extends Application {
         stage.show();
     }
     public void makeLabels(){
-        Label textName = new Label("Username : " + ArrayKeeper.Data.get(currentUser).getUsername());
-        Label txtRealName = new Label("Name : " + ArrayKeeper.Data.get(currentUser).getName());
-        Label txtBirthDate = new Label("Birth date : "+ArrayKeeper.Data.get(currentUser).getBirthDate());
-        Label textGender = new Label("Gender :" + ArrayKeeper.Data.get(currentUser).getGender());
-        Label textPhonenumber = new Label("Phone number : " + ArrayKeeper.Data.get(currentUser).getPhoneNumber());
+        Label textName = new Label("Username : " + ArrayKeeper.getData().get(currentUser).getUsername());
+        Label txtRealName = new Label("Name : " + ArrayKeeper.getData().get(currentUser).getName());
+        Label txtBirthDate = new Label("Birth date : "+ArrayKeeper.getData().get(currentUser).getBirthDate());
+        Label textGender = new Label("Gender :" + ArrayKeeper.getData().get(currentUser).getGender());
+        Label textPhonenumber = new Label("Phone number : " + ArrayKeeper.getData().get(currentUser).getPhoneNumber());
         textName.relocate(100,100);
         txtRealName.relocate(100,125);
         txtBirthDate.relocate(100,150);

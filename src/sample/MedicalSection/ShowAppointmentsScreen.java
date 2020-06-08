@@ -8,6 +8,8 @@ import javafx.scene.layout.Pane;
 import sample.ArrayKeeper;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import sample.ButtonSettings;
+import sample.GoToScreens;
 import sample.inlogScreen.Main;
 
 import java.util.ArrayList;
@@ -15,23 +17,21 @@ import java.util.ArrayList;
 
 public class ShowAppointmentsScreen extends Application {
     Scene showAppointmentsScene;
+    ButtonSettings buttonSettings = new ButtonSettings();
+    GoToScreens goToScreens = new GoToScreens();
     Main main;
     ArrayKeeper arrayKeeper;
-    public static void main(String[] args) {
-        launch(args);
-    }
+    Button editAppointment = new Button("Edit appointment");
+    Button buttonBack = new Button("Go back");
+
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws  Exception{
         Pane pane = new Pane();
-        final int PaneWidth = 800;
-        final int PaneHeight = 600;
-        pane.setMinSize(PaneWidth, PaneHeight);
+        pane.setMinSize(800, 600);
 
         Scene scene1 = new Scene(pane);
 
-        Button buttonBack = new Button("Go back");
-        buttonBack.relocate(10,565);
         FutureAppointments futureAppointments = new FutureAppointments();
         for(int i =0; i < getFutureAppointments().size(); i++){
             Label appointmentLabel = new Label("On " + getFutureAppointments().get(i).getAppointmentDate().toString() + " you have an appointment with " + getFutureAppointments().get(i).getDoctor().getName() +".");
@@ -41,9 +41,7 @@ public class ShowAppointmentsScreen extends Application {
 
             pane.getChildren().addAll(appointmentLabel, timeLabel);
         }
-        Button editAppointment = new Button("Edit appointment");
-        editAppointment.relocate(400, 500);
-        editAppointment.setPrefWidth(60);
+
 
         pane.getChildren().addAll(buttonBack, editAppointment);
         primaryStage.setScene(scene1);
@@ -52,13 +50,25 @@ public class ShowAppointmentsScreen extends Application {
 
 
 
-        buttonBack.setOnMouseClicked(E -> {
-            MedicalSection medicalSection = new MedicalSection();
-            try {
-                medicalSection.start(primaryStage);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+
+    }
+    public void makeButton(Stage stage){
+        makeBtnEditAppointment(stage);
+    }
+    public void makeExitButton(Stage stage){
+        buttonBack.relocate(10,565);
+        buttonSettings.onMouse(buttonBack);
+        buttonBack.setOnAction(E-> {
+            goToScreens.goMedicalSection(stage);
+        });
+
+    }
+    public void makeBtnEditAppointment(Stage stage){
+        editAppointment.relocate(500, 100);
+        buttonSettings.onMouse(editAppointment);
+        editAppointment.setPrefWidth(100);
+        editAppointment.setOnAction(E-> {
+            goToScreens.goEditAppointment(stage);
         });
     }
     public ArrayList<Appointment> getFutureAppointments(){
