@@ -26,29 +26,36 @@ public class DisplayWeightScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        Button btnBack = new Button("Back");
-        Button btnAdd = new Button("Add new weight");
-        btnBack.relocate(0,575);
-
+        btnAdd(stage);
+        btnBack(stage);
         ShowWeight();
-
-        btnAdd.setOnAction(E->{
-            goToScreens.goAddWeight(stage,currentAnimal);
-        });
-
-        btnBack.setOnAction(E->{
-            goToScreens.goLiveStock(stage);
-        });
-        buttonSettings.onMouse(btnAdd);
-        buttonSettings.onMouse(btnBack);
-
-        weightPane.getChildren().addAll(btnBack,btnAdd);
+        fin(stage);
+    }
+    public void fin(Stage stage){
         weightScroll.setContent(weightPane);
         weightScene = new Scene(weightScroll,800,600);
-        stage.setTitle("Weight overview ");//hier de naam van de ding
+        stage.setTitle("Weight overview");
         stage.setScene(weightScene);
         stage.show();
     }
+    public void btnAdd(Stage stage){
+        Button btnAdd = new Button("Add new weight");
+        btnAdd.setOnAction(E->{
+            goToScreens.goAddWeight(stage,currentAnimal);
+        });
+        buttonSettings.onMouse(btnAdd);
+        weightPane.getChildren().add(btnAdd);
+    }
+    public void btnBack(Stage stage){
+        Button btnBack = new Button("Back");
+        btnBack.setOnAction(E->{
+            goToScreens.goLiveStock(stage);
+        });
+        btnBack.relocate(0,575);
+        buttonSettings.onMouse(btnBack);
+        weightPane.getChildren().add(btnBack);
+    }
+
     public DisplayWeightScreen(int currentAnimal, int CurrentUser){
         this.currentAnimal = currentAnimal;
         this.currentUser = CurrentUser;

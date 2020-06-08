@@ -26,37 +26,45 @@ public class DisplayHealthScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        Button btnBack = new Button("Back");
-        btnBack.relocate(0,565);
-        Label NameAnimal = new Label("Animal : "+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
-        Button btnAdd = new Button("Add new health check");
-        Label lblDateAnouncement = new Label("Date check");
-        Label lblHealthAnouncement = new Label("Health situation");
+        makeBtnAdd(stage);
+        makeBtnback(stage);
+        makeLabels();
         ShowHealth();
-
-        NameAnimal.relocate(100,45);
-        btnAdd.relocate(300,45);
-        lblHealthAnouncement.relocate(100,80);
-        lblDateAnouncement.relocate(300,80);
-
-        btnAdd.setOnAction(E->{
-            goToScreens.goHealthCheck(stage,currentAnimal);
-                });
-
-        btnBack.setOnAction(E->{
-            goToScreens.goLiveStock(stage);
-        });
-
-        buttonSettings.onMouse(btnAdd);
-        buttonSettings.onMouse(btnBack);
-
-
-        healthPane.getChildren().addAll(btnBack,NameAnimal,lblDateAnouncement,lblHealthAnouncement,btnAdd);
+        fin(stage);
+    }
+    public void fin(Stage stage){
         healthScroll.setContent(healthPane);
         healthScene = new Scene(healthScroll,800,600);
         stage.setTitle("Health of "+ arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
         stage.setScene(healthScene);
         stage.show();
+    }
+    public void makeLabels(){
+        Label NameAnimal = new Label("Animal : "+arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).getName());
+        Label lblDateAnouncement = new Label("Date check");
+        Label lblHealthAnouncement = new Label("Health situation");
+        NameAnimal.relocate(100,45);
+        lblHealthAnouncement.relocate(100,80);
+        lblDateAnouncement.relocate(300,80);
+        healthPane.getChildren().addAll(NameAnimal,lblDateAnouncement,lblHealthAnouncement);
+    }
+    public void makeBtnAdd(Stage stage){
+        Button btnAdd = new Button("Add new health check");
+        btnAdd.relocate(300,45);
+        btnAdd.setOnAction(E->{
+            goToScreens.goHealthCheck(stage,currentAnimal);
+        });
+        buttonSettings.onMouse(btnAdd);
+        healthPane.getChildren().add(btnAdd);
+    }
+    public void makeBtnback(Stage stage){
+        Button btnBack = new Button("Back");
+        btnBack.relocate(0,565);
+        buttonSettings.onMouse(btnBack);
+        btnBack.setOnAction(E->{
+            goToScreens.goLiveStock(stage);
+        });
+        healthPane.getChildren().add(btnBack);
     }
     public DisplayHealthScreen(int currentAnimal, int CurrentUser){
         this.currentAnimal = currentAnimal;
