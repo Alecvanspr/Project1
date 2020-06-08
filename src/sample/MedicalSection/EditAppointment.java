@@ -2,6 +2,7 @@ package sample.MedicalSection;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.inlogScreen.Main;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class EditAppointment extends Application {
@@ -18,48 +20,152 @@ public class EditAppointment extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     Pane pane = new Pane();
     ComboBox<String> appointmentComboBox = new ComboBox<>();
-    ComboBox<Specialty> specialtyComboBox = new ComboBox<>();
-    ComboBox<Doctor> doctorComboBox = new ComboBox<>();
+    ComboBox<String> specialtyComboBox = new ComboBox<>();
+    ComboBox<String> doctorComboBox = new ComboBox<>();
     ComboBox<String> timeComboBox = new ComboBox<>();
+    Button appointmentButton = new Button("Select");
     Button specialtyButton = new Button("Select");
     Button doctorButton = new Button("Select");
+    Button editAppointmentButton = new Button("Edit Appointment");
     Button dateButton = new Button("Select");
     DatePicker datePicker = new DatePicker();
 
     public void start(Stage stage) throws Exception{
         makeComboBoxes();
         makeDatePicker();
+        makeButtons();
+
+        setNothingVisible();
+        pane.getChildren().addAll(dateButton, appointmentComboBox, specialtyButton, doctorComboBox,specialtyComboBox, timeComboBox, doctorButton, editAppointmentButton, datePicker, appointmentButton);
+        fin(stage);
     }
     public void makeButtons(){
+        makeSpecialtyButton();
+        makeDoctorButton();
+        makeAppointmentButton();
+        makeEditAppointmentButton();
+        makeDateButton();
+    }
+    public void makeDateButton(){
+        dateButton.relocate(450,260);
+        dateButton.setOnAction(E-> {
+            if(checkDate(datePicker.getValue())){
+                timeComboBox.getItems().clear();
+                if(getDoctor(doctorComboBox.getValue()).checkLocalDate(datePicker.getValue())){
+                    fillTimeBox(timeComboBox, getDoctor(doctorComboBox.getValue()).getDate(datePicker.getValue()));
+                }else{
 
+                    Dates date = new Dates(datePicker.getValue());
+                    fillTimeBox(timeComboBox, date);
+                }
+                timeComboBox.setVisible(true);
+                editAppointmentButton.setVisible(true);
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Please select a correct date");
+                alert.setHeaderText("Date is not correct");
+                alert.show();
+            }
+
+        });
+    }
+    public void fillTimeBox(ComboBox combobox, Dates date){
+        for(int i = 0; i < date.getTimeTable().size(); i++){
+            combobox.getItems().add(date.getTimeTable().get(i));
+        }
+    }
+    public void makeEditAppointmentButton(){
+        editAppointmentButton.relocate(400, 300);
+
+    }
+    public void makeAppointmentButton(){
+        appointmentButton.relocate(390, 110);
+        appointmentButton.setOnAction(E->{
+            specialtyButton.setVisible(true);
+            specialtyComboBox.setVisible(true);
+            doctorComboBox.getItems().clear();
+            datePicker.getEditor().clear();
+            timeComboBox.getItems().clear();
+        });
+    }
+    public void makeDoctorButton(){
+        doctorButton.relocate(350,210);
+        doctorButton.setOnAction(E-> {
+            if(checkIfValue(doctorComboBox)){
+                datePicker.setVisible(true);
+                dateButton.setVisible(true);
+                datePicker.getEditor().clear();
+                timeComboBox.getItems().clear();
+            }
+        });
     }
     public void makeSpecialtyButton(){
         specialtyButton.relocate(350,160);
         specialtyButton.setOnAction(E-> {
-
+            if(checkIfValue(specialtyComboBox)){
+                doctorComboBox.setVisible(true);
+                doctorButton.setVisible(true);
+                doctorComboBox.getItems().clear();
+                fillDoctorBox(specialtyComboBox.getValue());
+                datePicker.getEditor().clear();
+                timeComboBox.getItems().clear();
+            }
         });
     }
+    public void setNothingVisible(){
+        doctorButton.setVisible(false);
+        doctorComboBox.setVisible(false);
+        datePicker.setVisible(false);
+        timeComboBox.setVisible(false);
+        editAppointmentButton.setVisible(false);
+        specialtyComboBox.setVisible(false);
+        specialtyButton.setVisible(false);
+        dateButton.setVisible(false);
+    }
     public void makeDatePicker(){
-        datePicker.relocate(450, 260);
+        datePicker.relocate(250, 260);
     }
     public void makeComboBoxes(){
         makeAppointmentComboBox();
         makeSpecialtyBox();
         makeDoctorBox();
+        makeTimeBox();
     }
     public void makeTimeBox(){
-        timeComboBox.relocate(260, 300);
+        timeComboBox.relocate(250, 300);
 
+    }
+    public Boolean checkDate(LocalDate date){
+        LocalDate today = LocalDate.now();
+        if(date.getYear() >= today.getYear() && date.getMonth().getValue() >= today.getMonth().getValue() && date.getDayOfMonth() > today.getDayOfMonth()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public Doctor getDoctor(String doctor){
+        for(int i = 0; i < arrayKeeper.getDoctorsArrayList().size(); i++){
+            if(arrayKeeper.getDoctorsArrayList().get(i).getName().equalsIgnoreCase(doctor)){
+                return arrayKeeper.getDoctorsArrayList().get(i);
+            }
+        }
+        return null;
     }
     public void fillDoctorBox(String specialty){
-
+        for(int i =0; i < arrayKeeper.getDoctorsArrayList().size(); i++){
+            for(int j = 0; j < arrayKeeper.getDoctorsArrayList().get(i).getSpecialties().size(); j++){
+                if(arrayKeeper.getDoctorsArrayList().get(i).getSpecialties().get(j).getName().equalsIgnoreCase(specialty)){
+                    doctorComboBox.getItems().add(arrayKeeper.getDoctorsArrayList().get(i).getName());
+                }
+            }
+        }
     }
     public void makeDoctorBox(){
-        doctorComboBox.relocate(350,210);
+        doctorComboBox.relocate(250,210);
     }
     public void makeSpecialtyBox(){
         addSpecialties(specialtyComboBox);
-        specialtyComboBox.relocate(350,160);
+        specialtyComboBox.relocate(250,160);
     }
     public void addSpecialties(ComboBox comboBox){
         for(int i = 0; i < arrayKeeper.getSpecialtiesArrayList().size(); i++){
@@ -67,7 +173,7 @@ public class EditAppointment extends Application {
         }
     }
     public void makeAppointmentComboBox(){
-        appointmentComboBox.relocate(350, 110);
+        appointmentComboBox.relocate(250, 110);
         addAppointments(appointmentComboBox);
 
     }
@@ -78,5 +184,25 @@ public class EditAppointment extends Application {
     }
     public ArrayList<Appointment> getAppointmentList(){
         return ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAppointments();
+    }
+    public void makeNoInputAlert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("Missing a selection");
+        alert.setContentText("Please make sure all the boxes are filled!");
+        alert.show();
+    }
+    public void fin(Stage stage){
+        EditAppointment = new Scene(pane,800,600);
+        stage.setTitle("Edit Appointment");
+        stage.setScene(EditAppointment);
+        stage.show();
+    }
+    public Boolean checkIfValue(ComboBox combobox){
+        if (combobox.getValue() == null){
+            makeNoInputAlert();
+            return false;
+        }else {
+            return true;
+        }
     }
 }

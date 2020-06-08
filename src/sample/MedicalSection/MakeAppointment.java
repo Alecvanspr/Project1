@@ -114,7 +114,7 @@ public class MakeAppointment extends Application {
             }
         });
         Button makeAppointment = new Button("Make Appointment");
-        selectTime.relocate(260, 300);
+        selectTime.relocate(250, 300);
         makeAppointment.relocate(400, 300);
         selectTime.setVisible(false);
         makeAppointment.setVisible(false);

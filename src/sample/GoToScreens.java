@@ -19,7 +19,6 @@ import sample.livestock.*;
 import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
 import sample.profileSettings.ProfileSettingsScreen;
-import sun.jvm.hotspot.ui.EditableAtEndDocument;
 
 public class GoToScreens {
     public void goProfileSettingScreen(Stage stage){
