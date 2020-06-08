@@ -41,29 +41,29 @@ public class Main extends Application {
         root.getTransforms().add(scale);
 
         //this are all the buttons
-        Label lblUserName = new Label("Username");
-        Label lblPassWord = new Label("Password");
+        Label lblUsername = new Label("Username");
+        Label lblPassword = new Label("Password");
         Button btnForgotPassword = new Button("Forgot Password");
         Button btnLogin = new Button("Log in");
         Button btnSignUp = new Button("Create an account");
 
         mainMethods.delettis(); //this is the demo account where we all can log in with, i used it to to test. but it need to be deleted afterwards
 
-        TextField textFieldUserName = new TextField();
+        TextField textFieldUsername = new TextField();
         PasswordField passwordField = new PasswordField();
         Label error = new Label("Sorry, try again");
 
-        login.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord,btnLogin,btnSignUp, btnForgotPassword);
-        lblUserName.relocate(100,50);
-        textFieldUserName.relocate(100,70);
-        lblPassWord.relocate(100,95);
+        login.getChildren().addAll(textFieldUsername,passwordField,lblUsername,lblPassword,btnLogin,btnSignUp, btnForgotPassword);
+        lblUsername.relocate(100,50);
+        textFieldUsername.relocate(100,70);
+        lblPassword.relocate(100,95);
         passwordField.relocate(100,115);
         btnLogin.relocate(100,145);
         btnSignUp.relocate(150,145);
         btnForgotPassword.relocate(100,175);
 
 
-        textFieldUserName.textProperty().addListener(new ChangeListener<String>() {
+        textFieldUsername.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 login.getChildren().remove(error);
@@ -71,7 +71,7 @@ public class Main extends Application {
         });
 
         btnLogin.setOnAction(e -> {
-            if(mainMethods.gegevensCheck(passwordField.getText(),(textFieldUserName.getText()))){
+            if(mainMethods.dataCheck(passwordField.getText(),(textFieldUsername.getText()))){
                 try {
                     home.start(window);
                 } catch (Exception ex) {

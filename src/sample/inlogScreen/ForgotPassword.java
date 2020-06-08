@@ -1,6 +1,5 @@
 package sample.inlogScreen;
 
-
 public class ForgotPassword {
     Main main = new Main();
     public int getUser(String username){

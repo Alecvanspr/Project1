@@ -1,19 +1,34 @@
 package sample.MedicalSection;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import sample.ArrayKeeper;
-import sample.inlogScreen.Main;
 
-public class PastAppointments extends Application {
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-    public static void main(String[] args) {
-        launch(args);
+public class PastAppointments{
+    private ArrayList<Appointment> pastAppointments = new ArrayList<>();
+    ArrayKeeper arrayKeeper;
+
+    public PastAppointments(){
+        fillPastAppointments();
     }
 
-    @Override
-    public void start(Stage primaryStage) {
+    public ArrayList<Appointment> getPastAppointments(){
+        return pastAppointments;
+    }
 
+    public void fillPastAppointments(){
+        LocalDate dateNow = LocalDate.now();
+        for(int i = 0; i < getUserAppointments().size(); i++){
+            if(getUserAppointments().get(i).getAppointmentDate().getYear() >= dateNow.getYear()){
+                if(getUserAppointments().get(i).getAppointmentDate().getDayOfMonth() >= dateNow.getDayOfMonth() && getUserAppointments().get(i).getAppointmentDate().getMonth().getValue() >= dateNow.getMonth().getValue()){
+                    pastAppointments.add(getUserAppointments().get(i));
+                }
+            }
+        }
+    }
+
+    public ArrayList<Appointment> getUserAppointments(){
+        return ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAppointments();
     }
 }

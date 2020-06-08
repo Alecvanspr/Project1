@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import sample.Homescreen;
 
 public class ContactScreen extends Application {
-
     Scene contactScene;
     Addressbook addressbook = new Addressbook();
     int currentUser=0;
@@ -32,7 +31,7 @@ public class ContactScreen extends Application {
         Label lblemail = new Label("Email");
         Label lblphonenumber = new Label("Phone");
         Label lblstreet = new Label("Street");
-        Label lblpostelcode = new Label("Postelcode");
+        Label lblPostalCode = new Label("Postalcode");
         Label lblcity = new Label("City");
         Label lblcountry = new Label("Country");
 
@@ -82,7 +81,7 @@ public class ContactScreen extends Application {
         lblemail.relocate(430,120);
         lblphonenumber.relocate(430,150);
         lblstreet.relocate(430,180);
-        lblpostelcode.relocate(430,210);
+        lblPostalCode.relocate(430,210);
         lblcity.relocate(430,240);
         lblcountry.relocate(430,270);
 
@@ -161,7 +160,7 @@ public class ContactScreen extends Application {
         });
 
 
-        contact.getChildren().addAll(tfContact,tfName,tfEmail,tfPhoneNumber,tfStreet,tfPostelCode,tfCity,tfCountry, taContacts, taContactsFullDetail,btnClear,btnList, btnSave,btnBack, lblphonenumber, btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblpostelcode,lblcity,lblcountry);
+        contact.getChildren().addAll(tfContact,tfName,tfEmail,tfPhoneNumber,tfStreet,tfPostelCode,tfCity,tfCountry, taContacts, taContactsFullDetail,btnClear,btnList, btnSave,btnBack, lblphonenumber, btnAdd,btnEdit,btnFind, lblname, lblemail, lblstreet,lblPostalCode,lblcity,lblcountry);
         btnBack.relocate(0,570);
 
 

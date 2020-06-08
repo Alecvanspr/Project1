@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class MainMethods {
     ArrayKeeper arraykeeper = new ArrayKeeper();
-    public boolean gegevensCheck(String password,String username){
+    public boolean dataCheck(String password, String username){
         boolean ret = false;
         int s = 0;
         for(int i = 0;i<ArrayKeeper.getData().size();i++){
