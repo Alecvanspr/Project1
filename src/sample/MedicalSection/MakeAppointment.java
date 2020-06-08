@@ -159,7 +159,7 @@ public class MakeAppointment extends Application {
                 if(Checks.checkIfTimeAvailable((String) selectTime.getValue())) {
                     Optional<ButtonType> option = alertConfirmation.showAndWait();
                     if (option.get() == ButtonType.OK) {
-                        Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), selectTime.getSelectionModel().getSelectedItem().toString(), ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()));
+                        Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), selectTime.getSelectionModel().getSelectedItem().toString(), ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()), specialtyBox.getSelectionModel().getSelectedItem().toString());
                         ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).addAppointment(newAppointment);
                         getDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()).getAppointments().add(newAppointment);
 
