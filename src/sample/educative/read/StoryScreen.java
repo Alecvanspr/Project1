@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,10 +25,10 @@ public class StoryScreen extends Application {
         fillList();
         int rng = random.nextInt(titles.size()-1);
         StoryReader sr = new StoryReader(titles.get(rng));
-        TextArea textArea = new TextArea();
-        textArea.appendText(sr.getContent());
+        Text text = new Text();
+        text.setText(sr.getContent());
 
-        pane.getChildren().add(textArea);
+        pane.getChildren().add(text);
         stage.setTitle("Story");
         stage.setScene(scene);
         stage.show();

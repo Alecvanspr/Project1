@@ -25,39 +25,23 @@ public class WriteNumbersScreen extends Application {
     Canvas canvas = new Canvas(800,600);
     GraphicsContext gc;
     Image aaa;
+    Button btnLastNumber = new Button("Last");
+    Button btnNewNumber = new Button("Next");
+    Button btnClear = new Button("Clear");
+    Button btnBack = new Button("back");
 
     @Override
     public void start(Stage stage) throws Exception {
-
+        makeBtnLastNumber(stage);
+        makeBtnNewNumber(stage);
+        makeBtnClear(stage);
+        makeBtnBack(stage);
         drawing();
         makeBackGround();
 
-        Button btnLastNumber = new Button("Last");
-        Button btnNewNumber = new Button("Next");
-        Button btnClear = new Button("Clear");
-        Button btnBack = new Button("back");
-        btnBack.relocate(0,575);
-        btnNewNumber.relocate(75,575);
-        btnLastNumber.relocate(45,575);
-
-        btnNewNumber.setOnAction(E->{
-            clearAndNext();
-        });
-        btnClear.setOnAction(e->{
-            clearDrawing();
-        });
-        btnBack.setOnAction(E->{
-            goToScreens.goWriteScreen(stage);
-        });
-        btnLastNumber.setOnAction(E->{
-            number-=2;
-            clearAndNext();
-        });
-
         pane.getChildren().addAll(canvas, btnBack, btnClear,btnNewNumber,btnLastNumber);
-        stage.setTitle("Write numbers screen");
-        stage.setScene(scene);
-        stage.show();
+
+        fin(stage);
     }
     public void drawing(){
         gc = canvas.getGraphicsContext2D();
@@ -98,5 +82,36 @@ public class WriteNumbersScreen extends Application {
         checkNumber();
         makeBackGround();
         clearDrawing();
+    }
+
+    public void makeBtnLastNumber(Stage stage){
+        btnLastNumber.relocate(45,575);
+        btnLastNumber.setOnAction(E->{
+            number-=2;
+            clearAndNext();
+        });
+    }
+    public void makeBtnNewNumber(Stage stage){
+        btnNewNumber.relocate(75,575);
+        btnNewNumber.setOnAction(E->{
+            clearAndNext();
+        });
+    }
+    public void makeBtnClear(Stage stage){
+        btnClear.setOnAction(e->{
+            clearDrawing();
+        });
+    }
+    public void makeBtnBack(Stage stage){
+        btnBack.relocate(0,575);
+        btnBack.setOnAction(E->{
+            goToScreens.goWriteScreen(stage);
+        });
+    }
+
+    public void fin(Stage stage){
+        stage.setTitle("Write numbers screen");
+        stage.setScene(scene);
+        stage.show();
     }
 }

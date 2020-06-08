@@ -36,13 +36,13 @@ public class HangmanScreen extends Application {
 
     private static int appW = 800;
     private static int appH = 600;
-    private static Font defaultFont = new Font("Segoe UI",36);
+    private static Font segoeButBigger = new Font("Segoe UI",36);
 
-    private static int pointsPerLetter = 100;
-    private static float bonusModifier = 0.2f;
+    private static int scoreCorrectLetter = 100;
+    private static float extraScore = 0.125f;
 
     //next correct guess worth
-    private float scoreModifier = 1.0f;
+    private float baseScore = 1.0f;
 
     //word that needs to be guessed
     private SimpleStringProperty word = new SimpleStringProperty();
@@ -76,7 +76,7 @@ public class HangmanScreen extends Application {
 
         playable.bind(hangman.tries.greaterThan(0).and(lettersToGuess.greaterThan(0)));
         playable.addListener((obs, old, newValue) -> {
-            if(!newValue.booleanValue())
+            if(!newValue)
                 stopGame();
         });
 
@@ -84,37 +84,30 @@ public class HangmanScreen extends Application {
         btnAgain.disableProperty().bind(playable);
         btnAgain.setOnAction(e -> startGame());
 
-        HBox row1 = new HBox();
-        HBox row3 = new HBox();
-        row1.setAlignment(Pos.CENTER);
-        row3.setAlignment(Pos.CENTER);
-        for(int i = 0; i<20; i++){
-            row1.getChildren().add(new Letter(' '));
-            row3.getChildren().add(new Letter(' '));
-        }
+
 
         HBox rowAlphabet = new HBox(5);
         rowAlphabet.setAlignment(Pos.CENTER);
         for(char c = 'A'; c<= 'Z'; c++){
             Text t = new Text(String.valueOf(c));
-            t.setFont(defaultFont);
+            t.setFont(segoeButBigger);
             alphabet.put(c,t);
             rowAlphabet.getChildren().add(t);
         }
 
-        Text hyphen = new Text("-");
-        hyphen.setFont(defaultFont);
-        alphabet.put('-', hyphen);
-        rowAlphabet.getChildren().add(hyphen);
+        Text dash = new Text("-");
+        dash.setFont(segoeButBigger);
+        alphabet.put('-', dash);
+        rowAlphabet.getChildren().add(dash);
 
         Text textScore = new Text();
-        textScore.textProperty().bind(score.asString().concat(" Points"));
+        textScore.textProperty().bind(score.asString().concat(" Score"));
 
         HBox rowHangman = new HBox(10,btnAgain,textScore,hangman);
         rowHangman.setAlignment(Pos.CENTER);
 
         VBox vBox = new VBox(10);
-        vBox.getChildren().addAll(row1,rowLetters,row3,rowAlphabet,rowHangman,rowBack);
+        vBox.getChildren().addAll(rowLetters,rowAlphabet,rowHangman,rowBack);
         return vBox;
     }
 
@@ -207,11 +200,11 @@ public class HangmanScreen extends Application {
         private Text text;
 
         public Letter(char letter){
-            bg.setFill(letter == ' ' ? Color.DARKSEAGREEN : Color.WHITE);
+            bg.setFill(Color.WHITE);
             bg.setStroke(Color.BLUE);
 
             text = new Text(String.valueOf(letter).toUpperCase());
-            text.setFont(defaultFont);
+            text.setFont(segoeButBigger);
             text.setVisible(false);
 
             setAlignment(Pos.CENTER);
@@ -260,7 +253,7 @@ public class HangmanScreen extends Application {
                     Letter letter = (Letter) n;
                     if(letter.isEqualTo(pressed)){
                         found = true;
-                        score.set(score.get() + (int)(scoreModifier*pointsPerLetter));
+                        score.set(score.get() + (int)(baseScore*scoreCorrectLetter));
                         lettersToGuess.set(lettersToGuess.get()-1);
                         letter.show();
                     }
@@ -268,10 +261,10 @@ public class HangmanScreen extends Application {
 
                 if(!found){
                     hangman.takeAwayLife();
-                    scoreModifier = 1.0f;
+                    baseScore = 1.0f;
                 }
                 else{
-                    scoreModifier += bonusModifier;
+                    baseScore += extraScore;
                 }
             }
         });

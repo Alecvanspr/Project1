@@ -15,7 +15,7 @@ public class StoryReader {
 
         while(scanner.hasNextLine()){
             System.out.println(scanner.nextLine());
-            setContent(scanner.nextLine());
+            content = (scanner.nextLine());
         }
     }
 
