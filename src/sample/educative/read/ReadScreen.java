@@ -39,7 +39,7 @@ public class ReadScreen  extends Application {
             goToEducative.goGrammar(stage);
         });
 
-        pane.getChildren().addAll(btnBack,btnHangman,btnGrammar);
+        pane.getChildren().addAll(btnBack,btnHangman,btnGrammar,btnStories);
 
         scene = new Scene(pane, 800, 600);
         stage.setTitle("Read screen");
