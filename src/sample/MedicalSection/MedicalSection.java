@@ -19,6 +19,7 @@ public class MedicalSection extends Application {
     Main main;
     ArrayKeeper arrayKeeper;
     int buttonNumber = 0;
+
     @Override
     public void start(Stage stage) throws Exception{
         Pane pane = new Pane();
@@ -35,12 +36,14 @@ public class MedicalSection extends Application {
                 setButtonScaleChange(btnBack, 1.2);
             }
         });
+
         btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 setButtonScaleChange(btnBack, 1.0);
             }
         });
+
         btnBack.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -52,6 +55,7 @@ public class MedicalSection extends Application {
                 }
             }
         });
+
         pane.getChildren().add(btnBack);
         //menu Buttons
         Button makeAppointmentbtn = new Button("Make appointment");
@@ -70,16 +74,25 @@ public class MedicalSection extends Application {
 
         Button yourAppointmentbtn = new Button("Your appointments");
         makeMenuButton(yourAppointmentbtn, pane);
+        yourAppointmentbtn.setOnMouseClicked(E -> {
+            ShowAppointmentsScreen showAppointmentsScreen = new ShowAppointmentsScreen();
+            try{
+                showAppointmentsScreen.start(stage);
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
         Button contactInformationbtn = new Button("Click here to contact us");
         makeMenuButton(contactInformationbtn, pane);
-
 
         MedicalSection = new Scene(pane,800,600);
         stage.setTitle("Medical Section");
         stage.setScene(MedicalSection);
         stage.show();
     }
+
     public void makeMenuButton(Button button, Pane pane){
         setButtonPosition(button, buttonNumber);
         setButtonLayout(button);
@@ -97,26 +110,33 @@ public class MedicalSection extends Application {
         });
         pane.getChildren().add(button);
     }
+
     public void setButtonScaleChange(Button button, Double scale){
         button.setScaleX(scale);
         button.setScaleY(scale);
     }
+
     public void setButtonLayout(Button button){
         button.setPrefWidth(150);
         button.setPrefHeight(150);
     }
+
     public void setButtonPosition(Button button, int buttonNumber){
         if(buttonNumber == 0){
             button.relocate(225, 200);
-        }else if(buttonNumber == 1){
+        }
+        else if(buttonNumber == 1){
             button.relocate(225, 400);
-        }else if(buttonNumber == 2){
+        }
+        else if(buttonNumber == 2){
             button.relocate(450, 200);
-        }else{
+        }
+        else{
             button.relocate(450, 400);
         }
         buttonNumber();
     }
+
     public void buttonNumber(){
         buttonNumber++;
     }

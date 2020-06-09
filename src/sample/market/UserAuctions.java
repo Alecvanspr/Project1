@@ -9,6 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
+import sample.GoToScreens;
 
 import java.util.ArrayList;
 
@@ -16,52 +18,36 @@ public class UserAuctions extends Application{
     Scene userAuctions;
     MarketplaceScreen marketPlace = new MarketplaceScreen();
     ScrollPane scrollPane = new ScrollPane();
+    GoToScreens goToScreens = new GoToScreens();
+    Pane userAuctionsPane = new Pane();
+    ButtonSettings buttonSettings = new ButtonSettings();
+
     @Override
     public void start(Stage stage) throws Exception{
-        Pane userAuctionsPane = new Pane();
-        Button btnBack = new Button("Back");
-        btnBack.relocate(10, 565);
-        userAuctionsPane.getChildren().add(btnBack);
+        makeBtnBack(stage);
         printLines(userAuctionsPane);
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.0);
-                btnBack.setScaleY(1.0);
-            }
-        });
-        btnBack.setOnAction(E->{
-            goBack(stage);
-        });
+    }
+    public void fin(Stage stage){
         scrollPane.setContent(userAuctionsPane);
-
         userAuctions = new Scene(scrollPane, 800, 600);
         stage.setTitle("Your Auctions");
         stage.setScene(userAuctions);
         stage.show();
     }
-    public void goBack(Stage stage){
-        MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
-        try{
-            marketplaceScreen.start(stage);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
+    public void makeBtnBack(Stage stage){
+        Button btnBack = new Button("Back");
+        btnBack.relocate(10, 565);
+        userAuctionsPane.getChildren().add(btnBack);
+        btnBack.setOnAction(E->{
+            goToScreens.goAutionlist(stage);
+        });
+        buttonSettings.onMouse(btnBack);
     }
+
+    //deze wordt mischien fout gerekend
     public void printLines(Pane userAuctions){
         ArrayList<Auction> userAuctionsList = new ArrayList<>();
-        for (int i = 0; i < Auction.getAuctionList().size();i++){
-            if(Auction.getAuctionList().get(i).getUserId() == ArrayKeeper.getCurrentUser()){
-                userAuctionsList.add(Auction.getAuctionList().get(i));
-            }
-        }
+        makeUserAuctionList(userAuctionsList);
         for (int i = 0; i < userAuctionsList.size(); i++){
             Label userAuctionText = new Label("There are no bids yet");
             if(userAuctionsList.size()<=1){
@@ -73,4 +59,11 @@ public class UserAuctions extends Application{
         }
     }
 
+    public void makeUserAuctionList(ArrayList<Auction> userAuctionsList){
+        for (int i = 0; i < Auction.getAuctionList().size();i++){
+            if(Auction.getAuctionList().get(i).getUserId() == ArrayKeeper.getCurrentUser()){
+                userAuctionsList.add(Auction.getAuctionList().get(i));
+            }
+        }
+    }
 }

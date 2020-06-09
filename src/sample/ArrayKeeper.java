@@ -1,6 +1,7 @@
 package sample;
 
-import sample.MedicalSection.Docter;
+
+import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
 import sample.inlogScreen.PersonalData;
 import sample.livestock.Animal;
@@ -9,16 +10,15 @@ import sample.livestock.Species;
 import java.util.ArrayList;
 
 public class ArrayKeeper {
-    public static ArrayList<PersonalData> Data = new ArrayList<>();
-    public  ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
-    public static ArrayList<Docter> doctersArrayList = new ArrayList<>();
+    private static ArrayList<PersonalData> Data = new ArrayList<>();
+    private static ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
+    private static ArrayList<Doctor> doctorsArrayList = new ArrayList<>();
     private static int currentUser;
 
     public ArrayKeeper(){
-        makeSpecialties();
     }
 
-    public void SignUpData(String name,String password,String birth, String security,String securityQ,Boolean isDoctor){
+    public void SignUpData(String name,String password,String birth, String security,String securityQ, Boolean isDoctor){
         PersonalData personalData = new PersonalData();
         personalData.setUserName(name);
         personalData.setPassword(password);
@@ -42,24 +42,20 @@ public class ArrayKeeper {
         addSpecialty(general);
     }
     public ArrayList<Specialty> getSpecialtiesArrayList(){
-        return this.getSpecialtiesArrayList();
+        return this.specialtiesArrayList;
     }
     public void addSpecialty(Specialty specialty){
         specialtiesArrayList.add(specialty);
     }
-    public ArrayList<Docter> getDoctersArrayList(){
-        return this.getDoctersArrayList();
+    public ArrayList<Doctor> getDoctorsArrayList(){
+        return this.doctorsArrayList;
     }
-    public void addDocter(Docter docter){
-        doctersArrayList.add(docter);
+    public void addDoctor(Doctor doctor){
+        doctorsArrayList.add(doctor);
     }
 
     public void changePassword(int user,String password){
         Data.get(user).setPassword(password);
-    }
-
-    public ArrayList<PersonalData> getPersonaldata(){
-        return Data;
     }
 
     public void setCurrentUser(int currentUser){
@@ -70,8 +66,20 @@ public class ArrayKeeper {
         return currentUser;
     }
 
+    public static ArrayList<PersonalData> getData(){
+        return Data;
+    }
 
-    public PersonalData getData(int user) {
+    public static PersonalData getPersonalData(int user) {
         return Data.get(user);
+    }
+
+    public static Doctor findDoctor(String doctorName){
+        for(int i = 0; i < ArrayKeeper.doctorsArrayList.size(); i++){
+            if(ArrayKeeper.doctorsArrayList.get(i).getName().equals(doctorName)){
+                return ArrayKeeper.doctorsArrayList.get(i);
+            }
+        }
+        return null;
     }
 }

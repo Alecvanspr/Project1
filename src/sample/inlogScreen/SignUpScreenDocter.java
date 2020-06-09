@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.Homescreen;
-import sample.MedicalSection.Docter;
+import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class SignUpScreenDocter extends Application {
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).setIsDocter(false);
+                arraykeeper.getPersonalData(ArrayKeeper.getCurrentUser()).setIsDocter(false);
                 Main main = new Main();
                 try {
                     main.start(stage);
@@ -55,14 +55,14 @@ public class SignUpScreenDocter extends Application {
         pane.getChildren().add(exitBtn);
         //comboboxes for specialty
         Label specialtyText = new Label("What are your specialty's?");
-        ComboBox<String> specialty1 = new ComboBox<String>();
-        for(int i = 0; i < arraykeeper.specialtiesArrayList.size(); i++){
-            specialty1.getItems().add(arraykeeper.specialtiesArrayList.get(i).getName());
+        ComboBox<String> specialty1 = new ComboBox<>();
+        for(int i = 0; i < arraykeeper.getSpecialtiesArrayList().size(); i++){
+            specialty1.getItems().add(arraykeeper.getSpecialtiesArrayList().get(i).getName());
         }
         ArrayList<Specialty> specialties = new ArrayList<>();
         Button addSpecialty = new Button("add");
         addSpecialty.relocate(400,100);
-        ArrayList<Specialty> allSpecialties = arraykeeper.specialtiesArrayList;
+        ArrayList<Specialty> allSpecialties = arraykeeper.getSpecialtiesArrayList();
         addSpecialty.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -125,7 +125,7 @@ public class SignUpScreenDocter extends Application {
         register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                arraykeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).makeDoctor(docterName.getText(),specialties);
+                arraykeeper.getPersonalData(ArrayKeeper.getCurrentUser()).makeDoctor(docterName.getText(),specialties);
 
                 Main main = new Main();
                 try {

@@ -10,12 +10,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
+import sample.ButtonSettings;
+import sample.GoToScreens;
 
 public class AddWeightCheckScreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;
     Pane healthPane = new Pane();
     int currentAnimal;
+    Label lblWeight = new Label("Here you enter the weight of your animal");
+    TextField txtnewWeight = new TextField();
 
     public AddWeightCheckScreen(int currentAnimal){
         this.currentAnimal = currentAnimal;
@@ -23,57 +29,48 @@ public class AddWeightCheckScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Button btnBack = new Button("Back");
-        Button btnAply = new Button("Apply");
-        Label lblWeight = new Label("Here you enter the weight of your animal");
-        TextField txtnewWeight = new TextField();
-
-        btnAply.relocate(300,100);
-        lblWeight.relocate(100,55);
-        txtnewWeight.relocate(100,100);
-        btnBack.relocate(0,565);
-
-        btnAply.setOnAction(E->{
-            addWeightSituation(txtnewWeight.getText());
-            goBack(stage);
-        });
-
-        btnBack.setOnAction(E->{
-            goBack(stage);
-        });
-
-        btnBack.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1.2);
-                btnBack.setScaleY(1.2);
-
-            }
-        });
-        btnBack.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btnBack.setScaleX(1);
-                btnBack.setScaleY(1);
-
-            }
-        });
-        healthPane.getChildren().addAll(txtnewWeight,btnAply,lblWeight,btnBack);
+        makeTextField();
+        makeLabels();
+        makeBtnBack(stage);
+        makeBtnApply(stage);
+        fin(stage);
+    }
+    public void fin(Stage stage){
         healthScene = new Scene(healthPane,800,600);
         stage.setTitle("Add health check");
         stage.setScene(healthScene);
         stage.show();
     }
-    public void goBack(Stage stage){
-        DisplayWeightScreen displayWeightScreen = new DisplayWeightScreen(currentAnimal,ArrayKeeper.getCurrentUser());
-        try {
-            displayWeightScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
+    public void makeTextField(){
+        txtnewWeight.relocate(100,100);
+        healthPane.getChildren().addAll(txtnewWeight);
     }
+    public void makeLabels(){
+        lblWeight.relocate(100,55);
+        healthPane.getChildren().addAll(lblWeight);
+    }
+    public void makeBtnBack(Stage stage){
+        Button btnBack = new Button("Back");
+        btnBack.relocate(0,565);
+        buttonSettings.onMouse(btnBack);
+        btnBack.setOnAction(E->{
+            goToScreens.displayWeight(stage,currentAnimal);
+        });
+        healthPane.getChildren().add(btnBack);
+    }
+    public void makeBtnApply(Stage stage){
+        Button btnAply = new Button("Apply");
+        btnAply.relocate(300,100);
+        btnAply.setOnAction(E->{
+            addWeightSituation(txtnewWeight.getText());
+            goToScreens.displayWeight(stage,currentAnimal);
+        });
+        buttonSettings.onMouse(btnAply);
+        healthPane.getChildren().add(btnAply);
+    }
+
     public void addWeightSituation(String situation){
-        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addWeight(situation);
-        arrayKeeper.getPersonaldata().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateWeight(""+java.time.LocalDate.now());
+        arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).addWeight(situation);
+        arrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().get(currentAnimal).setDateWeight(""+java.time.LocalDate.now());
     }
 }

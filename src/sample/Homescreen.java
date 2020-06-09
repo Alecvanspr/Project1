@@ -10,197 +10,114 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import sample.MedicalSection.MedicalSection;
 import sample.contacts.ContactScreen;
+import sample.educative.EducativeHomeScreen;
 import sample.inlogScreen.Main;
 import sample.livestock.Livestock;
 import sample.market.MarketplaceScreen;
 import sample.profileSettings.ProfileSettingsScreen;
 
 public class Homescreen extends Application {
+    ButtonSettings buttonSettings = new ButtonSettings();
+    GoToScreens goToScreens = new GoToScreens();
     Scene homeScene;
     Main main;
     ArrayKeeper arrayKeeper;
+    Label welcome = new Label("Welcome to the homescreen");
+    //buttons to navigate to different things
+    Button btnLogOut = new Button("Log out");
+    Button btnProfile = new Button("Profile");
+    Button btnContacts = new Button("Contacts");
+    Button btnMarketPlace = new Button("Marketplace");
+    Button btnLiveStock = new Button("Livestock");
+    Button btnEducative = new Button("Education");
+    Button btnMedicalSection = new Button("Medical Section");
+    Pane home = new Pane();
+
+
     @Override
     public void start(Stage stage) throws Exception {
-        Label welcome = new Label("Welcome to the homescreen");
+        Label user = new Label("Welcome back " + ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getUsername());
         welcome.setFont(Font.font("Arial",30));
-        //buttons to navigate to different things
-        Button btnLogOut = new Button("Log out");
-        Label user = new Label("Welcome back " + ArrayKeeper.Data.get(ArrayKeeper.getCurrentUser()).getUsername());//en dit zou dan de naam weer moeten geven
-        Button btnProfile = new Button("Profile");
-        Button btnContacts = new Button("Contacts");
-        Button btnMarketPlace = new Button("Marketplace");
-        Button btnLiveStock = new Button("Livestock");
-        Button btnMedical = new Button("Medical section");
-        Pane home = new Pane();
-
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
-                btnMarketPlace,btnLiveStock,user);
+                btnMarketPlace,btnLiveStock,user,btnEducative,btnMedicalSection);
         welcome.relocate(225,100);
-
         user.relocate(660,35);
-
-        btnLogOut.relocate(738,5);
-        btnLogOut.setOnAction(e -> {
-            goMain(stage);
+        makeButtons(stage);
+        fin(stage);
+    }
+    public void makeButtons(Stage stage){
+        makeBtnLogOut(stage);
+        makeBtnProfile(stage);
+        makeBtnContacts(stage);
+        makeBtnMarketplace(stage);
+        makeBtnLivestock(stage);
+        makeBtnEducative(stage);
+        makeBtnMedicalSection(stage);
+    }
+    public void makeBtnEducative(Stage stage){
+        btnEducative.relocate(400,400);
+        buttonSettings.onMouse(btnEducative);
+        btnEducative.setOnAction(E->{
+            goToScreens.goEducativeScreen(stage);
         });
-
-        //Profile Button
-        setButtonLayout(btnProfile);
-        btnProfile.relocate(225,200);
-        btnProfile.setOnAction(e -> {
-            goProfile(stage);
-        });
-        btnProfile.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnProfile, 1.0);
-            }
-        });
-        btnProfile.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnProfile, 1.2);
-            }
-        });
-
-        //Contact button
-        setButtonLayout(btnContacts);
-        btnContacts.relocate(225,400);
-        btnContacts.setOnAction(e -> {
-            goContacts(stage);
-        });
-        btnContacts.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnContacts, 1.2);
-            }
-        });
-        btnContacts.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnContacts, 1.0);
-            }
-        });
-
-        //Button om naar Medische gedeelte te gaan
-        btnMedical.relocate(665, 565);
-        home.getChildren().add(btnMedical);
-        btnMedical.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnMedical, 1.0);
-            }
-        });
-        btnMedical.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnMedical, 1.2);
-            }
-        });
-        btnMedical.setOnAction(new EventHandler<ActionEvent>() {
+    }
+    public void makeBtnMedicalSection(Stage stage){
+        btnMedicalSection.relocate(500,500);
+        buttonSettings.onMouse(btnMedicalSection);
+        btnMedicalSection.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                MedicalSection medicalSection = new MedicalSection();
-                try {
-                    medicalSection.start(stage);
-                }   catch (Exception ex){
-                    ex.printStackTrace();
-                }
+                goToScreens.goMedicalSection(stage);
             }
         });
-        //Market button
-        setButtonLayout(btnMarketPlace);
-        btnMarketPlace.relocate(450,200);
-        btnMarketPlace.setOnAction(e ->{
-            goMarket(stage);
-        });
-        btnMarketPlace.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnMarketPlace, 1.0);
-            }
-        });
-        btnMarketPlace.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnMarketPlace, 1.2);
-            }
-        });
-
-        //Livestoch button
-        setButtonLayout(btnLiveStock);
+    }
+    public void makeBtnLivestock(Stage stage){
+        buttonSettings.setButtonLayout(btnLiveStock);
+        buttonSettings.onMouse(btnLiveStock);
         btnLiveStock.relocate(450,400);
         btnLiveStock.setOnAction(e -> {
-            goLivestock(stage);
+            goToScreens.goLiveStock(stage);
         });
-        btnLiveStock.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnLiveStock, 1.2);
-            }
+    }
+    public void makeBtnMarketplace(Stage stage){
+        buttonSettings.setButtonLayout(btnMarketPlace);
+        buttonSettings.onMouse(btnMarketPlace);
+        btnMarketPlace.relocate(450,200);
+        btnMarketPlace.setOnAction(e ->{
+            goToScreens.goMarketplace(stage);
         });
-        btnLiveStock.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScaleChange(btnLiveStock, 1.0);
-            }
+    }
+    public void makeBtnContacts(Stage stage){
+        //Contact button
+        buttonSettings.onMouse(btnContacts);
+        buttonSettings.setButtonLayout(btnContacts);
+        btnContacts.relocate(225,400);
+        btnContacts.setOnAction(e -> {
+            goToScreens.goContacts(stage);
         });
-
+    }
+    public void makeBtnProfile(Stage stage){
+        //Profile Button
+        buttonSettings.setButtonLayout(btnProfile);
+        buttonSettings.onMouse(btnProfile);
+        btnProfile.relocate(225,200);
+        btnProfile.setOnAction(e -> {
+            goToScreens.goProfile(stage);
+        });
+    }
+    public void makeBtnLogOut(Stage stage){
+        btnLogOut.relocate(738,5);
+        buttonSettings.onMouse(btnLogOut);
+        btnLogOut.setOnAction(e -> {
+            goToScreens.goMain(stage);
+        });
+    }
+    public void fin(Stage stage){
         homeScene = new Scene(home,800,600);
         stage.setTitle("Homescreen");
         stage.setScene(homeScene);
         stage.show();
-    }
-
-    public void goMain(Stage stage){
-        Main main = new Main();
-        try {
-            main.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void setButtonLayout(Button button){
-        button.setPrefHeight(150);
-        button.setPrefWidth(150);
-    }
-    public void setButtonScaleChange(Button button, Double scale){
-        button.setScaleY(scale);
-        button.setScaleX(scale);
-    }
-    public void goMarket(Stage stage){
-        MarketplaceScreen markt = new MarketplaceScreen();
-        try {
-            markt.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goProfile(Stage stage){
-        ProfileSettingsScreen pScreen = new ProfileSettingsScreen();
-        try {
-            pScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goContacts(Stage stage){
-        ContactScreen contactScreen = new ContactScreen();
-        try {
-            contactScreen.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void goLivestock(Stage stage){
-        Livestock livestock = new Livestock();
-        try {
-            livestock.start(stage);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
     }
 }
 
