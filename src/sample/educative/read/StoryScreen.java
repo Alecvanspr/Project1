@@ -59,7 +59,7 @@ public class StoryScreen extends Application {
     }
     public void makeBtnStory2(Stage stage){
         btnStory2.relocate(200,100);
-        btnStory1.setOnAction(e->{
+        btnStory2.setOnAction(e->{
             pane.getChildren().remove(btnStory2);
             pane.getChildren().remove(btnStory1);
             makeLblStory(stage,1);
