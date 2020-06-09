@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
-public class MakeAppointment extends Application {
+public class  MakeAppointment extends Application {
     Scene makeAppointmentScene;
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
