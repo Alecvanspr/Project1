@@ -116,6 +116,7 @@ public class Livestock extends Application {
             goToScreens.goNewAnimal(stage);
         });
         btnAdd.relocate(100,10);
+        liveStockPane.getChildren().add(btnAdd);
     }
     public void displayHealth(Stage stage){
         for(int i = 0; i<arrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAnimals().size();i++){

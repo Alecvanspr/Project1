@@ -36,6 +36,7 @@ public class IrregularVerbsScreen extends Application {
     }
     public void makeButtons(Stage stage){
         makeBtnBack(stage);
+        makeBtnPractice(stage);
     }
     public void makeBtnBack(Stage stage){
         Button btnBack = new Button("Back");

@@ -36,6 +36,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
+        makeLabels();
+        makeButtons();
         mainMethods.delettis(); //this is the demo account where we all can log in with, i used it to to test. but it need to be deleted afterwards
         textFieldUserName.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -43,8 +45,6 @@ public class Main extends Application {
                 login.getChildren().remove(error);
             }
         });
-        makeLabels();
-        makeButtons();
         fin(window);
     }
     public void fin(Stage stage){
@@ -55,19 +55,18 @@ public class Main extends Application {
         window.show();
     }
     public void makeLabels(){
-        //this are all the buttons
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         lblPassWord.relocate(100,95);
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
         passwordField.relocate(100,115);
-        login.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord);
+        pane.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord);
     }
     public void makeButtons(){
+        makeButtonLogin();
         makeButtonSignIn(window);
         makeButtonForgotPassword(window);
-        makeButtonLogin();
     }
     public void makeButtonSignIn(Stage stage){
         Button btnSignUp = new Button("Create an account");

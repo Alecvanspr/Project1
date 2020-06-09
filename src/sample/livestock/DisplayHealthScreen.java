@@ -52,7 +52,7 @@ public class DisplayHealthScreen extends Application {
         Button btnAdd = new Button("Add new health check");
         btnAdd.relocate(300,45);
         btnAdd.setOnAction(E->{
-            goToScreens.goHealthCheck(stage,currentAnimal);
+            goToScreens.goAddHealthCheck(stage,currentAnimal);
         });
         buttonSettings.onMouse(btnAdd);
         healthPane.getChildren().add(btnAdd);

@@ -18,6 +18,7 @@ public class SignUpScreen extends Application {
     Pane pane = new Pane();
     CheckBox docterCheck = new CheckBox("Docter?");
     TextField docterName = new TextField("What is your name");
+    Label ErrorMessage = new Label("");
     ComboBox securityQuestions = new ComboBox();
     TextField textFieldUserName = new TextField();
     PasswordField passwordField = new PasswordField();
@@ -55,18 +56,18 @@ public class SignUpScreen extends Application {
         Label lblPassWordConf = new Label("Confirm password");
         Label lblBirthdate = new Label("Birth date");
         Label lblSecurity = new Label("Security question in case you forget your password");
-        securityQuestions.getItems().addAll("What is your favorite colour?",
-                "What was the name of your first pet?",
-                "What was your first city of residence?");
+        securityQuestions.getItems().addAll("What is your favorite colour?","What was the name of your first pet?","What was your first city of residence?");
         lblUserName.relocate(100,50);
         lblSecurity.relocate(100,230);
         lblPassWord.relocate(100,95);
         lblBirthdate.relocate(100,185);
         lblPassWordConf.relocate(100, 140);
-        pane.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf,lblBirthdate,lblSecurity,docterCheck,docterName);
+        ErrorMessage.relocate(100,265);
+        pane.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf,lblBirthdate,lblSecurity,docterCheck,docterName,ErrorMessage);
     }
     public void makeButtons(Stage stage){
         makeBtnRegister(stage);
+        makeBtnBack(stage);
     }
     public void makeBtnBack(Stage stage){
         Button btnBack = new Button("Back");
@@ -96,31 +97,17 @@ public class SignUpScreen extends Application {
                 main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions, toDocter);
                 toDocter(toDocter,stage);
             }else {
-                Label passwordWrong = new Label("Passwords don't match");
-                passwordWrong.relocate(100,265);
-                pane.getChildren().add(passwordWrong);
+                ErrorMessage.setText("Passwords don't match");
             }
         }else{
-            Label emptyFields = new Label("Fields are empty");
-            emptyFields.relocate(100,265);
-            pane.getChildren().add(emptyFields);
+            ErrorMessage.setText("Fields are empty");
         }
     }
     public void toDocter(boolean isDocter,Stage stage){
         if(isDocter) {
-            SignUpScreenDocter signUpScreenDocter = new SignUpScreenDocter();
-            try {
-                signUpScreenDocter.start(stage);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            goToScreens.goSignUpDoctorScreen(stage);
         }else{
-            Main main = new Main();
-            try {
-                main.start(stage);
-            } catch(Exception ex){
-                ex.printStackTrace();
-            }
+            goToScreens.goMain(stage);
         }
     }
 }

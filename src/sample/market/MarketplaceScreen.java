@@ -43,7 +43,6 @@ public class MarketplaceScreen extends Application {
     }
     public void makeButtons(Stage stage){
         goBidHistory(stage);
-        makeButtons(stage);
         makeBtnBack(stage);
         makeBtnAuction(stage);
         makeBtnYourAuction(stage);

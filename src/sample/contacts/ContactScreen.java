@@ -61,7 +61,7 @@ public class ContactScreen extends Application {
         tfCity.relocate(500,240);
         tfCountry.relocate(500,270);
         tfContact.relocate(100,50);
-        pane.getChildren().addAll(tfContact,tfName,tfEmail,tfPhoneNumber,tfStreet,tfPostelCode,tfCity,tfCountry, taContacts);
+        pane.getChildren().addAll(tfContact,tfName,tfEmail,tfPhoneNumber,tfStreet,tfPostelCode,tfCity,tfCountry);
     }
     public void printContactnames(String contactNames){
         taContacts.setText(contactNames);

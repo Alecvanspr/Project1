@@ -56,6 +56,7 @@ public class GrammarScreen  extends Application {
     }
     public void makeButtons(Stage stage){
         makeTenseButtons(stage);
+        makeIrregualarVerb(stage);
         makeBtnBack(stage);
     }
 

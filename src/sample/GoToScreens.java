@@ -14,6 +14,7 @@ import sample.educative.writing.*;
 import sample.inlogScreen.ForgotPasswordScreen;
 import sample.inlogScreen.Main;
 import sample.inlogScreen.SignUpScreen;
+import sample.inlogScreen.SignUpScreenDocter;
 import sample.livestock.*;
 import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
@@ -290,6 +291,22 @@ public class GoToScreens {
         try {
             editAppointment.start(stage);
         } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goSignUpDoctorScreen(Stage stage){
+        SignUpScreenDocter signUpScreenDocter = new SignUpScreenDocter();
+        try {
+            signUpScreenDocter.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goAddHealthCheck(Stage stage,int currentAnimal){
+        AddHeathCheckScreen addHeathCheckScreen = new AddHeathCheckScreen(currentAnimal);
+        try {
+            addHeathCheckScreen.start(stage);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
