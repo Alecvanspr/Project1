@@ -213,14 +213,6 @@ public class GoToScreens {
         }
     }
 
-    public void goVideo(Stage stage) {
-        VideoTest videoTest = new VideoTest();
-        try {
-            videoTest.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
     public void goProfile(Stage stage){
         ProfileSettingsScreen pScreen = new ProfileSettingsScreen();
         try {

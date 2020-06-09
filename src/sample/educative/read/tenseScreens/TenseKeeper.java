@@ -32,7 +32,6 @@ public class TenseKeeper {
                 "there is no rule for identifieng these words, you just need to learn them.\n" +
                 "you can find those at the grammar page");
                 tenseName.add("Past simple");
-                makeButtonsPastSimple();
     }
     public void makePastPerfect(){
         tensesExplained.add("The past perfect is an event that happened before the past simple\n" +
@@ -43,7 +42,6 @@ public class TenseKeeper {
                 "Be aware that  if the word is an irregular verb, you should use the thirth row.\n" +
                 "You can find that list of words on the grammar screen");
         tenseName.add("Past Perfect");
-        makeButtonsPastPerfect();
     }
     public void makePastPerfectProgressive(){
         tensesExplained.add("The past perfect progressive is almost like the past perfect. \n" +
@@ -54,7 +52,6 @@ public class TenseKeeper {
                 "The children had been collecting money all morning.\n" +
                 "You can make the past perfect continues by adding the word been to the sentence");
         tenseName.add("Past perfect progressive");
-        makeButtonsPastPerfectProgressive();
     }
     public void makePastContinious(){
         tensesExplained.add("The past continuous is something that happened in the past.\n" +
@@ -68,44 +65,5 @@ public class TenseKeeper {
                 "You use the word was if it is a single person, He, She, I.\n" +
                 "You use were if it is about multiple persons like They, we, you");
         tenseName.add("Past continious");
-        makeButtonPastContinious();
-    }
-
-    public void makeButtonsPastSimple(){
-        Button button = new Button("Practice Past simple");
-        button.relocate(400,400);
-        button.setOnAction(E->{
-        goToEducative.goSimplePastScreen(stage);
-        buttons.add(button);
-        });
-    }
-    public void makeButtonsPastPerfect(){
-        Button button = new Button("Practice Past perfect");
-        button.relocate(400,400);
-        button.setOnAction(E->{
-            goToEducative.goPastPerfect(stage);
-        });
-        buttons.add(button);
-    }
-    public void makeButtonsPastPerfectProgressive(){
-        Button button = new Button("Practice Past Progressive ");
-        button.relocate(400,400);
-        button.setOnAction(E->{
-            goToEducative.goPastProgressive(stage);
-        });
-        buttons.add(button);
-    }
-    public void makeButtonPastContinious(){
-        Button button = new Button("Practice Past continious");
-        button.relocate(400,400);
-        button.setOnAction(E->{
-            PastProgressiveScreen pastProgressiveScreen = new PastProgressiveScreen();
-            try {
-                pastProgressiveScreen.start(stage);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
-        buttons.add(button);
     }
 }

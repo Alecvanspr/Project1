@@ -8,6 +8,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sample.ButtonSettings;
 import sample.educative.GoToEducative;
 import sample.educative.read.GrammarScreen;
 
@@ -19,6 +20,7 @@ public class PracticeScreen extends Application {
     InfinitiveWordReader infinitiveWordReader = new InfinitiveWordReader();
     PastParticipleReader pastParticipleReader = new PastParticipleReader();
     PastWordReader pastWordReader = new PastWordReader();
+    ButtonSettings buttonSettings = new ButtonSettings();
 
     Pane pane = new Pane();
     Label lblWrong = new Label("");
@@ -26,19 +28,43 @@ public class PracticeScreen extends Application {
     Button btnInfinitive = new Button("Infinitive");
     Button btnPastTense = new Button("Past");
     Button btnPastParticle = new Button("Past Particle");
+
     int currendWord =0;
     int answer = 0;
 
     @Override
     public void start(Stage stage) throws Exception {
+        makeLabels();
+        makeButtons(stage);
+        fin(stage);
+    }
+    public void makeButtons(Stage stage){
+        makeBtnNext();
+        makeBtnBack(stage);
+        makeWordButtons(stage);
+    }
+    public void makeBtnBack(Stage stage){
+        Button btnBack = new Button("Back");
+        btnBack.relocate(0, 565);
+        btnBack.setOnAction(E->{
+            goToEducative.goIrregularVerbScreen(stage);
+        });
+        buttonSettings.onMouse(btnBack);
+        pane.getChildren().add(btnBack);
+    }
+    public void makeLabels(){
         Label lblInfinitive = new Label("Infinitive");
         Label lblPastTense = new Label("Past");
         Label lblPastParticle = new Label("Past Particle");
         Label lblExplain = new Label("What is the correct word?");
-        Button btnBack = new Button("Back");
-        Button btnNext = new Button("Next");
+        lblExplain.relocate(200,300);
+        lblPastParticle.relocate(500,375);
+        lblPastTense.relocate(300,375);
+        lblInfinitive.relocate(100,375);
+        pane.getChildren().addAll(lblInfinitive,lblPastTense,lblPastParticle,lblExplain);
+    }
+    public void makeWordButtons(Stage stage){
         lblSentence.setFont(new Font("Comic Sans MS",25));
-
         btnInfinitive.setOnAction(E->{
             checkButtonClick(btnInfinitive);
         });
@@ -48,27 +74,23 @@ public class PracticeScreen extends Application {
         btnPastParticle.setOnAction(E->{
             checkButtonClick(btnPastParticle);
         });
-        btnBack.setOnAction(E->{
-            goToEducative.goIrregularVerbScreen(stage);
-        });
-
+        lblSentence.relocate(150,200);
+        btnInfinitive.relocate(100,400);
+        btnPastTense.relocate(300,400);
+        btnPastParticle.relocate(500,400);
+        pane.getChildren().addAll(btnInfinitive,btnPastTense,btnPastParticle,lblSentence,lblWrong);
+    }
+    public void makeBtnNext(){
+        Button btnNext = new Button("Next");
+        btnNext.relocate(675,565);
         btnNext.setOnAction(E->{
             newSentence();
             clearAllbuttons();
         });
-
-        btnNext.relocate(675,565);
-        btnBack.relocate(0, 565);
-        lblSentence.relocate(150,200);
-        lblInfinitive.relocate(100,375);
-        btnInfinitive.relocate(100,400);
-        lblPastTense.relocate(300,375);
-        btnPastTense.relocate(300,400);
-        lblPastParticle.relocate(500,375);
-        btnPastParticle.relocate(500,400);
-        lblExplain.relocate(200,300);
-
-        pane.getChildren().addAll(btnBack,btnInfinitive,btnPastTense,btnPastParticle,btnNext,lblSentence,lblPastTense,lblInfinitive,lblPastParticle,lblExplain,lblWrong);
+        buttonSettings.onMouse(btnNext);
+        pane.getChildren().add(btnNext);
+    }
+    public void fin(Stage stage){
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pane);
         Scene scene = new Scene(scrollPane, 800, 600);
