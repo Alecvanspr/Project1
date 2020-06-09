@@ -1,4 +1,4 @@
-package sample.educative.read;
+package sample.educative.read.hangman;
 
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
@@ -13,12 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -26,6 +23,8 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.GoToScreens;
+import sample.educative.read.WordReader;
+import sample.educative.read.hangman.GalgIMG;
 
 import java.util.HashMap;
 
@@ -33,6 +32,8 @@ public class HangmanScreen extends Application {
     StackPane pane = new StackPane();
     GoToScreens goToScreens = new GoToScreens();
     Button btnBack = new Button("back");
+    HBox rowBack = new HBox();
+    Scene scene;
 
     private static int appW = 800;
     private static int appH = 600;
@@ -58,23 +59,19 @@ public class HangmanScreen extends Application {
 
     private ObservableList<Node> letters;
     private HashMap<Character, Text> alphabet = new HashMap<Character, Text>();
-    private HangmanImage hangman = new HangmanImage();
+    private GalgIMG galgIMG = new GalgIMG();
     private WordReader wordReader = new WordReader();
 
     //creates the layout of the screen
-    public Parent createContent(){
+    public Parent createContent(Stage stage){
 
-        btnBack = new Button("back");
-
-        HBox rowBack = new HBox();
-        btnBack.setAlignment(Pos.BOTTOM_LEFT);
-        rowBack.getChildren().add(btnBack);
+        makeBtnBack(stage);
 
         HBox rowLetters = new HBox();
         rowLetters.setAlignment(Pos.CENTER);
         letters = rowLetters.getChildren();
 
-        playable.bind(hangman.tries.greaterThan(0).and(lettersToGuess.greaterThan(0)));
+        playable.bind(galgIMG.tries.greaterThan(0).and(lettersToGuess.greaterThan(0)));
         playable.addListener((obs, old, newValue) -> {
             if(!newValue)
                 stopGame();
@@ -103,7 +100,7 @@ public class HangmanScreen extends Application {
         Text textScore = new Text();
         textScore.textProperty().bind(score.asString().concat(" Score"));
 
-        HBox rowHangman = new HBox(10,btnAgain,textScore,hangman);
+        HBox rowHangman = new HBox(10,btnAgain,textScore,galgIMG);
         rowHangman.setAlignment(Pos.CENTER);
 
         VBox vBox = new VBox(10);
@@ -124,7 +121,7 @@ public class HangmanScreen extends Application {
             t.setFill(Color.BLACK);
         }
 
-        hangman.reset();
+        galgIMG.reset();
         word.set(wordReader.getRandomWord().toUpperCase());
         lettersToGuess.set(word.length().get());
 
@@ -135,46 +132,46 @@ public class HangmanScreen extends Application {
     }
 
     //the way hangman image is drawn using javafx and responsible for tries per word
-    private static class HangmanImage extends Parent{
-        private static final int spineStartX = 100;
-        private static final int spineStartY = 20;
-        private static final int spineEndX = spineStartX;
-        private static final int spineEndY = spineStartY+50;
+    /*private class HangmanImage extends Parent{
+        private int galgStartX = 100;
+        private int galgStartY = 20;
+        private int galgEndX = galgStartX;
+        private int galgEndY = galgStartY+50;
 
         private SimpleIntegerProperty tries = new SimpleIntegerProperty();
         public HangmanImage(){
             Circle head = new Circle(20);
-            head.setTranslateX(spineStartX);
+            head.setTranslateX(galgStartX);
 
             Line spine = new Line();
-            spine.setStartX(spineStartX);
-            spine.setStartY(spineStartY);
-            spine.setEndX(spineEndX);
-            spine.setEndY(spineEndY);
+            spine.setStartX(galgStartX);
+            spine.setStartY(galgStartY);
+            spine.setEndX(galgEndX);
+            spine.setEndY(galgEndY);
 
             Line leftArm = new Line();
-            leftArm.setStartX(spineStartX);
-            leftArm.setStartY(spineStartY);
-            leftArm.setEndX(spineEndX+40);
-            leftArm.setEndY(spineEndY+10);
+            leftArm.setStartX(galgStartX);
+            leftArm.setStartY(galgStartY);
+            leftArm.setEndX(galgEndX+40);
+            leftArm.setEndY(galgEndY+10);
 
             Line rightArm = new Line();
-            rightArm.setStartX(spineStartX);
-            rightArm.setStartY(spineStartY);
-            rightArm.setEndX(spineEndX-40);
-            rightArm.setEndY(spineEndY+10);
+            rightArm.setStartX(galgStartX);
+            rightArm.setStartY(galgStartY);
+            rightArm.setEndX(galgEndX-40);
+            rightArm.setEndY(galgEndY+10);
 
             Line leftLeg = new Line();
-            leftLeg.setStartX(spineEndX);
-            leftLeg.setStartY(spineEndY);
-            leftLeg.setEndX(spineEndX+25);
-            leftLeg.setEndY(spineEndY+50);
+            leftLeg.setStartX(galgEndX);
+            leftLeg.setStartY(galgEndY);
+            leftLeg.setEndX(galgEndX+25);
+            leftLeg.setEndY(galgEndY+50);
 
             Line rightLeg = new Line();
-            rightLeg.setStartX(spineEndX);
-            rightLeg.setStartY(spineEndY);
-            rightLeg.setEndX(spineEndX-25);
-            rightLeg.setEndY(spineEndY+50);
+            rightLeg.setStartX(galgEndX);
+            rightLeg.setStartY(galgEndY);
+            rightLeg.setEndX(galgEndX-25);
+            rightLeg.setEndY(galgEndY+50);
 
             getChildren().addAll(head,spine,leftArm,rightArm,leftLeg,rightLeg);
             tries.set(getChildren().size());
@@ -183,7 +180,7 @@ public class HangmanScreen extends Application {
             getChildren().forEach(node -> node.setVisible(false));
             tries.set(getChildren().size());
         }
-        public void takeAwayLife(){
+        public void takeAwayTry(){
             for(Node n : getChildren()){
                 if(!n.isVisible()){
                     n.setVisible(true);
@@ -192,7 +189,7 @@ public class HangmanScreen extends Application {
                 }
             }
         }
-    }
+    }*/
 
     //makes the letter and the box
     private static class Letter extends StackPane{
@@ -225,11 +222,7 @@ public class HangmanScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(createContent());
-
-        btnBack.setOnAction(E->{
-            goToScreens.goEducativeScreen(stage);
-        });
+        scene = new Scene(createContent(stage));
 
         scene.setOnKeyPressed((KeyEvent event) -> {
             if(event.getText().isEmpty()) {
@@ -260,7 +253,7 @@ public class HangmanScreen extends Application {
                 }
 
                 if(!found){
-                    hangman.takeAwayLife();
+                    galgIMG.takeAwayTry();
                     baseScore = 1.0f;
                 }
                 else{
@@ -269,11 +262,24 @@ public class HangmanScreen extends Application {
             }
         });
 
+        fin(stage,scene);
 
+    }
+
+    public void makeBtnBack(Stage stage){
+        btnBack.setAlignment(Pos.BOTTOM_LEFT);
+        rowBack.getChildren().add(btnBack);
+        btnBack.setOnAction(E->{
+            goToScreens.goEducativeScreen(stage);
+        });
+    }
+
+    public void fin(Stage stage, Scene scene){
         stage.setTitle("Hangman screen");
         stage.setWidth(appW);
         stage.setHeight(appH);
         stage.setScene(scene);
         stage.show();
     }
+
 }
