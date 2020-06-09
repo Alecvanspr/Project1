@@ -2,11 +2,9 @@ package sample.MedicalSection;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.ButtonSettings;
@@ -34,16 +32,58 @@ public class EditAppointment extends Application {
     Button editAppointmentButton = new Button("Edit Appointment");
     Button dateButton = new Button("Select");
     Button exitButton = new Button("Back");
+    Label appointmentLabel = new Label("Appointment: ");
+    Label specialtyLabel = new Label("Specialty: ");
+    Label doctorLabel = new Label("Doctor: ");
+    Label startLabel = new Label("Edit your appointment here");
+    Label dateLabel = new Label("Date: ");
+    Label timeLabel = new Label("Time: ");
     DatePicker datePicker = new DatePicker();
 
     public void start(Stage stage) throws Exception{
         makeComboBoxes();
         makeDatePicker();
         makeButtons(stage);
+        makeLabels();
 
         setNothingVisible();
-        pane.getChildren().addAll(exitButton, dateButton, appointmentComboBox, specialtyButton, doctorComboBox,specialtyComboBox, timeComboBox, doctorButton, editAppointmentButton, datePicker, appointmentButton);
+        pane.getChildren().addAll(appointmentLabel, startLabel, timeLabel, dateLabel, doctorLabel, specialtyLabel, exitButton, dateButton, appointmentComboBox, specialtyButton, doctorComboBox,specialtyComboBox, timeComboBox, doctorButton, editAppointmentButton, datePicker, appointmentButton);
         fin(stage);
+    }
+    public void makeLabels(){
+        makeAppointmentLabel();
+        makeStartLabel();
+        makeTimeLabel();
+        makeDateLabel();
+        makeDoctorLabel();
+        makeSpecialtyLabel();
+    }
+    public void makeAppointmentLabel(){
+        appointmentLabel.relocate(70, 100);
+        setLabelFont(appointmentLabel);
+    }
+    public void makeSpecialtyLabel(){
+        specialtyLabel.relocate(70, 150);
+        setLabelFont(specialtyLabel);
+    }
+    public void makeDoctorLabel(){
+        doctorLabel.relocate(70, 200);
+        setLabelFont(doctorLabel);
+    }
+    public void makeDateLabel(){
+        dateLabel.relocate(70, 250);
+        setLabelFont(dateLabel);
+    }
+    public void makeTimeLabel(){
+        timeLabel.relocate(70, 300);
+        setLabelFont(timeLabel);
+    }
+    public void makeStartLabel(){
+        startLabel.relocate(150, 30);
+        startLabel.setFont(Font.font("Arial", 50));
+    }
+    public void setLabelFont(Label label){
+        label.setFont(Font.font("Arial", 30));
     }
     public void makeButtons(Stage stage){
         makeSpecialtyButton();
