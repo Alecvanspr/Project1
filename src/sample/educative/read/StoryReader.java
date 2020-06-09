@@ -1,30 +1,26 @@
 package sample.educative.read;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 public class StoryReader {
     private static final String filename = "/src/_txtfiles/stories/";
     private String content;
 
-    public StoryReader(String story) throws FileNotFoundException {
+    public StoryReader(String story){
+        String line;
         String path = System.getProperty("user.dir");
         File file = new File(path, filename+story);
-        Scanner scanner = new Scanner(file);
-
-        while(scanner.hasNextLine()){
-            System.out.println(scanner.nextLine());
-            content = (scanner.nextLine());
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            while((line = br.readLine()) != null){
+                    content += line;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
-    public void setContent(String content) {
-        this.content = content.concat(content);
-    }
-
     public String getContent(){
-        return content;
+        return this.content;
     }
-
 }
