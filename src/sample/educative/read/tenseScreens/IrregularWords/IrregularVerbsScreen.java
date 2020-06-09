@@ -65,9 +65,7 @@ public class IrregularVerbsScreen extends Application {
             lblPast.relocate(300,placementY);
             lblInfinitive.relocate(100,placementY);
             lblPastParticle.relocate(500,placementY);
-
             placementY+=35;
-
             pane.getChildren().addAll(lblInfinitive,lblPast,lblPastParticle);
         }
     }

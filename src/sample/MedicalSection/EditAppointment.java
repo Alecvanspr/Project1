@@ -70,7 +70,6 @@ public class EditAppointment extends Application {
                 alert.setHeaderText("Date is not correct");
                 alert.show();
             }
-
         });
     }
     public void getTimeTable(){
