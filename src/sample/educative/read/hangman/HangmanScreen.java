@@ -29,21 +29,31 @@ import sample.educative.read.hangman.GalgIMG;
 import java.util.HashMap;
 
 public class HangmanScreen extends Application {
+    private GalgIMG galgIMG = new GalgIMG();
+    private Letter letter;
     StackPane pane = new StackPane();
     GoToScreens goToScreens = new GoToScreens();
     Button btnBack = new Button("back");
+    Button btnAgain = new Button("New Word");
+    Text dash = new Text("-");
+    Text textScore = new Text();
     HBox rowBack = new HBox();
+    HBox rowAlphabet = new HBox(5);
+    HBox rowHangman = new HBox(10,btnAgain,textScore,galgIMG);
+    VBox vBox = new VBox(10);
+    HBox rowLetters = new HBox();
+
     Scene scene;
 
     private static int appW = 800;
     private static int appH = 600;
-    private static Font segoeButBigger = new Font("Segoe UI",36);
+    public static Font segoeButBigger = new Font("Segoe UI",36);
 
     private static int scoreCorrectLetter = 100;
-    private static float extraScore = 0.125f;
+    private static double extraScore = 0.125;
 
     //next correct guess worth
-    private float baseScore = 1.0f;
+    private double baseScore = 1.0;
 
     //word that needs to be guessed
     private SimpleStringProperty word = new SimpleStringProperty();
@@ -59,17 +69,14 @@ public class HangmanScreen extends Application {
 
     private ObservableList<Node> letters;
     private HashMap<Character, Text> alphabet = new HashMap<Character, Text>();
-    private GalgIMG galgIMG = new GalgIMG();
     private WordReader wordReader = new WordReader();
 
+
+
     //creates the layout of the screen
-    public Parent createContent(Stage stage){
-
+    public Parent makeGUI(Stage stage){
         makeBtnBack(stage);
-
-        HBox rowLetters = new HBox();
-        rowLetters.setAlignment(Pos.CENTER);
-        letters = rowLetters.getChildren();
+        makeRowLetters(stage);
 
         playable.bind(galgIMG.tries.greaterThan(0).and(lettersToGuess.greaterThan(0)));
         playable.addListener((obs, old, newValue) -> {
@@ -77,33 +84,13 @@ public class HangmanScreen extends Application {
                 stopGame();
         });
 
-        Button btnAgain = new Button("New Word");
-        btnAgain.disableProperty().bind(playable);
-        btnAgain.setOnAction(e -> startGame());
+        makeBtnAgain(stage);
+        makeRowAlphabet(stage);
 
-
-
-        HBox rowAlphabet = new HBox(5);
-        rowAlphabet.setAlignment(Pos.CENTER);
-        for(char c = 'A'; c<= 'Z'; c++){
-            Text t = new Text(String.valueOf(c));
-            t.setFont(segoeButBigger);
-            alphabet.put(c,t);
-            rowAlphabet.getChildren().add(t);
-        }
-
-        Text dash = new Text("-");
-        dash.setFont(segoeButBigger);
-        alphabet.put('-', dash);
-        rowAlphabet.getChildren().add(dash);
-
-        Text textScore = new Text();
         textScore.textProperty().bind(score.asString().concat(" Score"));
 
-        HBox rowHangman = new HBox(10,btnAgain,textScore,galgIMG);
         rowHangman.setAlignment(Pos.CENTER);
 
-        VBox vBox = new VBox(10);
         vBox.getChildren().addAll(rowLetters,rowAlphabet,rowHangman,rowBack);
         return vBox;
     }
@@ -131,98 +118,10 @@ public class HangmanScreen extends Application {
         }
     }
 
-    //the way hangman image is drawn using javafx and responsible for tries per word
-    /*private class HangmanImage extends Parent{
-        private int galgStartX = 100;
-        private int galgStartY = 20;
-        private int galgEndX = galgStartX;
-        private int galgEndY = galgStartY+50;
-
-        private SimpleIntegerProperty tries = new SimpleIntegerProperty();
-        public HangmanImage(){
-            Circle head = new Circle(20);
-            head.setTranslateX(galgStartX);
-
-            Line spine = new Line();
-            spine.setStartX(galgStartX);
-            spine.setStartY(galgStartY);
-            spine.setEndX(galgEndX);
-            spine.setEndY(galgEndY);
-
-            Line leftArm = new Line();
-            leftArm.setStartX(galgStartX);
-            leftArm.setStartY(galgStartY);
-            leftArm.setEndX(galgEndX+40);
-            leftArm.setEndY(galgEndY+10);
-
-            Line rightArm = new Line();
-            rightArm.setStartX(galgStartX);
-            rightArm.setStartY(galgStartY);
-            rightArm.setEndX(galgEndX-40);
-            rightArm.setEndY(galgEndY+10);
-
-            Line leftLeg = new Line();
-            leftLeg.setStartX(galgEndX);
-            leftLeg.setStartY(galgEndY);
-            leftLeg.setEndX(galgEndX+25);
-            leftLeg.setEndY(galgEndY+50);
-
-            Line rightLeg = new Line();
-            rightLeg.setStartX(galgEndX);
-            rightLeg.setStartY(galgEndY);
-            rightLeg.setEndX(galgEndX-25);
-            rightLeg.setEndY(galgEndY+50);
-
-            getChildren().addAll(head,spine,leftArm,rightArm,leftLeg,rightLeg);
-            tries.set(getChildren().size());
-        }
-        public void reset(){
-            getChildren().forEach(node -> node.setVisible(false));
-            tries.set(getChildren().size());
-        }
-        public void takeAwayTry(){
-            for(Node n : getChildren()){
-                if(!n.isVisible()){
-                    n.setVisible(true);
-                    tries.set(tries.get()-1);
-                    break;
-                }
-            }
-        }
-    }*/
-
-    //makes the letter and the box
-    private static class Letter extends StackPane{
-        private Rectangle bg = new Rectangle(40,60);
-        private Text text;
-
-        public Letter(char letter){
-            bg.setFill(Color.WHITE);
-            bg.setStroke(Color.BLUE);
-
-            text = new Text(String.valueOf(letter).toUpperCase());
-            text.setFont(segoeButBigger);
-            text.setVisible(false);
-
-            setAlignment(Pos.CENTER);
-            getChildren().addAll(bg,text);
-        }
-        public void show(){
-            RotateTransition rt = new RotateTransition(Duration.seconds(1), bg);
-            rt.setAxis(Rotate.Y_AXIS);
-            rt.setToAngle(180);
-            rt.setOnFinished(event -> text.setVisible(true));
-            rt.play();
-        }
-        public boolean isEqualTo(char other){
-            return text.getText().equals(String.valueOf(other).toUpperCase());
-        }
-    }
-
 
     @Override
     public void start(Stage stage) throws Exception {
-        scene = new Scene(createContent(stage));
+        scene = new Scene(makeGUI(stage));
 
         scene.setOnKeyPressed((KeyEvent event) -> {
             if(event.getText().isEmpty()) {
@@ -264,6 +163,31 @@ public class HangmanScreen extends Application {
 
         fin(stage,scene);
 
+    }
+
+    public void makeBtnAgain(Stage stage){
+        btnAgain.disableProperty().bind(playable);
+        btnAgain.setOnAction(e -> startGame());
+    }
+
+    public void makeRowAlphabet(Stage stage){
+        rowAlphabet.setAlignment(Pos.CENTER);
+        for(char c = 'A'; c<= 'Z'; c++){
+            Text t = new Text(String.valueOf(c));
+            t.setFont(segoeButBigger);
+            alphabet.put(c,t);
+            rowAlphabet.getChildren().add(t);
+        }
+
+
+        dash.setFont(segoeButBigger);
+        alphabet.put('-', dash);
+        rowAlphabet.getChildren().add(dash);
+    }
+
+    public void makeRowLetters(Stage stage){
+        rowLetters.setAlignment(Pos.CENTER);
+        letters = rowLetters.getChildren();
     }
 
     public void makeBtnBack(Stage stage){
