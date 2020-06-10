@@ -1,11 +1,9 @@
 package sample.profileSettings;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
@@ -15,7 +13,7 @@ import sample.Homescreen;
 
 public class ProfileSettingsScreen extends Application {
     Homescreen homescreen = new Homescreen();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    //ButtonSettings ButtonSettings = new ButtonSettings();
     Scene Settings;
     GoToScreens goToScreens = new GoToScreens();
     Pane pSettings = new Pane();
@@ -57,7 +55,7 @@ public class ProfileSettingsScreen extends Application {
         btnEdit.setOnAction(e -> {
             goToScreens.goEditSettings(stage);
         });
-        buttonSettings.onMouse(btnBack);
-        buttonSettings.onMouse(btnEdit);
+        ButtonSettings.onMouse(btnBack);
+        ButtonSettings.onMouse(btnEdit);
     }
 }

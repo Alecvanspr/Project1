@@ -18,7 +18,7 @@ import sample.market.MarketplaceScreen;
 import sample.profileSettings.ProfileSettingsScreen;
 
 public class Homescreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    //ButtonSettings buttonSettings = new ButtonSettings();
     GoToScreens goToScreens = new GoToScreens();
     Scene homeScene;
     Main main;
@@ -55,16 +55,17 @@ public class Homescreen extends Application {
         makeBtnEducative(stage);
         makeBtnMedicalSection(stage);
     }
+
     public void makeBtnEducative(Stage stage){
         btnEducative.relocate(400,400);
-        buttonSettings.onMouse(btnEducative);
+        ButtonSettings.onMouse(btnEducative);
         btnEducative.setOnAction(E->{
             goToScreens.goEducativeScreen(stage);
         });
     }
     public void makeBtnMedicalSection(Stage stage){
         btnMedicalSection.relocate(500,500);
-        buttonSettings.onMouse(btnMedicalSection);
+        ButtonSettings.onMouse(btnMedicalSection);
         btnMedicalSection.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -73,16 +74,16 @@ public class Homescreen extends Application {
         });
     }
     public void makeBtnLivestock(Stage stage){
-        buttonSettings.setButtonLayout(btnLiveStock);
-        buttonSettings.onMouse(btnLiveStock);
+        ButtonSettings.setButtonLayout(btnLiveStock);
+        ButtonSettings.onMouse(btnLiveStock);
         btnLiveStock.relocate(450,400);
         btnLiveStock.setOnAction(e -> {
             goToScreens.goLiveStock(stage);
         });
     }
     public void makeBtnMarketplace(Stage stage){
-        buttonSettings.setButtonLayout(btnMarketPlace);
-        buttonSettings.onMouse(btnMarketPlace);
+        ButtonSettings.setButtonLayout(btnMarketPlace);
+        ButtonSettings.onMouse(btnMarketPlace);
         btnMarketPlace.relocate(450,200);
         btnMarketPlace.setOnAction(e ->{
             goToScreens.goMarketplace(stage);
@@ -90,8 +91,8 @@ public class Homescreen extends Application {
     }
     public void makeBtnContacts(Stage stage){
         //Contact button
-        buttonSettings.onMouse(btnContacts);
-        buttonSettings.setButtonLayout(btnContacts);
+        ButtonSettings.onMouse(btnContacts);
+        ButtonSettings.setButtonLayout(btnContacts);
         btnContacts.relocate(225,400);
         btnContacts.setOnAction(e -> {
             goToScreens.goContacts(stage);
@@ -99,8 +100,8 @@ public class Homescreen extends Application {
     }
     public void makeBtnProfile(Stage stage){
         //Profile Button
-        buttonSettings.setButtonLayout(btnProfile);
-        buttonSettings.onMouse(btnProfile);
+        ButtonSettings.setButtonLayout(btnProfile);
+        ButtonSettings.onMouse(btnProfile);
         btnProfile.relocate(225,200);
         btnProfile.setOnAction(e -> {
             goToScreens.goProfile(stage);
@@ -108,7 +109,7 @@ public class Homescreen extends Application {
     }
     public void makeBtnLogOut(Stage stage){
         btnLogOut.relocate(738,5);
-        buttonSettings.onMouse(btnLogOut);
+        ButtonSettings.onMouse(btnLogOut);
         btnLogOut.setOnAction(e -> {
             goToScreens.goMain(stage);
         });
