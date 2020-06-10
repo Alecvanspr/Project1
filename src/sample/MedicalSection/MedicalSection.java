@@ -32,11 +32,6 @@ public class MedicalSection extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-
-
-
-
-
         makeButtons(stage);
         makeLabels();
 
