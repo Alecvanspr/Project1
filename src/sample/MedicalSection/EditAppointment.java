@@ -45,7 +45,6 @@ public class EditAppointment extends Application {
         makeDatePicker();
         makeButtons(stage);
         makeLabels();
-
         setNothingVisible();
         pane.getChildren().addAll(appointmentLabel, startLabel, timeLabel, dateLabel, doctorLabel, specialtyLabel, exitButton, dateButton, appointmentComboBox, specialtyButton, doctorComboBox,specialtyComboBox, timeComboBox, doctorButton, editAppointmentButton, datePicker, appointmentButton);
         fin(stage);
