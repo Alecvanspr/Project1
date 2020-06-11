@@ -153,6 +153,7 @@ public class EditAppointment extends Application {
         getDoctor(doctorComboBox.getValue()).getDate(datePicker.getValue()).addTimeToTimeTable(oldTime);
         getDoctor(doctorComboBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable(newTime);
     }
+
     public void makeAppointmentButton(){
         appointmentButton.relocate(390, 110);
         appointmentButton.setOnAction(E->{
