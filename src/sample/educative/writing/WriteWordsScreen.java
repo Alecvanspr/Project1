@@ -36,6 +36,8 @@ public class WriteWordsScreen extends Application {
     ImageView enterField = new ImageView(enterFieldPng);
     Button btnBack = new Button("back");
     Button btnNewPic = new Button("next animal");
+    int imageX = 475;
+    int imageY = 80;
 
 
     @Override
@@ -47,15 +49,11 @@ public class WriteWordsScreen extends Application {
         makeLblAnswer(stage);
         makebtnBack(stage);
         makebtnNewPic(stage);
-
         makeBackGround();
-
         buttonMover(CorrectAnswer);
         buttonMover(random1);
         buttonMover(random2);
-
         pane.getChildren().addAll(enterField,btnBack, btnNewPic, CorrectAnswer , random1 , random2,lblAnswer);
-
         fin(stage);
     }
 
@@ -106,8 +104,7 @@ public class WriteWordsScreen extends Application {
             }
         });
     }
-    //deze method haalt de verschillende senario's te voorschijn.
-    // hmmm, hoe vaak zou nummer 1 uigevoerd worden?
+
     public void RandomizePositions(){
         int place = random.nextInt(100);
         if(place%5==0){
@@ -136,8 +133,8 @@ public class WriteWordsScreen extends Application {
     //deze kan in een andere class
     public boolean checkEntered(double x,double y){
         boolean ret = false;
-        if(x>475&&x<675){
-            if(y>80&&y<130){
+        if(x>imageX&&x<imageX+enterFieldPng.getWidth()){
+            if(y>imageY&&y<imageY+enterFieldPng.getHeight()){
                 ret = true;
             }
         }
@@ -184,7 +181,7 @@ public class WriteWordsScreen extends Application {
         random2.setScaleY(2.0);
     }
     public void makeEnterField(Stage stage){
-        enterField.relocate(475,80);
+        enterField.relocate(imageX,imageY);
     }
     public void makeLblAnswer(Stage stage){
         lblAnswer.relocate(475,50);
