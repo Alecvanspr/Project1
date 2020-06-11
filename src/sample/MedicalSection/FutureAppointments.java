@@ -1,5 +1,7 @@
 package sample.MedicalSection;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import sample.ArrayKeeper;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 public class FutureAppointments extends ShowAppointmentsScreen {
     ArrayList<Appointment> futureAppointments = new ArrayList<>();
     ArrayKeeper arrayKeeper;
+    MedicalSection medicalSection;
+
 
     public FutureAppointments(){
         fillFutureAppointments();
@@ -26,6 +30,7 @@ public class FutureAppointments extends ShowAppointmentsScreen {
             if(getUserAppointments().get(i).getAppointmentDate().getYear() >= dateNow.getYear()){
                 if(getUserAppointments().get(i).getAppointmentDate().getDayOfMonth() >= dateNow.getDayOfMonth() && getUserAppointments().get(i).getAppointmentDate().getMonth().getValue() >= dateNow.getMonth().getValue()){
                     futureAppointments.add(getUserAppointments().get(i));
+                    //medicalSection.medicalSectionAppointments.add(getUserAppointments().get(i));
                 }
             }
         }

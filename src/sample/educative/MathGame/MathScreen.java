@@ -23,6 +23,7 @@ public class MathScreen  extends Application {
     Button btnAnswer2 = new Button("");
     Button btnAnswer3 = new Button("");
     Button btnAnswer4 = new Button("");
+    Button btnBack = new Button("back");
     Label lblMathProblem = new Label("");
     Label lblWrightAnswerTotal = new Label("0");
     Label lblWrongAnswerTotal = new Label("0");
@@ -41,72 +42,79 @@ public class MathScreen  extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Button btnBack = new Button("back");
+        makeButtons(stage);
+        makeLabels();
+        fin(stage);
+        pane.getChildren().addAll(btnBack,btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4, lblMathProblem,btnStart,lblWrongAnswer,lblWrongAnswerTotal,lblWrightAnswer, lblWrightAnswerTotal,lblOperators,btnPlus,btnMinus,btnDivide,btnMultiply);
+    }
+
+    public void newGame(){
+        if(!mathGame.getStartBtn()) {
+            mathGame.setRandNumb();
+            mathGame.RandomOperator();
+            lblMathProblem.setText(mathGame.MathQuestion());
+            btnAnswer1.setText(Integer.toString(mathGame.ButtonNumber0()));
+            btnAnswer2.setText(Integer.toString(mathGame.ButtonNumber1()));
+            btnAnswer3.setText(Integer.toString(mathGame.ButtonNumber2()));
+            btnAnswer4.setText(Integer.toString(mathGame.ButtonNumber3()));
+            mathGame.setGame(true);
+            pane.getChildren().removeAll(btnStart,btnDivide,btnMinus,btnMultiply,btnPlus,lblOperators);
+        }
+    }
+    public void makeButtons(Stage stage){
+        makeButtonAnswer1();
+        makeButtonAnswer2();
+        makeButtonAnswer3();
+        makeButtonAnswer4();
+        makeButtonBack(stage);
+        makeButtonNext();
+        makeButtonPlus();
+        makeButtonMinus();
+        makeButtonMultiply();
+        makeButtonDivide();
+        makeButtonStart();
+    }
+    public void makeButtonBack(Stage stage){
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
             goEducativeScreen(stage);
         });
-
-
-        lblOperators.relocate(53,375);
-
-        btnNext.relocate(685, 300);
-
-        lblMathProblem.setFont(Font.font("Arial",50));
-        lblMathProblem.relocate(295, 100);
-
-
-        lblWrongAnswer.setFont(Font.font("Arial",25));
-        lblWrongAnswer.relocate(30, 200);
-
-
-        lblWrongAnswerTotal.setFont(Font.font("Arial",25));
-        lblWrongAnswerTotal.relocate(110, 230);
-
-
-        lblWrightAnswer.setFont(Font.font("Arial",25));
-        lblWrightAnswer.relocate(620, 200);
-
-
-        lblWrightAnswerTotal.setFont(Font.font("Arial",25));
-        lblWrightAnswerTotal.relocate(700,230);
-
-        pane.getChildren().addAll(btnBack,btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4, lblMathProblem,btnStart,lblWrongAnswer,lblWrongAnswerTotal,lblWrightAnswer, lblWrightAnswerTotal,lblOperators,btnPlus,btnMinus,btnDivide,btnMultiply);
-        scene = new Scene(pane, 800, 600);
-        stage.setTitle("Math screen");
-        stage.setScene(scene);
-        stage.show();
-
-
+    }
+    public void makeButtonStart(){
         btnStart.relocate(95,435);
         btnStart.setOnMouseClicked(e -> {
-        newGame();
+            newGame();
         });
-
+    }
+    public void makeButtonPlus(){
         btnPlus.relocate(60, 400);
         btnPlus.setOnMouseClicked(e -> {
             mathGame.setPlusBtn(true);
             btnPlus.setStyle("-fx-background-color: #0000ff; ");
         });
-
+    }
+    public void makeButtonMinus(){
         btnMinus.relocate(120, 400);
         btnMinus.setOnMouseClicked(e -> {
             mathGame.setMinusBtn(true);
             btnMinus.setStyle("-fx-background-color: #0000ff; ");
         });
-
-        btnDivide.relocate(150,400);
-        btnDivide.setOnMouseClicked(e -> {
-            mathGame.setDivideBtn(true);
-            btnDivide.setStyle("-fx-background-color: #0000ff; ");
-        });
-
+    }
+    public void makeButtonMultiply(){
         btnMultiply.relocate(90, 400);
         btnMultiply.setOnMouseClicked(e -> {
             mathGame.setMultiplyBtn(true);
             btnMultiply.setStyle("-fx-background-color: #0000ff; ");
         });
-
+    }
+    public void makeButtonDivide(){
+        btnDivide.relocate(150,400);
+        btnDivide.setOnMouseClicked(e -> {
+            mathGame.setDivideBtn(true);
+            btnDivide.setStyle("-fx-background-color: #0000ff; ");
+        });
+    }
+    public void makeButtonNext(){
         btnNext.setOnMouseClicked(e -> {
             if(mathGame.getStartBtn()) {
                 mathGame.setRandNumb();
@@ -123,13 +131,13 @@ public class MathScreen  extends Application {
                 pane.getChildren().remove(btnNext);
             }
         });
-
+    }
+    public void makeButtonAnswer1(){
         setButtonLayout(btnAnswer1);
         btnAnswer1.relocate(225,200);
         btnAnswer1.setOnMouseClicked(e -> {
             checkAnswer(btnAnswer1);
         });
-
         btnAnswer1.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -142,7 +150,8 @@ public class MathScreen  extends Application {
                 setButtonScaleChange(btnAnswer1, 1.2);
             }
         });
-
+    }
+    public void makeButtonAnswer2(){
         setButtonLayout(btnAnswer2 );
         btnAnswer2 .relocate(450,200);
         btnAnswer2 .setOnAction(e -> {
@@ -161,7 +170,8 @@ public class MathScreen  extends Application {
                 setButtonScaleChange(btnAnswer2 , 1.0);
             }
         });
-
+    }
+    public void makeButtonAnswer3(){
         setButtonLayout(btnAnswer3);
         btnAnswer3.relocate(225,400);
         btnAnswer3.setOnAction(e ->{
@@ -179,7 +189,8 @@ public class MathScreen  extends Application {
                 setButtonScaleChange(btnAnswer3, 1.2);
             }
         });
-
+    }
+    public void makeButtonAnswer4(){
         setButtonLayout(btnAnswer4);
         btnAnswer4.relocate(450,400);
         btnAnswer4.setOnAction(e -> {
@@ -198,20 +209,23 @@ public class MathScreen  extends Application {
             }
         });
     }
-    public void newGame(){
-        if(!mathGame.getStartBtn()) {
-            mathGame.setRandNumb();
-            mathGame.RandomOperator();
-            lblMathProblem.setText(mathGame.MathQuestion());
-            btnAnswer1.setText(Integer.toString(mathGame.ButtonNumber0()));
-            btnAnswer2.setText(Integer.toString(mathGame.ButtonNumber1()));
-            btnAnswer3.setText(Integer.toString(mathGame.ButtonNumber2()));
-            btnAnswer4.setText(Integer.toString(mathGame.ButtonNumber3()));
-            mathGame.setGame(true);
-            pane.getChildren().removeAll(btnStart,btnDivide,btnMinus,btnMultiply,btnPlus,lblOperators);
-        }
+    public void makeLabels(){
+        makeLabelAll();
     }
-
+    public void makeLabelAll(){
+        lblOperators.relocate(53,375);
+        btnNext.relocate(685, 300);
+        lblMathProblem.setFont(Font.font("Arial",50));
+        lblMathProblem.relocate(295, 100);
+        lblWrongAnswer.setFont(Font.font("Arial",25));
+        lblWrongAnswer.relocate(30, 200);
+        lblWrongAnswerTotal.setFont(Font.font("Arial",25));
+        lblWrongAnswerTotal.relocate(110, 230);
+        lblWrightAnswer.setFont(Font.font("Arial",25));
+        lblWrightAnswer.relocate(620, 200);
+        lblWrightAnswerTotal.setFont(Font.font("Arial",25));
+        lblWrightAnswerTotal.relocate(700,230);
+    }
     public void setButtonLayout(Button button){
         button.setPrefHeight(150);
         button.setPrefWidth(150);
@@ -245,5 +259,11 @@ public class MathScreen  extends Application {
                 lblWrongAnswerTotal.setText(Integer.toString(mathGame.getWrongAnswers()));
             }
         }
+    }
+    public void fin(Stage stage){
+        scene = new Scene(pane, 800, 600);
+        stage.setTitle("Math screen");
+        stage.setScene(scene);
+        stage.show();
     }
 }

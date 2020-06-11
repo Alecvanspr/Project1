@@ -1,48 +1,61 @@
 package sample.MedicalSection;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.ButtonSettings;
 import sample.GoToScreens;
-import sample.Homescreen;
 import sample.inlogScreen.Main;
 
 public class MedicalSection extends Application {
     Scene MedicalSection;
     Main main;
     ArrayKeeper arrayKeeper;
+    FutureAppointments futureAppointments;
     int buttonNumber = 0;
     Pane pane = new Pane();
     GoToScreens goToScreens = new GoToScreens();
     ButtonSettings buttonSettings = new ButtonSettings();
     Label welcome = new Label("Welcome to the medical section");
+    Label myAppointments = new Label("My Appointments");
+    TextArea taAppointment = new TextArea();
+    ListView<String> ListView = new ListView<>();
+    ObservableList<String> medicalSectionAppointments = FXCollections.observableArrayList();
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");
     Button yourAppointmentbtn = new Button("Your appointments");
-    Button contactInformationbtn = new Button("Click here to contact us");
 
     @Override
     public void start(Stage stage) throws Exception{
         makeButtons(stage);
         makeLabels();
-
-        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, contactInformationbtn);
+        makeListView();
+        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, myAppointments,ListView);
         fin(stage);
 
     }
-    public void makeContactInformationButton(Stage stage){
-        makeMenuButton(contactInformationbtn);
+
+    public void Listener(){
+        medicalSectionAppointments.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                System.out.println("List Invalidated");
+            }
+        });
 
     }
+
     public void makeYourAppointmentButton(Stage stage){
         makeMenuButton(yourAppointmentbtn);
         yourAppointmentbtn.setOnMouseClicked(E -> {
@@ -53,7 +66,6 @@ public class MedicalSection extends Application {
         makeBackButton(stage);
         makeAppointmentButton(stage);
         makeYourAppointmentButton(stage);
-        makeContactInformationButton(stage);
     }
     public void makeBackButton(Stage stage){
         btnBack.relocate(10,565);
@@ -68,13 +80,27 @@ public class MedicalSection extends Application {
             goToScreens.goMakeAppointment(stage);
         });
     }
-
+    public void makeListView(){
+        makeAppointmentListView();
+    }
+    public void makeAppointmentListView(){
+        ListView.relocate(425, 240);
+        ListView.setPrefHeight(310);
+        ListView.setPrefWidth(255);
+        ListView.setItems(medicalSectionAppointments);
+    }
     public void makeLabels(){
         makeStartLabel();
+        makeAppointmentLabel();
     }
     public void makeStartLabel(){
         welcome.setFont(Font.font("Arial", 30));
         welcome.relocate(225, 100);
+    }
+    public void makeAppointmentLabel(){
+        myAppointments.setFont(Font.font("Arial", 20));
+        myAppointments.relocate(475, 200);
+        myAppointments.setStyle("-fx-underline: true");
     }
     public void makeMenuButton(Button button){
         setButtonPosition(button, buttonNumber);

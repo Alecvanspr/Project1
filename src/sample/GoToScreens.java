@@ -7,7 +7,7 @@ import sample.MedicalSection.MedicalSection;
 import sample.MedicalSection.ShowAppointmentsScreen;
 import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
-import sample.educative.MathScreen;
+import sample.educative.MathGame.MathScreen;
 import sample.educative.read.HangmanScreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.writing.*;
