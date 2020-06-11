@@ -23,16 +23,16 @@ public class Addressbook {
         return contact.getName();
     }
 
-    public void edit(String name,  String email , String number, String street, String postalcode, String city, String country){
+    public void edit(String contactData[]){
         for(Contact contact : contacts) {
-            if(contact.getName().equalsIgnoreCase(name)){
-                contact.setName(name);
-                contact.setEmail(email);
-                contact.setPhoneNumber(number);
-                contact.getAddress().setStreet(street);
-                contact.getAddress().setPostalCode(postalcode);
-                contact.getAddress().setCity(city);
-                contact.getAddress().setCountry(country);
+            if(contact.getName().equalsIgnoreCase(contactData[0])){
+                contact.setName(contactData[0]);
+                contact.setEmail(contactData[1]);
+                contact.setPhoneNumber(contactData[2]);
+                contact.getAddress().setStreet(contactData[3]);
+                contact.getAddress().setPostalCode(contactData[4]);
+                contact.getAddress().setCity(contactData[5]);
+                contact.getAddress().setCountry(contactData[6]);
             }
         }
     }

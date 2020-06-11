@@ -82,8 +82,9 @@ public class SignUpScreen extends Application {
     public void makeBtnRegister(Stage stage){
         Button btnRegister = new Button("Register");
         btnRegister.setOnAction(e->{
-            register(stage,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
-                    textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString(),docterCheck.isSelected());
+            Object registerData[] = {passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
+                    textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString(),docterCheck.isSelected()};
+            register(stage,registerData);
         });
         buttonSettings.onMouse(btnRegister);
         btnRegister.relocate(100,320);
@@ -91,11 +92,12 @@ public class SignUpScreen extends Application {
     }
 
     //deze laat ik er in omdat het een javaFX class is.
-    public void register(Stage stage,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,boolean toDocter){
-        if((!(password.equals("")))&&(!(username.equals("")))){
-            if(password.equals(PasswordConfig)) {
-                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions, toDocter);
-                toDocter(toDocter,stage);
+    public void register(Stage stage,Object registerData[]){
+        //String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,boolean toDocter
+        if((!(registerData[0].equals("")))&&(!(registerData[2].equals("")))){
+            if(registerData[0].equals(registerData[1])) {
+                main.arraykeeper.SignUpData(registerData[2].toString(),registerData[0].toString(),registerData[3].toString(),registerData[4].toString(),registerData[5].toString(),Boolean.valueOf(registerData[6].toString()));
+                toDocter(Boolean.parseBoolean(registerData[6].toString()),stage);
             }else {
                 ErrorMessage.setText("Passwords don't match");
             }
