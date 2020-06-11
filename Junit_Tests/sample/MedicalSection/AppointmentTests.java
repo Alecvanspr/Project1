@@ -11,7 +11,8 @@ public class AppointmentTests {
     Specialty specialty1 = new Specialty("Eyes");
     Specialty specialty2 = new Specialty("Diabetus");
     ArrayList<Specialty> specialties = new ArrayList<>();
-    Doctor doctor = new Doctor("Dr. Mario",0,specialties);
+    Object object[] = {"Dr. Mario",0};
+    Doctor doctor = new Doctor(object,specialties);
     LocalDate localDate = LocalDate.now();
     PersonalData patient = new PersonalData();
     String string[] ={"13:00","diabetus"};

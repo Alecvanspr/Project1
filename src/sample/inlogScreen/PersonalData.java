@@ -38,7 +38,8 @@ public class PersonalData {
     }
 
     public void makeDoctor(String name, ArrayList<Specialty> specialties) {
-        Doctor doctor = new Doctor(name, ArrayKeeper.getCurrentUser(), specialties);
+        Object object[] = {name, ArrayKeeper.getCurrentUser()};
+        Doctor doctor = new Doctor(object, specialties);
         this.doctor = doctor;
         setIsDocter(true);
     }

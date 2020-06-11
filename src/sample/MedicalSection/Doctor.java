@@ -15,11 +15,11 @@ public class Doctor extends PersonalData {
     ArrayKeeper arraykeeper = new ArrayKeeper();
     private ArrayList<Specialty> specialties = new ArrayList<>();
     private ArrayList<Dates> dates = new ArrayList<>();
-
-    public Doctor(String name, int userInt, ArrayList<Specialty> specialties) {
-        this.name = name;
+    //String name, int userInt
+    public Doctor(Object object[], ArrayList<Specialty> specialties) {
+        this.name = object[0].toString();
         this.specialties = specialties;
-        this.userInt = userInt;
+        this.userInt = Integer.parseInt(object[1].toString());
         arraykeeper.addDoctor(this);
     }
 

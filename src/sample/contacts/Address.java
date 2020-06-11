@@ -5,12 +5,12 @@ public class Address{
     private String postalCode;
     private String city;
     private String country;
-
-    public Address(String name, String postalCode, String city, String country){
-        this.street = name;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.country = country;
+//String name, String postalCode, String city, String country
+    public Address(Object adressData[]){
+        this.street = adressData[0].toString();
+        this.postalCode = adressData[1].toString();
+        this.city = adressData[2].toString();
+        this.country = adressData[3].toString();
     }
 
     public String getStreet() {
