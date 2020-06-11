@@ -8,7 +8,8 @@ import sample.MedicalSection.ShowAppointmentsScreen;
 import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
 import sample.educative.MathScreen;
-import sample.educative.read.HangmanScreen;
+import sample.educative.read.StoryScreen;
+import sample.educative.read.hangman.HangmanScreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.writing.*;
 import sample.inlogScreen.ForgotPasswordScreen;
@@ -307,6 +308,15 @@ public class GoToScreens {
         try {
             addHeathCheckScreen.start(stage);
         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void goStoryScreen(Stage stage){
+        StoryScreen storyScreen = new StoryScreen();
+        try {
+            storyScreen.start(stage);
+        } catch (Exception ex){
             ex.printStackTrace();
         }
     }

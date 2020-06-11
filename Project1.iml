@@ -21,6 +21,5 @@
     </orderEntry>
     <orderEntry type="library" name="junit:junit:4.13" level="project" />
     <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="lib1" level="project" />
   </component>
 </module>
