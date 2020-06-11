@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -38,15 +39,18 @@ public class MathScreen  extends Application {
     Label lblWrightAnswer = new Label("Good Answers");
     Label lblWrongAnswer = new Label("Wrong Answers");
     Label lblOperators = new Label("Choose Your Operators");
-
-
+    TextField tfBound1 = new TextField("Set Number");
+    int textfieldbound;
 
     @Override
     public void start(Stage stage) throws Exception {
         makeButtons(stage);
         makeLabels();
+        makeTextField();
+        //textfieldbound = Integer.parseInt(tfBound1.getText());
         fin(stage);
-        pane.getChildren().addAll(btnRandom,btnBack,btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4, lblMathProblem,btnStart,lblWrongAnswer,lblWrongAnswerTotal,lblWrightAnswer, lblWrightAnswerTotal,lblOperators,btnPlus,btnMinus,btnDivide,btnMultiply);
+
+        pane.getChildren().addAll(tfBound1,btnRandom,btnBack,btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4, lblMathProblem,btnStart,lblWrongAnswer,lblWrongAnswerTotal,lblWrightAnswer, lblWrightAnswerTotal,lblOperators,btnPlus,btnMinus,btnDivide,btnMultiply);
     }
 
     public void newGame(){
@@ -58,9 +62,16 @@ public class MathScreen  extends Application {
             btnAnswer2.setText(Integer.toString(mathGame.ButtonNumber1()));
             btnAnswer3.setText(Integer.toString(mathGame.ButtonNumber2()));
             btnAnswer4.setText(Integer.toString(mathGame.ButtonNumber3()));
+            mathGame.setNumberBound(textfieldbound);
             mathGame.setGame(true);
             pane.getChildren().removeAll(btnStart,btnDivide,btnMinus,btnMultiply,btnPlus,lblOperators,btnRandom);
         }
+    }
+    public void makeTextField(){
+        makeTextFieldBound();
+    }
+    public void makeTextFieldBound(){
+        tfBound1.relocate(40, 435);
     }
     public void makeButtons(Stage stage){
         makeButtonAnswer1();
@@ -83,7 +94,7 @@ public class MathScreen  extends Application {
         });
     }
     public void makeButtonStart(){
-        btnStart.relocate(95,435);
+        btnStart.relocate(95,470);
         btnStart.setOnMouseClicked(e -> {
             newGame();
         });

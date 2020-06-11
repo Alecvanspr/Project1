@@ -17,6 +17,7 @@ public class MathGame {
     private int randAnswer2;
     private int randAnswer3;
     private int randAnswer4;
+    private int numberBound;
     private int answer;
 
     public void setGame(Boolean game) {
@@ -99,9 +100,12 @@ public class MathGame {
         return getRandNumb1() + " " + operator + " " + getRandNumb2() + " = ?";
     }
 
-
     public void setRandOperator(int randOperator) {
         this.randOperator = randOperator;
+    }
+
+    public void setNumberBound(int numberBound) {
+        this.numberBound = numberBound;
     }
 
     public void RandomOperator(){
