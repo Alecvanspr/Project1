@@ -95,7 +95,9 @@ public class EditAppointment extends Application {
     public void makeExitButton(Stage stage){
         exitButton.relocate(10, 565);
         buttonSettings.onMouse(exitButton);
-        goToScreens.goAppointmentsScreen(stage);
+        exitButton.setOnAction(E-> {
+            goToScreens.goAppointmentsScreen(stage);
+        });
     }
     public void makeDateButton(){
         dateButton.relocate(450,260);

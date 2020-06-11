@@ -1,10 +1,7 @@
 package sample;
 
 import javafx.stage.Stage;
-import sample.MedicalSection.EditAppointment;
-import sample.MedicalSection.MakeAppointment;
-import sample.MedicalSection.MedicalSection;
-import sample.MedicalSection.ShowAppointmentsScreen;
+import sample.MedicalSection.*;
 import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
 import sample.educative.MathScreen;
@@ -307,6 +304,14 @@ public class GoToScreens {
         try {
             addHeathCheckScreen.start(stage);
         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void goShowPastAppointments(Stage stage){
+        ShowPastAppointments showPastAppointments = new ShowPastAppointments();
+        try {
+            showPastAppointments.start(stage);
+        } catch (Exception ex){
             ex.printStackTrace();
         }
     }

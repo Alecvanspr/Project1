@@ -28,20 +28,22 @@ public class MedicalSection extends Application {
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");
     Button yourAppointmentbtn = new Button("Your appointments");
-    Button contactInformationbtn = new Button("Click here to contact us");
+    Button pastAppointmentsbtn = new Button("Your past appointments");
 
     @Override
     public void start(Stage stage) throws Exception{
         makeButtons(stage);
         makeLabels();
 
-        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, contactInformationbtn);
+        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, pastAppointmentsbtn);
         fin(stage);
 
     }
-    public void makeContactInformationButton(Stage stage){
-        makeMenuButton(contactInformationbtn);
-
+    public void makePastAppointmentsButton(Stage stage){
+        makeMenuButton(pastAppointmentsbtn);
+        pastAppointmentsbtn.setOnAction(E-> {
+            goToScreens.goShowPastAppointments(stage);
+        });
     }
     public void makeYourAppointmentButton(Stage stage){
         makeMenuButton(yourAppointmentbtn);
@@ -53,7 +55,7 @@ public class MedicalSection extends Application {
         makeBackButton(stage);
         makeAppointmentButton(stage);
         makeYourAppointmentButton(stage);
-        makeContactInformationButton(stage);
+        makePastAppointmentsButton(stage);
     }
     public void makeBackButton(Stage stage){
         btnBack.relocate(10,565);

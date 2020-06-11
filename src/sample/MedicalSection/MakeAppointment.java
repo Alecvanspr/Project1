@@ -244,31 +244,13 @@ public class  MakeAppointment extends Application {
     public void removeItems(ComboBox comboBox){
         comboBox.getItems().clear();
     }
-    public Doctor getDoctor(String name){
-        for(int i = 0; i < arrayKeeper.getDoctorsArrayList().size(); i++){
-            if(name.equalsIgnoreCase(arrayKeeper.getDoctorsArrayList().get(i).getName())){
+    public Doctor getDoctor(String name) {
+        for (int i = 0; i < arrayKeeper.getDoctorsArrayList().size(); i++) {
+            if (name.equalsIgnoreCase(arrayKeeper.getDoctorsArrayList().get(i).getName())) {
                 return arrayKeeper.getDoctorsArrayList().get(i);
             }
         }
         return arrayKeeper.getDoctorsArrayList().get(0);
-    }
-    public void makeSpecialtyLabels(Pane pane,Doctor doctor){
-        int x= 0;
-        for(int i = 0; i < doctor.getSpecialties().size();i++){
-            Label label = new Label(doctor.getSpecialties().get(i).getName());
-            if(x == 0){
-                label.relocate(500, 200);
-            }else if(x == 1){
-                label.relocate(500, 225);
-            }else if(x == 2){
-                label.relocate(500, 250);
-            }else if(x == 3){
-                label.relocate(500, 275);
-            }else{
-                label.relocate(500, 300);
-            }
-            pane.getChildren().add(label);
-        }
     }
     public void makeDoctorBox(ComboBox doctorBox, String specialty){
         for(int i = 0; i < arrayKeeper.getDoctorsArrayList().size(); i++){
