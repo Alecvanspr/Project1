@@ -7,8 +7,8 @@ import sample.ArrayKeeper;
 import static sample.ArrayKeeper.getCurrentUser;
 
 public class EditAnimal {
-    private int currentAnimal; // deze kleiner.
-    public void SaveEdits(TextField name, TextField age, TextField gender, TextField Species, TextField race,int currentAnimal) {
+    private int currentAnimal;
+    public void SaveEdits(TextField name, TextField age, TextField gender, TextField Species, TextField race,int currentAnimal) { //deze kan niet kleiner
         this.currentAnimal = currentAnimal;
         checkName(name);
         checkAge(age);

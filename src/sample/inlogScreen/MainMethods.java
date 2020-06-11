@@ -24,7 +24,9 @@ public class MainMethods {
     }
     public void delettis(){
         //dit is om te testen, dit moet achteraf verwijderd worden.
-        arraykeeper.SignUpData("Admin","Admin","Yesterday","Bruh","You have to insert your username first", false);
+        //String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,boolean toDocter
+        Object object[] = {"Admin","Admin","Admin","Yesterday","Bruh","You have to insert your username first", false};
+        arraykeeper.SignUpData(object);
         PersonalData Admin = new PersonalData();
         Admin.setUserName("admin");
         Admin.setPassword("admin");
@@ -33,7 +35,8 @@ public class MainMethods {
         Admin.setSecurityAnswer("dab");
         arraykeeper.getData().add(Admin);
 
-        arraykeeper.SignUpData("dr","dr","dr","dr","dr",true);
+        Object objectDocter[] = {"dr","dr","dr","dr","dr","dr",true};
+        arraykeeper.SignUpData(objectDocter);
         PersonalData DoctorMario = new PersonalData();
         DoctorMario.setUserName("mario");
         DoctorMario.setPassword("mario");
@@ -48,7 +51,8 @@ public class MainMethods {
         DoctorMario.makeDoctor("Dr. Mario", specialtiesDoc1);
         arraykeeper.getData().add(DoctorMario);
 
-        arraykeeper.SignUpData("luigi","luigi","luigi","luigi","luigi",true);
+        Object objectDocter2[] = {"luigi","luigi","luigi","luigi","luigi","luigi",true};
+        arraykeeper.SignUpData(objectDocter2);
         PersonalData DoctorLuigi = new PersonalData();
         DoctorLuigi.setUserName("luigi");
         DoctorLuigi.setPassword("luigi");

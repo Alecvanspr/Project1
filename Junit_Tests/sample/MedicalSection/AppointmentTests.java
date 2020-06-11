@@ -11,10 +11,12 @@ public class AppointmentTests {
     Specialty specialty1 = new Specialty("Eyes");
     Specialty specialty2 = new Specialty("Diabetus");
     ArrayList<Specialty> specialties = new ArrayList<>();
-    Doctor doctor = new Doctor("Dr. Mario",0,specialties);
+    Object object[] = {"Dr. Mario",0};
+    Doctor doctor = new Doctor(object,specialties);
     LocalDate localDate = LocalDate.now();
     PersonalData patient = new PersonalData();
-    Appointment appointment = new Appointment(doctor,localDate,"13:00",patient,"Diabetus");
+    String string[] ={"13:00","diabetus"};
+    Appointment appointment = new Appointment(doctor,localDate,patient,string);
 
     @Test
     public void testDing(){

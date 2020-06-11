@@ -70,7 +70,8 @@ public class ShowAnimalsBySpeciesScreen extends Application {
             makeAuction.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    showAnimalsBySpecies.displayBidFields(stage,Integer.valueOf(textField.getText()), Double.valueOf(textField1.getText()),x);
+                    Object object[] = {Integer.valueOf(textField.getText()), Double.valueOf(textField1.getText()), x};
+                    showAnimalsBySpecies.displayBidFields(stage,object);
                 }
             });
         }
