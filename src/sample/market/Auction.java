@@ -78,10 +78,11 @@ public class Auction {
             return false;
         }
     }
-
-    public void makeBid(String user, Double amount , Animal animal){
-        if(isHigher(amount)) {
-            Bid newBid = new Bid(user, amount, animal);
+    //String user, Double amount
+    public void makeBid(Object object[], Animal animal){
+        double amount =Double.parseDouble(object[1].toString());
+        if(isHigher(amount)){
+            Bid newBid = new Bid(object, animal);
             this.setHighestBid(newBid);
             this.getBidHistory().add(newBid);
             bidIsPlaced(amount);
@@ -106,7 +107,8 @@ public class Auction {
     }
 
     public Bid firstBid(Double minPrice,Animal animal){
-        Bid startBid = new Bid("Nobody", minPrice,animal);
+        Object object[] = {"Nobody", minPrice};
+        Bid startBid = new Bid(object,animal);
         return startBid;
     }
 

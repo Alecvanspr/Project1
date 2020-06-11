@@ -14,7 +14,8 @@ public class AppointmentTests {
     Doctor doctor = new Doctor("Dr. Mario",0,specialties);
     LocalDate localDate = LocalDate.now();
     PersonalData patient = new PersonalData();
-    Appointment appointment = new Appointment(doctor,localDate,"13:00",patient,"Diabetus");
+    String string[] ={"13:00","diabetus"};
+    Appointment appointment = new Appointment(doctor,localDate,patient,string);
 
     @Test
     public void testDing(){

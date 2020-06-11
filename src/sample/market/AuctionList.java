@@ -28,7 +28,8 @@ public class AuctionList {
     //String bidAmount, Auction auction, Label label, Integer howMany, int x, TextField txtBidAmount
     public void makeBid(Object bid[],Auction auction,Label label,TextField txtBidAmount){
         Double amount = stringToDouble(checkIfDouble(bid[0].toString()));
-        auction.makeBid(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getUsername(), amount,auction.getForSale());
+        Object object[] = {ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getUsername(), amount};
+        auction.makeBid(object,auction.getForSale());
         label.setText(auction.getForSale().getSpecies() + "  -  " + bid[1].toString() + "  -  " + Auction.getAuctionList().get(Integer.parseInt(bid[2].toString())).getHighestBid().getAmount());
         txtBidAmount.setText("");
     }
@@ -46,7 +47,6 @@ public class AuctionList {
             bidAmount.relocate(250, 50 + (30 * i));
             auctionList.getChildren().add(bidAmount);
             Integer x = i;
-
             makeBid.setOnAction(E -> {
                 Object object[] = {bidAmount.getText(),howMany,x};
                 makeBid(object, auction, textField , bidAmount);

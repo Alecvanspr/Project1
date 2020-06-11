@@ -17,15 +17,16 @@ public class ArrayKeeper {
 
     public ArrayKeeper(){
     }
-
-    public void SignUpData(String name,String password,String birth, String security,String securityQ, Boolean isDoctor){
+    //String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,boolean toDocter
+    //String name,String password,String birth, String security,String securityQ, Boolean isDoctor
+    public void SignUpData(Object object[]){
         PersonalData personalData = new PersonalData();
-        personalData.setUserName(name);
-        personalData.setPassword(password);
-        personalData.setBirthDate(birth);
-        personalData.setSecurtityQuestion(securityQ);
-        personalData.setSecurityAnswer(security);
-        personalData.setIsDocter(isDoctor);
+        personalData.setUserName(object[2].toString());
+        personalData.setPassword(object[0].toString());
+        personalData.setBirthDate(object[3].toString());
+        personalData.setSecurtityQuestion(object[5].toString());
+        personalData.setSecurityAnswer(object[4].toString());
+        personalData.setIsDocter(Boolean.parseBoolean(object[6].toString()));
         Data.add(personalData);
         currentUser++;
     }

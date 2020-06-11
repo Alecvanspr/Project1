@@ -10,9 +10,9 @@ public class Bid{
     private String timeHours;
     private String timeMin;
     private Animal animal;
-    public Bid(String user, Double amount,Animal animal){
-        this.user = user;
-        this.amount = amount;
+    public Bid(Object object[],Animal animal){
+        this.user = object[0].toString();
+        this.amount = Double.parseDouble(object[1].toString());
         this.userInt = ArrayKeeper.getCurrentUser();
         this.date = ""+java.time.LocalDate.now();
         this.timeHours = ""+java.time.LocalTime.now().getHour();

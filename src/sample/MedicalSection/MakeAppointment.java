@@ -87,7 +87,8 @@ public class  MakeAppointment extends Application {
 
     }
     public void makeAppointment(Stage stage){
-        Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), timeBox.getSelectionModel().getSelectedItem().toString(), ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()), specialtyBox.getSelectionModel().getSelectedItem().toString());
+        String data[] = { timeBox.getSelectionModel().getSelectedItem().toString(),specialtyBox.getSelectionModel().getSelectedItem().toString()};
+        Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()),data);
         ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).addAppointment(newAppointment);
         getDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()).getAppointments().add(newAppointment);
         getDoctor((String) doctorBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable((String) timeBox.getValue());

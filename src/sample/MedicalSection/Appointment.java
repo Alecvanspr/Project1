@@ -18,16 +18,15 @@ public class Appointment {
     private Specialty specialty;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
 
-
-    public Appointment(Doctor doctor, LocalDate date, String time, PersonalData patient, String specialty){
+// String time,String specialty
+    public Appointment(Doctor doctor,LocalDate date, PersonalData patient, String object[]){
         this.userInt = ArrayKeeper.getCurrentUser();
         this.appointmentDate = date;
-        this.appointmentTime = time;
+        this.appointmentTime = object[0];
         this.doctor = doctor;
         this.user = ArrayKeeper.getData().get(userInt).getName();
         this.patient = patient;
-        this.specialty = getSpecialtyClass(specialty);
-
+        this.specialty = getSpecialtyClass(object[1]);
     }
     public Specialty getSpecialtyClass(String specialtyString){
         for (int i = 0; i < arrayKeeper.getSpecialtiesArrayList().size(); i++){
