@@ -6,16 +6,9 @@ public class MathGame {
     private Random random = new Random();
     private int randNumb1 = random.nextInt(50);
     private int randNumb2 = random.nextInt(50);
-    private int randButNumb = random.nextInt(3);
-
-    private int randOperator = random.nextInt(3);
+    private int randButNumb = random.nextInt(4);
+    private int randOperator = random.nextInt(4);
     private String operator;
-
-    private Boolean plusBtn = false;
-    private Boolean minusBtn = false;
-    private Boolean multiplyBtn = false;
-    private Boolean divideBtn = false;
-
     private Boolean game = false;
     private Boolean startBtn = false;
     private int wrongAnswers = 0;
@@ -30,7 +23,6 @@ public class MathGame {
         this.game = game;
         this.startBtn = true;
     }
-
     public int ButtonNumber1(){
         if(randButNumb == 0) {
             return answer;
@@ -67,7 +59,6 @@ public class MathGame {
         this.randAnswer2 = random.nextInt(50);
         this.randAnswer3 = random.nextInt(50);
         this.randAnswer4 = random.nextInt(50);
-        this.randOperator = random.nextInt(3);
     }
 
     public Boolean getGame() {
@@ -108,21 +99,11 @@ public class MathGame {
         return getRandNumb1() + " " + operator + " " + getRandNumb2() + " = ?";
     }
 
-    public void setPlusBtn(Boolean plusBtn) {
-        this.plusBtn = plusBtn;
+
+    public void setRandOperator(int randOperator) {
+        this.randOperator = randOperator;
     }
 
-    public void setMinusBtn(Boolean minusBtn) {
-        this.minusBtn = minusBtn;
-    }
-
-    public void setMultiplyBtn(Boolean mulBtn) {
-        multiplyBtn = mulBtn;
-    }
-
-    public void setDivideBtn(Boolean divBtn) {
-        divideBtn = divBtn;
-    }
     public void RandomOperator(){
         switch (randOperator){
             case 0: operator = "+";
@@ -136,7 +117,6 @@ public class MathGame {
                 break;
             case 3: operator = "*";
                     answer = randNumb1 * randNumb2;
-            default: operator = "";
         }
     }
 }

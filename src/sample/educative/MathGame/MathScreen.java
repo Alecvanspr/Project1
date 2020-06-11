@@ -18,25 +18,26 @@ import java.util.Random;
 public class MathScreen  extends Application {
     Pane pane = new Pane();
     Scene scene;
+    Random random = new Random();
     MathGame mathGame = new MathGame();
     Button btnAnswer1 = new Button("");
     Button btnAnswer2 = new Button("");
     Button btnAnswer3 = new Button("");
     Button btnAnswer4 = new Button("");
     Button btnBack = new Button("back");
+    Button btnNext = new Button("Next");
+    Button btnStart = new Button("Start");
+    Button btnRandom = new Button("Random");
+    Button btnPlus = new Button("+");
+    Button btnMinus = new Button("-");
+    Button btnDivide = new Button("/");
+    Button btnMultiply = new Button("x");
     Label lblMathProblem = new Label("");
     Label lblWrightAnswerTotal = new Label("0");
     Label lblWrongAnswerTotal = new Label("0");
     Label lblWrightAnswer = new Label("Good Answers");
     Label lblWrongAnswer = new Label("Wrong Answers");
-    Button btnNext = new Button("Next");
-    Button btnStart = new Button("Start");
-
     Label lblOperators = new Label("Choose Your Operators");
-    Button btnPlus = new Button("+");
-    Button btnMinus = new Button("-");
-    Button btnDivide = new Button("/");
-    Button btnMultiply = new Button("x");
 
 
 
@@ -45,7 +46,7 @@ public class MathScreen  extends Application {
         makeButtons(stage);
         makeLabels();
         fin(stage);
-        pane.getChildren().addAll(btnBack,btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4, lblMathProblem,btnStart,lblWrongAnswer,lblWrongAnswerTotal,lblWrightAnswer, lblWrightAnswerTotal,lblOperators,btnPlus,btnMinus,btnDivide,btnMultiply);
+        pane.getChildren().addAll(btnRandom,btnBack,btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4, lblMathProblem,btnStart,lblWrongAnswer,lblWrongAnswerTotal,lblWrightAnswer, lblWrightAnswerTotal,lblOperators,btnPlus,btnMinus,btnDivide,btnMultiply);
     }
 
     public void newGame(){
@@ -58,7 +59,7 @@ public class MathScreen  extends Application {
             btnAnswer3.setText(Integer.toString(mathGame.ButtonNumber2()));
             btnAnswer4.setText(Integer.toString(mathGame.ButtonNumber3()));
             mathGame.setGame(true);
-            pane.getChildren().removeAll(btnStart,btnDivide,btnMinus,btnMultiply,btnPlus,lblOperators);
+            pane.getChildren().removeAll(btnStart,btnDivide,btnMinus,btnMultiply,btnPlus,lblOperators,btnRandom);
         }
     }
     public void makeButtons(Stage stage){
@@ -73,6 +74,7 @@ public class MathScreen  extends Application {
         makeButtonMultiply();
         makeButtonDivide();
         makeButtonStart();
+        makeButtonRandom();
     }
     public void makeButtonBack(Stage stage){
         btnBack.relocate(0,575);
@@ -87,31 +89,38 @@ public class MathScreen  extends Application {
         });
     }
     public void makeButtonPlus(){
-        btnPlus.relocate(60, 400);
+        btnPlus.relocate(30, 400);
         btnPlus.setOnMouseClicked(e -> {
-            mathGame.setPlusBtn(true);
+            mathGame.setRandOperator(0);
             btnPlus.setStyle("-fx-background-color: #0000ff; ");
         });
     }
     public void makeButtonMinus(){
-        btnMinus.relocate(120, 400);
+        btnMinus.relocate(90, 400);
         btnMinus.setOnMouseClicked(e -> {
-            mathGame.setMinusBtn(true);
+            mathGame.setRandOperator(1);
             btnMinus.setStyle("-fx-background-color: #0000ff; ");
         });
     }
     public void makeButtonMultiply(){
-        btnMultiply.relocate(90, 400);
+        btnMultiply.relocate(60, 400);
         btnMultiply.setOnMouseClicked(e -> {
-            mathGame.setMultiplyBtn(true);
+            mathGame.setRandOperator(3);
             btnMultiply.setStyle("-fx-background-color: #0000ff; ");
         });
     }
     public void makeButtonDivide(){
-        btnDivide.relocate(150,400);
+        btnDivide.relocate(120,400);
         btnDivide.setOnMouseClicked(e -> {
-            mathGame.setDivideBtn(true);
+            mathGame.setRandOperator(2);
             btnDivide.setStyle("-fx-background-color: #0000ff; ");
+        });
+    }
+    public void makeButtonRandom(){
+        btnRandom.relocate(150,400);
+        btnRandom.setOnMouseClicked(e -> {
+            mathGame.setRandOperator(random.nextInt(4));
+            btnRandom.setStyle("-fx-background-color: #0000ff; ");
         });
     }
     public void makeButtonNext(){
