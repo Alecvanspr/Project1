@@ -49,8 +49,6 @@ public class  MakeAppointment extends Application {
 
     DatePicker datePicker = new DatePicker();
 
-
-
     @Override
     public void start(Stage stage) throws Exception {
         setNotVisible();
@@ -92,7 +90,6 @@ public class  MakeAppointment extends Application {
         Appointment newAppointment = new Appointment(ArrayKeeper.findDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()), datePicker.getValue(), timeBox.getSelectionModel().getSelectedItem().toString(), ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()), specialtyBox.getSelectionModel().getSelectedItem().toString());
         ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).addAppointment(newAppointment);
         getDoctor(doctorBox.getSelectionModel().getSelectedItem().toString()).getAppointments().add(newAppointment);
-
         getDoctor((String) doctorBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable((String) timeBox.getValue());
         goToScreens.goMedicalSection(stage);
     }
@@ -251,24 +248,6 @@ public class  MakeAppointment extends Application {
             }
         }
         return arrayKeeper.getDoctorsArrayList().get(0);
-    }
-    public void makeSpecialtyLabels(Pane pane,Doctor doctor){
-        int x= 0;
-        for(int i = 0; i < doctor.getSpecialties().size();i++){
-            Label label = new Label(doctor.getSpecialties().get(i).getName());
-            if(x == 0){
-                label.relocate(500, 200);
-            }else if(x == 1){
-                label.relocate(500, 225);
-            }else if(x == 2){
-                label.relocate(500, 250);
-            }else if(x == 3){
-                label.relocate(500, 275);
-            }else{
-                label.relocate(500, 300);
-            }
-            pane.getChildren().add(label);
-        }
     }
     public void makeDoctorBox(ComboBox doctorBox, String specialty){
         for(int i = 0; i < arrayKeeper.getDoctorsArrayList().size(); i++){

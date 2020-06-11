@@ -104,12 +104,15 @@ public class EditAppointment extends Application {
                 timeComboBox.getItems().clear();
                 getTimeTable();
             }else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Please select a correct date");
-                alert.setHeaderText("Date is not correct");
-                alert.show();
+                makeErrorNotCorrect();
             }
         });
+    }
+    public void makeErrorNotCorrect(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Please select a correct date");
+        alert.setHeaderText("Date is not correct");
+        alert.show();
     }
     public void getTimeTable(){
         if(getDoctor(doctorComboBox.getValue()).checkLocalDate(datePicker.getValue())){
