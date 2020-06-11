@@ -17,8 +17,10 @@ public class AddressbookTest {
     public void testDisplayContact(){
         String testName= "name";
         String testName2 = "name2";
-        Address address = new Address("straat", "2593 MR", "Den Haag", "Netherlands");
-        Contact contact = new Contact("name","name.dfdsf@gmail.com","2636452112",address);
+        Object adressData[] = {"straat", "2593 MR", "Den Haag", "Netherlands"};
+        Address address = new Address(adressData);
+        Object contactData[] = {"name","name.dfdsf@gmail.com","2636452112"};
+        Contact contact = new Contact(contactData,address);
         Addressbook.addContact(contact);
         Assert.assertEquals(Addressbook.displayContact(testName), contact.toString());
             }
@@ -27,8 +29,10 @@ public class AddressbookTest {
     public void testDisplayContact2(){
         String testName= "name";
         String testName2 = "name2";
-        Address address = new Address("straat", "2593 MR", "Den Haag", "Netherlands");
-        Contact contact = new Contact("name","name.dfdsf@gmail.com","2636452112",address);
+        Object object[] = {"straat", "2593 MR", "Den Haag", "Netherlands"};
+        Address address = new Address(object);
+        Object contactData[] = {"name","name.dfdsf@gmail.com","2636452112"};
+        Contact contact = new Contact(contactData,address);
         Addressbook.addContact(contact);
         Assert.assertEquals(Addressbook.displayContact(testName2), null);
     }
@@ -37,8 +41,10 @@ public class AddressbookTest {
     public void testSearchContact(){
         String testName= "name";
         String testName2 = "name2";
-        Address address = new Address("straat", "2593 MR", "Den Haag", "Netherlands");
-        Contact contact = new Contact("name","name.dfdsf@gmail.com","2636452112",address);
+        Object object[] = {"straat", "2593 MR", "Den Haag", "Netherlands"};
+        Address address = new Address(object);
+        Object contactData[] = {"name","name.dfdsf@gmail.com","2636452112"};
+        Contact contact = new Contact(contactData,address);
         Addressbook.addContact(contact);
         Assert.assertEquals(Addressbook.searchContact(testName,0), contact);
     }
@@ -47,8 +53,10 @@ public class AddressbookTest {
     public void testSearchContact2(){
         String testName= "name";
         String testName2 = "name2";
-        Address address = new Address("straat", "2593 MR", "Den Haag", "Netherlands");
-        Contact contact = new Contact("name","name.dfdsf@gmail.com","2636452112",address);
+        Object object[] = {"straat", "2593 MR", "Den Haag", "Netherlands"};
+        Address address = new Address(object);
+        Object contactData[] = {"name","name.dfdsf@gmail.com","2636452112"};
+        Contact contact = new Contact(contactData,address);
         Addressbook.addContact(contact);
         Assert.assertEquals(Addressbook.searchContact(testName2,0), null);
     }

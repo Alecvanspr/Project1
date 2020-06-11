@@ -97,9 +97,10 @@ public class ContactScreen extends Application {
         pane.getChildren().add(btnAdd);
     }
     public void addContact(){
-        Object
-        Address address = new Address(tfStreet.getText(), tfPostelCode.getText(), tfCity.getText(),tfCountry.getText());
-        Contact contactAdd = new Contact(tfName.getText(), tfEmail.getText(), tfPhoneNumber.getText(), address);
+        Object adressData[] = {tfStreet.getText(), tfPostelCode.getText(), tfCity.getText(),tfCountry.getText()};
+        Address address = new Address(adressData);
+        Object contactData[] = {tfName.getText(), tfEmail.getText(), tfPhoneNumber.getText()};
+        Contact contactAdd = new Contact(contactData, address);
         Addressbook.addContact(contactAdd);
         taContacts.appendText(tfName.getText() + "\n");
         lblFoundContactExtra.setText("");
