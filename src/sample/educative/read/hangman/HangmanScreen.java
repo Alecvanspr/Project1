@@ -132,32 +132,7 @@ public class HangmanScreen extends Application {
                 return;
             }
             if(playable.get()){
-                Text t = alphabet.get(pressed);
-                if(t.isStrikethrough()){
-                    return;
-                }
-                t.setFill(Color.BLUE);
-                t.setStrikethrough(true);
-
-                boolean found = false;
-
-                for(Node n : letters){
-                    Letter letter = (Letter) n;
-                    if(letter.isEqualTo(pressed)){
-                        found = true;
-                        score.set(score.get() + (int)(baseScore*scoreCorrectLetter));
-                        lettersToGuess.set(lettersToGuess.get()-1);
-                        letter.show();
-                    }
-                }
-
-                if(!found){
-                    galgIMG.takeAwayTry();
-                    baseScore = 1.0f;
-                }
-                else{
-                    baseScore += extraScore;
-                }
+                guess(pressed);
             }
         });
 
@@ -196,6 +171,35 @@ public class HangmanScreen extends Application {
         btnBack.setOnAction(E->{
             goToScreens.goEducativeScreen(stage);
         });
+    }
+
+    public void guess(char pressed){
+        Text t = alphabet.get(pressed);
+        if(t.isStrikethrough()){
+            return;
+        }
+        t.setFill(Color.BLUE);
+        t.setStrikethrough(true);
+
+        boolean found = false;
+
+        for(Node n : letters){
+            Letter letter = (Letter) n;
+            if(letter.isEqualTo(pressed)){
+                found = true;
+                score.set(score.get() + (int)(baseScore*scoreCorrectLetter));
+                lettersToGuess.set(lettersToGuess.get()-1);
+                letter.show();
+            }
+        }
+
+        if(!found){
+            galgIMG.takeAwayTry();
+            baseScore = 1.0;
+        }
+        else{
+            baseScore += extraScore;
+        }
     }
 
     public void fin(Stage stage, Scene scene){
