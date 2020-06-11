@@ -98,7 +98,9 @@ public class AddanimalScreen extends Application {
     }
 
     public void makeNewAnimal(String name,String gender,int age,String species,String race,double weight,String health){
-        Animal newAminal = new Animal(name,gender,age,species,race,weight,health);
+        //String name,String gender, Integer age,  String species, String race, Double weight,String Health
+        Object newAnimalData[]={name,gender,age,species,race,weight,health};
+        Animal newAminal = new Animal(newAnimalData);
         newAminal.setDateHealth(""+ java.time.LocalDate.now());
         main.arraykeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().add(newAminal);
     }

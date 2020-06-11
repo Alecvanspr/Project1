@@ -9,8 +9,8 @@ import sample.livestock.Animal;
 
 public class AuctionList {
 
-    public Animal makeAnimal(String name, String gender, int age, String species, String race, double weight, String health){ //dit moet achteaf verwijderd worden
-        Animal animal = new Animal(name,gender,age,species,race,weight,health);
+    public Animal makeAnimal(Object makeAnimalData[]){
+        Animal animal = new Animal(makeAnimalData);
         return animal;
     }
     public double stringToDouble(String string){

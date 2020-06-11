@@ -36,8 +36,7 @@ public class EditSettingsScreen extends Application {
     TextField txtNewPhoneNumber = new TextField();
     TextField txtSecurityQuestion = new TextField();
     TextField txtChangeGender = new TextField();
-
-    public void start(Stage stage) throws Exception {
+        public void start(Stage stage) throws Exception {
         //De code hieronder heeft te maken met de knoppen voor het edit Scherm
 
         eSettings.getChildren().addAll(txtNewUsername,txtNewName,txtNewPassword,txtNewPasswordConfrm,

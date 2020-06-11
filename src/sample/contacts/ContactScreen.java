@@ -102,19 +102,14 @@ public class ContactScreen extends Application {
         Addressbook.addContact(contactAdd);
         taContacts.appendText(tfName.getText() + "\n");
         lblFoundContactExtra.setText("");
-        tfName.setText("");
-        tfEmail.setText("");
-        tfPhoneNumber.setText("");
-        tfStreet.setText("");
-        tfPostelCode.setText("");
-        tfCity.setText("");
-        tfCountry.setText("");
+            clear();
     }
     public void makeBtnSave(){
         Button btnSave = new Button("Save");
         btnSave.relocate(545,300);
         btnSave.setOnAction(E->{
-            addressbook.edit(tfName.getText(),tfEmail.getText(),tfPhoneNumber.getText(),tfStreet.getText(),tfPostelCode.getText(), tfCity.getText(),tfCountry.getText());
+            String contactInfo[] = {tfName.getText(),tfEmail.getText(),tfPhoneNumber.getText(),tfStreet.getText(),tfPostelCode.getText(), tfCity.getText(),tfCountry.getText()};
+            addressbook.edit(contactInfo);
         });
         pane.getChildren().add(btnSave);
     }
@@ -168,13 +163,7 @@ public class ContactScreen extends Application {
         Button btnClear = new Button("Clear");
         btnClear.relocate(593,300);
         btnClear.setOnAction(E->{
-            tfName.setText("");
-            tfEmail.setText("");
-            tfPhoneNumber.setText("");
-            tfStreet.setText("");
-            tfPostelCode.setText("");
-            tfCity.setText("");
-            tfCountry.setText("");
+                clear();
         });
         pane.getChildren().add(btnClear);
     }
@@ -194,5 +183,14 @@ public class ContactScreen extends Application {
         lblcity.relocate(430,240);
         lblcountry.relocate(430,270);
         pane.getChildren().addAll(lblname,lblemail,lblphonenumber,lblstreet,lblpostelcode,lblcity,lblcountry);
+    }
+    public void clear(){
+        tfName.setText("");
+        tfEmail.setText("");
+        tfPhoneNumber.setText("");
+        tfStreet.setText("");
+        tfPostelCode.setText("");
+        tfCity.setText("");
+        tfCountry.setText("");
     }
 }
