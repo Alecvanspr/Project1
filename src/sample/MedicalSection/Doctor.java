@@ -13,7 +13,7 @@ public class Doctor extends PersonalData {
     private ArrayList<PersonalData> patients = new ArrayList<>();
 //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
     public Doctor(String[] personalData, ArrayList<Specialty> specialties){
-        super(personalData[0], personalData[1], personalData, personalData, personalData, personalData);
+        super(personalData[0], personalData[1], personalData[2], personalData[3], personalData[4],personalData[4]); //todo deze is fout
         this.specialties = specialties;
         arraykeeper.addDoctor(this);
     }
@@ -94,8 +94,7 @@ public class Doctor extends PersonalData {
             getPatients().add(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()));
         }
     }
-
-    public static void makeDoctor(String textFieldUsername, String doctorNameText, String passwordField, String textFieldBirth, String securityQuestion, String securityAnswer, ArrayList<Specialty> specialties){
-        Doctor newDoctor = new Doctor(textFieldUsername,doctorNameText,passwordField, textFieldBirth,securityQuestion, securityAnswer, specialties);
+    public static void makeDoctor(String[] doctorData, ArrayList<Specialty> specialties){
+        Doctor newDoctor = new Doctor(doctorData, specialties);
     }
 }

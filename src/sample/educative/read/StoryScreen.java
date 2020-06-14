@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class StoryScreen extends Application {
     Pane pane = new Pane();
     GoToScreens goToScreens = new GoToScreens();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings = ButtonSettings.getInstance();
     StoryReader sr;
     Button btnStory1 = new Button("Colourful world");
     Button btnStory2 = new Button("The tortoise and the hare");

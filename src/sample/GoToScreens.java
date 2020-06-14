@@ -5,8 +5,8 @@ import sample.MedicalSection.*;
 import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
 import sample.educative.MathScreen;
-import sample.educative.read.HangmanScreen;
 import sample.educative.read.ReadScreen;
+import sample.educative.read.StoryScreen;
 import sample.educative.writing.*;
 import sample.inlogScreen.ForgotPasswordScreen;
 import sample.inlogScreen.Main;
@@ -225,15 +225,6 @@ public class GoToScreens {
         }
     }
 
-    public void goHangmanScreen(Stage stage){
-        HangmanScreen hangmanScreen = new HangmanScreen();
-        try {
-            hangmanScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
     public void goProfile(Stage stage){
         ProfileSettingsScreen pScreen = new ProfileSettingsScreen();
         try {
@@ -346,6 +337,16 @@ public class GoToScreens {
         ViewPatientsScreen viewPatientsScreen = new ViewPatientsScreen();
         try{
             viewPatientsScreen.start(stage);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void goStoryScreen(Stage stage) {
+        StoryScreen storyScreen = new StoryScreen();
+        try{
+            storyScreen.start(stage);
         }
         catch(Exception ex){
             ex.printStackTrace();

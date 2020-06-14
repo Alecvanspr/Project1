@@ -29,7 +29,6 @@ public class ReadScreen  extends Application {
     public void makeButtons(Stage stage){
         makeBtnGrammar(stage);
         makeBtnBack(stage);
-        makeBtnHangman(stage);
         makeBtnStories(stage);
     }
     public void makeBtnStories(Stage stage){
@@ -56,14 +55,5 @@ public class ReadScreen  extends Application {
             goToScreens.goEducativeScreen(stage);
         });
         pane.getChildren().add(btnBack);
-    }
-    public void makeBtnHangman(Stage stage){
-        Button btnHangman = new Button("Hangman");
-        btnHangman.relocate(200,350);
-        btnHangman.setOnAction(e->{
-            goToScreens.goHangmanScreen(stage);
-        });
-
-        pane.getChildren().addAll(btnHangman);
     }
 }

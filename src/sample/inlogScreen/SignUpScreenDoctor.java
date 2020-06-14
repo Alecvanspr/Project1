@@ -154,8 +154,9 @@ public class SignUpScreenDoctor extends Application {
         signUp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Doctor.makeDoctor(textFieldUsername.getText(),doctorNameText.getText(),passwordField.getText(),textFieldBirth.getText(),
-                        securityQuestions.getValue().toString(),securityAnswer.getText(),specialties
+                String[] doctorData = {textFieldUsername.getText(),doctorNameText.getText(),passwordField.getText(),textFieldBirth.getText(),
+                        securityQuestions.getValue().toString(),securityAnswer.getText()};
+                Doctor.makeDoctor(doctorData,specialties
                 );
 
                 Main main = new Main();
