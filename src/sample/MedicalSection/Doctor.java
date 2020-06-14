@@ -13,12 +13,7 @@ public class Doctor extends PersonalData {
     private ArrayList<PersonalData> patients = new ArrayList<>();
 
     public Doctor(String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer, ArrayList<Specialty> specialties){
-        this.setUserName(username);
-        this.setName(name);
-        this.setPassword(password);
-        this.setDateOfBirth(dateOfBirth);
-        this.setSecurityQuestion(securityQuestion);
-        this.setSecurityAnswer(securityAnswer);
+        super(username, name, password, dateOfBirth, securityQuestion, securityAnswer);
         this.specialties = specialties;
         arraykeeper.addDoctor(this);
     }
