@@ -5,11 +5,11 @@ public class Contact{
     private String email;
     private String phoneNumber;
     private Address address;
-
-    public Contact(String name, String email, String phoneNumber, Address address){
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+//String name, String email, String phoneNumber
+    public Contact(Object object[], Address address){
+        this.name = object[0].toString();
+        this.email = object[1].toString();
+        this.phoneNumber = object[2].toString();
         this.address = address;
     }
 

@@ -1,30 +1,21 @@
 package sample.profileSettings;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import sample.ArrayKeeper;
 import sample.ButtonSettings;
 import sample.GoToScreens;
-import sample.inlogScreen.PersonalData;
-import sample.profileSettings.ProfileSettingsScreen;
-
-import java.util.ArrayList;
-
-import static sample.ArrayKeeper.getCurrentUser;
 
 public class EditSettingsScreen extends Application {
     Scene changeSettings;
     EditSetings editSetings = new EditSetings();
     GoToScreens goToScreens = new GoToScreens();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    //ButtonSettings ButtonSettings = new ButtonSettings();
     Pane eSettings = new Pane();
 
     Label text = new Label("Settings to change user settings");
@@ -36,8 +27,7 @@ public class EditSettingsScreen extends Application {
     TextField txtNewPhoneNumber = new TextField();
     TextField txtSecurityQuestion = new TextField();
     TextField txtChangeGender = new TextField();
-
-    public void start(Stage stage) throws Exception {
+        public void start(Stage stage) throws Exception {
         //De code hieronder heeft te maken met de knoppen voor het edit Scherm
 
         eSettings.getChildren().addAll(txtNewUsername,txtNewName,txtNewPassword,txtNewPasswordConfrm,
@@ -88,12 +78,12 @@ public class EditSettingsScreen extends Application {
             editSetings.changeGender(txtChangeGender.getText());
             goToScreens.goProfileSettingScreen(stage);
         });
-        buttonSettings.onMouse(btnApplyAll);
+        ButtonSettings.onMouse(btnApplyAll);
         eSettings.getChildren().add(btnApplyAll);
     }
     public void makeBtnBack(Stage stage){
         Button btnBack = new Button("Back");
-        buttonSettings.onMouse(btnBack);
+        ButtonSettings.onMouse(btnBack);
         btnBack.relocate(0,570);
         btnBack.setOnAction(e -> {
             goToScreens.goProfileSettingScreen(stage);
@@ -102,7 +92,7 @@ public class EditSettingsScreen extends Application {
     }
     public void makeBtnChangeName(Stage stage){
         Button btnChangeName = new Button("Change name");
-        buttonSettings.onMouse(btnChangeName);
+        ButtonSettings.onMouse(btnChangeName);
         btnChangeName.setOnAction(E->{
             editSetings.changeName(txtNewName.getText());
             goToScreens.goProfileSettingScreen(stage);
@@ -112,7 +102,7 @@ public class EditSettingsScreen extends Application {
     }
     public void makeBtnUserName(Stage stage){
         Button btnChangeUsername = new Button("Change Username");
-        buttonSettings.onMouse(btnChangeUsername);
+        ButtonSettings.onMouse(btnChangeUsername);
         btnChangeUsername.setOnAction(E->{
             editSetings.changeUsername(txtNewUsername.getText());
             goToScreens.goProfileSettingScreen(stage);
@@ -122,7 +112,7 @@ public class EditSettingsScreen extends Application {
     }
     public void makeBtnChangePassword(Stage stage){
         Button btnChangePassword = new Button("Change password");
-        buttonSettings.onMouse(btnChangePassword);
+        ButtonSettings.onMouse(btnChangePassword);
         btnChangePassword.setOnAction(E->{
             editSetings.changePassword(txtNewPassword.getText(),txtNewPasswordConfrm.getText());
             goToScreens.goProfileSettingScreen(stage);
@@ -137,12 +127,12 @@ public class EditSettingsScreen extends Application {
             editSetings.changeGender(txtChangeGender.getText());
             goToScreens.goProfileSettingScreen(stage);
         });
-        buttonSettings.onMouse(btnChangeGender);
+        ButtonSettings.onMouse(btnChangeGender);
         eSettings.getChildren().add(btnChangeGender);
     }
     public void makeBtnChangeBirthday(Stage stage){
         Button btnChangeBirthday = new Button("Change Birthday");
-        buttonSettings.onMouse(btnChangeBirthday);
+        ButtonSettings.onMouse(btnChangeBirthday);
         btnChangeBirthday.relocate(300,230);
         btnChangeBirthday.setOnAction(E->{
             editSetings.changeBirthday(txtNewBirthday.getText());
@@ -152,7 +142,7 @@ public class EditSettingsScreen extends Application {
     }
     public void makeBtnChangePhoneNumber(Stage stage){
         Button btnChagnePhonenumber = new Button("Change phonenumber");
-        buttonSettings.onMouse(btnChagnePhonenumber);
+        ButtonSettings.onMouse(btnChagnePhonenumber);
         btnChagnePhonenumber.setOnAction(E->{
             editSetings.changePhone(txtNewPhoneNumber.getText());
             goToScreens.goProfileSettingScreen(stage);
@@ -162,7 +152,7 @@ public class EditSettingsScreen extends Application {
     }
     public void makeBtnSecurityQuestion(Stage stage){
         Button btnChangeSecurityQuestion = new Button("Change Security question");
-        buttonSettings.onMouse(btnChangeSecurityQuestion);
+        ButtonSettings.onMouse(btnChangeSecurityQuestion);
         btnChangeSecurityQuestion.relocate(300,265);
         btnChangeSecurityQuestion.setOnAction(E->{
             editSetings.changeSecurityAnswer(txtSecurityQuestion.getText());

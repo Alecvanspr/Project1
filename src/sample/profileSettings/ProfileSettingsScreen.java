@@ -13,7 +13,7 @@ import sample.Homescreen;
 
 public class ProfileSettingsScreen extends Application {
     Homescreen homescreen = new Homescreen();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    //ButtonSettings ButtonSettings = new ButtonSettings();
     Scene Settings;
     GoToScreens goToScreens = new GoToScreens();
     Pane pSettings = new Pane();
@@ -55,7 +55,7 @@ public class ProfileSettingsScreen extends Application {
         btnEdit.setOnAction(e -> {
             goToScreens.goEditSettings(stage);
         });
-        buttonSettings.onMouse(btnBack);
-        buttonSettings.onMouse(btnEdit);
+        ButtonSettings.onMouse(btnBack);
+        ButtonSettings.onMouse(btnEdit);
     }
 }

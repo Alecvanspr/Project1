@@ -80,7 +80,8 @@ public class AddanimalScreen extends Application {
         btnAdd.setOnAction(E-> {
             int intAge = Integer.parseInt(txtAge.getText());
             double doubleWeight = Double.parseDouble(txtWeight.getText());
-            makeNewAnimal(txtname.getText(),txtGender.getText(),intAge,textSpieses.getText(),txtRace.getText(),doubleWeight,txtHealth.getText());
+            Object newAnimalData[]={txtname.getText(),txtGender.getText(),intAge,textSpieses.getText(),txtRace.getText(),doubleWeight,txtHealth.getText()};
+            makeNewAnimal(newAnimalData);
             goToScreens.goLiveStock(stage);
         });
         buttonSettings.onMouse(btnAdd);
@@ -97,8 +98,9 @@ public class AddanimalScreen extends Application {
         animal.getChildren().add(btnBack);
     }
 
-    public void makeNewAnimal(String name,String gender,int age,String species,String race,double weight,String health){
-        Animal newAminal = new Animal(name,gender,age,species,race,weight,health);
+    public void makeNewAnimal(Object newAnimalData[]){
+        //String name,String gender, Integer age,  String species, String race, Double weight,String Health
+        Animal newAminal = new Animal(newAnimalData);
         newAminal.setDateHealth(""+ java.time.LocalDate.now());
         main.arraykeeper.getData().get(ArrayKeeper.getCurrentUser()).getAnimals().add(newAminal);
     }

@@ -21,7 +21,11 @@ public class ShowAnimalsBySpecies {
         }
         return ret;
     }
-    public void displayBidFields(Stage stage, int amount, double price, int x){
+    //int amount, double price, int x
+    public void displayBidFields(Stage stage, Object object[]){
+        int x = Integer.parseInt(object[2].toString());
+        double price = Double.parseDouble(object[1].toString());
+        int amount = Integer.parseInt(object[0].toString());
         if (amount <= PersonalData.getSpecies().get(x).getArrayListOfSpecies().size()){
             Auction auction = new Auction(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(0), price);
             for(int i = 1; i < amount; i++){
@@ -32,5 +36,4 @@ public class ShowAnimalsBySpecies {
             showAnimalsBySpeciesScreen.playError();
         }
     }
-
 }
