@@ -30,7 +30,17 @@ public class ReadScreen  extends Application {
         makeBtnGrammar(stage);
         makeBtnBack(stage);
         makeBtnHangman(stage);
+        makeBtnStories(stage);
     }
+    public void makeBtnStories(Stage stage){
+        Button btnStories = new Button("Stories");
+        btnStories.relocate(300,200);
+        btnStories.setOnAction(e->{
+            goToScreens.goStoryScreen(stage);
+        });
+        pane.getChildren().add(btnStories);
+    }
+
     public void makeBtnGrammar(Stage stage){
         Button btnGrammar = new Button("grammar");
         btnGrammar.setOnAction(e->{

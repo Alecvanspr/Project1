@@ -74,7 +74,6 @@ public class SignUpScreen extends Application {
     public void makeBtnBack(Stage stage){
         Button btnBack = new Button("Back");
         btnBack.relocate(0, 570);
-
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
             goToScreens.goMain(stage);
         });
