@@ -12,7 +12,7 @@ import sample.educative.read.ReadScreen;
 import sample.educative.writing.WriteMainScreen;
 
 public class EducativeHomeScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Pane pane = new Pane();
     GoToScreens goToScreens = new GoToScreens();
     Scene scene;

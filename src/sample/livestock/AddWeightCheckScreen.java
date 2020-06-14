@@ -14,7 +14,7 @@ import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class AddWeightCheckScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;

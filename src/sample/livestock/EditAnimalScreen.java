@@ -18,7 +18,7 @@ import sample.inlogScreen.PersonalData;
 import static sample.ArrayKeeper.getCurrentUser;
 
 public class EditAnimalScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene editscene;
     private int currentAnimal;
     private int currentUser;

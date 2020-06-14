@@ -18,7 +18,7 @@ import sample.inlogScreen.PersonalData;
 import sample.market.Auction;
 
 public class ShowAnimalsBySpeciesScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
     GoToScreens goToScreens = new GoToScreens();

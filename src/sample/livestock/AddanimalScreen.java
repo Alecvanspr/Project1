@@ -17,7 +17,7 @@ import sample.GoToScreens;
 import sample.inlogScreen.Main;
 
 public class AddanimalScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene animalScene;
     Main main = new Main();
     Pane animal = new Pane();

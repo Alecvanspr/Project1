@@ -11,9 +11,9 @@ public class Doctor extends PersonalData {
     private ArrayList<Specialty> specialties;
     private ArrayList<Dates> dates = new ArrayList<>();
     private ArrayList<PersonalData> patients = new ArrayList<>();
-
-    public Doctor(String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer, ArrayList<Specialty> specialties){
-        super(username, name, password, dateOfBirth, securityQuestion, securityAnswer);
+//String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
+    public Doctor(String[] personalData, ArrayList<Specialty> specialties){
+        super(personalData[0], personalData[1], personalData, personalData, personalData, personalData);
         this.specialties = specialties;
         arraykeeper.addDoctor(this);
     }

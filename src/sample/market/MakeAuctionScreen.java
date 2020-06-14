@@ -20,7 +20,7 @@ import javafx.scene.paint.Color;
 public class MakeAuctionScreen extends Application {
     Scene MakeAuction;
     MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     GoToScreens goToScreens = new GoToScreens();
     Pane makeAuction = new Pane();
 

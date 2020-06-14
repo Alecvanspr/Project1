@@ -23,7 +23,7 @@ public class MedicalSection extends Application {
     int buttonNumber = 0;
     Pane pane = new Pane();
     GoToScreens goToScreens = new GoToScreens();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Label welcome = new Label("Welcome to the medical section");
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");

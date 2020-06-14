@@ -11,7 +11,7 @@ import sample.GoToScreens;
 
 
 public class AuctionListScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene AuctionList;
     MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
     ScrollPane scrollPane = new ScrollPane();

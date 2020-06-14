@@ -11,7 +11,7 @@ import sample.GoToScreens;
 public class SignUpScreen extends Application {
     Scene SignUp;
     Main main = new Main();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     GoToScreens goToScreens = new GoToScreens();
     Pane pane = new Pane();
     TextField doctorName = new TextField("What is your name");

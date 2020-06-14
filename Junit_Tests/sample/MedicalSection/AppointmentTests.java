@@ -16,11 +16,11 @@ public class AppointmentTests {
     LocalDate localDate = LocalDate.now();
     PersonalData patient = new PersonalData();
     String string[] ={"13:00","diabetus"};
-    Appointment appointment = new Appointment(doctor,localDate,patient,string);
+    Appointment appointment = new Appointment(doctor,localDate,string[0],patient,string[1]);
 
     @Test
     public void testDing(){
         specialties.add(specialty1);
-        Assert.assertTrue("Dr.Mario".equals(appointment.getDoctor().getDoctor().getName()));
+        Assert.assertTrue("Dr.Mario".equals(appointment.getDoctor().getName()));
     }
 }

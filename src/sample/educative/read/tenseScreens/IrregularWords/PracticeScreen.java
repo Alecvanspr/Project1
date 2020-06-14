@@ -20,7 +20,7 @@ public class PracticeScreen extends Application {
     InfinitiveWordReader infinitiveWordReader = new InfinitiveWordReader();
     PastParticipleReader pastParticipleReader = new PastParticipleReader();
     PastWordReader pastWordReader = new PastWordReader();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
 
     Pane pane = new Pane();
     Label lblWrong = new Label("");

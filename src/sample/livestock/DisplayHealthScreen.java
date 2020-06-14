@@ -15,7 +15,7 @@ import sample.GoToScreens;
 
 public class DisplayHealthScreen extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;
     ScrollPane healthScroll = new ScrollPane();

@@ -20,7 +20,7 @@ public class UserAuctions extends Application{
     ScrollPane scrollPane = new ScrollPane();
     GoToScreens goToScreens = new GoToScreens();
     Pane userAuctionsPane = new Pane();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
 
     @Override
     public void start(Stage stage) throws Exception{
