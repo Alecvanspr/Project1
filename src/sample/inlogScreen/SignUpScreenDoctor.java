@@ -10,62 +10,92 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
-import sample.Homescreen;
+import sample.GoToScreens;
 import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
 
 import java.util.ArrayList;
 
-public class SignUpScreenDocter extends Application {
-    Scene SignUpScreenDocter;
+public class SignUpScreenDoctor extends Application {
+    GoToScreens goToScreens = new GoToScreens();
+    Scene SignUpScreenDoctor;
     Main main;
     ArrayKeeper arraykeeper = new ArrayKeeper();
 
     @Override
     public void start(Stage stage) throws Exception{
         Pane pane = new Pane();
-        //Button not docter
-        Button exitBtn = new Button("Im actually not a docter");
+        //Button not doctor
+        Button exitBtn = new Button("Im actually not a doctor");
         exitBtn.setPrefWidth(150);
         exitBtn.relocate(10, 565);
+
         exitBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 setButtonScale(exitBtn, 1.2);
             }
         });
+
         exitBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 setButtonScale(exitBtn, 1.0);
             }
         });
+
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                arraykeeper.getPersonalData(ArrayKeeper.getCurrentUser()).setIsDocter(false);
-                Main main = new Main();
-                try {
-                    main.start(stage);
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
+                goToScreens.goSignUp(stage);
             }
         });
         pane.getChildren().add(exitBtn);
+
+
+
+        TextField textFieldUsername = new TextField();
+        PasswordField passwordField = new PasswordField();
+        PasswordField passwordFieldConf = new PasswordField();
+        TextField textFieldBirth = new TextField();
+        TextField securityAnswer = new TextField();
+        ComboBox securityQuestions = new ComboBox();
+        Label ErrorMessage = new Label("");
+        Label labelUsername = new Label("Username");
+        Label labelPassword = new Label("Password");
+        Label labelPasswordConf = new Label("Confirm password");
+        Label labelBirth = new Label("Date of birth");
+        Label labelSecurity = new Label("Security question in case you forget your password");
+        securityQuestions.getItems().addAll("What is your favorite color?","What was the name of your first pet?","What was your first city of residence?");
+        textFieldUsername.relocate(100,70);
+        passwordField.relocate(100,115);
+        passwordFieldConf.relocate(100,160);
+        textFieldBirth.relocate(100,205);
+        securityQuestions.relocate(100,250);
+        securityAnswer.relocate(100, 278);
+        pane.getChildren().addAll(textFieldUsername, passwordField,passwordFieldConf, textFieldBirth, securityAnswer, ErrorMessage, labelUsername,
+                labelPassword, labelPasswordConf, labelBirth, labelSecurity, securityQuestions);
+
+        labelUsername.relocate(100,50);
+        labelSecurity.relocate(100,230);
+        labelPassword.relocate(100,95);
+        labelBirth.relocate(100,185);
+        labelPasswordConf.relocate(100, 140);
+        ErrorMessage.relocate(100,265);
+
         //comboboxes for specialty
-        Label specialtyText = new Label("What are your specialty's?");
+        Label specialtyText = new Label("What are your specialties?");
         ComboBox<String> specialty1 = new ComboBox<>();
         for(int i = 0; i < arraykeeper.getSpecialtiesArrayList().size(); i++){
             specialty1.getItems().add(arraykeeper.getSpecialtiesArrayList().get(i).getName());
         }
         ArrayList<Specialty> specialties = new ArrayList<>();
         Button addSpecialty = new Button("add");
-        addSpecialty.relocate(400,100);
+        addSpecialty.relocate(250,368);
         ArrayList<Specialty> allSpecialties = arraykeeper.getSpecialtiesArrayList();
         addSpecialty.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
+            public void handle(ActionEvent actionEvent){
                 Boolean alreadyHave = false;
                 if(specialties.size() == 0){
                     for(int i = 0; i < allSpecialties.size(); i++){
@@ -77,7 +107,7 @@ public class SignUpScreenDocter extends Application {
                     for(int j = 0; j < specialties.size(); j++){
                         if (specialties.get(j).getName().equals(specialty1.getValue())){
                             Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setContentText("You already have this Specialty!");
+                            alert.setContentText("You already have this specialty!");
                             alert.show();
                             alreadyHave = true;
                         }
@@ -90,42 +120,43 @@ public class SignUpScreenDocter extends Application {
                         }
                     }
                 }
-
                 specialty1.setValue("");
-
             }
         });
-        specialtyText.relocate(300, 75);
-        specialty1.relocate(300, 100);
+        specialtyText.relocate(100, 348);
+        specialty1.relocate(100, 368);
         //Docter name
-        TextField docterName = new TextField("");
-        docterName.setPrefWidth(150);
-        docterName.relocate(100, 100);
-        Label docterNameText = new Label("Type here your docter name");
-        docterNameText.setFont(Font.font("Aral", 15));
-        docterNameText.relocate(100, 75);
+        TextField doctorName = new TextField("");
+        doctorName.relocate(100, 323);
+        Label doctorNameText = new Label("Your real name");
+        doctorNameText.relocate(100, 303);
         //registerButton
-        Button register = new Button("Register");
-        register.relocate(200, 200);
-        register.setPrefWidth(75);
-        pane.getChildren().addAll(addSpecialty, specialty1, specialtyText,docterName, docterNameText, register);
+        Button signUp = new Button("Sign up");
+        signUp.relocate(600, 200);
+        signUp.setPrefWidth(75);
+        pane.getChildren().addAll(addSpecialty, specialty1, specialtyText,doctorName, doctorNameText, signUp);
 
-        register.setOnMouseExited(new EventHandler<MouseEvent>() {
+
+        signUp.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                setButtonScale(register, 1.0);
+                setButtonScale(signUp, 1.0);
             }
         });
-        register.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+        signUp.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                setButtonScale(register, 1.2);
+                setButtonScale(signUp, 1.2);
             }
         });
-        register.setOnAction(new EventHandler<ActionEvent>() {
+
+        signUp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                arraykeeper.getPersonalData(ArrayKeeper.getCurrentUser()).makeDoctor(docterName.getText(),specialties);
+                Doctor.makeDoctor(textFieldUsername.getText(),doctorNameText.getText(),passwordField.getText(),textFieldBirth.getText(),
+                        securityQuestions.getValue().toString(),securityAnswer.getText(),specialties
+                );
 
                 Main main = new Main();
                 try {
@@ -136,9 +167,9 @@ public class SignUpScreenDocter extends Application {
             }
 
         });
-        SignUpScreenDocter = new Scene(pane, 800, 600);
-        stage.setTitle("Register as docter");
-        stage.setScene(SignUpScreenDocter);
+        SignUpScreenDoctor = new Scene(pane, 800, 600);
+        stage.setTitle("Sign up as doctor");
+        stage.setScene(SignUpScreenDoctor);
         stage.show();
     }
 

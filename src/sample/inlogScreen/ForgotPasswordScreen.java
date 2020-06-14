@@ -92,7 +92,7 @@ public class ForgotPasswordScreen extends Application {
         pane.getChildren().add(btnBack);
     }
     public void setSecurityQuestion(Label label){
-        label.setText(main.arraykeeper.getData().get(changingUser).getSecurtityQuestion());
+        label.setText(main.arraykeeper.getData().get(changingUser).getSecurityQuestion());
     }
     public void changePassword(String secutiry,String password,String passwordcheck,Stage stage){
         if(secutiry.equalsIgnoreCase(main.arraykeeper.getData().get(changingUser).getSecurityAnswer())) {

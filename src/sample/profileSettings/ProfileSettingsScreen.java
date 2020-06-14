@@ -1,11 +1,9 @@
 package sample.profileSettings;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
@@ -35,7 +33,7 @@ public class ProfileSettingsScreen extends Application {
     public void makeLabels(){
         Label textName = new Label("Username : " + ArrayKeeper.getData().get(currentUser).getUsername());
         Label txtRealName = new Label("Name : " + ArrayKeeper.getData().get(currentUser).getName());
-        Label txtBirthDate = new Label("Birth date : "+ArrayKeeper.getData().get(currentUser).getBirthDate());
+        Label txtBirthDate = new Label("Birth date : "+ArrayKeeper.getData().get(currentUser).getDateOfBirth());
         Label textGender = new Label("Gender :" + ArrayKeeper.getData().get(currentUser).getGender());
         Label textPhonenumber = new Label("Phone number : " + ArrayKeeper.getData().get(currentUser).getPhoneNumber());
         textName.relocate(100,100);

@@ -1,7 +1,6 @@
-package sample.MedicalSection;
+package sample;
 
 import sample.ArrayKeeper;
-import sample.inlogScreen.PersonalData;
 
 public class Checks{
     public static boolean checkIfTimeAvailable(String time) {

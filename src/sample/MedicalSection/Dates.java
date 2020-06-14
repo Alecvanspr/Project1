@@ -44,6 +44,7 @@ public class Dates{
             }
         }
     }
+
     public void addTimeToTimeTable(String chosenTime){
         timeTable.add(chosenTime);
     }

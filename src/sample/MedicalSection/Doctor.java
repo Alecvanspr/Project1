@@ -3,23 +3,23 @@ package sample.MedicalSection;
 import javafx.scene.control.Alert;
 import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
-
-import java.sql.Time;
-import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Doctor extends PersonalData {
-    private String name;
-    private int userInt;
     ArrayKeeper arraykeeper = new ArrayKeeper();
-    private ArrayList<Specialty> specialties = new ArrayList<>();
+    private ArrayList<Specialty> specialties;
     private ArrayList<Dates> dates = new ArrayList<>();
+    private ArrayList<PersonalData> patients = new ArrayList<>();
 
-    public Doctor(String name, int userInt, ArrayList<Specialty> specialties) {
-        this.name = name;
+    public Doctor(String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer, ArrayList<Specialty> specialties){
+        this.setUserName(username);
+        this.setName(name);
+        this.setPassword(password);
+        this.setDateOfBirth(dateOfBirth);
+        this.setSecurityQuestion(securityQuestion);
+        this.setSecurityAnswer(securityAnswer);
         this.specialties = specialties;
-        this.userInt = userInt;
         arraykeeper.addDoctor(this);
     }
 
@@ -42,23 +42,15 @@ public class Doctor extends PersonalData {
     }
 
     public void addLocalDate(Dates date){
-        this.dates.add(date);
+        dates.add(date);
     }
 
     public ArrayList<Dates> getLocalDate(){
-        return this.dates;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getUserInt(){
-        return this.userInt;
+        return dates;
     }
 
     public ArrayList<Specialty> getSpecialties() {
-        return this.specialties;
+        return specialties;
     }
 
     public void addSpecialties(Specialty specialty) {
@@ -87,5 +79,28 @@ public class Doctor extends PersonalData {
             }
         }
         return false;
+    }
+
+    public ArrayList<PersonalData> getPatients(){
+        return patients;
+    }
+
+    public boolean checkHasPatient(PersonalData currentUser){
+        for(int i = 0; i < patients.size(); i++){
+            if(patients.get(i).equals(currentUser)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addPatient(){
+        if(!checkHasPatient(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()))){
+            getPatients().add(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()));
+        }
+    }
+
+    public static void makeDoctor(String textFieldUsername, String doctorNameText, String passwordField, String textFieldBirth, String securityQuestion, String securityAnswer, ArrayList<Specialty> specialties){
+        Doctor newDoctor = new Doctor(textFieldUsername,doctorNameText,passwordField, textFieldBirth,securityQuestion, securityAnswer, specialties);
     }
 }

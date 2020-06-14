@@ -35,10 +35,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        login.getChildren().add(error);
         window = primaryStage;
         makeLabels();
         makeButtons();
-        mainMethods.delettis(); //this is the demo account where we all can log in with, i used it to to test. but it need to be deleted afterwards
+        //mainMethods.delettis(); //this is the demo account where we all can log in with, i used it to to test. but it need to be deleted afterwards
         textFieldUserName.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
@@ -46,6 +47,7 @@ public class Main extends Application {
             }
         });
         fin(window);
+        mainMethods.delettis();
     }
     public void fin(Stage stage){
         Scene loginScene = new Scene(pane,800,600);
@@ -64,11 +66,11 @@ public class Main extends Application {
         pane.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord);
     }
     public void makeButtons(){
-        makeButtonLogin();
-        makeButtonSignIn(window);
+        makeButtonLogin(window);
+        makeButtonSignUp(window);
         makeButtonForgotPassword(window);
     }
-    public void makeButtonSignIn(Stage stage){
+    public void makeButtonSignUp(Stage stage){
         Button btnSignUp = new Button("Create an account");
         btnSignUp.setOnAction(e -> {
             goToScreens.goSignUp(window);
@@ -84,14 +86,14 @@ public class Main extends Application {
         });
         pane.getChildren().add(btnForgotPassword);
     }
-    public void makeButtonLogin(){
+    public void makeButtonLogin(Stage window){
         Button btnLogin = new Button("Log in");
         btnLogin.relocate(100,145);
         btnLogin.setOnAction(e -> {
             if(mainMethods.dataCheck(passwordField.getText(),(textFieldUserName.getText()))){
                 goToScreens.goHomeScreen(window);
             }else{
-                login.getChildren().add(error);
+                error.setText("Sorry, try again");
                 error.relocate(100,200);
             }
         });

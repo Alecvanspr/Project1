@@ -13,7 +13,7 @@ import sample.ArrayKeeper;
 import sample.ButtonSettings;
 import sample.GoToScreens;
 
-public class AddHeathCheckScreen extends Application {
+public class AddHealthCheckScreen extends Application {
     ButtonSettings buttonSettings = new ButtonSettings();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     GoToScreens goToScreens = new GoToScreens();
@@ -22,7 +22,7 @@ public class AddHeathCheckScreen extends Application {
     private int currentAnimal;
     TextField txtHealthSituation = new TextField();
 
-    public AddHeathCheckScreen(int currentAnimal){
+    public AddHealthCheckScreen(int currentAnimal){
         this.currentAnimal = currentAnimal;
     }
 
