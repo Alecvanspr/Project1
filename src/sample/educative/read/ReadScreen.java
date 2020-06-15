@@ -11,7 +11,7 @@ import sample.educative.GoToEducative;
 
 public class ReadScreen  extends Application {
     Pane pane = new Pane();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     GoToEducative goToEducative = new GoToEducative();
     Scene scene;
 

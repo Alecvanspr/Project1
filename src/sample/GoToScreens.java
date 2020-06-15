@@ -18,6 +18,17 @@ import sample.profileSettings.EditSettingsScreen;
 import sample.profileSettings.ProfileSettingsScreen;
 
 public class GoToScreens {
+    private static GoToScreens instance;
+    private GoToScreens(){
+
+    }
+    public static GoToScreens getInstance() {
+        if(instance == null){
+            GoToScreens goToScreens = new GoToScreens();
+        }
+        return instance;
+    }
+
     public void goProfileSettingScreen(Stage stage){
         ProfileSettingsScreen profileSettingsScreen = new ProfileSettingsScreen();
         try {

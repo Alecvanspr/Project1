@@ -22,7 +22,7 @@ public class MedicalSection extends Application {
     ArrayKeeper arrayKeeper;
     int buttonNumber = 0;
     Pane pane = new Pane();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Label welcome = new Label("Welcome to the medical section");
     Button btnBack = new Button("Back");
@@ -35,7 +35,6 @@ public class MedicalSection extends Application {
     public void start(Stage stage) throws Exception{
         makeButtons(stage);
         makeLabels();
-
         pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, contactInformationbtn, viewPatients);
         fin(stage);
     }

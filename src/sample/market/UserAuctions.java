@@ -18,7 +18,7 @@ public class UserAuctions extends Application{
     Scene userAuctions;
     MarketplaceScreen marketPlace = new MarketplaceScreen();
     ScrollPane scrollPane = new ScrollPane();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Pane userAuctionsPane = new Pane();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
 

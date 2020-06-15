@@ -21,7 +21,7 @@ public class MakeAuctionScreen extends Application {
     Scene MakeAuction;
     MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Pane makeAuction = new Pane();
 
     public void start(Stage stage) throws  Exception{

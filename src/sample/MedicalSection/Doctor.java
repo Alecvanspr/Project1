@@ -13,7 +13,7 @@ public class Doctor extends PersonalData {
     private ArrayList<PersonalData> patients = new ArrayList<>();
 //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
     public Doctor(String[] personalData, ArrayList<Specialty> specialties){
-        super(personalData[0], personalData[1], personalData[2], personalData[3], personalData[4],personalData[4]); //todo deze is fout
+        super(personalData[0], personalData[1], personalData[2], personalData[3], personalData[4],personalData[5]); //todo deze is fout
         this.specialties = specialties;
         arraykeeper.addDoctor(this);
     }

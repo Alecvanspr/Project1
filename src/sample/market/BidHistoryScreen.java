@@ -17,7 +17,7 @@ public class BidHistoryScreen extends Application {
     Scene bidHistory;
     BidHistory userBids = new BidHistory();
     AuctionListScreen auctionListScreen = new AuctionListScreen();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Pane bidHistoryPane = new Pane();
 
     @Override

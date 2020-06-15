@@ -14,7 +14,7 @@ import sample.GoToScreens;
 public class EditSettingsScreen extends Application {
     Scene changeSettings;
     EditSetings editSetings = new EditSetings();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     //ButtonSettings ButtonSettings = new ButtonSettings();
     Pane eSettings = new Pane();
 

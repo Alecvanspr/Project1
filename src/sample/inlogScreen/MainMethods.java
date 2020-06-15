@@ -37,7 +37,7 @@ public class MainMethods {
             admin.setSecurityAnswer("dab");
 
             arraykeeper.SignUpData("dr", "dr", "dr", "dr", "dr");
-            String[] doctorMario = {"mario","mario","mario","Arg Arg Arg Arg","mario"};
+            String[] doctorMario = {"mario","mario","mario","Arg Arg Arg Arg","mario","dr Mario"};
             Specialty db = new Specialty("Diabetes");
             Specialty ey = new Specialty("Eyes");
             ArrayList<Specialty> specialtiesDoc1 = new ArrayList<Specialty>();

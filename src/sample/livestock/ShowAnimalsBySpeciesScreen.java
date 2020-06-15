@@ -21,7 +21,7 @@ public class ShowAnimalsBySpeciesScreen extends Application {
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Scene scene;
     Pane pane = new Pane();
 
