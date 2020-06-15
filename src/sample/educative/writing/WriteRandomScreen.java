@@ -18,7 +18,7 @@ import sample.educative.writing.WriteMainScreen;
 import java.util.Random;
 
 public class WriteRandomScreen extends Application {
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);

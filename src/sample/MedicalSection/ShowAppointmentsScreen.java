@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ShowAppointmentsScreen extends Application {
     Scene showAppointmentsScene;
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Main main;
     ArrayKeeper arrayKeeper;
     Button editAppointment = new Button("Edit appointment");

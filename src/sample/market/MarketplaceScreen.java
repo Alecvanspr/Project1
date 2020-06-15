@@ -19,7 +19,7 @@ public class MarketplaceScreen extends Application {
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene marktScene;
     Homescreen homescreen = new Homescreen();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Pane market = new Pane();
 
     Font CfontArial = new Font("Arial", 50);

@@ -22,7 +22,7 @@ public class MedicalSection extends Application {
     ArrayKeeper arrayKeeper;
     int buttonNumber = 0;
     Pane pane = new Pane();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Label welcome = new Label("Welcome to the medical section");
     Button btnBack = new Button("Back");

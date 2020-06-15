@@ -16,7 +16,7 @@ import sample.GoToScreens;
 public class AddWeightCheckScreen extends Application {
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Scene healthScene;
     Pane healthPane = new Pane();
     int currentAnimal;

@@ -12,7 +12,7 @@ import sample.GoToScreens;
 
 public class MathScreen  extends Application {
     Pane pane = new Pane();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     ButtonSettings buttonSettings = ButtonSettings.getInstance();
     Scene scene;
 

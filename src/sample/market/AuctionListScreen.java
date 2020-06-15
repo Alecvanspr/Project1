@@ -16,7 +16,7 @@ public class AuctionListScreen extends Application {
     MarketplaceScreen marketplaceScreen = new MarketplaceScreen();
     ScrollPane scrollPane = new ScrollPane();
     AuctionList auctionListClass = new AuctionList();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Pane auctionList = new Pane();
 
     public void start(Stage stage) throws Exception{

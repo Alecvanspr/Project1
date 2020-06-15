@@ -19,7 +19,7 @@ public class EditAppointment extends Application {
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Appointment appointment;
     Pane pane = new Pane();
     ComboBox<String> appointmentComboBox = new ComboBox<>();

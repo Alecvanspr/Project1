@@ -27,7 +27,7 @@ import java.util.HashMap;
 public class HangmanScreen extends Application {
     private GalgIMG galgIMG = new GalgIMG();
     StackPane pane = new StackPane();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Button btnBack = new Button("back");
     Button btnAgain = new Button("New Word");
     Text dash = new Text("-");

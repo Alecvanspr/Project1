@@ -16,7 +16,7 @@ public class ViewPatientsScreen extends Application{
     Scene ViewPatientsScreen;
     ArrayKeeper arrayKeeper;
     Main main;
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Pane rootPane = new Pane();
 
     @Override

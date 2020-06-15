@@ -19,7 +19,7 @@ public class DisplayWeightScreen extends Application {
     ScrollPane weightScroll = new ScrollPane();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     Pane weightPane = new Pane();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     int plaats = 100;
     int currentAnimal;
     int currentUser;

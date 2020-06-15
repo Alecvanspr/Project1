@@ -14,7 +14,7 @@ import sample.GoToScreens;
 import sample.educative.GetImage;
 
 public class WriteAlphabetScreen extends Application {
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Image backgroundLines = new Image("images/education/DrawLinesLetter.png");
     BackgroundImage backgroundImage = new BackgroundImage(backgroundLines,BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
             BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

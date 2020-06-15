@@ -27,7 +27,7 @@ public class EditAnimalScreen extends Application {
 
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     EditAnimal editAnimal = new EditAnimal();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     TextField txtfname = new TextField("");
     TextField txtfAge = new TextField("");
     TextField txtfSpecies = new TextField("");

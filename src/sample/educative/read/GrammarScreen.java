@@ -15,7 +15,7 @@ import sample.educative.read.tenseScreens.IrregularWords.IrregularVerbs;
 import sample.educative.read.tenseScreens.IrregularWords.IrregularVerbsScreen;
 
 public class GrammarScreen  extends Application {
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
     Scene scene;

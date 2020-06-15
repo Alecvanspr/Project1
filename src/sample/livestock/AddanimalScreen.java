@@ -21,7 +21,7 @@ public class AddanimalScreen extends Application {
     Scene animalScene;
     Main main = new Main();
     Pane animal = new Pane();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     TextField txtname = new TextField();
     TextField txtAge = new TextField("0");
     TextField txtGender = new TextField();

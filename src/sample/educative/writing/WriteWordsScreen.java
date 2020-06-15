@@ -19,7 +19,7 @@ import sample.educative.writing.WriteMainScreen;
 import java.util.Random;
 
 public class WriteWordsScreen extends Application {
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     GoToEducative goToEducative = new GoToEducative();
     Label lblAnswer = new Label("");
     Random random = new Random();
