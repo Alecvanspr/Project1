@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class FutureAppointments extends ShowAppointmentsScreen {
     ArrayList<Appointment> futureAppointments = new ArrayList<>();
+    ObservableList<Appointment> medicalSectionAppointments = FXCollections.observableArrayList(futureAppointments);
     ArrayKeeper arrayKeeper;
     MedicalSection medicalSection;
 
@@ -30,7 +31,6 @@ public class FutureAppointments extends ShowAppointmentsScreen {
             if(getUserAppointments().get(i).getAppointmentDate().getYear() >= dateNow.getYear()){
                 if(getUserAppointments().get(i).getAppointmentDate().getDayOfMonth() >= dateNow.getDayOfMonth() && getUserAppointments().get(i).getAppointmentDate().getMonth().getValue() >= dateNow.getMonth().getValue()){
                     futureAppointments.add(getUserAppointments().get(i));
-                    //medicalSection.medicalSectionAppointments.add(getUserAppointments().get(i));
                 }
             }
         }

@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
@@ -29,9 +30,7 @@ public class MedicalSection extends Application {
     ButtonSettings buttonSettings = new ButtonSettings();
     Label welcome = new Label("Welcome to the medical section");
     Label myAppointments = new Label("My Appointments");
-    TextArea taAppointment = new TextArea();
-    ListView<String> ListView = new ListView<>();
-    ObservableList<String> medicalSectionAppointments = FXCollections.observableArrayList();
+    ListView<Appointment> ListView = new ListView<>();
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");
     Button yourAppointmentbtn = new Button("Your appointments");
@@ -46,15 +45,15 @@ public class MedicalSection extends Application {
 
     }
 
-    public void Listener(){
-        medicalSectionAppointments.addListener(new InvalidationListener() {
-            @Override
-            public void invalidated(Observable observable) {
-                System.out.println("List Invalidated");
-            }
-        });
-
-    }
+//    public void Listener(){
+//        medicalSectionAppointments.addListener(new InvalidationListener() {
+//            @Override
+//            public void invalidated(Observable observable) {
+//                System.out.println("List Invalidated");
+//            }
+//        });
+//
+//    }
 
     public void makeYourAppointmentButton(Stage stage){
         makeMenuButton(yourAppointmentbtn);
@@ -87,7 +86,8 @@ public class MedicalSection extends Application {
         ListView.relocate(425, 240);
         ListView.setPrefHeight(310);
         ListView.setPrefWidth(255);
-        ListView.setItems(medicalSectionAppointments);
+        //for(int i = 0; i < futureAppointments.getUserAppointments().size(); i++){ }
+        ListView.setItems(futureAppointments.medicalSectionAppointments);
     }
     public void makeLabels(){
         makeStartLabel();

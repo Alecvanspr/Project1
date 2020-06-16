@@ -47,7 +47,7 @@ public class MathScreen  extends Application {
         makeButtons(stage);
         makeLabels();
         makeTextField();
-        //textfieldbound = Integer.parseInt(tfBound1.getText());
+        makeError();
         fin(stage);
 
         pane.getChildren().addAll(tfBound1,btnRandom,btnBack,btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4, lblMathProblem,btnStart,lblWrongAnswer,lblWrongAnswerTotal,lblWrightAnswer, lblWrightAnswerTotal,lblOperators,btnPlus,btnMinus,btnDivide,btnMultiply);
@@ -64,7 +64,7 @@ public class MathScreen  extends Application {
             btnAnswer4.setText(Integer.toString(mathGame.ButtonNumber3()));
             mathGame.setNumberBound(textfieldbound);
             mathGame.setGame(true);
-            pane.getChildren().removeAll(btnStart,btnDivide,btnMinus,btnMultiply,btnPlus,lblOperators,btnRandom);
+            pane.getChildren().removeAll(tfBound1,btnStart,btnDivide,btnMinus,btnMultiply,btnPlus,lblOperators,btnRandom);
         }
     }
     public void makeTextField(){
@@ -96,8 +96,16 @@ public class MathScreen  extends Application {
     public void makeButtonStart(){
         btnStart.relocate(95,470);
         btnStart.setOnMouseClicked(e -> {
+            //textfieldbound = Integer.parseInt(tfBound1.getText());
             newGame();
         });
+    }
+    public void makeError(){
+        try{
+            //textfieldbound = Integer.parseInt(tfBound1.getText());
+        }catch(java.lang.NoSuchFieldError ex){
+            System.out.println("error");
+        }
     }
     public void makeButtonPlus(){
         btnPlus.relocate(30, 400);
