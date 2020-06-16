@@ -23,37 +23,42 @@ public class MedicalSection extends Application {
     Scene MedicalSection;
     Main main;
     ArrayKeeper arrayKeeper;
-    FutureAppointments futureAppointments;
+    FutureAppointments futureAppointments = new FutureAppointments();
+    PastAppointments pastAppointments = new PastAppointments();
     int buttonNumber = 0;
     Pane pane = new Pane();
     GoToScreens goToScreens = new GoToScreens();
     ButtonSettings buttonSettings = new ButtonSettings();
     Label welcome = new Label("Welcome to the medical section");
     Label myAppointments = new Label("My Appointments");
-    ListView<Appointment> ListView = new ListView<>();
+    ListView<String> ListView = new ListView<>();
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");
     Button yourAppointmentbtn = new Button("Your appointments");
 
     @Override
     public void start(Stage stage) throws Exception{
-        makeButtons(stage);
-        makeLabels();
         makeListView();
+        makeLabels();
+        makeButtons(stage);
         pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, myAppointments,ListView);
         fin(stage);
 
     }
-
-//    public void Listener(){
-//        medicalSectionAppointments.addListener(new InvalidationListener() {
-//            @Override
-//            public void invalidated(Observable observable) {
-//                System.out.println("List Invalidated");
-//            }
-//        });
-//
-//    }
+/*
+    public void Listener(){
+        futureAppointments.medicalSectionAppointments.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                if(observable ==null) {
+                    System.out.println("List Invalidated");
+                }else{
+                    System.out.println("hij is niet leeg");
+                }
+           }
+        });
+   }
+ */
 
     public void makeYourAppointmentButton(Stage stage){
         makeMenuButton(yourAppointmentbtn);
@@ -87,11 +92,11 @@ public class MedicalSection extends Application {
         ListView.setPrefHeight(310);
         ListView.setPrefWidth(255);
         //for(int i = 0; i < futureAppointments.getUserAppointments().size(); i++){ }
-        ListView.setItems(futureAppointments.medicalSectionAppointments);
+        ListView.setItems(futureAppointments.appointmentsString);
     }
     public void makeLabels(){
-        makeStartLabel();
         makeAppointmentLabel();
+        makeStartLabel();
     }
     public void makeStartLabel(){
         welcome.setFont(Font.font("Arial", 30));
