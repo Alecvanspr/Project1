@@ -23,9 +23,9 @@ public class MakeArrayListsText {
     public void makeTextArrayLists(){
         infinitiveWord = textReader.TextReader("/_txtfiles/IrregularVerbsInfinitive.txt");
         infinitiveSentense = textReader.TextReader("/_txtfiles/SentenceInfinitive.txt");
-        pastWord = textReader.TextReader("/_txtfiles/SentencePast.txt");;
-        pastSentence= textReader.TextReader("/_txtfiles/IrregularVerbsPast.txt");
-        pastPrincaple  = textReader.TextReader("/_txtfiles/SentensePastParticle.txt");;
-        pastPrincapleSentence = textReader.TextReader("/_txtfiles/IrregularVerbsPastParticiple.txt");;
+        pastWord = textReader.TextReader("/_txtfiles/IrregularVerbsPast.txt");;
+        pastSentence= textReader.TextReader("/_txtfiles/SentencePast.txt");
+        pastPrincaple  = textReader.TextReader("/_txtfiles/IrregularVerbsPastParticiple.txt");
+        pastPrincapleSentence = textReader.TextReader("/_txtfiles/SentensePastParticle.txt");
     }
 }
