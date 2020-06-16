@@ -3,7 +3,7 @@ package sample.educative.read;
 import java.io.*;
 import java.util.Scanner;
 
-public class StoryReader {
+public class StoryReader { //todo dit openclosed maken.
     private static final String filename = "/src/_txtfiles/stories/";
     private String content;
 
