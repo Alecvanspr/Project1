@@ -20,7 +20,6 @@ import sample.profileSettings.ProfileSettingsScreen;
 public class GoToScreens {
     private static GoToScreens instance;
     private GoToScreens(){
-
     }
     public static GoToScreens getInstance() {
         if(instance == null){
