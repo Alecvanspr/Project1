@@ -2,8 +2,7 @@ package sample.inlogScreen;
 
 import sample.MedicalSection.Appointment;
 import sample.ArrayKeeper;
-import sample.MedicalSection.Doctor;
-import sample.MedicalSection.Specialty;
+import sample.MedicalSection.Complaint;
 import sample.livestock.Animal;
 import sample.livestock.Species;
 
@@ -14,37 +13,26 @@ public class PersonalData {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     static ArrayList<Species> species= new ArrayList<>();
     private ArrayList<Appointment> appointments = new ArrayList<>();
-    private String Usernamename;
-    private String name = "Not yet defined";
-    private String password;
-    private String birthDate;
-    private String phoneNumber = "Not yet defined";
-    private String email = "Not yet defined";
-    private String gender = "Not yet defined";
-    private String securtityQuestion;
-    private String securityAnswer;
-    private Boolean isDocter = false;
-    private Doctor doctor;
+    private ArrayList<Complaint> complaints = new ArrayList<>();
+    private String username, name = "Not yet defined", password, dateOfBirth, phoneNumber = "Not yet defined", email = "Not yet defined",
+    gender = "Not yet defined", securityQuestion, securityAnswer;
 
     public PersonalData(){
+        ArrayKeeper.getData().add(this);
     }
 
-    public Boolean getIsDocter(){
-        return this.isDocter;
+    public PersonalData(String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer){
+        this.username = username;
+        this.name = name;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.securityQuestion = securityQuestion;
+        this.securityAnswer = securityAnswer;
+        ArrayKeeper.getData().add(this);
     }
 
-    public void setIsDocter(Boolean isDocter){
-        this.isDocter = isDocter;
-    }
-
-    public void makeDoctor(String name, ArrayList<Specialty> specialties) {
-        Doctor doctor = new Doctor(name, ArrayKeeper.getCurrentUser(), specialties);
-        this.doctor = doctor;
-        setIsDocter(true);
-    }
-
-    public Doctor getDoctor(){
-        return this.doctor;
+    public ArrayList<Complaint> getComplaints(){
+        return complaints;
     }
 
     public static ArrayList<Species> getSpecies(){
@@ -59,20 +47,20 @@ public class PersonalData {
         this.securityAnswer = securityAnswer;
     }
 
-    public void setSecurtityQuestion(String securtityQuestion){
-        this.securtityQuestion = securtityQuestion;
+    public void setSecurityQuestion(String securityQuestion){
+        this.securityQuestion = securityQuestion;
     }
 
-    public String getSecurtityQuestion() {
-        return securtityQuestion;
+    public String getSecurityQuestion() {
+        return securityQuestion;
     }
 
     public void setUserName(String name) {
-        this.Usernamename = name;
+        this.username = name;
     }
 
     public String getUsername() {
-        return Usernamename;
+        return username;
     }
 
     public void setName(String name){
@@ -91,12 +79,12 @@ public class PersonalData {
         return password;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public void setEmail(String email) {
@@ -136,6 +124,7 @@ public class PersonalData {
     }
 
     public void addAppointment(Appointment appointment){
-        this.appointments.add(appointment);}
+        this.appointments.add(appointment);
+    }
 }
 

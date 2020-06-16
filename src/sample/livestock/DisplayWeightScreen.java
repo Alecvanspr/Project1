@@ -14,12 +14,12 @@ import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class DisplayWeightScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene weightScene;
     ScrollPane weightScroll = new ScrollPane();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     Pane weightPane = new Pane();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     int plaats = 100;
     int currentAnimal;
     int currentUser;

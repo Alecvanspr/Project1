@@ -5,7 +5,16 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 public class ButtonSettings {
-    public void onMouse(Button button) {
+    private static ButtonSettings instance;
+    private ButtonSettings(){
+    }
+    public static ButtonSettings getInstance(){
+        if(instance==null) {
+            instance=new ButtonSettings();
+        }
+        return instance;
+    }
+    public static void onMouse(Button button) {
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -23,7 +32,7 @@ public class ButtonSettings {
             }
         });
     }
-    public void setButtonLayout(Button button){
+    public static void setButtonLayout(Button button){
         button.setPrefHeight(150);
         button.setPrefWidth(150);
     }

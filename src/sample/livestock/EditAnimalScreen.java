@@ -18,7 +18,7 @@ import sample.inlogScreen.PersonalData;
 import static sample.ArrayKeeper.getCurrentUser;
 
 public class EditAnimalScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene editscene;
     private int currentAnimal;
     private int currentUser;
@@ -27,7 +27,7 @@ public class EditAnimalScreen extends Application {
 
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     EditAnimal editAnimal = new EditAnimal();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     TextField txtfname = new TextField("");
     TextField txtfAge = new TextField("");
     TextField txtfSpecies = new TextField("");

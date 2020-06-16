@@ -4,8 +4,6 @@ package sample;
 import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
 import sample.inlogScreen.PersonalData;
-import sample.livestock.Animal;
-import sample.livestock.Species;
 
 import java.util.ArrayList;
 
@@ -18,17 +16,17 @@ public class ArrayKeeper {
     public ArrayKeeper(){
     }
 
-    public void SignUpData(String name,String password,String birth, String security,String securityQ, Boolean isDoctor){
+    public void SignUpData(String name,String password,String birth, String security,String securityQ){
         PersonalData personalData = new PersonalData();
         personalData.setUserName(name);
         personalData.setPassword(password);
-        personalData.setBirthDate(birth);
-        personalData.setSecurtityQuestion(securityQ);
+        personalData.setDateOfBirth(birth);
+        personalData.setSecurityQuestion(securityQ);
         personalData.setSecurityAnswer(security);
-        personalData.setIsDocter(isDoctor);
         Data.add(personalData);
         currentUser++;
     }
+
     public void makeSpecialties(){
         Specialty diabetes = new Specialty("Diabetes");
         Specialty ears = new Specialty("Ears");
@@ -41,15 +39,19 @@ public class ArrayKeeper {
         addSpecialty(skin);
         addSpecialty(general);
     }
+
     public ArrayList<Specialty> getSpecialtiesArrayList(){
-        return this.specialtiesArrayList;
+        return specialtiesArrayList;
     }
+
     public void addSpecialty(Specialty specialty){
         specialtiesArrayList.add(specialty);
     }
-    public ArrayList<Doctor> getDoctorsArrayList(){
-        return this.doctorsArrayList;
+
+    public static ArrayList<Doctor> getDoctorsArrayList(){
+        return doctorsArrayList;
     }
+
     public void addDoctor(Doctor doctor){
         doctorsArrayList.add(doctor);
     }

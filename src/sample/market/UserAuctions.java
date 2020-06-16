@@ -18,9 +18,9 @@ public class UserAuctions extends Application{
     Scene userAuctions;
     MarketplaceScreen marketPlace = new MarketplaceScreen();
     ScrollPane scrollPane = new ScrollPane();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Pane userAuctionsPane = new Pane();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
 
     @Override
     public void start(Stage stage) throws Exception{

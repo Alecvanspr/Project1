@@ -18,8 +18,8 @@ public class EditAppointment extends Application {
     Scene EditAppointment;
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    ButtonSettings buttonSettings = new ButtonSettings();
-    GoToScreens goToScreens = new GoToScreens();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Appointment appointment;
     Pane pane = new Pane();
     ComboBox<String> appointmentComboBox = new ComboBox<>();
@@ -105,12 +105,15 @@ public class EditAppointment extends Application {
                 timeComboBox.getItems().clear();
                 getTimeTable();
             }else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Please select a correct date");
-                alert.setHeaderText("Date is not correct");
-                alert.show();
+                makeErrorNotCorrect();
             }
         });
+    }
+    public void makeErrorNotCorrect(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Please select a correct date");
+        alert.setHeaderText("Date is not correct");
+        alert.show();
     }
     public void getTimeTable(){
         if(getDoctor(doctorComboBox.getValue()).checkLocalDate(datePicker.getValue())){
@@ -151,6 +154,7 @@ public class EditAppointment extends Application {
         getDoctor(doctorComboBox.getValue()).getDate(datePicker.getValue()).addTimeToTimeTable(oldTime);
         getDoctor(doctorComboBox.getValue()).getDate(datePicker.getValue()).removeTimeFromTimeTable(newTime);
     }
+
     public void makeAppointmentButton(){
         appointmentButton.relocate(390, 110);
         appointmentButton.setOnAction(E->{

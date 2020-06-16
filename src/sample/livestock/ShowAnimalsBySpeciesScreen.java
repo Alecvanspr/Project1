@@ -18,10 +18,10 @@ import sample.inlogScreen.PersonalData;
 import sample.market.Auction;
 
 public class ShowAnimalsBySpeciesScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     ShowAnimalsBySpecies showAnimalsBySpecies = new ShowAnimalsBySpecies();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Scene scene;
     Pane pane = new Pane();
 
@@ -70,7 +70,8 @@ public class ShowAnimalsBySpeciesScreen extends Application {
             makeAuction.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    showAnimalsBySpecies.displayBidFields(stage,Integer.valueOf(textField.getText()), Double.valueOf(textField1.getText()),x);
+                    Object object[] = {Integer.valueOf(textField.getText()), Double.valueOf(textField1.getText()), x};
+                    showAnimalsBySpecies.displayBidFields(stage,object);
                 }
             });
         }

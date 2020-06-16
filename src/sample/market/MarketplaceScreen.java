@@ -16,10 +16,10 @@ import sample.Homescreen;
 import sample.livestock.Animal;
 
 public class MarketplaceScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene marktScene;
     Homescreen homescreen = new Homescreen();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Pane market = new Pane();
 
     Font CfontArial = new Font("Arial", 50);

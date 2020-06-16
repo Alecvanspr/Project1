@@ -18,7 +18,7 @@ public class IrregularVerbsScreen extends Application {
     PastWordReader pastWordReader = new PastWordReader();
     InfinitiveWordReader infinitiveWordReader = new InfinitiveWordReader();
     PastParticipleReader pastParticipleReader = new PastParticipleReader();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     int placementY = 100;
     @Override
     public void start(Stage stage) throws Exception {

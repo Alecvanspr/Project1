@@ -21,8 +21,8 @@ import sample.market.AuctionListScreen;
 
 public class Livestock extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    GoToScreens goToScreens = new GoToScreens();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    GoToScreens goToScreens = GoToScreens.getInstance();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene stockScene;
     private int placeName = 75;
     private int placeHealth = 75;

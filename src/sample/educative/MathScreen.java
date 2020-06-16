@@ -12,8 +12,8 @@ import sample.GoToScreens;
 
 public class MathScreen  extends Application {
     Pane pane = new Pane();
-    GoToScreens goToScreens = new GoToScreens();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    GoToScreens goToScreens = GoToScreens.getInstance();
+    ButtonSettings buttonSettings = ButtonSettings.getInstance();
     Scene scene;
 
     @Override

@@ -20,8 +20,8 @@ public class PastAppointments{
     public void fillPastAppointments(){
         LocalDate dateNow = LocalDate.now();
         for(int i = 0; i < getUserAppointments().size(); i++){
-            if(getUserAppointments().get(i).getAppointmentDate().getYear() >= dateNow.getYear()){
-                if(getUserAppointments().get(i).getAppointmentDate().getDayOfMonth() >= dateNow.getDayOfMonth() && getUserAppointments().get(i).getAppointmentDate().getMonth().getValue() >= dateNow.getMonth().getValue()){
+            if(getUserAppointments().get(i).getAppointmentDate().getYear() < dateNow.getYear()){
+                if(getUserAppointments().get(i).getAppointmentDate().getDayOfMonth() < dateNow.getDayOfMonth() && getUserAppointments().get(i).getAppointmentDate().getMonth().getValue() < dateNow.getMonth().getValue()){
                     pastAppointments.add(getUserAppointments().get(i));
                 }
             }

@@ -12,9 +12,9 @@ import sample.educative.read.ReadScreen;
 import sample.educative.writing.WriteMainScreen;
 
 public class EducativeHomeScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Pane pane = new Pane();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Scene scene;
     GetImage getImage = new GetImage();
     Button btnBack = new Button("Back");

@@ -9,8 +9,8 @@ import sample.livestock.Animal;
 
 public class AuctionList {
 
-    public Animal makeAnimal(String name, String gender, int age, String species, String race, double weight, String health){ //dit moet achteaf verwijderd worden
-        Animal animal = new Animal(name,gender,age,species,race,weight,health);
+    public Animal makeAnimal(Object makeAnimalData[]){
+        Animal animal = new Animal(makeAnimalData);
         return animal;
     }
     public double stringToDouble(String string){
@@ -25,11 +25,12 @@ public class AuctionList {
             return string;
         }
     }
-    public void makeBid(String bidAmount, Auction auction, Label label, Integer howMany, int x, TextField txtBidAmount){
-        Double amount = stringToDouble(checkIfDouble(bidAmount));
-        auction.makeBid(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getUsername(), amount,auction.getForSale());
-        label.setText(auction.getForSale().getSpecies() + "  -  " + howMany.toString() + "  -  " + Auction.getAuctionList().get(x).getHighestBid().getAmount());
-
+    //String bidAmount, Auction auction, Label label, Integer howMany, int x, TextField txtBidAmount
+    public void makeBid(Object bid[],Auction auction,Label label,TextField txtBidAmount){
+        Double amount = stringToDouble(checkIfDouble(bid[0].toString()));
+        Object object[] = {ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getUsername(), amount};
+        auction.makeBid(object,auction.getForSale());
+        label.setText(auction.getForSale().getSpecies() + "  -  " + bid[1].toString() + "  -  " + Auction.getAuctionList().get(Integer.parseInt(bid[2].toString())).getHighestBid().getAmount());
         txtBidAmount.setText("");
     }
     public void printLines(Pane auctionList){
@@ -46,9 +47,9 @@ public class AuctionList {
             bidAmount.relocate(250, 50 + (30 * i));
             auctionList.getChildren().add(bidAmount);
             Integer x = i;
-
             makeBid.setOnAction(E -> {
-                makeBid(bidAmount.getText(), auction, textField , howMany, x, bidAmount);
+                Object object[] = {bidAmount.getText(),howMany,x};
+                makeBid(object, auction, textField , bidAmount);
             });
         }
     }

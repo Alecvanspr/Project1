@@ -14,8 +14,8 @@ import sample.GoToScreens;
 public class ForgotPasswordScreen extends Application {
     Scene ForgotPassword;
     ForgotPassword forgotPassword = new ForgotPassword();
-    ButtonSettings buttonSettings = new ButtonSettings();
-    GoToScreens goToScreens = new GoToScreens();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Main main = new Main();
     public int changingUser;
     public Label lblError = new Label();
@@ -79,7 +79,8 @@ public class ForgotPasswordScreen extends Application {
         ChangePassword.relocate(100,335);
         pane.getChildren().add(ChangePassword);
         ChangePassword.setOnAction(e->{
-            changePassword(security.getText(),txtPassword.getText(),txtPasswordConfirm.getText(),stage);
+            Object object[] = {security.getText(),txtPassword.getText(),txtPasswordConfirm.getText()};
+            changePassword(object,stage);
         });
     }
     public void makeBtnBack(Stage stage){
@@ -92,12 +93,13 @@ public class ForgotPasswordScreen extends Application {
         pane.getChildren().add(btnBack);
     }
     public void setSecurityQuestion(Label label){
-        label.setText(main.arraykeeper.getData().get(changingUser).getSecurtityQuestion());
+        label.setText(main.arraykeeper.getData().get(changingUser).getSecurityQuestion());
     }
-    public void changePassword(String secutiry,String password,String passwordcheck,Stage stage){
-        if(secutiry.equalsIgnoreCase(main.arraykeeper.getData().get(changingUser).getSecurityAnswer())) {
-            if (password.equals(passwordcheck)) {
-                main.arraykeeper.changePassword(changingUser, password);
+    //String secutiry,String password,String passwordcheck
+    public void changePassword(Object object[], Stage stage){
+        if(object[0].toString().equalsIgnoreCase(main.arraykeeper.getData().get(changingUser).getSecurityAnswer())) {
+            if (object[1].toString().equals(object[2].toString())) {
+                main.arraykeeper.changePassword(changingUser, object[1].toString());
                 goToScreens.goMain(stage);
             } else {
                 lblError.setText("Passwords do not match");

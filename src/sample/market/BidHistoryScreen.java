@@ -13,11 +13,11 @@ import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class BidHistoryScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene bidHistory;
     BidHistory userBids = new BidHistory();
     AuctionListScreen auctionListScreen = new AuctionListScreen();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Pane bidHistoryPane = new Pane();
 
     @Override

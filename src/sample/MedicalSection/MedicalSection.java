@@ -29,13 +29,14 @@ public class MedicalSection extends Application {
     Button makeAppointmentbtn = new Button("Make appointment");
     Button yourAppointmentbtn = new Button("Your appointments");
     Button pastAppointmentsbtn = new Button("Your past appointments");
+    Button viewPatients = new Button("View your patients");
 
     @Override
     public void start(Stage stage) throws Exception{
         makeButtons(stage);
         makeLabels();
 
-        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, pastAppointmentsbtn);
+        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, contactInformationbtn);
         fin(stage);
 
     }
@@ -84,8 +85,14 @@ public class MedicalSection extends Application {
     }
 
     public void setButtonScaleChange(Button button, Double scale){
-        button.setScaleX(scale);
-        button.setScaleY(scale);
+        button.setOnMouseEntered(E -> {
+            button.setScaleX(scale);
+            button.setScaleY(scale);
+        });
+        button.setOnMouseExited(E -> {
+            button.setScaleX(1);
+            button.setScaleY(1);
+        });
     }
 
     public void setButtonLayout(Button button){
@@ -117,5 +124,11 @@ public class MedicalSection extends Application {
         stage.setTitle("Medical Section");
         stage.setScene(MedicalSection);
         stage.show();
+    }
+
+    public void setViewPatientsVisible(){
+        if(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()) instanceof Doctor){
+            viewPatients.setVisible(true);
+        }
     }
 }

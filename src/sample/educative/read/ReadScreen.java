@@ -11,7 +11,7 @@ import sample.educative.GoToEducative;
 
 public class ReadScreen  extends Application {
     Pane pane = new Pane();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     GoToEducative goToEducative = new GoToEducative();
     Scene scene;
 
@@ -29,8 +29,17 @@ public class ReadScreen  extends Application {
     public void makeButtons(Stage stage){
         makeBtnGrammar(stage);
         makeBtnBack(stage);
-        makeBtnHangman(stage);
+        makeBtnStories(stage);
     }
+    public void makeBtnStories(Stage stage){
+        Button btnStories = new Button("Stories");
+        btnStories.relocate(300,200);
+        btnStories.setOnAction(e->{
+            goToScreens.goStoryScreen(stage);
+        });
+        pane.getChildren().add(btnStories);
+    }
+
     public void makeBtnGrammar(Stage stage){
         Button btnGrammar = new Button("grammar");
         btnGrammar.setOnAction(e->{
@@ -46,14 +55,5 @@ public class ReadScreen  extends Application {
             goToScreens.goEducativeScreen(stage);
         });
         pane.getChildren().add(btnBack);
-    }
-    public void makeBtnHangman(Stage stage){
-        Button btnHangman = new Button("Hangman");
-        btnHangman.relocate(200,350);
-        btnHangman.setOnAction(e->{
-            goToScreens.goHangmanScreen(stage);
-        });
-
-        pane.getChildren().addAll(btnHangman);
     }
 }

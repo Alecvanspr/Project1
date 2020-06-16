@@ -13,16 +13,16 @@ import sample.ArrayKeeper;
 import sample.ButtonSettings;
 import sample.GoToScreens;
 
-public class AddHeathCheckScreen extends Application {
-    ButtonSettings buttonSettings = new ButtonSettings();
+public class AddHealthCheckScreen extends Application {
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Scene healthScene;
     Pane healthPane = new Pane();
     private int currentAnimal;
     TextField txtHealthSituation = new TextField();
 
-    public AddHeathCheckScreen(int currentAnimal){
+    public AddHealthCheckScreen(int currentAnimal){
         this.currentAnimal = currentAnimal;
     }
 

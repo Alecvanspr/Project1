@@ -36,7 +36,7 @@ public class EditSetings {
         if (CheckFilled(birthday)) {
             PersonalData personalData = new PersonalData();
             personalData = ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser());
-            personalData.setBirthDate(birthday);
+            personalData.setDateOfBirth(birthday);
             ArrayKeeper.getData().set(getCurrentUser(), personalData);
         }
     }

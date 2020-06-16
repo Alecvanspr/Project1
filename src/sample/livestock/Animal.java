@@ -4,7 +4,7 @@ import sample.inlogScreen.PersonalData;
 
 import java.util.ArrayList;
 
-public class Animal {
+public class  Animal {
     public static Long number = 0L;
     //This number is animalnr, but this is the counter.
     private Integer animalnr;
@@ -18,16 +18,16 @@ public class Animal {
     public ArrayList<String> health = new ArrayList<>();
     public ArrayList<String> dateHealth = new ArrayList<>();
     public ArrayList<String> dateWeight = new ArrayList<>();
-
-    public Animal(String name,String gender, Integer age,  String species, String race, Double weight,String Health){
+    //String name,String gender, Integer age,  String species, String race, Double weight,String Health
+    public Animal(Object animalData[]){
         this.animalnr = getUniqueNumber();
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-        this.species = species;
-        this.race = race;
-        this.weight.add(weight);
-        this.health.add(Health);
+        this.name = animalData[0].toString();
+        this.gender = animalData[1].toString();
+        this.age = Integer.parseInt(animalData[2].toString());
+        this.species = animalData[3].toString();
+        this.race = animalData[4].toString();
+        this.weight.add(Double.parseDouble(animalData[5].toString()));
+        this.health.add(animalData[6].toString());
         this.dateWeight.add(""+java.time.LocalDate.now());
         this.dateHealth.add(""+java.time.LocalDate.now());
         makeSpecies(species);

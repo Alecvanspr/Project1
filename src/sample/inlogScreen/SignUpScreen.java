@@ -1,23 +1,20 @@
 package sample.inlogScreen;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ButtonSettings;
 import sample.GoToScreens;
 
 public class SignUpScreen extends Application {
-    Scene SignUpp;
+    Scene SignUp;
     Main main = new Main();
-    ButtonSettings buttonSettings = new ButtonSettings();
-    GoToScreens goToScreens = new GoToScreens();
+    ButtonSettings buttonSettings =ButtonSettings.getInstance();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Pane pane = new Pane();
-    CheckBox docterCheck = new CheckBox("Docter?");
-    TextField docterName = new TextField("What is your name");
+    TextField doctorName = new TextField("What is your name");
     Label ErrorMessage = new Label("");
     ComboBox securityQuestions = new ComboBox();
     TextField textFieldUserName = new TextField();
@@ -25,21 +22,22 @@ public class SignUpScreen extends Application {
     PasswordField passwordFieldConf = new PasswordField();
     TextField textFieldBirth = new TextField();
     TextField securityAnswer = new TextField();
-    Boolean isDoctor;
-
 
     public void start(Stage stage) throws Exception{
         makeTextFields();
         makeLabels();
         makeButtons(stage);
         fin(stage);
+        doctorName.relocate(200, 300);
     }
+
     public void fin(Stage stage){
-        SignUpp = new Scene(pane, 800,600);
+        SignUp = new Scene(pane, 800,600);
         stage.setTitle("Sign up");
-        stage.setScene(SignUpp);
+        stage.setScene(SignUp);
         stage.show();
     }
+
     public void makeTextFields(){
         pane.getChildren().addAll(textFieldUserName, passwordField, passwordFieldConf,textFieldBirth,
                 securityQuestions, securityAnswer);
@@ -50,52 +48,63 @@ public class SignUpScreen extends Application {
         securityQuestions.relocate(100,250);
         securityAnswer.relocate(100, 278);
     }
+
     public void makeLabels(){
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         Label lblPassWordConf = new Label("Confirm password");
-        Label lblBirthdate = new Label("Birth date");
+        Label lblDateOfBirth = new Label("Date of birth");
         Label lblSecurity = new Label("Security question in case you forget your password");
-        securityQuestions.getItems().addAll("What is your favorite colour?","What was the name of your first pet?","What was your first city of residence?");
+        securityQuestions.getItems().addAll("What is your favorite color?","What was the name of your first pet?","What was your first city of residence?");
         lblUserName.relocate(100,50);
         lblSecurity.relocate(100,230);
         lblPassWord.relocate(100,95);
-        lblBirthdate.relocate(100,185);
+        lblDateOfBirth.relocate(100,185);
         lblPassWordConf.relocate(100, 140);
         ErrorMessage.relocate(100,265);
-        pane.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf,lblBirthdate,lblSecurity,docterCheck,docterName,ErrorMessage);
+        pane.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf,lblDateOfBirth,lblSecurity, doctorName,ErrorMessage);
     }
+
     public void makeButtons(Stage stage){
         makeBtnRegister(stage);
         makeBtnBack(stage);
+        makeBtnSignUpAsDoctor(stage);
     }
+
     public void makeBtnBack(Stage stage){
         Button btnBack = new Button("Back");
         btnBack.relocate(0, 570);
-
         btnBack.setOnAction(e -> { //dit wordt zo een OK knop.
             goToScreens.goMain(stage);
         });
         buttonSettings.onMouse(btnBack);
         pane.getChildren().add(btnBack);
     }
+
+    public void makeBtnSignUpAsDoctor(Stage stage){
+        Button btnSignUpAsDoctor = new Button("Sign up as doctor");
+        btnSignUpAsDoctor.setOnAction(E -> {
+            goToScreens.goSignUpDoctorScreen(stage);
+        });
+        pane.getChildren().add(btnSignUpAsDoctor);
+    }
+
     public void makeBtnRegister(Stage stage){
         Button btnRegister = new Button("Register");
         btnRegister.setOnAction(e->{
-            register(stage,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
-                    textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getSelectionModel().getSelectedItem().toString(),docterCheck.isSelected());
+            signUp(stage,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
+                    textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getValue().toString());
         });
         buttonSettings.onMouse(btnRegister);
         btnRegister.relocate(100,320);
         pane.getChildren().add(btnRegister);
     }
 
-    //deze laat ik er in omdat het een javaFX class is.
-    public void register(Stage stage,String password,String PasswordConfig, String username,String birthday,String securityAnswer,String securityQuestions,boolean toDocter){
+    public void signUp(Stage stage, String password, String PasswordConfig, String username, String birthday, String securityAnswer, String securityQuestions){
         if((!(password.equals("")))&&(!(username.equals("")))){
             if(password.equals(PasswordConfig)) {
-                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions, toDocter);
-                toDocter(toDocter,stage);
+                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions);
+                goToScreens.goMain(stage);
             }else {
                 ErrorMessage.setText("Passwords don't match");
             }
@@ -103,10 +112,11 @@ public class SignUpScreen extends Application {
             ErrorMessage.setText("Fields are empty");
         }
     }
-    public void toDocter(boolean isDocter,Stage stage){
-        if(isDocter) {
+    public void toDoctor(boolean isDoctor, Stage stage){
+        if(isDoctor){
             goToScreens.goSignUpDoctorScreen(stage);
-        }else{
+        }
+        else{
             goToScreens.goMain(stage);
         }
     }
