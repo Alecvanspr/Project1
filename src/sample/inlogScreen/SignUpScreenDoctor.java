@@ -17,7 +17,7 @@ import sample.MedicalSection.Specialty;
 import java.util.ArrayList;
 
 public class SignUpScreenDoctor extends Application {
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Scene SignUpScreenDoctor;
     Main main;
     ArrayKeeper arraykeeper = new ArrayKeeper();

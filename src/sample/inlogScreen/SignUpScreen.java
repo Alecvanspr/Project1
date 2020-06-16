@@ -12,7 +12,7 @@ public class SignUpScreen extends Application {
     Scene SignUp;
     Main main = new Main();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Pane pane = new Pane();
     TextField doctorName = new TextField("What is your name");
     Label ErrorMessage = new Label("");

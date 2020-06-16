@@ -21,7 +21,7 @@ public class Main extends Application {
     public ArrayKeeper arraykeeper = new ArrayKeeper();
     MainMethods mainMethods = new MainMethods();
     Homescreen home = new Homescreen();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Stage window;
     public Pane login = new Pane();
     final Pane pane = new Pane();

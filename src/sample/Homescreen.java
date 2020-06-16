@@ -19,7 +19,7 @@ import sample.profileSettings.ProfileSettingsScreen;
 
 public class Homescreen extends Application {
     //ButtonSettings buttonSettings = new ButtonSettings();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Scene homeScene;
     Main main;
     ArrayKeeper arrayKeeper;

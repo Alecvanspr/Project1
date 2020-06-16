@@ -15,7 +15,7 @@ public class ForgotPasswordScreen extends Application {
     Scene ForgotPassword;
     ForgotPassword forgotPassword = new ForgotPassword();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Main main = new Main();
     public int changingUser;
     public Label lblError = new Label();

@@ -16,7 +16,7 @@ import sample.educative.GoToEducative;
 import sample.educative.writing.WriteMainScreen;
 
 public class WriteNumbersScreen extends Application {
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     GoToEducative goToEducative = new GoToEducative();
     private int number = 0;
     Pane pane = new Pane();

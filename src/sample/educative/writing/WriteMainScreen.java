@@ -13,7 +13,7 @@ import sample.educative.GoToEducative;
 
 public class WriteMainScreen extends Application {
     Pane pane = new Pane();
-    GoToScreens goToScreens = new GoToScreens();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     GoToEducative goToEducative = new GoToEducative();
     Scene scene = new Scene(pane,800,600);
     Image imgbtnAnimals = new Image("images/buttons/btnGuessAnimals.png");
