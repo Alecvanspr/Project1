@@ -11,6 +11,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.ButtonSettings;
+import sample.Checks;
 import sample.GoToScreens;
 import sample.inlogScreen.Main;
 import sample.MedicalSection.Specialty;
@@ -28,8 +29,8 @@ public class  MakeAppointment extends Application {
     LocalDate date;
     String chosenDoctor;
     Pane pane = new Pane();
-    GoToScreens goToScreens = new GoToScreens();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    GoToScreens goToScreens = GoToScreens.getInstance();
+    ButtonSettings buttonSettings = ButtonSettings.getInstance();
     private int labelNumber = 0;
 
     Button exitButton = new Button("Back");

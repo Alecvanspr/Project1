@@ -363,4 +363,13 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
+
+    public void goShowPastAppointments(Stage stage){
+        ShowPastAppointments showPastAppointments = new ShowPastAppointments();
+        try{
+            showPastAppointments.start(stage);
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }
