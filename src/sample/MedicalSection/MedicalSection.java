@@ -22,75 +22,59 @@ public class MedicalSection extends Application {
     ArrayKeeper arrayKeeper;
     int buttonNumber = 0;
     Pane pane = new Pane();
-    GoToScreens goToScreens = new GoToScreens();
-    ButtonSettings buttonSettings =ButtonSettings.getInstance();
+    GoToScreens goToScreens = GoToScreens.getInstance();
+    ButtonSettings buttonSettings = ButtonSettings.getInstance();
     Label welcome = new Label("Welcome to the medical section");
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");
     Button yourAppointmentbtn = new Button("Your appointments");
-    Button contactInformationbtn = new Button("Click here to contact us");
+    Button pastAppointmentsbtn = new Button("Your past appointments");
     Button viewPatients = new Button("View your patients");
 
     @Override
     public void start(Stage stage) throws Exception{
         makeButtons(stage);
         makeLabels();
-        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, contactInformationbtn, viewPatients);
+
+        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, pastAppointmentsbtn);
         fin(stage);
-    }
-
-    public void makeContactInformationButton(Stage stage){
-        makeMenuButton(contactInformationbtn);
 
     }
-
+    public void makePastAppointmentsButton(Stage stage){
+        makeMenuButton(pastAppointmentsbtn);
+        pastAppointmentsbtn.setOnAction(E-> {
+            goToScreens.goShowPastAppointments(stage);
+        });
+    }
     public void makeYourAppointmentButton(Stage stage){
         makeMenuButton(yourAppointmentbtn);
         yourAppointmentbtn.setOnMouseClicked(E -> {
             goToScreens.goAppointmentsScreen(stage);
         });
     }
-
     public void makeButtons(Stage stage){
         makeBackButton(stage);
         makeAppointmentButton(stage);
         makeYourAppointmentButton(stage);
-        makeContactInformationButton(stage);
-        makeViewPatientsButton(stage);
+        makePastAppointmentsButton(stage);
     }
-
-    private void makeViewPatientsButton(Stage stage) {
-        viewPatients.setVisible(false);
-        setButtonPosition(viewPatients, 4);
-        setButtonLayout(viewPatients);
-        setButtonScaleChange(viewPatients, 1.2);
-        viewPatients.setOnAction(E -> {
-            goToScreens.goViewPatientsScreen(stage);
-        });
-        setViewPatientsVisible();
-    }
-
     public void makeBackButton(Stage stage){
         btnBack.relocate(10,565);
         buttonSettings.onMouse(btnBack);
         btnBack.setOnAction(E->{
             goToScreens.goHomeScreen(stage);
         });
-        setButtonScaleChange(btnBack, 1.2);
     }
-
     public void makeAppointmentButton(Stage stage){
         makeMenuButton(makeAppointmentbtn);
         makeAppointmentbtn.setOnAction(E-> {
             goToScreens.goMakeAppointment(stage);
         });
-        setButtonScaleChange(makeAppointmentbtn, 1.2);
     }
 
     public void makeLabels(){
         makeStartLabel();
     }
-
     public void makeStartLabel(){
         welcome.setFont(Font.font("Arial", 30));
         welcome.relocate(225, 100);
@@ -98,7 +82,6 @@ public class MedicalSection extends Application {
     public void makeMenuButton(Button button){
         setButtonPosition(button, buttonNumber);
         setButtonLayout(button);
-        setButtonScaleChange(button, 1.2);
     }
 
     public void setButtonScaleChange(Button button, Double scale){
@@ -136,7 +119,6 @@ public class MedicalSection extends Application {
     public void buttonNumber(){
         buttonNumber++;
     }
-
     public void fin(Stage stage){
         MedicalSection = new Scene(pane,800,600);
         stage.setTitle("Medical Section");

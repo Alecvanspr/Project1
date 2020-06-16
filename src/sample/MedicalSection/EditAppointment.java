@@ -18,8 +18,8 @@ public class EditAppointment extends Application {
     Scene EditAppointment;
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    ButtonSettings buttonSettings =ButtonSettings.getInstance();
-    GoToScreens goToScreens = new GoToScreens();
+    ButtonSettings buttonSettings = ButtonSettings.getInstance();
+    GoToScreens goToScreens = GoToScreens.getInstance();
     Appointment appointment;
     Pane pane = new Pane();
     ComboBox<String> appointmentComboBox = new ComboBox<>();
@@ -95,7 +95,9 @@ public class EditAppointment extends Application {
     public void makeExitButton(Stage stage){
         exitButton.relocate(10, 565);
         buttonSettings.onMouse(exitButton);
-        goToScreens.goAppointmentsScreen(stage);
+        exitButton.setOnAction(E-> {
+            goToScreens.goAppointmentsScreen(stage);
+        });
     }
     public void makeDateButton(){
         dateButton.relocate(450,260);

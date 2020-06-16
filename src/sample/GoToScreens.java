@@ -18,6 +18,16 @@ import sample.profileSettings.EditSettingsScreen;
 import sample.profileSettings.ProfileSettingsScreen;
 
 public class GoToScreens {
+    private static GoToScreens instance;
+    private GoToScreens(){
+
+    }
+    public static GoToScreens getInstance() {
+        if(instance == null){
+            instance = new GoToScreens();
+        }
+        return instance;
+    }
 
     public void goProfileSettingScreen(Stage stage){
         ProfileSettingsScreen profileSettingsScreen = new ProfileSettingsScreen();
@@ -350,6 +360,24 @@ public class GoToScreens {
             storyScreen.start(stage);
         }
         catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void goShowPastAppointments(Stage stage){
+        ShowPastAppointments showPastAppointments = new ShowPastAppointments();
+        try{
+            showPastAppointments.start(stage);
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void goCancelAppointments(Stage stage){
+        CancelAppointment cancelAppointment = new CancelAppointment();
+        try{
+            cancelAppointment.start(stage);
+        } catch(Exception ex){
             ex.printStackTrace();
         }
     }

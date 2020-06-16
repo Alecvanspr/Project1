@@ -13,8 +13,8 @@ public class Doctor extends PersonalData {
     private ArrayList<PersonalData> patients = new ArrayList<>();
 //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
     public Doctor(String[] personalData, ArrayList<Specialty> specialties){
-        super(personalData[0], personalData[1], personalData[2], personalData[3], personalData[4],personalData[5]); //todo deze is fout
-        this.specialties = specialties;
+        super(personalData[0], personalData[1], personalData[2], personalData[3], personalData[4],personalData[5]);
+        this.specialties = specialties;     //todo hier moet nog de naam van de dokter komen. dus: dr. Mario
         arraykeeper.addDoctor(this);
     }
 
@@ -52,9 +52,9 @@ public class Doctor extends PersonalData {
         if (checkSpecialty(specialty)) {
             this.specialties.add(specialty);
         }else{
-            Alert doctorAlreadyHasSpecialt = new Alert(Alert.AlertType.ERROR);
-            doctorAlreadyHasSpecialt.setContentText("This Doctor already has this specialty");
-            doctorAlreadyHasSpecialt.show();
+            Alert doctorAlreadyHasSpecialty = new Alert(Alert.AlertType.ERROR);
+            doctorAlreadyHasSpecialty.setContentText("This Doctor already has this specialty");
+            doctorAlreadyHasSpecialty.show();
         }
     }
 
