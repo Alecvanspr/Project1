@@ -15,8 +15,7 @@ public class WordReader {
                 BufferedReader bf = new BufferedReader(new InputStreamReader(in))){
                     String line = "";
                     while((line = bf.readLine()) != null)
-                        words.add(line);
-                }
+                        words.add(line);                }
         catch(Exception e){
             System.out.println("Couldn't find/read file: "+filename);
             System.out.println("Error message: "+e.getMessage());
