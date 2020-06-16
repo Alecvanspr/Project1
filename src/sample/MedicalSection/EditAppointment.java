@@ -18,7 +18,7 @@ public class EditAppointment extends Application {
     Scene EditAppointment;
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    ButtonSettings buttonSettings =ButtonSettings.getInstance();
+    ButtonSettings buttonSettings = ButtonSettings.getInstance();
     GoToScreens goToScreens = GoToScreens.getInstance();
     Appointment appointment;
     Pane pane = new Pane();

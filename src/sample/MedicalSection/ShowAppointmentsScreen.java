@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import sample.ArrayKeeper;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -22,19 +23,28 @@ public class ShowAppointmentsScreen extends Application {
     Main main;
     ArrayKeeper arrayKeeper;
     Button editAppointment = new Button("Edit appointment");
-    Button buttonBack = new Button("Go back");
+    Button buttonBack = new Button("Back");
     Button deleteAppointment = new Button("Cancel appointment");
+
+    Label title = new Label("Your appointments");
     Pane pane = new Pane();
 
 
     @Override
     public void start(Stage stage) throws  Exception{
         makeButton(stage);
-        makeAppointmentLabels();
-        pane.getChildren().addAll(buttonBack, editAppointment, deleteAppointment);
+        makeLabels();
+        pane.getChildren().addAll(buttonBack, editAppointment, deleteAppointment,title);
         fin(stage);
     }
-
+    public void makeLabels(){
+        makeAppointmentLabels();
+        makeTitleLabel();
+    }
+    public void makeTitleLabel(){
+        title.relocate(100, 50);
+        title.setFont(Font.font("Arial", 30));
+    }
     public void makeAppointmentLabels(){
         for(int i =0; i < getFutureAppointments().size(); i++){
             Label appointmentLabel = new Label("On " + getFutureAppointments().get(i).getAppointmentDate().toString() + " you have an appointment with " + getFutureAppointments().get(i).getDoctor().getName() +".");
@@ -51,11 +61,12 @@ public class ShowAppointmentsScreen extends Application {
         makeCancelButton(stage);
     }
     public void makeCancelButton(Stage stage){
-        deleteAppointment.relocate(500, 200);
-        deleteAppointment.setPrefWidth(100);
+        deleteAppointment.relocate(500, 250);
+        deleteAppointment.setPrefWidth(125);
+        deleteAppointment.setPrefHeight(100);
         buttonSettings.onMouse(deleteAppointment);
         deleteAppointment.setOnAction(E-> {
-            goToScreens.goCancelAppointment(stage);
+            goToScreens.goCancelAppointments(stage);
         });
     }
     public void makeExitButton(Stage stage){
@@ -69,7 +80,8 @@ public class ShowAppointmentsScreen extends Application {
     public void makeBtnEditAppointment(Stage stage){
         editAppointment.relocate(500, 100);
         buttonSettings.onMouse(editAppointment);
-        editAppointment.setPrefWidth(100);
+        editAppointment.setPrefWidth(125);
+        editAppointment.setPrefHeight(100);
         editAppointment.setOnAction(E-> {
             goToScreens.goEditAppointment(stage);
         });

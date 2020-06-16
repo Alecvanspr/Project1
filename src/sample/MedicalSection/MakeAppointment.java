@@ -43,6 +43,7 @@ public class  MakeAppointment extends Application {
     Label doctorLabel = new Label("Doctor: ");
     Label dateLabel = new Label("Date: ");
     Label timeLabel = new Label("Time: ");
+    Label title = new Label("Make Appointment");
 
     ComboBox timeBox = new ComboBox();
     ComboBox specialtyBox = new ComboBox();
@@ -59,12 +60,12 @@ public class  MakeAppointment extends Application {
         makeDatePicker();
         makeLabels();
         makeComboBoxes();
-        pane.getChildren().addAll(specialtyLabel, doctorLabel, dateLabel, timeLabel, exitButton, specialtyBox, selectSpecialty, selectDoctor, doctorBox, datePicker, selectDate,timeBox, makeAppointment);
+        pane.getChildren().addAll(title, specialtyLabel, doctorLabel, dateLabel, timeLabel, exitButton, specialtyBox, selectSpecialty, selectDoctor, doctorBox, datePicker, selectDate,timeBox, makeAppointment);
         fin(stage);
 
     }
     public void makeAppointmentButton(Stage stage) {
-        makeAppointment.relocate(400, 300);
+        makeAppointment.relocate(325, 300);
         makeAppointment.setOnMouseClicked(E -> {
             if(timeBox.getValue() != null){
                 if(Checks.checkIfTimeAvailable((String) timeBox.getValue())) {
@@ -146,7 +147,7 @@ public class  MakeAppointment extends Application {
         makeAppointmentButton(stage);
     }
     public void makeDateButton(){
-        selectDate.relocate(450, 260);
+        selectDate.relocate(425, 260);
         selectDate.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -189,7 +190,7 @@ public class  MakeAppointment extends Application {
         dateNotCorrect.show();
     }
     public void makeDoctorButton(){
-        selectDoctor.relocate(350 , 210);
+        selectDoctor.relocate(330 , 210);
         selectDoctor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -224,14 +225,19 @@ public class  MakeAppointment extends Application {
     public void makeDoctorLabel(){
         setLabel(doctorLabel);
     }
+    public void makeTitleLabel(){
+        title.relocate(100, 50);
+        title.setFont(Font.font("Arial", 30));
+    }
     public void makeSpecialtyLabel(){
         setLabel(specialtyLabel);
     }
     public void makeLabels(){
         makeSpecialtyLabel();
+        makeTitleLabel();
         makeDoctorLabel();
-        makeTimeLabel();
         makeDateLabel();
+        makeTimeLabel();
     }
 
     public void makeExitButton(Stage stage){

@@ -19,8 +19,8 @@ public class ShowPastAppointments extends Application{
     Scene showPastAppointments;
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    GoToScreens goToScreens = new GoToScreens();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    GoToScreens goToScreens = GoToScreens.getInstance();
+    ButtonSettings buttonSettings = ButtonSettings.getInstance();
     Button exitButton = new Button("Back");
     ArrayList<Appointment> appointments = makeAppointmentArrayList();
     @Override
@@ -44,19 +44,10 @@ public class ShowPastAppointments extends Application{
             Label label = makeAppointmentLabel(appointments.get(i));
             int x = 100 + (50*i);
             label.relocate(100, x);
-            makeButtonWithLabel(100, x, appointments.get(i));
             pane.getChildren().add(label);
         }
     }
-    public void makeButtonWithLabel(int y, int x, Appointment appointment){
-        Button button = new Button("See notes");
-        button.relocate(y, x);
-        buttonSettings.onMouse(button);
-        button.setOnAction(E -> {
-            //todo hier nieuwe screens maken voor de aantekeningen
-        });
-        pane.getChildren().add(button);
-    }
+
     public Boolean checkIfAppointmentIsInPast(Appointment appointment){
         LocalDate date = appointment.getAppointmentDate();
         LocalDate dateNow = LocalDate.now();

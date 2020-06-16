@@ -36,7 +36,7 @@ public class MedicalSection extends Application {
         makeButtons(stage);
         makeLabels();
 
-        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn);
+        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, pastAppointmentsbtn);
         fin(stage);
 
     }

@@ -24,7 +24,7 @@ public class GoToScreens {
     }
     public static GoToScreens getInstance() {
         if(instance == null){
-            GoToScreens goToScreens = new GoToScreens();
+            instance = new GoToScreens();
         }
         return instance;
     }
@@ -368,6 +368,15 @@ public class GoToScreens {
         ShowPastAppointments showPastAppointments = new ShowPastAppointments();
         try{
             showPastAppointments.start(stage);
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void goCancelAppointments(Stage stage){
+        CancelAppointment cancelAppointment = new CancelAppointment();
+        try{
+            cancelAppointment.start(stage);
         } catch(Exception ex){
             ex.printStackTrace();
         }
