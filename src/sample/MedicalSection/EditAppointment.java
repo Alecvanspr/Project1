@@ -39,7 +39,6 @@ public class EditAppointment extends Application {
     Label dateLabel = new Label("Date: ");
     Label timeLabel = new Label("Time: ");
     DatePicker datePicker = new DatePicker();
-
     public void start(Stage stage) throws Exception{
         makeComboBoxes();
         makeDatePicker();

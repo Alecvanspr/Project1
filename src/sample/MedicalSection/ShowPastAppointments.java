@@ -53,7 +53,7 @@ public class ShowPastAppointments extends Application{
         button.relocate(y, x);
         buttonSettings.onMouse(button);
         button.setOnAction(E -> {
-
+            //todo hier nieuwe screens maken voor de aantekeningen
         });
         pane.getChildren().add(button);
     }

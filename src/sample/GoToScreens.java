@@ -315,4 +315,12 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
+    public void goCancelAppointment(Stage stage){
+        CancelAppointment cancelAppointment = new CancelAppointment();
+        try {
+            cancelAppointment.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }
