@@ -15,9 +15,7 @@ import sample.educative.read.GrammarScreen;
 public class IrregularVerbsScreen extends Application {
     GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
-    PastWordReader pastWordReader = new PastWordReader();
-    InfinitiveWordReader infinitiveWordReader = new InfinitiveWordReader();
-    PastParticipleReader pastParticipleReader = new PastParticipleReader();
+    TextReader textReader = new TextReader();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     int placementY = 100;
     @Override

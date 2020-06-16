@@ -10,16 +10,13 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ButtonSettings;
 import sample.educative.GoToEducative;
-import sample.educative.read.GrammarScreen;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class PracticeScreen extends Application {
     GoToEducative goToEducative = new GoToEducative();
-    InfinitiveWordReader infinitiveWordReader = new InfinitiveWordReader();
-    PastParticipleReader pastParticipleReader = new PastParticipleReader();
-    PastWordReader pastWordReader = new PastWordReader();
+    MakeArrayListsText makeArrayListsText = MakeArrayListsText.getInstance();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
 
     Pane pane = new Pane();
@@ -52,6 +49,7 @@ public class PracticeScreen extends Application {
         buttonSettings.onMouse(btnBack);
         pane.getChildren().add(btnBack);
     }
+
     public void makeLabels(){
         Label lblInfinitive = new Label("Infinitive");
         Label lblPastTense = new Label("Past");
@@ -102,32 +100,32 @@ public class PracticeScreen extends Application {
 public void newSentence(){
     lblWrong.setText("");
     Random random = new Random();
-    currendWord = random.nextInt(infinitiveWordReader.getWords().size()-1);
+    currendWord = random.nextInt(infinitiveWord.size()-1);
     setSentenceLabel(currendWord,random.nextInt(2));
-    btnInfinitive.setText(infinitiveWordReader.getWords().get(currendWord));
-    btnPastTense.setText(pastWordReader.getWords().get(currendWord));
-    btnPastParticle.setText(pastParticipleReader.getWords().get(currendWord));
+    btnInfinitive.setText(infinitiveWord.get(currendWord));
+    btnPastTense.setText(pastWord.get(currendWord));
+    btnPastParticle.setText(pastPrincaple.get(currendWord));
 }
 public void setSentenceLabel(int word,int wordType){
         String sentence;
         answer = wordType;
     if(wordType==0){
-        sentence = infinitiveWordReader.getSentences().get(word);
+        sentence = infinitiveSentense.get(word);
     }else if(wordType==1){
-        sentence= pastWordReader.getSentences().get(word);
+        sentence= pastSentence.get(word);
     }else{
-        sentence = pastParticipleReader.getSentences().get(word);
+        sentence = pastPrincapleSentence.get(word);
     }
     lblSentence.setText(sentence);
 }
 
 public void checkButtonClick(Button clicked){
         if(answer==0){
-            setButtonColor(clicked,infinitiveWordReader.getWords().get(currendWord));
+            setButtonColor(clicked,infinitiveWord.get(currendWord));
         }else if(answer == 1){
-            setButtonColor(clicked,pastWordReader.getWords().get(currendWord));
+            setButtonColor(clicked,pastWord.get(currendWord));
         }else{
-            setButtonColor(clicked,pastParticipleReader.getWords().get(currendWord));
+            setButtonColor(clicked, pastPrincaple.get(currendWord));
         }
 }
 public void setButtonColor(Button clicked, String correctAnswer){
