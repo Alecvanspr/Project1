@@ -21,13 +21,19 @@ import javafx.stage.Stage;
 import sample.GoToScreens;
 import sample.educative.read.WordReader;
 import sample.educative.read.hangman.GalgIMG;
+import sample.educative.read.tenseScreens.IrregularWords.TextReader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class HangmanScreen extends Application {
+    ArrayList<String> words;
     private GalgIMG galgIMG = new GalgIMG();
+
     StackPane pane = new StackPane();
     GoToScreens goToScreens = GoToScreens.getInstance();
+    TextReader textReader = new TextReader();
     Button btnBack = new Button("back");
     Button btnAgain = new Button("New Word");
     Text dash = new Text("-");
@@ -37,9 +43,10 @@ public class HangmanScreen extends Application {
     HBox rowHangman = new HBox(10,btnAgain,textScore,galgIMG);
     VBox vBox = new VBox(10);
     HBox rowLetters = new HBox();
-
     Scene scene;
-
+    public void makeArrayList(){
+        words =textReader.TextReader("/_txtfiles/words.txt");
+    }
     private static int appW = 800;
     private static int appH = 600;
     public static Font segoeButBigger = new Font("Segoe UI",36);
@@ -64,7 +71,6 @@ public class HangmanScreen extends Application {
 
     private ObservableList<Node> letters;
     private HashMap<Character, Text> alphabet = new HashMap<Character, Text>();
-    private WordReader wordReader = new WordReader();
 
 
 
@@ -104,7 +110,7 @@ public class HangmanScreen extends Application {
         }
 
         galgIMG.reset();
-        word.set(wordReader.getRandomWord().toUpperCase());
+        word.set(words.get(randomPlace()).toUpperCase());
         lettersToGuess.set(word.length().get());
 
         letters.clear();
@@ -117,7 +123,7 @@ public class HangmanScreen extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         scene = new Scene(makeGUI(stage));
-
+        makeArrayList();
         scene.setOnKeyPressed((KeyEvent event) -> {
             if(event.getText().isEmpty()) {
                 return;
@@ -132,7 +138,11 @@ public class HangmanScreen extends Application {
         });
 
         fin(stage,scene);
-
+    }
+    public int randomPlace(){
+        Random random = new Random();
+        int ret = random.nextInt(words.size());
+        return ret;
     }
 
     public void makeBtnAgain(Stage stage){
