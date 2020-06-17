@@ -20,14 +20,15 @@ public class PersonalData {
     public PersonalData(){
         ArrayKeeper.getData().add(this);
     }
-
-    public PersonalData(String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer){
-        this.username = username;
-        this.name = name;
-        this.password = password;
-        this.dateOfBirth = dateOfBirth;
-        this.securityQuestion = securityQuestion;
-        this.securityAnswer = securityAnswer;
+    //deze inkorten?
+    //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
+    public PersonalData(String[] data){
+        this.username = data[0];
+        this.name = data[1];
+        this.password = data[2];
+        this.dateOfBirth = data[3];
+        this.securityQuestion = data[4];
+        this.securityAnswer = data[5];
         ArrayKeeper.getData().add(this);
     }
 

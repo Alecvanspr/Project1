@@ -103,7 +103,8 @@ public class SignUpScreen extends Application {
     public void signUp(Stage stage, String password, String PasswordConfig, String username, String birthday, String securityAnswer, String securityQuestions){
         if((!(password.equals("")))&&(!(username.equals("")))){
             if(password.equals(PasswordConfig)) {
-                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions);
+                String[] personData = {username,username,password,birthday,securityAnswer,securityQuestions};
+                main.arraykeeper.SignUpData(personData);
                 goToScreens.goMain(stage);
             }else {
                 ErrorMessage.setText("Passwords don't match");

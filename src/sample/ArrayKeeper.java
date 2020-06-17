@@ -15,14 +15,9 @@ public class ArrayKeeper {
 
     public ArrayKeeper(){
     }
-
-    public void SignUpData(String name,String password,String birth, String security,String securityQ){
-        PersonalData personalData = new PersonalData();
-        personalData.setUserName(name);
-        personalData.setPassword(password);
-        personalData.setDateOfBirth(birth);
-        personalData.setSecurityQuestion(securityQ);
-        personalData.setSecurityAnswer(security);
+    //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
+    public void SignUpData(String[] data){
+        PersonalData personalData = new PersonalData(data);
         Data.add(personalData);
         currentUser++;
     }
