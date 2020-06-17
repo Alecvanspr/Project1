@@ -137,6 +137,7 @@ public class EditAppointment extends Application {
         editAppointmentButton.setOnAction(E-> {
             for(int i = 0; i < getAppointmentList().size(); i++){
                 setEditAppointment(stage,i);
+
             }
         });
     }
