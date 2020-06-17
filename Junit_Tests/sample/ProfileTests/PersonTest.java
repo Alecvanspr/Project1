@@ -7,6 +7,7 @@ import sample.inlogScreen.PersonalData;
 
 public class PersonTest {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+    int place = 1;
     //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
 
     PersonalData personalData = new PersonalData();
@@ -21,28 +22,38 @@ public class PersonTest {
     @Test
     public void testFirstPerson(){
         makeArraykeeper();
-        testUserName(1,"legend27");
-        testName(1,"Henk de Steen");
-        testPassword(1,"wachtwoord");
-        testBirthdate(1,"Yesterday");
-        testSecurityQuestion(1,"What you egg?");
-        testSecurityAnswer(1,"Stabs him");
-
+        testUserName(place,"legend27");
+        testName(place,"Henk de Steen");
+        testPassword(place,"wachtwoord");
+        testBirthdate(place,"Yesterday");
+        testSecurityQuestion(place,"What you egg?");
+        testSecurityAnswer(place,"Stabs him");
     }
     @Test
     public void testSecondPerson(){
-        testUserName(2,"Schilder123");
-        testName(2,"Henk de Schilder");
-        testPassword(2,"GooiInDeVerf");
-        testBirthdate(2,"Vandaag");
-        testSecurityQuestion(2,"Wat is je favorite kleur?");
-        testSecurityAnswer(2,"verf");
+        place++;
+        //testUserName(2,"Schilder123");
+        testName(place,"Henk de Schilder");
+        testPassword(place,"GooiInDeVerf");
+        testBirthdate(place,"Vandaag");
+        testSecurityQuestion(place,"Wat is je favorite kleur?");
+        testSecurityAnswer(place,"verf");
     }
     @Test
-    public void testLastPerson(){
-        makeArraykeeper();
-        testUserName(3,"The_Chin");
-        testPassword(3,"Kin123");
+    public void testLastPerson(){ //todo.
+        place++;
+        printNamesData();
+        testUserName(place,"The_Chin");
+        testName(place,"Karel V van Habsburg");
+        testPassword(place,"Kin123");
+        testBirthdate(place,"Morgen");
+        testSecurityQuestion(place,"Hoe groot is je kin?");
+        testSecurityAnswer(place,"mega");
+    }
+    public void printNamesData(){
+        for(int i=0; i<ArrayKeeper.getData().size();i++){
+            System.out.println(ArrayKeeper.getData().get(i).getName());
+        }
     }
     public void testName(int place, String expected){
         Assert.assertEquals(ArrayKeeper.getData().get(place).getName(),expected);

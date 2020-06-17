@@ -18,7 +18,7 @@ public class ArrayKeeper {
     //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
     public void SignUpData(String[] data){
         PersonalData personalData = new PersonalData(data);
-        Data.add(personalData);
+        //Data.add(personalData);
         currentUser++;
     }
 
