@@ -56,6 +56,7 @@ public class Homescreen extends Application {
         makeBtnMedicalSection(stage);
     }
     public void makeBtnEducative(Stage stage){
+        buttonSettings.setButtonLayout(btnEducative);
         btnEducative.relocate(400,400);
         buttonSettings.onMouse(btnEducative);
         btnEducative.setOnAction(E->{
@@ -63,6 +64,7 @@ public class Homescreen extends Application {
         });
     }
     public void makeBtnMedicalSection(Stage stage){
+        buttonSettings.setButtonLayout(btnMedicalSection);
         btnMedicalSection.relocate(500,500);
         buttonSettings.onMouse(btnMedicalSection);
         btnMedicalSection.setOnAction(new EventHandler<ActionEvent>() {

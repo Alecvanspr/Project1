@@ -34,14 +34,15 @@ public class MedicalSection extends Application {
     ListView<String> ListView = new ListView<>();
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");
-    Button yourAppointmentbtn = new Button("Your appointments");
+    Button yourAppointmentbtn = new Button("Edit appointments");
+    Button deleteAppointmentbtn = new Button("Delete appointment");
 
     @Override
     public void start(Stage stage) throws Exception{
         makeListView();
         makeLabels();
         makeButtons(stage);
-        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, myAppointments,ListView);
+        pane.getChildren().addAll(deleteAppointmentbtn,welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, myAppointments,ListView);
         fin(stage);
 
     }
@@ -70,6 +71,8 @@ public class MedicalSection extends Application {
         makeBackButton(stage);
         makeAppointmentButton(stage);
         makeYourAppointmentButton(stage);
+        makeDeleteButton(stage);
+
     }
     public void makeBackButton(Stage stage){
         btnBack.relocate(10,565);
@@ -84,14 +87,19 @@ public class MedicalSection extends Application {
             goToScreens.goMakeAppointment(stage);
         });
     }
+    public void makeDeleteButton(Stage stage){
+        makeMenuButton(deleteAppointmentbtn);
+        deleteAppointmentbtn.setOnAction(E-> {
+
+        });
+    }
     public void makeListView(){
         makeAppointmentListView();
     }
     public void makeAppointmentListView(){
-        ListView.relocate(425, 240);
-        ListView.setPrefHeight(310);
-        ListView.setPrefWidth(255);
-        //for(int i = 0; i < futureAppointments.getUserAppointments().size(); i++){ }
+        ListView.relocate(225, 190);
+        ListView.setPrefHeight(110);
+        ListView.setPrefWidth(373);
         ListView.setItems(futureAppointments.appointmentsString);
     }
     public void makeLabels(){
@@ -100,11 +108,11 @@ public class MedicalSection extends Application {
     }
     public void makeStartLabel(){
         welcome.setFont(Font.font("Arial", 30));
-        welcome.relocate(225, 100);
+        welcome.relocate(200, 100);
     }
     public void makeAppointmentLabel(){
         myAppointments.setFont(Font.font("Arial", 20));
-        myAppointments.relocate(475, 200);
+        myAppointments.relocate(335, 150);
         myAppointments.setStyle("-fx-underline: true");
     }
     public void makeMenuButton(Button button){
@@ -119,18 +127,18 @@ public class MedicalSection extends Application {
 
     public void setButtonLayout(Button button){
         button.setPrefWidth(150);
-        button.setPrefHeight(150);
+        button.setPrefHeight(100);
     }
 
     public void setButtonPosition(Button button, int buttonNumber){
         if(buttonNumber == 0){
-            button.relocate(225, 200);
+            button.relocate(450, 325);
         }
         else if(buttonNumber == 1){
-            button.relocate(225, 400);
+            button.relocate(225, 325);
         }
         else if(buttonNumber == 2){
-            button.relocate(450, 200);
+            button.relocate(225, 450);
         }
         else{
             button.relocate(450, 400);
