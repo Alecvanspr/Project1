@@ -40,20 +40,14 @@ public class PersonTest {
         testSecurityAnswer(place,"verf");
     }
     @Test
-    public void testLastPerson(){ //todo.
-        place++;
-        printNamesData();
+    public void testLastPerson(){
+        place+=2;
         testUserName(place,"The_Chin");
         testName(place,"Karel V van Habsburg");
         testPassword(place,"Kin123");
         testBirthdate(place,"Morgen");
         testSecurityQuestion(place,"Hoe groot is je kin?");
         testSecurityAnswer(place,"mega");
-    }
-    public void printNamesData(){
-        for(int i=0; i<ArrayKeeper.getData().size();i++){
-            System.out.println(ArrayKeeper.getData().get(i).getName());
-        }
     }
     public void testName(int place, String expected){
         Assert.assertEquals(ArrayKeeper.getData().get(place).getName(),expected);
