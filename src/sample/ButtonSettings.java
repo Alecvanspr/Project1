@@ -24,7 +24,7 @@ public class ButtonSettings {
         });
     }
     public void setButtonLayout(Button button){
-        button.setPrefHeight(150);
-        button.setPrefWidth(150);
+        button.setPrefHeight(100);
+        button.setPrefWidth(100);
     }
 }

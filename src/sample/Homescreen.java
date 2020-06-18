@@ -41,7 +41,7 @@ public class Homescreen extends Application {
         welcome.setFont(Font.font("Arial",30));
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
                 btnMarketPlace,btnLiveStock,user,btnEducative,btnMedicalSection);
-        welcome.relocate(225,100);
+        welcome.relocate(200,100);
         user.relocate(660,35);
         makeButtons(stage);
         fin(stage);
@@ -57,7 +57,7 @@ public class Homescreen extends Application {
     }
     public void makeBtnEducative(Stage stage){
         buttonSettings.setButtonLayout(btnEducative);
-        btnEducative.relocate(400,400);
+        btnEducative.relocate(340,320);
         buttonSettings.onMouse(btnEducative);
         btnEducative.setOnAction(E->{
             goToScreens.goEducativeScreen(stage);
@@ -65,7 +65,7 @@ public class Homescreen extends Application {
     }
     public void makeBtnMedicalSection(Stage stage){
         buttonSettings.setButtonLayout(btnMedicalSection);
-        btnMedicalSection.relocate(500,500);
+        btnMedicalSection.relocate(340,200);
         buttonSettings.onMouse(btnMedicalSection);
         btnMedicalSection.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -77,7 +77,7 @@ public class Homescreen extends Application {
     public void makeBtnLivestock(Stage stage){
         buttonSettings.setButtonLayout(btnLiveStock);
         buttonSettings.onMouse(btnLiveStock);
-        btnLiveStock.relocate(450,400);
+        btnLiveStock.relocate(450,320);
         btnLiveStock.setOnAction(e -> {
             goToScreens.goLiveStock(stage);
         });
@@ -94,7 +94,7 @@ public class Homescreen extends Application {
         //Contact button
         buttonSettings.onMouse(btnContacts);
         buttonSettings.setButtonLayout(btnContacts);
-        btnContacts.relocate(225,400);
+        btnContacts.relocate(225,320);
         btnContacts.setOnAction(e -> {
             goToScreens.goContacts(stage);
         });
