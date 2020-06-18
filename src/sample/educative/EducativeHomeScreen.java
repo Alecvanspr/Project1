@@ -60,7 +60,7 @@ public class EducativeHomeScreen extends Application {
         btnMath.relocate(100,100);
         buttonSettings.onMouse(btnMath);
         btnMath.setOnAction(E->{
-            goToScreens.goMathScreen(stage);
+            goToScreens.goMathGame(stage);
         });
     }
     public void fin(Stage stage){

@@ -4,7 +4,7 @@ import javafx.stage.Stage;
 import sample.MedicalSection.*;
 import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
-import sample.educative.MathScreen;
+import sample.educative.MathGame.MathScreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.read.StoryScreen;
 import sample.educative.writing.*;
@@ -167,15 +167,6 @@ public class GoToScreens {
         EducativeHomeScreen educativeHomeScreen = new EducativeHomeScreen();
         try {
             educativeHomeScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void goMathScreen(Stage stage){
-        MathScreen mathScreen = new MathScreen();
-        try {
-            mathScreen.start(stage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -376,6 +367,15 @@ public class GoToScreens {
         CancelAppointment cancelAppointment = new CancelAppointment();
         try{
             cancelAppointment.start(stage);
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void goMathGame(Stage stage) {
+        MathScreen mathScreen = new MathScreen();
+        try{
+            mathScreen.start(stage);
         } catch(Exception ex){
             ex.printStackTrace();
         }
