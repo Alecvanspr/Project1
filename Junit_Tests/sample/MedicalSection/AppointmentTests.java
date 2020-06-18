@@ -7,7 +7,7 @@ import sample.inlogScreen.PersonalData;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class AppointmentTests {
+public class AppointmentTests { //todo deze tests mooier maken enzo
     Specialty specialty1 = new Specialty("Eyes");
     Specialty specialty2 = new Specialty("Diabetus");
     ArrayList<Specialty> specialties = new ArrayList<>();
