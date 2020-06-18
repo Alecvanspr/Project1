@@ -16,7 +16,7 @@ import sample.MedicalSection.Specialty;
 
 import java.util.ArrayList;
 
-public class SignUpScreenDoctor extends Application {
+public class SignUpScreenDoctor extends Application { //todo SOLID maken
     GoToScreens goToScreens = GoToScreens.getInstance();
     Scene SignUpScreenDoctor;
     Main main;
@@ -29,20 +29,6 @@ public class SignUpScreenDoctor extends Application {
         Button exitBtn = new Button("Im actually not a doctor");
         exitBtn.setPrefWidth(150);
         exitBtn.relocate(10, 565);
-
-        exitBtn.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScale(exitBtn, 1.2);
-            }
-        });
-
-        exitBtn.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScale(exitBtn, 1.0);
-            }
-        });
 
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -137,20 +123,6 @@ public class SignUpScreenDoctor extends Application {
         pane.getChildren().addAll(addSpecialty, specialty1, specialtyText,doctorName, doctorNameText, signUp);
 
 
-        signUp.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScale(signUp, 1.0);
-            }
-        });
-
-        signUp.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setButtonScale(signUp, 1.2);
-            }
-        });
-
         signUp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -168,14 +140,10 @@ public class SignUpScreenDoctor extends Application {
             }
 
         });
+    }
+    public void fin(Stage stage){
         SignUpScreenDoctor = new Scene(pane, 800, 600);
         stage.setTitle("Sign up as doctor");
         stage.setScene(SignUpScreenDoctor);
-        stage.show();
-    }
-
-    public void setButtonScale(Button button, Double scale){
-        button.setScaleY(scale);
-        button.setScaleX(scale);
-    }
+        stage.show();}
 }
