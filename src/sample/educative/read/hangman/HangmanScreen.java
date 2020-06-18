@@ -141,7 +141,7 @@ public class HangmanScreen extends Application {
     }
     public int randomPlace(){
         Random random = new Random();
-        int ret = random.nextInt(words.size());
+        int ret = random.nextInt(words.size()-1);
         return ret;
     }
 
