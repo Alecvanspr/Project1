@@ -7,6 +7,7 @@ import sample.educative.EducativeHomeScreen;
 import sample.educative.MathGame.MathScreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.read.StoryScreen;
+import sample.educative.read.WordReadScreen;
 import sample.educative.writing.*;
 import sample.inlogScreen.ForgotPasswordScreen;
 import sample.inlogScreen.Main;
@@ -222,6 +223,15 @@ public class GoToScreens {
         WriteWordsScreen writeWordsScreen = new WriteWordsScreen();
         try {
             writeWordsScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void goWordReading(Stage stage){
+        WordReadScreen wordReadScreen = new WordReadScreen();
+        try {
+            wordReadScreen.start(stage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -30,6 +30,7 @@ public class ReadScreen  extends Application {
         makeBtnGrammar(stage);
         makeBtnBack(stage);
         makeBtnStories(stage);
+        makeBtnWords(stage);
     }
     public void makeBtnStories(Stage stage){
         Button btnStories = new Button("Stories");
@@ -38,6 +39,15 @@ public class ReadScreen  extends Application {
             goToScreens.goStoryScreen(stage);
         });
         pane.getChildren().add(btnStories);
+    }
+
+    public void makeBtnWords(Stage stage){
+        Button btnWords = new Button("words :)");
+        btnWords.relocate(200,250);
+        btnWords.setOnAction(e->{
+            goToScreens.goWordReading(stage);
+        });
+        pane.getChildren().add(btnWords);
     }
 
     public void makeBtnGrammar(Stage stage){
