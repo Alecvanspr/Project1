@@ -6,8 +6,14 @@ public class MathGame {
     private Random random = new Random();
     private int randNumb1 = random.nextInt(50);
     private int randNumb2 = random.nextInt(50);
+<<<<<<< HEAD
     private int randButNumb = random.nextInt(3);
 
+=======
+    private int randButNumb = random.nextInt(4);
+    private int randOperator = random.nextInt(4);
+    private String operator;
+>>>>>>> medical section + mathgame + Homescreenbuttons fix
     private Boolean game = false;
     private Boolean startBtn = false;
     private int wrongAnswers = 0;
@@ -16,13 +22,21 @@ public class MathGame {
     private int randAnswer2;
     private int randAnswer3;
     private int randAnswer4;
+<<<<<<< HEAD
     private int answer = randNumb1 + randNumb2;
+=======
+    private int numberBound;
+    private int answer;
+>>>>>>> medical section + mathgame + Homescreenbuttons fix
 
     public void setGame(Boolean game) {
         this.game = game;
         this.startBtn = true;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> medical section + mathgame + Homescreenbuttons fix
     public int ButtonNumber1(){
         if(randButNumb == 0) {
             return answer;
@@ -59,7 +73,10 @@ public class MathGame {
         this.randAnswer2 = random.nextInt(50);
         this.randAnswer3 = random.nextInt(50);
         this.randAnswer4 = random.nextInt(50);
+<<<<<<< HEAD
         this.answer = randNumb1 + randNumb2;
+=======
+>>>>>>> medical section + mathgame + Homescreenbuttons fix
     }
 
     public Boolean getGame() {
@@ -97,6 +114,7 @@ public class MathGame {
     }
 
     public String MathQuestion(){
+<<<<<<< HEAD
         return getRandNumb1() + " + " + getRandNumb2() + " = ?";
     }
 
@@ -105,3 +123,32 @@ public class MathGame {
     }
 
 }
+=======
+        return getRandNumb1() + " " + operator + " " + getRandNumb2() + " = ?";
+    }
+
+    public void setRandOperator(int randOperator) {
+        this.randOperator = randOperator;
+    }
+
+    public void setNumberBound(int numberBound) {
+        this.numberBound = numberBound;
+    }
+
+    public void RandomOperator(){
+        switch (randOperator){
+            case 0: operator = "+";
+                answer = randNumb1 + randNumb2;
+                break;
+            case 1: operator = "-";
+                answer = randNumb1 - randNumb2;
+                break;
+            case 2: operator = "/";
+                answer = randNumb1 / randNumb2;
+                break;
+            case 3: operator = "*";
+                answer = randNumb1 * randNumb2;
+        }
+    }
+}
+>>>>>>> medical section + mathgame + Homescreenbuttons fix

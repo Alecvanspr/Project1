@@ -17,6 +17,7 @@ import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
 import sample.profileSettings.ProfileSettingsScreen;
 
+
 public class GoToScreens {
     private static GoToScreens instance;
     private GoToScreens(){
