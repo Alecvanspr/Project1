@@ -46,7 +46,13 @@ public class MedicalSection extends Application {
         fin(stage);
 
     }
-
+    public void makeShowPastAppointmentScreen(Stage stage){
+        Button btnGoPastAppointment  = new Button("Show past Appointment");
+        btnGoPastAppointment.setOnAction(E->{
+            goToScreens.goPastAppointments(stage);
+        });
+        pane.getChildren().add(btnGoPastAppointment);
+    }
 
     public void makeYourAppointmentButton(Stage stage){
         makeMenuButton(yourAppointmentbtn);
@@ -59,6 +65,7 @@ public class MedicalSection extends Application {
         makeAppointmentButton(stage);
         makeYourAppointmentButton(stage);
         makeDeleteButton(stage);
+        makeShowPastAppointmentScreen(stage);
 
     }
     public void makeBackButton(Stage stage){

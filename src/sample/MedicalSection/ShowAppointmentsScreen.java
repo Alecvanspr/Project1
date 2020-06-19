@@ -59,15 +59,8 @@ public class ShowAppointmentsScreen extends Application {
         makeBtnEditAppointment(stage);
         makeExitButton(stage);
         makeCancelButton(stage);
-        makeShowPastAppointmentScreen(stage);
     }
-    public void makeShowPastAppointmentScreen(Stage stage){
-        Button btnGoPastAppointment  = new Button("Show past Appointment");
-        btnGoPastAppointment.setOnAction(E->{
-            goToScreens.goShowPastAppointments(stage);
-        });
-        pane.getChildren().add(btnGoPastAppointment);
-    }
+
     public void makeCancelButton(Stage stage){
         deleteAppointment.relocate(500, 250);
         deleteAppointment.setPrefWidth(125);
