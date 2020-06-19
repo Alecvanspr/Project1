@@ -375,9 +375,9 @@ public class GoToScreens {
     }
 
     public void goCancelAppointments(Stage stage){
-        CancelAppointment cancelAppointment = new CancelAppointment();
+        CancelAppointmentScreen cancelAppointmentScreen = new CancelAppointmentScreen();
         try{
-            cancelAppointment.start(stage);
+            cancelAppointmentScreen.start(stage);
         } catch(Exception ex){
             ex.printStackTrace();
         }
