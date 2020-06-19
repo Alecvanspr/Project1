@@ -20,7 +20,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="junit:junit:4.13" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit5.4">
         <CLASSES>
@@ -37,5 +36,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
