@@ -37,7 +37,6 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
     ArrayList<Specialty> specialties = new ArrayList<>();
     Label doctorNameText = new Label("Your real name");
 
-
     @Override
     public void start(Stage stage) throws Exception {
         makeButtons(stage);
@@ -90,6 +89,7 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
         pane.getChildren().add(signUp);
     }
     public void makeLabels(){
+        makeComboBox();
         fillComboBox();
         setTextTextfields();
         makeTextFields();
@@ -118,9 +118,6 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
         public void makeLabelsSecurity(){
             Label labelSecurity=new Label("Security question in case you forget your password");
             labelSecurity.relocate(100,230);
-            for (int i = 0; i < arraykeeper.getSpecialtiesArrayList().size(); i++) {
-                specialty1.getItems().add(arraykeeper.getSpecialtiesArrayList().get(i).getName());
-            }
             pane.getChildren().add(labelSecurity);
         }
     public void makeAddSpecialty(Stage stage) {
@@ -137,17 +134,21 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
     }
 
     public void fillComboBox(){
+        System.out.println();
         for (int i = 0; i < arraykeeper.getSpecialtiesArrayList().size(); i++) {
             System.out.println(arraykeeper.getSpecialtiesArrayList().get(i).getName());
             specialty1.getItems().add(arraykeeper.getSpecialtiesArrayList().get(i).getName());
         }
     }
-    public void makeTextFields(){
+    public void makeComboBox(){
         specialty1.setValue("");
         specialty1.relocate(100,368);
+        pane.getChildren().addAll(specialty1);
+    }
+    public void makeTextFields(){
         doctorName.relocate(100,323);
         doctorNameText.relocate(100,303);
-        pane.getChildren().addAll( specialty1, doctorName, doctorNameText);
+        pane.getChildren().addAll(doctorName, doctorNameText);
     }
 
     public void fin(Stage stage){
