@@ -100,32 +100,32 @@ public class PracticeScreen extends Application {
 public void newSentence(){
     lblWrong.setText("");
     Random random = new Random();
-    currendWord = random.nextInt(infinitiveWord.size()-1);
+    currendWord = random.nextInt(makeArrayListsText.infinitiveWord.size()-1);
     setSentenceLabel(currendWord,random.nextInt(2));
-    btnInfinitive.setText(infinitiveWord.get(currendWord));
-    btnPastTense.setText(pastWord.get(currendWord));
-    btnPastParticle.setText(pastPrincaple.get(currendWord));
+    btnInfinitive.setText(makeArrayListsText.infinitiveWord.get(currendWord));
+    btnPastTense.setText(makeArrayListsText.pastWord.get(currendWord));
+    btnPastParticle.setText(makeArrayListsText.pastPrincaple.get(currendWord));
 }
 public void setSentenceLabel(int word,int wordType){
         String sentence;
         answer = wordType;
     if(wordType==0){
-        sentence = infinitiveSentense.get(word);
+        sentence = makeArrayListsText.infinitiveSentense.get(word);
     }else if(wordType==1){
-        sentence= pastSentence.get(word);
+        sentence= makeArrayListsText.pastSentence.get(word);
     }else{
-        sentence = pastPrincapleSentence.get(word);
+        sentence = makeArrayListsText.pastPrincapleSentence.get(word);
     }
     lblSentence.setText(sentence);
 }
 
 public void checkButtonClick(Button clicked){
         if(answer==0){
-            setButtonColor(clicked,infinitiveWord.get(currendWord));
+            setButtonColor(clicked,makeArrayListsText.infinitiveWord.get(currendWord));
         }else if(answer == 1){
-            setButtonColor(clicked,pastWord.get(currendWord));
+            setButtonColor(clicked,makeArrayListsText.pastWord.get(currendWord));
         }else{
-            setButtonColor(clicked, pastPrincaple.get(currendWord));
+            setButtonColor(clicked, makeArrayListsText.pastPrincaple.get(currendWord));
         }
 }
 public void setButtonColor(Button clicked, String correctAnswer){

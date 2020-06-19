@@ -28,7 +28,8 @@ public class MainMethods {
     public void delettis(){
         //dit is om te testen, dit moet achteraf verwijderd worden.
         if(!delettisHappened) {
-            arraykeeper.SignUpData("admin", "admin", "Yesterday", "Bruh", "You have to insert your username first");
+            String[] adminData = {"admin","admin", "admin", "Yesterday", "Bruh", "You have to insert your username first"};
+            arraykeeper.SignUpData(adminData);
             PersonalData admin = new PersonalData();
             admin.setUserName("admin");
             admin.setPassword("admin");
@@ -36,7 +37,8 @@ public class MainMethods {
             admin.setSecurityQuestion("Oh yeah, Mister crabs");
             admin.setSecurityAnswer("dab");
 
-            arraykeeper.SignUpData("dr", "dr", "dr", "dr", "dr");
+            String[] doctorMarioData = {"dr", "dr" ,"dr", "dr", "dr", "dr"};
+            arraykeeper.SignUpData(doctorMarioData);
             String[] doctorMario = {"mario","mario","mario","Arg Arg Arg Arg","mario","dr Mario"};
             Specialty db = new Specialty("Diabetes");
             Specialty ey = new Specialty("Eyes");

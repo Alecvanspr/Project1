@@ -18,7 +18,7 @@ public class EditAppointment extends Application {
     Scene EditAppointment;
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    ButtonSettings buttonSettings =ButtonSettings.getInstance();
+    ButtonSettings buttonSettings = ButtonSettings.getInstance();
     GoToScreens goToScreens = GoToScreens.getInstance();
     Appointment appointment;
     Pane pane = new Pane();
@@ -95,7 +95,9 @@ public class EditAppointment extends Application {
     public void makeExitButton(Stage stage){
         exitButton.relocate(10, 565);
         buttonSettings.onMouse(exitButton);
-        goToScreens.goAppointmentsScreen(stage);
+        exitButton.setOnAction(E-> {
+            goToScreens.goAppointmentsScreen(stage);
+        });
     }
     public void makeDateButton(){
         dateButton.relocate(450,260);
@@ -135,6 +137,7 @@ public class EditAppointment extends Application {
         editAppointmentButton.setOnAction(E-> {
             for(int i = 0; i < getAppointmentList().size(); i++){
                 setEditAppointment(stage,i);
+
             }
         });
     }

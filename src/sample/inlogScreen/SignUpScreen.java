@@ -14,7 +14,7 @@ public class SignUpScreen extends Application {
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     GoToScreens goToScreens = GoToScreens.getInstance();
     Pane pane = new Pane();
-    TextField doctorName = new TextField("What is your name");
+    //TextField doctorName = new TextField("What is your name");
     Label ErrorMessage = new Label("");
     ComboBox securityQuestions = new ComboBox();
     TextField textFieldUserName = new TextField();
@@ -28,7 +28,7 @@ public class SignUpScreen extends Application {
         makeLabels();
         makeButtons(stage);
         fin(stage);
-        doctorName.relocate(200, 300);
+        //doctorName.relocate(200, 300);
     }
 
     public void fin(Stage stage){
@@ -62,7 +62,7 @@ public class SignUpScreen extends Application {
         lblDateOfBirth.relocate(100,185);
         lblPassWordConf.relocate(100, 140);
         ErrorMessage.relocate(100,265);
-        pane.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf,lblDateOfBirth,lblSecurity, doctorName,ErrorMessage);
+        pane.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf,lblDateOfBirth,lblSecurity,ErrorMessage);
     }
 
     public void makeButtons(Stage stage){
@@ -92,18 +92,20 @@ public class SignUpScreen extends Application {
     public void makeBtnRegister(Stage stage){
         Button btnRegister = new Button("Register");
         btnRegister.setOnAction(e->{
-            signUp(stage,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
-                    textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getValue().toString());
+            //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
+            String[] data = {textFieldUserName.getText(),textFieldUserName.getText(),passwordField.getText(),textFieldBirth.getText(),securityQuestions.getValue().toString(),securityAnswer.getText()};
+            signUp(stage,data,passwordFieldConf.getText());
         });
         buttonSettings.onMouse(btnRegister);
         btnRegister.relocate(100,320);
         pane.getChildren().add(btnRegister);
     }
 
-    public void signUp(Stage stage, String password, String PasswordConfig, String username, String birthday, String securityAnswer, String securityQuestions){
-        if((!(password.equals("")))&&(!(username.equals("")))){
-            if(password.equals(PasswordConfig)) {
-                main.arraykeeper.SignUpData(username,password,birthday,securityAnswer,securityQuestions);
+    //String username, String name,String password,String birthday, String securityQuestions,String securityAnswer
+    public void signUp(Stage stage, String[] signUpData,String PasswordConfig){
+        if((!(signUpData[2].equals("")))&&(!(signUpData[0].equals("")))){
+            if(signUpData[2].equals(PasswordConfig)) {
+                main.arraykeeper.SignUpData(signUpData);
                 goToScreens.goMain(stage);
             }else {
                 ErrorMessage.setText("Passwords don't match");
