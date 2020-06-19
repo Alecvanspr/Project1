@@ -14,7 +14,7 @@ public class SignUpScreen extends Application {
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     GoToScreens goToScreens = GoToScreens.getInstance();
     Pane pane = new Pane();
-    TextField doctorName = new TextField("What is your name");
+    //TextField doctorName = new TextField("What is your name");
     Label ErrorMessage = new Label("");
     ComboBox securityQuestions = new ComboBox();
     TextField textFieldUserName = new TextField();
@@ -28,7 +28,7 @@ public class SignUpScreen extends Application {
         makeLabels();
         makeButtons(stage);
         fin(stage);
-        doctorName.relocate(200, 300);
+        //doctorName.relocate(200, 300);
     }
 
     public void fin(Stage stage){
@@ -62,7 +62,7 @@ public class SignUpScreen extends Application {
         lblDateOfBirth.relocate(100,185);
         lblPassWordConf.relocate(100, 140);
         ErrorMessage.relocate(100,265);
-        pane.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf,lblDateOfBirth,lblSecurity, doctorName,ErrorMessage);
+        pane.getChildren().addAll(lblUserName,lblPassWord,lblPassWordConf,lblDateOfBirth,lblSecurity,ErrorMessage);
     }
 
     public void makeButtons(Stage stage){
