@@ -24,16 +24,14 @@ public class PastAppointmentScreen extends Application {
     GoToScreens goToScreens = GoToScreens.getInstance();
     Main main;
     ArrayKeeper arrayKeeper;
-    Button editAppointment = new Button("Edit appointment");
     Button buttonBack = new Button("Back");
-    Button deleteAppointment = new Button("Cancel appointment");
 
-    Label title = new Label("Your appointments");
+    Label title = new Label("Your past appointments");
     @Override
     public void start(Stage stage) throws  Exception{
         makeButton(stage);
         makeLabels();
-        pane.getChildren().addAll(buttonBack, editAppointment, deleteAppointment,title);
+        pane.getChildren().addAll(buttonBack ,title);
         fin(stage);
     }
     public void makeLabels(){
@@ -45,9 +43,9 @@ public class PastAppointmentScreen extends Application {
         title.setFont(Font.font("Arial", 30));
     }
     public void makeAppointmentLabels(){
-        for(int i =0; i < getFutureAppointments().size(); i++){
-            Label appointmentLabel = new Label("On " + getFutureAppointments().get(i).getAppointmentDate().toString() + " you have an appointment with " + getFutureAppointments().get(i).getDoctor().getName() +".");
-            Label timeLabel = new Label("You're expected at the time of: " + getFutureAppointments().get(i).getAppointmentTime());
+        for(int i =0; i < getPastAppointments().size(); i++){
+            Label appointmentLabel = new Label("On " + getPastAppointments().get(i).getAppointmentDate().toString() + " you had an appointment with " + getPastAppointments().get(i).getDoctor().getName() +".");
+            Label timeLabel = new Label("The appointment took place at: " + getPastAppointments().get(i).getAppointmentTime());
             appointmentLabel.relocate(100, 100+(50*i));
             timeLabel.relocate(100, 125+(50*i));
 
@@ -55,27 +53,9 @@ public class PastAppointmentScreen extends Application {
         }
     }
     public void makeButton(Stage stage){
-        makeBtnEditAppointment(stage);
         makeExitButton(stage);
-        makeCancelButton(stage);
-        makeShowPastAppointmentScreen(stage);
     }
-    public void makeShowPastAppointmentScreen(Stage stage){
-        Button btnGoPastAppointment  = new Button("Show past Appointment");
-        btnGoPastAppointment.setOnAction(E->{
-            goToScreens.goShowPastAppointments(stage);
-        });
-        pane.getChildren().add(btnGoPastAppointment);
-    }
-    public void makeCancelButton(Stage stage){
-        deleteAppointment.relocate(500, 250);
-        deleteAppointment.setPrefWidth(125);
-        deleteAppointment.setPrefHeight(100);
-        buttonSettings.onMouse(deleteAppointment);
-        deleteAppointment.setOnAction(E-> {
-            goToScreens.goCancelAppointments(stage);
-        });
-    }
+
     public void makeExitButton(Stage stage){
         buttonBack.relocate(10,565);
         buttonSettings.onMouse(buttonBack);
@@ -84,24 +64,16 @@ public class PastAppointmentScreen extends Application {
         });
 
     }
-    public void makeBtnEditAppointment(Stage stage){
-        editAppointment.relocate(500, 100);
-        buttonSettings.onMouse(editAppointment);
-        editAppointment.setPrefWidth(125);
-        editAppointment.setPrefHeight(100);
-        editAppointment.setOnAction(E-> {
-            goToScreens.goEditAppointment(stage);
-        });
-    }
-    public ArrayList<Appointment> getFutureAppointments(){
-        FutureAppointments futureAppointments = new FutureAppointments();
-        return futureAppointments.getFutureAppointments();
+
+    public ArrayList<Appointment> getPastAppointments(){
+        PastAppointments pastAppointments = new PastAppointments();
+        return pastAppointments.getPastAppointments();
     }
 
 
     public void fin(Stage stage){
             scene = new Scene(pane,800,600);
-            stage.setTitle("Your patients");
+            stage.setTitle("Your past appointments");
             stage.setScene(scene);
             stage.show();
     }

@@ -64,6 +64,8 @@ public class MainMethods {
             Appointment appointment = new Appointment(DoctorMario,localDate,"4:20",admin,ey.getName());
             ArrayKeeper.getData().get(0).getAppointments().add(appointment);
 
+            DoctorMario.addAppointment(appointment);
+
 
             delettisHappened = true;
         }
