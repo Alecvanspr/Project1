@@ -102,6 +102,7 @@ public class MedicalSection extends Application {
         myAppointments.relocate(335, 150);
         myAppointments.setStyle("-fx-underline: true");
     }
+
     public void makeMenuButton(Button button){
         setButtonPosition(button, buttonNumber);
         setButtonLayout(button);

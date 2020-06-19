@@ -4,10 +4,9 @@ import javafx.stage.Stage;
 import sample.MedicalSection.*;
 import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
-import sample.educative.MathGame.MathScreen;
+import sample.educative.MathScreen;
+import sample.educative.read.HangmanScreen;
 import sample.educative.read.ReadScreen;
-import sample.educative.read.StoryScreen;
-import sample.educative.read.WordReadScreen;
 import sample.educative.writing.*;
 import sample.inlogScreen.ForgotPasswordScreen;
 import sample.inlogScreen.Main;
@@ -18,18 +17,7 @@ import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
 import sample.profileSettings.ProfileSettingsScreen;
 
-
 public class GoToScreens {
-    private static GoToScreens instance;
-    private GoToScreens(){
-    }
-    public static GoToScreens getInstance() {
-        if(instance == null){
-            instance = new GoToScreens();
-        }
-        return instance;
-    }
-
     public void goProfileSettingScreen(Stage stage){
         ProfileSettingsScreen profileSettingsScreen = new ProfileSettingsScreen();
         try {
@@ -174,6 +162,15 @@ public class GoToScreens {
         }
     }
 
+    public void goMathScreen(Stage stage){
+        MathScreen mathScreen = new MathScreen();
+        try {
+            mathScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void goReadScreen(Stage stage){
         ReadScreen readScreen = new ReadScreen();
         try {
@@ -228,10 +225,10 @@ public class GoToScreens {
         }
     }
 
-    public void goWordReading(Stage stage){
-        WordReadScreen wordReadScreen = new WordReadScreen();
+    public void goHangmanScreen(Stage stage){
+        HangmanScreen hangmanScreen = new HangmanScreen();
         try {
-            wordReadScreen.start(stage);
+            hangmanScreen.start(stage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -340,7 +337,7 @@ public class GoToScreens {
         AddHealthCheckScreen addHealthCheckScreen = new AddHealthCheckScreen(currentAnimal);
         try {
             addHealthCheckScreen.start(stage);
-        } catch (Exception ex) {
+        }catch(Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -355,39 +352,12 @@ public class GoToScreens {
         }
     }
 
-    public void goStoryScreen(Stage stage) {
-        StoryScreen storyScreen = new StoryScreen();
+    public void goViewPatientComplaintsScreen(Stage stage, int currentPatient){
+        ViewPatientComplaintsScreen viewPatientComplaintsScreen = new ViewPatientComplaintsScreen(currentPatient);
         try{
-            storyScreen.start(stage);
+            viewPatientComplaintsScreen.start(stage);
         }
         catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void goShowPastAppointments(Stage stage){
-        ShowPastAppointments showPastAppointments = new ShowPastAppointments();
-        try{
-            showPastAppointments.start(stage);
-        } catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void goCancelAppointments(Stage stage){
-        CancelAppointment cancelAppointment = new CancelAppointment();
-        try{
-            cancelAppointment.start(stage);
-        } catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void goMathGame(Stage stage) {
-        MathScreen mathScreen = new MathScreen();
-        try{
-            mathScreen.start(stage);
-        } catch(Exception ex){
             ex.printStackTrace();
         }
     }

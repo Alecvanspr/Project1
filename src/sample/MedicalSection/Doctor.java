@@ -11,11 +11,15 @@ public class Doctor extends PersonalData {
     private ArrayList<Specialty> specialties;
     private ArrayList<Dates> dates = new ArrayList<>();
     private ArrayList<PersonalData> patients = new ArrayList<>();
-//String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
-    public Doctor(String[] personalData, ArrayList<Specialty> specialties){
-        //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
-        super(personalData);
-        this.specialties = specialties;     //todo hier moet nog de naam van de dokter komen. dus: dr. Mario
+
+    public Doctor(String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer, ArrayList<Specialty> specialties){
+        this.setUserName(username);
+        this.setName(name);
+        this.setPassword(password);
+        this.setDateOfBirth(dateOfBirth);
+        this.setSecurityQuestion(securityQuestion);
+        this.setSecurityAnswer(securityAnswer);
+        this.specialties = specialties;
         arraykeeper.addDoctor(this);
     }
 
@@ -49,18 +53,17 @@ public class Doctor extends PersonalData {
         return specialties;
     }
 
-    public void addSpecialties(Specialty specialty) {
-        if (!checkSpecialty(specialty)) {
+    public void addSpecialties(Specialty specialty){
+        if (checkSpecialty(specialty)){
             this.specialties.add(specialty);
-        }else{
-            makeSpecialtyError();
+        }
+        else{
+            Alert doctorAlreadyHasSpecialty = new Alert(Alert.AlertType.ERROR);
+            doctorAlreadyHasSpecialty.setContentText("This doctor already has this specialty");
+            doctorAlreadyHasSpecialty.show();
         }
     }
-    public void makeSpecialtyError(){
-        Alert doctorAlreadyHasSpecialty = new Alert(Alert.AlertType.ERROR);
-        doctorAlreadyHasSpecialty.setContentText("This Doctor already has this specialty");
-        doctorAlreadyHasSpecialty.show();
-    }
+
     public Specialty getSpecialty(String name){
         for(int i = 0; i < arraykeeper.getSpecialtiesArrayList().size(); i++){
             if(arraykeeper.getSpecialtiesArrayList().get(i).getName().equals(name)){
@@ -92,12 +95,13 @@ public class Doctor extends PersonalData {
         return false;
     }
 
-    public void addPatient(){
+    public void addPatient(PersonalData patient){
         if(!checkHasPatient(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()))){
             getPatients().add(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()));
         }
     }
-    public static void makeDoctor(String[] doctorData, ArrayList<Specialty> specialties){
-        Doctor newDoctor = new Doctor(doctorData, specialties);
+
+    public static void makeDoctor(String textFieldUsername, String doctorNameText, String passwordField, String textFieldBirth, String securityQuestion, String securityAnswer, ArrayList<Specialty> specialties){
+        Doctor newDoctor = new Doctor(textFieldUsername,doctorNameText,passwordField, textFieldBirth,securityQuestion, securityAnswer, specialties);
     }
 }

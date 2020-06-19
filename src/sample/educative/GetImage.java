@@ -83,7 +83,7 @@ public class GetImage {
     }
 
     public void setAnimalImages() {
-        animalImages.add(makeFlashCard("images/education/Animals/alligator.png","aligator"));
+        animalImages.add(makeFlashCard("images/education/Animals/alligator.png","alligator"));
         animalImages.add(makeFlashCard("images/education/Animals/bear.png","bear"));
         animalImages.add(makeFlashCard("images/education/Animals/bird.png","bird"));
         animalImages.add(makeFlashCard("images/education/Animals/cat.png","cat"));
@@ -109,7 +109,7 @@ public class GetImage {
         animalImages.add(makeFlashCard("images/education/Animals/penguin.png","penguin"));
         animalImages.add(makeFlashCard("images/education/Animals/pig.png","pig"));
         animalImages.add(makeFlashCard("images/education/Animals/rabbit.png","rabbit"));
-        animalImages.add(makeFlashCard("images/education/Animals/rhino.png","rhino"));
+        animalImages.add(makeFlashCard("images/education/Animals/rhino.png","rhinoceros"));
         animalImages.add(makeFlashCard("images/education/Animals/seal.png","seal"));
         animalImages.add(makeFlashCard("images/education/Animals/shark.png","shark"));
         animalImages.add(makeFlashCard("images/education/Animals/sheep.png","sheep"));
@@ -125,9 +125,11 @@ public class GetImage {
     public String getLetterImage(int place){
         return  letterImages.get(place);
     }
+
     public String getNumberImage(int place){
         return numberImages.get(place);
     }
+
     public FlashCards getAnimalImage(int place){
         return animalImages.get(place);
     }

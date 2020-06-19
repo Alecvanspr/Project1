@@ -4,7 +4,6 @@ import sample.ArrayKeeper;
 import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 
 public class MainMethods {
@@ -28,8 +27,7 @@ public class MainMethods {
     public void delettis(){
         //dit is om te testen, dit moet achteraf verwijderd worden.
         if(!delettisHappened) {
-            String[] adminData = {"admin","admin", "admin", "Yesterday", "Bruh", "You have to insert your username first"};
-            arraykeeper.SignUpData(adminData);
+            arraykeeper.SignUpData("admin", "admin", "Yesterday", "Bruh", "You have to insert your username first");
             PersonalData admin = new PersonalData();
             admin.setUserName("admin");
             admin.setPassword("admin");
@@ -37,24 +35,33 @@ public class MainMethods {
             admin.setSecurityQuestion("Oh yeah, Mister crabs");
             admin.setSecurityAnswer("dab");
 
-            String[] doctorMarioData = {"dr", "dr" ,"dr", "dr", "dr", "dr"};
-            arraykeeper.SignUpData(doctorMarioData);
-            String[] doctorMario = {"mario","mario","mario","Arg Arg Arg Arg","mario","dr Mario"};
+            arraykeeper.SignUpData("dr", "dr", "dr", "dr", "dr");
+            PersonalData DoctorMario = new PersonalData();
+            DoctorMario.setUserName("mario");
+            DoctorMario.setPassword("mario");
+            DoctorMario.setDateOfBirth("mario");
+            DoctorMario.setSecurityQuestion("hahahaha");
+            DoctorMario.setSecurityAnswer("mario");
             Specialty db = new Specialty("Diabetes");
             Specialty ey = new Specialty("Eyes");
             ArrayList<Specialty> specialtiesDoc1 = new ArrayList<Specialty>();
             specialtiesDoc1.add(db);
             specialtiesDoc1.add(ey);
-            Doctor DoctorMario = new Doctor(doctorMario,specialtiesDoc1);
+            Doctor.makeDoctor("mario", "Dr. Mario", "issa me", "Back then", "where is the princess", "with bowser", specialtiesDoc1);
 
+            arraykeeper.SignUpData("luigi", "luigi", "luigi", "luigi", "luigi");
+            PersonalData DoctorLuigi = new PersonalData();
+            DoctorLuigi.setUserName("luigi");
+            DoctorLuigi.setPassword("luigi");
+            DoctorLuigi.setDateOfBirth("luigi");
+            DoctorLuigi.setSecurityQuestion("luigi");
+            DoctorLuigi.setSecurityAnswer("luigi");
             Specialty ear = new Specialty("Ears");
             Specialty skin = new Specialty("Skin");
             ArrayList<Specialty> specialtiesDoc2 = new ArrayList<>();
             specialtiesDoc2.add(ear);
             specialtiesDoc2.add(skin);
-            //name name password securityQuestionsecurityAnswer, thing
-            String[] luigiData= {"luigi", "luigi", "konk", "back then", "WHY????", "because"};
-            Doctor doctorLuigi = new Doctor(luigiData,specialtiesDoc2);
+            Doctor.makeDoctor("luigi", "Dr. Luigi", "konk", "back then", "WHY????", "because", specialtiesDoc2);
             delettisHappened = true;
         }
     }

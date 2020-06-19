@@ -16,20 +16,20 @@ public class Appointment {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
 
 
-    public Appointment(Doctor doctor, LocalDate date, String time, PersonalData patient, String specialty){
+    public Appointment(Doctor doctor, LocalDate date, String[] timeAndReason, PersonalData patient){
         this.appointmentDate = date;
-        this.appointmentTime = time;
+        this.appointmentTime = timeAndReason[0];
         this.doctor = doctor;
         this.user = ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName();
         this.patient = patient;
-        this.specialty = getSpecialtyClass(specialty);
+        this.specialty = getSpecialtyClass(timeAndReason[1]);
         if(!doctor.checkHasPatient(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()))){
             doctor.getPatients().add(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()));
         }
     }
 
-    public Specialty getSpecialtyClass(String specialtyString){ //todo fix dit
-        for (int i = 0; i < arrayKeeper.getSpecialtiesArrayList().size(); i++){
+    public Specialty getSpecialtyClass(String specialtyString){
+        for(int i = 0; i < arrayKeeper.getSpecialtiesArrayList().size(); i++){
             if(arrayKeeper.getSpecialtiesArrayList().get(i).getName().equalsIgnoreCase(specialtyString)){
                 return arrayKeeper.getSpecialtiesArrayList().get(i);
             }
@@ -85,10 +85,10 @@ public class Appointment {
         this.notes = notes;
     }
 
-    public void EditAppointment(String time, LocalDate date, String specialty, Doctor doctor){
-        setAppointmentTime(time);
+    public void EditAppointment(Doctor doctor, String[] timeAndReason, LocalDate date){
+        setAppointmentTime(timeAndReason[0]);
         setAppointmentDate(date);
-        setSpecialty(specialty);
+        setSpecialty(timeAndReason[1]);
         setDoctor(doctor);
     }
 }

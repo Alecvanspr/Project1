@@ -1,4 +1,4 @@
-package sample;
+package sample.market;
 
 import org.junit.Assert;
 import org.junit.Test;

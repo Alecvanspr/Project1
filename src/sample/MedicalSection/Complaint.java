@@ -1,21 +1,35 @@
 package sample.MedicalSection;
 
+import sample.ArrayKeeper;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Complaint{
     private Specialty bodyPart;
-    private Date firstNoticed;
-    private Date cured;
+    private LocalDate firstNoticed;
+    private LocalDate cured;
+    private boolean hasBeenCured = false;
+
+    public Complaint(Specialty bodyPart, LocalDate[] timeSpan){
+        this.bodyPart = bodyPart;
+        this.firstNoticed = timeSpan[0];
+        this.cured = timeSpan[1];
+    }
+
+    public boolean getHasBeenCured(){
+        return hasBeenCured;
+    }
 
     public Specialty getBodyPart(){
         return bodyPart;
     }
 
-    public Date getFirstNoticed(){
+    public LocalDate getFirstNoticed(){
         return firstNoticed;
     }
 
-    public Date getCured(){
+    public LocalDate getCured(){
         return cured;
     }
 
@@ -23,11 +37,15 @@ public class Complaint{
         bodyPart = bodyPartNew;
     }
 
-    public void setFirstNoticed(Date firstNoticedNew){
+    public void setFirstNoticed(LocalDate firstNoticedNew){
         firstNoticed = firstNoticedNew;
     }
 
-    public void setCured(Date curedNew){
+    public void setCured(LocalDate curedNew){
         cured = curedNew;
+    }
+
+    public void setHasBeenCured(boolean hasBeenCured){
+        this.hasBeenCured = hasBeenCured;
     }
 }

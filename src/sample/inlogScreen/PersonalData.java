@@ -1,11 +1,11 @@
 package sample.inlogScreen;
 
-import sample.MedicalSection.Appointment;
+import sample.MedicalSection.*;
 import sample.ArrayKeeper;
-import sample.MedicalSection.Complaint;
 import sample.livestock.Animal;
 import sample.livestock.Species;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PersonalData {
@@ -126,6 +126,41 @@ public class PersonalData {
 
     public void addAppointment(Appointment appointment){
         this.appointments.add(appointment);
+    }
+
+    public boolean checkHasComplaint(Specialty bodyPart){
+        for(int i = 0; i < ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getComplaints().size(); i++){
+            if(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getComplaints().get(i).getBodyPart().equals(bodyPart)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addComplaint(Specialty reason, LocalDate firstDate){
+        if(!checkHasComplaint(reason)){
+            LocalDate[] timeSpan = {firstDate, null};
+            Complaint complaint = new Complaint(reason, timeSpan);
+            ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getComplaints().add(complaint);
+        }
+    }
+
+    public void makeAppointment(Doctor doctor, LocalDate date, String[] timeAndReason, PersonalData currentUser){
+        Appointment newAppointment = new Appointment(doctor, date, timeAndReason, currentUser);
+        this.addAppointment(newAppointment);
+        this.addComplaint(ArrayKeeper.getSpecialty(timeAndReason[1]), date);
+        doctor.getAppointments().add(newAppointment);
+        doctor.getDate(date).removeTimeFromTimeTable((String) timeAndReason[0]);
+        doctor.addPatient(this);
+    }
+
+    public Doctor getDoctor(String name){
+        for(int i = 0; i < arrayKeeper.getDoctorsArrayList().size(); i++){
+            if(name.equalsIgnoreCase(arrayKeeper.getDoctorsArrayList().get(i).getName())){
+                return arrayKeeper.getDoctorsArrayList().get(i);
+            }
+        }
+        return arrayKeeper.getDoctorsArrayList().get(0);
     }
 }
 

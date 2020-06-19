@@ -9,32 +9,38 @@ import java.util.ArrayList;
 
 public class ArrayKeeper {
     private static ArrayList<PersonalData> Data = new ArrayList<>();
-    private static ArrayList<Specialty> specialtiesArrayList;
+    private static ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
     private static ArrayList<Doctor> doctorsArrayList = new ArrayList<>();
     private static int currentUser;
 
     public ArrayKeeper(){
     }
-    //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
-    public void SignUpData(String[] data){
-        PersonalData personalData = new PersonalData(data);
-        //Data.add(personalData);
+
+    public void SignUpData(String name,String password,String birth, String security,String securityQ){
+        PersonalData personalData = new PersonalData();
+        personalData.setUserName(name);
+        personalData.setPassword(password);
+        personalData.setDateOfBirth(birth);
+        personalData.setSecurityQuestion(securityQ);
+        personalData.setSecurityAnswer(security);
+        Data.add(personalData);
         currentUser++;
     }
 
     public void makeSpecialties(){
-        if(specialtiesArrayList==null){
-            specialtiesArrayList = new ArrayList<>();
-            specialtiesArrayList.add(new Specialty("Diabetes"));
-            specialtiesArrayList.add(new Specialty("Ears"));
-            specialtiesArrayList.add(new Specialty("Eyes"));
-            specialtiesArrayList.add(new Specialty("Skin"));
-            specialtiesArrayList.add(new Specialty("General"));
-        }
+        Specialty diabetes = new Specialty("Diabetes");
+        Specialty ears = new Specialty("Ears");
+        Specialty eyes = new Specialty("Eyes");
+        Specialty skin = new Specialty("Skin");
+        Specialty general = new Specialty("General");
+        addSpecialty(diabetes);
+        addSpecialty(eyes);
+        addSpecialty(ears);
+        addSpecialty(skin);
+        addSpecialty(general);
     }
 
-    public ArrayList<Specialty> getSpecialtiesArrayList(){
-        makeSpecialties();
+    public static ArrayList<Specialty> getSpecialtiesArrayList(){
         return specialtiesArrayList;
     }
 
@@ -74,6 +80,15 @@ public class ArrayKeeper {
         for(int i = 0; i < ArrayKeeper.doctorsArrayList.size(); i++){
             if(ArrayKeeper.doctorsArrayList.get(i).getName().equals(doctorName)){
                 return ArrayKeeper.doctorsArrayList.get(i);
+            }
+        }
+        return null;
+    }
+
+    public static Specialty getSpecialty(String specialtyName){
+        for(int i = 0; i < specialtiesArrayList.size(); i++){
+            if(specialtyName.equals(specialtiesArrayList.get(i).getName())){
+                return specialtiesArrayList.get(i);
             }
         }
         return null;

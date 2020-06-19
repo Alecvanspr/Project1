@@ -10,43 +10,44 @@ import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.GoToScreens;
 import sample.inlogScreen.Main;
-import sample.inlogScreen.SignUpScreenDoctor;
 
 public class ViewPatientsScreen extends Application{
+    Button goBack = new Button("Back");
     Scene ViewPatientsScreen;
     ArrayKeeper arrayKeeper;
     Main main;
-    GoToScreens goToScreens = GoToScreens.getInstance();
-    Pane rootPane = new Pane();
+    GoToScreens goToScreens = new GoToScreens();
+    Pane pane = new Pane();
+    ScrollPane rootPane = new ScrollPane();
+    int currentPatient = 0;
 
     @Override
-    public void start(Stage stage) {
-        showPage(stage, rootPane);
+    public void start(Stage stage) throws Exception{
+        showPage(stage);
         makeLayout(stage);
-        getPatients();
+        getPatients(stage);
     }
 
     public void makeLayout(Stage stage){
+        fillScrollPane();
         makeButtons(stage);
-        makeScrollPane();
     }
 
     public void makeButtons(Stage stage){
         makeGoBackButton(stage);
     }
 
-    public void makeScrollPane(){
-        ScrollPane scrollPane = new ScrollPane();
-    }
-
     public void makeGoBackButton(Stage stage){
-        Button goBack = new Button("Back");
         setButtonScaleChange(goBack, 1.2);
         goBack.relocate(10, 565);
-        rootPane.getChildren().add(goBack);
+        pane.getChildren().add(goBack);
         goBack.setOnAction(E -> {
             goToScreens.goMedicalSection(stage);
         });
+    }
+
+    public void fillScrollPane(){
+        rootPane.setContent(pane);
     }
 
     public void setButtonScaleChange(Button button, Double scale){
@@ -60,19 +61,23 @@ public class ViewPatientsScreen extends Application{
         });
     }
 
-    public void showPage(Stage stage, Pane pane){
-        ViewPatientsScreen = new Scene(pane,800,600);
+    public void showPage(Stage stage){
+        ViewPatientsScreen = new Scene(rootPane,800,600);
         stage.setTitle("Your patients");
         stage.setScene(ViewPatientsScreen);
         stage.show();
     }
 
-    public void getPatients(){
+    public void getPatients(Stage stage){
         for(int i = 0; i < ArrayKeeper.findDoctor(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName()).getPatients().size(); i++){
-            Label patientNaam = new Label();
-            patientNaam.setText(ArrayKeeper.findDoctor(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName()).getPatients().get(i).getName());
+            int patient = i;
+            currentPatient = i;
+            Label patientNaam = new Label(ArrayKeeper.findDoctor(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName()).getPatients().get(i).getName());
+            patientNaam.setOnMouseClicked(E -> {
+                goToScreens.goViewPatientComplaintsScreen(stage, patient);
+            });
             patientNaam.relocate(50, 50+(50*i));
-            rootPane.getChildren().add(patientNaam);
+            pane.getChildren().add(patientNaam);
         }
     }
 }
