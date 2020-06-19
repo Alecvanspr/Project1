@@ -14,7 +14,6 @@ import sample.educative.GoToEducative;
 public class IrregularVerbsScreen extends Application {
     GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
-    PastWordReader pastWordReader = new PastWordReader();
     TextReader textReader = new TextReader();
     ButtonSettings buttonSettings = ButtonSettings.getInstance();
     MakeArrayListsText makeArrayListsText = MakeArrayListsText.getInstance();
@@ -59,7 +58,7 @@ public class IrregularVerbsScreen extends Application {
 
         for(int i = 0; MakeArrayListsText.infinitiveWord.size()>i; i++) {
             Label lblInfinitive = new Label(MakeArrayListsText.infinitiveWord.get(i));
-            Label lblPast = new Label(pastWordReader.getWords().get(i));
+            Label lblPast = new Label(MakeArrayListsText.pastWord.get(i));
             Label lblPastParticle = new Label(MakeArrayListsText.pastPrincaple.get(i));
 
             lblPast.relocate(300,placementY);
