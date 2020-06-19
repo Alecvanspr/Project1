@@ -105,5 +105,4 @@ public class ShowAppointmentsScreen extends Application {
         stage.setTitle("Your appointments");
         stage.show();
     }
-
 }
