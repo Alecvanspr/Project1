@@ -9,16 +9,15 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ButtonSettings;
 import sample.educative.GoToEducative;
-import sample.educative.read.GrammarScreen;
 
 
 public class IrregularVerbsScreen extends Application {
     GoToEducative goToEducative = new GoToEducative();
     Pane pane = new Pane();
     PastWordReader pastWordReader = new PastWordReader();
-    InfinitiveWordReader infinitiveWordReader = new InfinitiveWordReader();
-    PastParticipleReader pastParticipleReader = new PastParticipleReader();
-    ButtonSettings buttonSettings = new ButtonSettings();
+    TextReader textReader = new TextReader();
+    ButtonSettings buttonSettings = ButtonSettings.getInstance();
+    MakeArrayListsText makeArrayListsText = MakeArrayListsText.getInstance();
     int placementY = 100;
     @Override
     public void start(Stage stage) throws Exception {
@@ -57,10 +56,11 @@ public class IrregularVerbsScreen extends Application {
     }
 
     public void PrintIrregularVerbs(){
-        for(int i = 0; infinitiveWordReader.getWords().size()>i;i++) {
-            Label lblInfinitive = new Label(infinitiveWordReader.getWords().get(i));
+
+        for(int i = 0; MakeArrayListsText.infinitiveWord.size()>i; i++) {
+            Label lblInfinitive = new Label(MakeArrayListsText.infinitiveWord.get(i));
             Label lblPast = new Label(pastWordReader.getWords().get(i));
-            Label lblPastParticle = new Label(pastParticipleReader.getWords().get(i));
+            Label lblPastParticle = new Label(MakeArrayListsText.pastPrincaple.get(i));
 
             lblPast.relocate(300,placementY);
             lblInfinitive.relocate(100,placementY);

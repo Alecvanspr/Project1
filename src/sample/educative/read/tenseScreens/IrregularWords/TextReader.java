@@ -5,16 +5,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class PastParticipleReader {
-    private static final String fileSentence = "/_txtfiles/SentensePastParticle.txt";
-    private static final String fileWords = "/_txtfiles/IrregularVerbsPastParticiple.txt";
-
-    private ArrayList<String> words = new ArrayList<String>();
-    private ArrayList<String> sentences = new ArrayList<String>();
-
-    public PastParticipleReader(){
-        makeArraylistFromText(words,fileWords);
-        makeArraylistFromText(sentences,fileSentence);
+public class TextReader {
+    public ArrayList<String> TextReader(String fileName){
+        ArrayList<String> arrayList = new ArrayList();
+        makeArraylistFromText(arrayList,fileName);
+        return arrayList;
     }
     public void makeArraylistFromText(ArrayList<String> arrayList,String filename){
         try(InputStream in = getClass().getResourceAsStream(filename);
@@ -28,8 +23,4 @@ public class PastParticipleReader {
             System.out.println("Error message: "+e.getMessage());
         }
     }
-    public ArrayList<String> getWords() {
-        return words;
-    }
-    public ArrayList<String> getSentences(){return sentences;}
 }

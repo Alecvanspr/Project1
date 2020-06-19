@@ -20,6 +20,7 @@ public class MakeArrayListsText {
     public static ArrayList<String> pastSentence;
     public static ArrayList<String> pastPrincaple;
     public static ArrayList<String> pastPrincapleSentence;
+
     public void makeTextArrayLists(){
         infinitiveWord = textReader.TextReader("/_txtfiles/IrregularVerbsInfinitive.txt");
         infinitiveSentense = textReader.TextReader("/_txtfiles/SentenceInfinitive.txt");
