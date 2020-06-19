@@ -35,7 +35,6 @@ public class FutureAppointments extends ShowAppointmentsScreen {
             }
         }
     }
-
     public ArrayList<Appointment> getUserAppointments(){
         return ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAppointments();
     }

@@ -391,4 +391,12 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
+    public void goPastAppointments(Stage stage){
+        PastAppointmentScreen pastAppointmentScreen = new PastAppointmentScreen();
+        try{
+            pastAppointmentScreen.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }
