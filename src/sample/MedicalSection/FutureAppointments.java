@@ -16,7 +16,6 @@ public class FutureAppointments extends ShowAppointmentsScreen {
     ArrayKeeper arrayKeeper;
     MedicalSection medicalSection;
 
-
     public FutureAppointments(){
         fillFutureAppointments();
     }

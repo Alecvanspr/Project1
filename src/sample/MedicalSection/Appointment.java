@@ -9,7 +9,6 @@ public class Appointment {
     private LocalDate appointmentDate;
     private String appointmentTime;
     private String user;
-    private String notes;
     private Doctor doctor;
     private PersonalData patient;
     private Specialty specialty;
@@ -57,10 +56,6 @@ public class Appointment {
         return user;
     }
 
-    public String getNotes(){
-        return notes;
-    }
-
     public Doctor getDoctor(){
         return doctor;
     }
@@ -79,10 +74,6 @@ public class Appointment {
 
     public void setAppointmentDate(LocalDate date){
         this.appointmentDate = date;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
     }
 
     public void EditAppointment(String time, LocalDate date, String specialty, Doctor doctor){

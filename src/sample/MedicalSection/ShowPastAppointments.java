@@ -77,9 +77,11 @@ public class ShowPastAppointments extends Application{
             goToScreens.goMedicalSection(stage);
         });
     }
+
     public void makeButtons(Stage stage){
         makeExitButton(stage);
     }
+
     public void fin(Stage stage){
         showPastAppointments = new Scene(pane, 800, 600);
         stage.setTitle("Past appointments");

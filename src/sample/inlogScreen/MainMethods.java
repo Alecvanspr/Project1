@@ -1,10 +1,12 @@
 package sample.inlogScreen;
 
 import sample.ArrayKeeper;
+import sample.MedicalSection.Appointment;
 import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
 
 import javax.print.Doc;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainMethods {
@@ -55,6 +57,14 @@ public class MainMethods {
             //name name password securityQuestionsecurityAnswer, thing
             String[] luigiData= {"luigi", "luigi", "konk", "back then", "WHY????", "because"};
             Doctor doctorLuigi = new Doctor(luigiData,specialtiesDoc2);
+
+            //appointment
+            //Doctor doctor, LocalDate date, String time, PersonalData patient, String specialty
+            LocalDate localDate = LocalDate.of(2020, 6, 18);
+            Appointment appointment = new Appointment(DoctorMario,localDate,"4:20",admin,ey.getName());
+            ArrayKeeper.getData().get(0).getAppointments().add(appointment);
+
+
             delettisHappened = true;
         }
     }
