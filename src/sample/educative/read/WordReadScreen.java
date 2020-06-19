@@ -34,9 +34,10 @@ public class WordReadScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        iv.setVisible(false);
         makeBtnRandom(stage);
         makeBtnBack(stage);
-        pane.getChildren().addAll(text, btnBack);
+        pane.getChildren().addAll(text, btnBack, iv);
 
         fin(stage);
     }
@@ -68,7 +69,7 @@ public class WordReadScreen extends Application {
         text.setText(wr.getCombos().get(rng).getWord());
         text.setFont(SANSButBigger);
         text.relocate(scene.getWidth()/2-100, scene.getHeight()/2-50);
-        //pane.getChildren().add(text);
+
         playSound(wr, rng);
     }
 
@@ -84,11 +85,12 @@ public class WordReadScreen extends Application {
     }
 
     public void makeImage(){
+        iv.setVisible(true);
         iv.setPreserveRatio(true);
         iv.setFitWidth(200);
         iv.relocate(scene.getWidth()/2-100,scene.getHeight()/10);
 
-        pane.getChildren().add(iv);
+        //pane.getChildren().add(iv);
     }
 
     public void fin (Stage stage){
