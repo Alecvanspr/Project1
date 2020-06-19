@@ -29,7 +29,6 @@ public class EditAppointmentTest {
         arrayKeeper.getSpecialtiesArrayList().add(specialty3);
         arrayKeeper.getSpecialtiesArrayList().add(specialty4);
         arrayKeeper.getSpecialtiesArrayList().add(specialty5);
-
         Doctor doctorMario = new Doctor(object,specialties1);
         return doctorMario;
     }

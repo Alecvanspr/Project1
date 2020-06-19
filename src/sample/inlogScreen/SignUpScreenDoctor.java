@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class SignUpScreenDoctor extends Application { //todo SOLID maken
     ArrayKeeper arraykeeper = new ArrayKeeper();
     GoToScreens goToScreens = GoToScreens.getInstance();
+    SignUpDocterMethods signUpDocterMethods = new SignUpDocterMethods();
     //ButtonSettings buttonSettings = ButtonSettings.getInstance();
     Scene SignUpScreenDoctor;
     Main main;
@@ -34,13 +35,10 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
     ComboBox securityQuestions = new ComboBox();
     ComboBox<String> specialty1 = new ComboBox<>();
     ArrayList<Specialty> specialties = new ArrayList<>();
-    ArrayList<Specialty> allSpecialties = arraykeeper.getSpecialtiesArrayList();
     Label doctorNameText = new Label("Your real name");
-
 
     @Override
     public void start(Stage stage) throws Exception {
-
         makeButtons(stage);
         makeLabels();
         fin(stage);
@@ -88,8 +86,13 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
             }
         });
         signUp.setPrefWidth(75);
+        pane.getChildren().add(signUp);
     }
     public void makeLabels(){
+        makeComboBox();
+        fillComboBox();
+        setTextTextfields();
+        makeTextFields();
         makeLabelsSecurity();
         MakeLabelsPassword();
         makeLabelPersonData();
@@ -115,9 +118,6 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
         public void makeLabelsSecurity(){
             Label labelSecurity=new Label("Security question in case you forget your password");
             labelSecurity.relocate(100,230);
-            for (int i = 0; i < arraykeeper.getSpecialtiesArrayList().size(); i++) {
-                specialty1.getItems().add(arraykeeper.getSpecialtiesArrayList().get(i).getName());
-            }
             pane.getChildren().add(labelSecurity);
         }
     public void makeAddSpecialty(Stage stage) {
@@ -126,58 +126,29 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
         addSpecialty.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-            addsSpecialtybtn();
+            signUpDocterMethods.addsSpecialtybtn(specialties,specialty1.getItems().toArray());
             }
         });
         pane.getChildren().add(addSpecialty);
         ButtonSettings.onMouse(addSpecialty);
     }
-    public void addsSpecialtybtn(){
-        Boolean alreadyHave = false;
-        if (specialties.size() == 0) {
-            addsSpecialty();
-        } else {
-            makeError(alreadyHave);
-            saveData(alreadyHave);
-        }
-    }
-    public void addsSpecialty(){
-        for (int i = 0; i < allSpecialties.size(); i++) {
-            if (specialty1.getValue().equals(allSpecialties.get(i).getName())) {
-                specialties.add(allSpecialties.get(i));
-            }
-        }
-    }
-    public void makeError(boolean alreadyHave) {
-        for (int j = 0; j < specialties.size(); j++) {
-            if (specialties.get(j).getName().equals(specialty1.getValue())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You already have this specialty!");
-                alert.show();
-                alreadyHave = true;
-            }
-        }
-    }
-    public void saveData(boolean alreadyHave){
-        if (alreadyHave == false) {
-            for (int i = 0; i < allSpecialties.size(); i++) {
-                if (allSpecialties.get(i).getName().equals(specialty1.getValue())) {
-                    specialties.add(allSpecialties.get(i));
-                }
-            }
-        }
-    }
+
     public void fillComboBox(){
+        System.out.println();
         for (int i = 0; i < arraykeeper.getSpecialtiesArrayList().size(); i++) {
+            System.out.println(arraykeeper.getSpecialtiesArrayList().get(i).getName());
             specialty1.getItems().add(arraykeeper.getSpecialtiesArrayList().get(i).getName());
         }
     }
-    public void makeTextFields(){
+    public void makeComboBox(){
         specialty1.setValue("");
         specialty1.relocate(100,368);
+        pane.getChildren().addAll(specialty1);
+    }
+    public void makeTextFields(){
         doctorName.relocate(100,323);
         doctorNameText.relocate(100,303);
-        pane.getChildren().addAll( specialty1, doctorName, doctorNameText);
+        pane.getChildren().addAll(doctorName, doctorNameText);
     }
 
     public void fin(Stage stage){

@@ -7,6 +7,7 @@ import sample.educative.EducativeHomeScreen;
 import sample.educative.MathGame.MathScreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.read.StoryScreen;
+import sample.educative.read.WordReadScreen;
 import sample.educative.writing.*;
 import sample.inlogScreen.ForgotPasswordScreen;
 import sample.inlogScreen.Main;
@@ -227,6 +228,15 @@ public class GoToScreens {
         }
     }
 
+    public void goWordReading(Stage stage){
+        WordReadScreen wordReadScreen = new WordReadScreen();
+        try {
+            wordReadScreen.start(stage);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void goProfile(Stage stage){
         ProfileSettingsScreen pScreen = new ProfileSettingsScreen();
         try {
@@ -365,9 +375,9 @@ public class GoToScreens {
     }
 
     public void goCancelAppointments(Stage stage){
-        CancelAppointment cancelAppointment = new CancelAppointment();
+        CancelAppointmentScreen cancelAppointmentScreen = new CancelAppointmentScreen();
         try{
-            cancelAppointment.start(stage);
+            cancelAppointmentScreen.start(stage);
         } catch(Exception ex){
             ex.printStackTrace();
         }

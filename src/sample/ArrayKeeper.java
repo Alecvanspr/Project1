@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ArrayKeeper {
     private static ArrayList<PersonalData> Data = new ArrayList<>();
-    private static ArrayList<Specialty> specialtiesArrayList = new ArrayList<>();
+    private static ArrayList<Specialty> specialtiesArrayList;
     private static ArrayList<Doctor> doctorsArrayList = new ArrayList<>();
     private static int currentUser;
 
@@ -23,19 +23,18 @@ public class ArrayKeeper {
     }
 
     public void makeSpecialties(){
-        Specialty diabetes = new Specialty("Diabetes");
-        Specialty ears = new Specialty("Ears");
-        Specialty eyes = new Specialty("Eyes");
-        Specialty skin = new Specialty("Skin");
-        Specialty general = new Specialty("General");
-        addSpecialty(diabetes);
-        addSpecialty(eyes);
-        addSpecialty(ears);
-        addSpecialty(skin);
-        addSpecialty(general);
+        if(specialtiesArrayList==null){
+            specialtiesArrayList = new ArrayList<>();
+            specialtiesArrayList.add(new Specialty("Diabetes"));
+            specialtiesArrayList.add(new Specialty("Ears"));
+            specialtiesArrayList.add(new Specialty("Eyes"));
+            specialtiesArrayList.add(new Specialty("Skin"));
+            specialtiesArrayList.add(new Specialty("General"));
+        }
     }
 
     public ArrayList<Specialty> getSpecialtiesArrayList(){
+        makeSpecialties();
         return specialtiesArrayList;
     }
 
