@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class SignUpScreenDoctor extends Application { //todo SOLID maken
     ArrayKeeper arraykeeper = new ArrayKeeper();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     SignUpDocterMethods signUpDocterMethods = new SignUpDocterMethods();
     //ButtonSettings buttonSettings = ButtonSettings.getInstance();
     Scene SignUpScreenDoctor;
@@ -80,8 +80,7 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
             public void handle(ActionEvent actionEvent) {
                 String[] doctorData = {textFieldUsername.getText(),doctorNameText.getText(),passwordField.getText(),textFieldBirth.getText(),
                         securityQuestions.getValue().toString(),securityAnswer.getText()};
-                Doctor.makeDoctor(doctorData,specialties
-                );
+                Doctor.makeDoctor(doctorData,specialties);
                 goToScreens.goMain(stage);
             }
         });

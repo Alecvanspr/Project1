@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import sample.GoToScreens;
 
 public class ContactScreen extends Application {
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Scene contactScene;
     Addressbook addressbook = new Addressbook();
     int currentUser=0;

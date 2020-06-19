@@ -101,7 +101,7 @@ public class Doctor extends PersonalData {
         }
     }
 
-    public static void makeDoctor(String textFieldUsername, String doctorNameText, String passwordField, String textFieldBirth, String securityQuestion, String securityAnswer, ArrayList<Specialty> specialties){
-        Doctor newDoctor = new Doctor(textFieldUsername,doctorNameText,passwordField, textFieldBirth,securityQuestion, securityAnswer, specialties);
+    public static void makeDoctor(String[] doctorInfo, ArrayList<Specialty> specialties){
+        Doctor newDoctor = new Doctor(doctorInfo[0],doctorInfo[1],doctorInfo[2], doctorInfo[3],doctorInfo[4], doctorInfo[5], specialties);
     }
 }

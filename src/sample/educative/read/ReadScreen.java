@@ -11,7 +11,7 @@ import sample.educative.GoToEducative;
 
 public class ReadScreen  extends Application {
     Pane pane = new Pane();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     GoToEducative goToEducative = new GoToEducative();
     Scene scene;
 
@@ -36,7 +36,7 @@ public class ReadScreen  extends Application {
         Button btnStories = new Button("Stories");
         btnStories.relocate(300,200);
         btnStories.setOnAction(e->{
-            goToScreens.goStoryScreen(stage);
+            //goToScreens.goStoryScreen(stage);
         });
         pane.getChildren().add(btnStories);
     }
@@ -45,7 +45,7 @@ public class ReadScreen  extends Application {
         Button btnWords = new Button("words :)");
         btnWords.relocate(200,250);
         btnWords.setOnAction(e->{
-            goToScreens.goWordReading(stage);
+            //goToScreens.goWordReading(stage);
         });
         pane.getChildren().add(btnWords);
     }

@@ -14,7 +14,7 @@ import sample.educative.writing.WriteMainScreen;
 public class EducativeHomeScreen extends Application {
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Pane pane = new Pane();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Scene scene;
     GetImage getImage = new GetImage();
     Button btnBack = new Button("Back");
@@ -60,7 +60,7 @@ public class EducativeHomeScreen extends Application {
         btnMath.relocate(100,100);
         buttonSettings.onMouse(btnMath);
         btnMath.setOnAction(E->{
-            goToScreens.goMathGame(stage);
+            //goToScreens.goMathGame(stage);
         });
     }
     public void fin(Stage stage){

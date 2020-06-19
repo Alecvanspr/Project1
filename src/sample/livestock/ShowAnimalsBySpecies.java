@@ -8,7 +8,7 @@ import sample.market.Auction;
 
 public class ShowAnimalsBySpecies {
     ShowAnimalsBySpeciesScreen showAnimalsBySpeciesScreen = new ShowAnimalsBySpeciesScreen();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
 
 

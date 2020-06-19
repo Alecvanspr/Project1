@@ -12,7 +12,7 @@ public class SignUpScreen extends Application {
     Scene SignUp;
     Main main = new Main();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Pane pane = new Pane();
     //TextField doctorName = new TextField("What is your name");
     Label ErrorMessage = new Label("");
@@ -105,12 +105,14 @@ public class SignUpScreen extends Application {
     public void signUp(Stage stage, String[] signUpData,String PasswordConfig){
         if((!(signUpData[2].equals("")))&&(!(signUpData[0].equals("")))){
             if(signUpData[2].equals(PasswordConfig)) {
-                main.arraykeeper.SignUpData(signUpData);
+                main.arraykeeper.signUpData(signUpData);
                 goToScreens.goMain(stage);
-            }else {
+            }
+            else{
                 ErrorMessage.setText("Passwords don't match");
             }
-        }else{
+        }
+        else{
             ErrorMessage.setText("Fields are empty");
         }
     }

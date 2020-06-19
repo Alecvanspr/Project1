@@ -16,13 +16,13 @@ public class ArrayKeeper {
     public ArrayKeeper(){
     }
 
-    public void SignUpData(String name,String password,String birth, String security,String securityQ){
+    public void signUpData(String[] signUpData){
         PersonalData personalData = new PersonalData();
-        personalData.setUserName(name);
-        personalData.setPassword(password);
-        personalData.setDateOfBirth(birth);
-        personalData.setSecurityQuestion(securityQ);
-        personalData.setSecurityAnswer(security);
+        personalData.setUserName(signUpData[0]);
+        personalData.setPassword(signUpData[1]);
+        personalData.setDateOfBirth(signUpData[2]);
+        personalData.setSecurityQuestion(signUpData[3]);
+        personalData.setSecurityAnswer(signUpData[4]);
         Data.add(personalData);
         currentUser++;
     }
@@ -92,5 +92,14 @@ public class ArrayKeeper {
             }
         }
         return null;
+    }
+
+    public static boolean checkIsDoctor(){
+        if(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()) instanceof Doctor){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

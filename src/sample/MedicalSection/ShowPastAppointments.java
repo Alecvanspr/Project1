@@ -19,10 +19,11 @@ public class ShowPastAppointments extends Application{
     Scene showPastAppointments;
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     ButtonSettings buttonSettings = ButtonSettings.getInstance();
     Button exitButton = new Button("Back");
     ArrayList<Appointment> appointments = makeAppointmentArrayList();
+
     @Override
     public void start(Stage stage) throws Exception{
         getUserAppointmentLists(ArrayKeeper.getCurrentUser());
@@ -30,6 +31,7 @@ public class ShowPastAppointments extends Application{
         pane.getChildren().addAll(exitButton);
         fin(stage);
     }
+
     public ArrayList<Appointment> makeAppointmentArrayList(){
         ArrayList<Appointment> pastAppointments = new ArrayList<>();
         for(int i =0; i < getUserAppointmentLists(ArrayKeeper.getCurrentUser()).size(); i++){
@@ -39,6 +41,7 @@ public class ShowPastAppointments extends Application{
         }
         return pastAppointments;
     }
+
     public void makeAppointmentLabelsOnScreen(){
         for(int i =0; i< appointments.size(); i++){
             Label label = makeAppointmentLabel(appointments.get(i));
@@ -63,13 +66,16 @@ public class ShowPastAppointments extends Application{
             }else{return false;}
         }else {return false;}
     }
+
     public ArrayList<Appointment> getUserAppointmentLists(int userInt){
         return ArrayKeeper.getData().get(userInt).getAppointments();
     }
+
     public Label makeAppointmentLabel(Appointment appointment){
         Label label = new Label("You had an appointment on the date " + appointment.getAppointmentDate().getYear()+"/"+ appointment.getAppointmentDate().getMonthValue()+"/"+appointment.getAppointmentDate().getDayOfMonth());
         return label;
     }
+
     public void makeExitButton(Stage stage){
         exitButton.relocate(10, 565);
         buttonSettings.onMouse(exitButton);
@@ -77,9 +83,11 @@ public class ShowPastAppointments extends Application{
             goToScreens.goMedicalSection(stage);
         });
     }
+
     public void makeButtons(Stage stage){
         makeExitButton(stage);
     }
+
     public void fin(Stage stage){
         showPastAppointments = new Scene(pane, 800, 600);
         stage.setTitle("Past appointments");

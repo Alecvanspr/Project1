@@ -1,4 +1,4 @@
-package sample.MedicalSection;
+/*package sample.MedicalSection;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,4 +22,4 @@ public class AppointmentTests {
         Assert.assertNotEquals(timeAndReasonOld, timeAndReasonNew);
         Assert.assertTrue(appointment.getAppointmentTime().equals(timeAndReasonNew[0]));
     }
-}
+}*/

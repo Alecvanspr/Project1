@@ -1,4 +1,4 @@
-package sample.ProfileTests;
+/*package sample.ProfileTests;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -43,4 +43,4 @@ public class  DoctorTest {
     public void TestGetBirthdayDocter1(){
 
     }
-}
+}*/

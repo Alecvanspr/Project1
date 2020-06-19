@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sample.MedicalSection.Doctor;
 import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
 import sample.inlogScreen.Main;
@@ -19,7 +20,7 @@ import sample.profileSettings.ProfileSettingsScreen;
 
 public class Homescreen extends Application {
     ButtonSettings buttonSettings = ButtonSettings.getInstance();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Scene homeScene;
     Main main;
     ArrayKeeper arrayKeeper;

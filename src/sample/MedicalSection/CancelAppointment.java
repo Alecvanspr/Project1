@@ -18,7 +18,7 @@ public class CancelAppointment extends Application {
     Main main;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     ButtonSettings buttonSettings = ButtonSettings.getInstance();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Pane pane = new Pane();
     Button deleteAppointmentButton = new Button("Delete this appointment");
     Button exitButton = new Button("Back");

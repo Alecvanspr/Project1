@@ -22,7 +22,7 @@ public class WordReadScreen extends Application {
     Pane pane = new Pane();
     Scene scene = new Scene(pane,800,600);
     public static Font SANSButBigger = new Font("Comic Sans MS",42);
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     ButtonSettings buttonSettings = ButtonSettings.getInstance();
     Button btnBack = new Button("back");
     Random random = new Random();

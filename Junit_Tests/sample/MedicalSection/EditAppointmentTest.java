@@ -1,4 +1,4 @@
-package sample.MedicalSection;
+/*package sample.MedicalSection;
 import org.junit.Assert;
 import org.junit.Test;
 import sample.ArrayKeeper;
@@ -20,6 +20,7 @@ public class EditAppointmentTest {
     ArrayList<Specialty> specialties1 = new ArrayList<>();
     ArrayList<Specialty> specialties2 = new ArrayList<>();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
+
     public Doctor makeDoctor1(){
         specialties1.add(specialty1);
         specialties1.add(specialty2);
@@ -168,3 +169,4 @@ public class EditAppointmentTest {
         Assert.assertTrue(appointment.getAppointmentTime().equalsIgnoreCase(time));
     }
 }
+*/

@@ -15,7 +15,7 @@ public class ProfileSettingsScreen extends Application {
     Homescreen homescreen = new Homescreen();
     //ButtonSettings ButtonSettings = new ButtonSettings();
     Scene Settings;
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Pane pSettings = new Pane();
     public int currentUser= ArrayKeeper.getCurrentUser();
 

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ShowAppointmentsScreen extends Application {
     Scene showAppointmentsScene;
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     Main main;
     ArrayKeeper arrayKeeper;
     Button editAppointment = new Button("Edit appointment");
@@ -66,7 +66,7 @@ public class ShowAppointmentsScreen extends Application {
         deleteAppointment.setPrefHeight(100);
         buttonSettings.onMouse(deleteAppointment);
         deleteAppointment.setOnAction(E-> {
-            goToScreens.goCancelAppointments(stage);
+            goToScreens.goCancelAppointment(stage);
         });
     }
     public void makeExitButton(Stage stage){

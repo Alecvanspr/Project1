@@ -74,7 +74,7 @@ public class ViewPatientsScreen extends Application{
             currentPatient = i;
             Label patientNaam = new Label(ArrayKeeper.findDoctor(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName()).getPatients().get(i).getName());
             patientNaam.setOnMouseClicked(E -> {
-                goToScreens.goViewPatientComplaintsScreen(stage, patient);
+                //goToScreens.goViewPatientComplaintsScreen(stage, patient);
             });
             patientNaam.relocate(50, 50+(50*i));
             pane.getChildren().add(patientNaam);

@@ -4,8 +4,6 @@ import javafx.stage.Stage;
 import sample.MedicalSection.*;
 import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
-import sample.educative.MathScreen;
-import sample.educative.read.HangmanScreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.writing.*;
 import sample.inlogScreen.ForgotPasswordScreen;
@@ -16,6 +14,8 @@ import sample.livestock.*;
 import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
 import sample.profileSettings.ProfileSettingsScreen;
+
+import javax.swing.text.View;
 
 public class GoToScreens {
     public void goProfileSettingScreen(Stage stage){
@@ -162,15 +162,6 @@ public class GoToScreens {
         }
     }
 
-    public void goMathScreen(Stage stage){
-        MathScreen mathScreen = new MathScreen();
-        try {
-            mathScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
     public void goReadScreen(Stage stage){
         ReadScreen readScreen = new ReadScreen();
         try {
@@ -220,15 +211,6 @@ public class GoToScreens {
         WriteWordsScreen writeWordsScreen = new WriteWordsScreen();
         try {
             writeWordsScreen.start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void goHangmanScreen(Stage stage){
-        HangmanScreen hangmanScreen = new HangmanScreen();
-        try {
-            hangmanScreen.start(stage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -352,7 +334,17 @@ public class GoToScreens {
         }
     }
 
-    public void goViewPatientComplaintsScreen(Stage stage, int currentPatient){
+    public void goCancelAppointment(Stage stage){
+        CancelAppointment cancelAppointment = new CancelAppointment();
+        try{
+            cancelAppointment.start(stage);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();;
+        }
+    }
+
+    /*public void goViewPatientComplaintsScreen(Stage stage, int currentPatient){
         ViewPatientComplaintsScreen viewPatientComplaintsScreen = new ViewPatientComplaintsScreen(currentPatient);
         try{
             viewPatientComplaintsScreen.start(stage);
@@ -360,5 +352,5 @@ public class GoToScreens {
         catch(Exception ex){
             ex.printStackTrace();
         }
-    }
+    }*/
 }

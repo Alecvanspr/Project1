@@ -16,7 +16,7 @@ import sample.GoToScreens;
 
 public class Livestock extends Application {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
-    GoToScreens goToScreens = GoToScreens.getInstance();
+    GoToScreens goToScreens = new GoToScreens();
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     Scene stockScene;
     private int placeName = 75;
