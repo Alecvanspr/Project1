@@ -92,19 +92,20 @@ public class SignUpScreen extends Application {
     public void makeBtnRegister(Stage stage){
         Button btnRegister = new Button("Register");
         btnRegister.setOnAction(e->{
-            signUp(stage,passwordField.getText(),passwordFieldConf.getText(),textFieldUserName.getText(),
-                    textFieldBirth.getText(),securityAnswer.getText(),securityQuestions.getValue().toString());
+            //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
+            String[] data = {textFieldUserName.getText(),textFieldUserName.getText(),passwordField.getText(),textFieldBirth.getText(),securityQuestions.getValue().toString(),securityAnswer.getText()};
+            signUp(stage,data,passwordFieldConf.getText());
         });
         buttonSettings.onMouse(btnRegister);
         btnRegister.relocate(100,320);
         pane.getChildren().add(btnRegister);
     }
 
-    public void signUp(Stage stage, String password, String PasswordConfig, String username, String birthday, String securityAnswer, String securityQuestions){
-        if((!(password.equals("")))&&(!(username.equals("")))){
-            if(password.equals(PasswordConfig)) {
-                String[] personData = {username,username,password,birthday,securityAnswer,securityQuestions};
-                main.arraykeeper.SignUpData(personData);
+    //String username, String name,String password,String birthday, String securityQuestions,String securityAnswer
+    public void signUp(Stage stage, String[] signUpData,String PasswordConfig){
+        if((!(signUpData[2].equals("")))&&(!(signUpData[0].equals("")))){
+            if(signUpData[2].equals(PasswordConfig)) {
+                main.arraykeeper.SignUpData(signUpData);
                 goToScreens.goMain(stage);
             }else {
                 ErrorMessage.setText("Passwords don't match");
