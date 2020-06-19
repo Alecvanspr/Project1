@@ -9,11 +9,9 @@ public class Appointment {
     private LocalDate appointmentDate;
     private String appointmentTime;
     private String user;
-    private String notes;
     private Doctor doctor;
     private PersonalData patient;
     private Specialty specialty;
-    ArrayKeeper arrayKeeper = new ArrayKeeper();
 
 
     public Appointment(Doctor doctor, LocalDate date, String[] timeAndReason, PersonalData patient){
@@ -29,9 +27,9 @@ public class Appointment {
     }
 
     public Specialty getSpecialtyClass(String specialtyString){
-        for(int i = 0; i < arrayKeeper.getSpecialtiesArrayList().size(); i++){
-            if(arrayKeeper.getSpecialtiesArrayList().get(i).getName().equalsIgnoreCase(specialtyString)){
-                return arrayKeeper.getSpecialtiesArrayList().get(i);
+        for(int i = 0; i < ArrayKeeper.getSpecialtiesArrayList().size(); i++){
+            if(ArrayKeeper.getSpecialtiesArrayList().get(i).getName().equalsIgnoreCase(specialtyString)){
+                return ArrayKeeper.getSpecialtiesArrayList().get(i);
             }
         }
         return null;
@@ -57,10 +55,6 @@ public class Appointment {
         return user;
     }
 
-    public String getNotes(){
-        return notes;
-    }
-
     public Doctor getDoctor(){
         return doctor;
     }
@@ -81,11 +75,7 @@ public class Appointment {
         this.appointmentDate = date;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public void EditAppointment(Doctor doctor, String[] timeAndReason, LocalDate date){
+    public void editAppointment(Doctor doctor, String[] timeAndReason, LocalDate date){
         setAppointmentTime(timeAndReason[0]);
         setAppointmentDate(date);
         setSpecialty(timeAndReason[1]);

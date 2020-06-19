@@ -162,7 +162,7 @@ public class EditAppointment extends Application {
             appointment = getAppointmentList().get(i);
             String oldTime = appointment.getAppointmentTime();
             String[] timeAndReason = {timeComboBox.getValue(), specialtyComboBox.getValue()};
-            getAppointmentList().get(i).EditAppointment(getDoctor(doctorComboBox.getValue()),timeAndReason, datePicker.getValue());
+            getAppointmentList().get(i).editAppointment(getDoctor(doctorComboBox.getValue()),timeAndReason, datePicker.getValue());
             removeAndAddTime(timeComboBox.getValue(),oldTime);
             goToScreens.goAppointmentsScreen(stage);
         }

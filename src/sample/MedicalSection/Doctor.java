@@ -12,13 +12,13 @@ public class Doctor extends PersonalData {
     private ArrayList<Dates> dates = new ArrayList<>();
     private ArrayList<PersonalData> patients = new ArrayList<>();
 
-    public Doctor(String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer, ArrayList<Specialty> specialties){
-        this.setUserName(username);
-        this.setName(name);
-        this.setPassword(password);
-        this.setDateOfBirth(dateOfBirth);
-        this.setSecurityQuestion(securityQuestion);
-        this.setSecurityAnswer(securityAnswer);
+    public Doctor(String[] doctorInfo, ArrayList<Specialty> specialties){
+        this.setUserName(doctorInfo[0]);
+        this.setName(doctorInfo[1]);
+        this.setPassword(doctorInfo[2]);
+        this.setDateOfBirth(doctorInfo[3]);
+        this.setSecurityQuestion(doctorInfo[4]);
+        this.setSecurityAnswer(doctorInfo[5]);
         this.specialties = specialties;
         arraykeeper.addDoctor(this);
     }
@@ -102,6 +102,6 @@ public class Doctor extends PersonalData {
     }
 
     public static void makeDoctor(String[] doctorInfo, ArrayList<Specialty> specialties){
-        Doctor newDoctor = new Doctor(doctorInfo[0],doctorInfo[1],doctorInfo[2], doctorInfo[3],doctorInfo[4], doctorInfo[5], specialties);
+        Doctor newDoctor = new Doctor(doctorInfo, specialties);
     }
 }
