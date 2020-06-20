@@ -399,8 +399,8 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
-    public void goNotesScreen(Stage stage,PastAppointment appointment){
-        NotesScreen notesScreen = new NotesScreen(appointment);
+    public void goNotesScreen(Stage stage,PastAppointment appointment,int i){
+        NotesScreen notesScreen = new NotesScreen(appointment,i);
         try{
             notesScreen.start(stage);
         }catch (Exception ex){

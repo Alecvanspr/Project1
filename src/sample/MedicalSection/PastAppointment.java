@@ -4,7 +4,7 @@ import sample.inlogScreen.PersonalData;
 
 import java.time.LocalDate;
 
-public class PastAppointment extends Appointment { //todo achteraf verwijderen als je dit niet gebruikt luie zak.
+public class PastAppointment extends Appointment {
     private String notes;
     public PastAppointment(Doctor doctor, LocalDate date, String time, PersonalData patient, String specialty) {
         super(doctor, date, time, patient, specialty);

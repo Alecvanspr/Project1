@@ -66,8 +66,6 @@ public class MainMethods {
             DoctorMario.addAppointment(appointment);
 
             DoctorMario.addAppointment(appointment);
-
-
             delettisHappened = true;
         }
     }

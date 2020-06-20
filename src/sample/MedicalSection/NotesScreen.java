@@ -4,23 +4,29 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
 import sample.ArrayKeeper;
 import sample.GoToScreens;
 
 public class NotesScreen extends Application {
+    PastAppointments pastAppointments = new PastAppointments();
     Pane pane = new Pane();
     GoToScreens goToScreens = GoToScreens.getInstance();
-    PastAppointment pastAppointment;
+    //PastAppointment pastAppointment;
     Scene scene;
     int currentAppointment;
+    TextArea editNote = new TextArea();
 
-    public NotesScreen(PastAppointment pastAppointment){
-        this.pastAppointment = pastAppointment;
+    public NotesScreen(PastAppointment pastAppointment,int currentAppointment){
+        this.currentAppointment = currentAppointment;
+        //this.pastAppointment = pastAppointment;
     }
     @Override
     public void start(Stage stage) throws Exception {
+        System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getNotes());
+        System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getDoctor());
         makeLabels();
         makeButtons(stage);
         fin(stage);
@@ -38,22 +44,23 @@ public class NotesScreen extends Application {
         showNote();
     }
     public void showDate(){
-        Label dateLabel = new Label(pastAppointment.getAppointmentDate().toString());
+        Label dateLabel = new Label(pastAppointments.getPastAppointments().get(currentAppointment).getAppointmentDate().toString());
         dateLabel.relocate(100,40);
         pane.getChildren().add(dateLabel);
     }
     public void showTime(){
-        Label timeLabel = new Label(pastAppointment.getAppointmentTime());
+        Label timeLabel = new Label(pastAppointments.getPastAppointments().get(currentAppointment).getAppointmentTime());
         timeLabel.relocate(200,40);
         pane.getChildren().add(timeLabel);
     }
     public void showDoctor(){
-        Label doctorLabel = new Label(pastAppointment.getDoctor().getName());
+        Label doctorLabel = new Label(pastAppointments.getPastAppointments().get(currentAppointment).getDoctor().getName());
         doctorLabel.relocate(300,40);
         pane.getChildren().add(doctorLabel);
     }
     public void showNote(){
-        Label showNotes = new Label(pastAppointment.getNotes());
+        System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getNotes());
+        Label showNotes = new Label(pastAppointments.getPastAppointments().get(currentAppointment).getNotes());
         showNotes.relocate(100,75);
         pane.getChildren().add(showNotes);
     }
@@ -73,8 +80,8 @@ public class NotesScreen extends Application {
     }
     public boolean checkIfDocter(){
         for(int i = 0;i<ArrayKeeper.getDoctorsArrayList().size();i++){
-            if (pastAppointment.getDoctor().getName().equals(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName())) {
-                if (pastAppointment.getDoctor().getPassword().equals(ArrayKeeper.getDoctorsArrayList().get(i).getPassword())) {
+            if (pastAppointments.getPastAppointments().get(currentAppointment).getDoctor().getName().equals(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName())) {
+                if (pastAppointments.getPastAppointments().get(currentAppointment).getDoctor().getPassword().equals(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getPassword())) {
                     return true;
                 }
             }
@@ -82,7 +89,21 @@ public class NotesScreen extends Application {
         return false;
     }
     public void editNoteLabel(){
-
+        editNote.relocate(100,120);
+        editNote.setMaxSize(300,300);
+        makeBtnSave();
+        pane.getChildren().add(editNote);
+    }
+    public void makeBtnSave(){
+        Button btnSave = new Button("Save Notes");
+        btnSave.relocate(300,575);
+        btnSave.setOnAction(E->{
+            pastAppointments.getPastAppointments().get(currentAppointment).setNotes(editNote.getText());
+            System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getNotes());
+            pane.getChildren().remove(btnSave);
+            pane.getChildren().remove(editNote);
+        });
+        pane.getChildren().add(btnSave);
     }
     public void makeBtnBack(Stage stage){
         Button btnBack = new Button("Back");

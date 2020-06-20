@@ -56,7 +56,7 @@ public class PastAppointmentScreen extends Application {
         Button button = new Button("Show Notes");
         button.relocate(400,100+(50*i));
         button.setOnAction(E->{
-            goToScreens.goNotesScreen(stage,pastAppointment);
+            goToScreens.goNotesScreen(stage,pastAppointment,i);
         });
         pane.getChildren().add(button);
     }
