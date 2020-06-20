@@ -29,6 +29,7 @@ public class WriteMainScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        pane.setStyle("-fx-background-color: #ade6bb");
         makeBtnGuessAnimals(stage);
         makeBtnWriteAlphabet(stage);
         makeBtnWriteRandom(stage);

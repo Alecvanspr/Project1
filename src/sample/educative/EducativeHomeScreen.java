@@ -28,6 +28,7 @@ public class EducativeHomeScreen extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         makeButtons(stage);
+        pane.setStyle("-fx-background-color: #ade6bb");
         title.relocate(265,250);
         title.setFont(Font.font("Arial",30));
         pane.getChildren().addAll(title,btnBack, btnMath, btnRead, btnWrite);

@@ -20,6 +20,7 @@ public class ReadScreen  extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        pane.setStyle("-fx-background-color: #ade6bb");
         titel.relocate(265,250);
         titel.setFont(Font.font("Arial",30));
         makeButtons(stage);
