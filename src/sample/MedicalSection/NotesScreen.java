@@ -100,6 +100,7 @@ public class NotesScreen extends Application {
             pastAppointments.getPastAppointments().get(currentAppointment).setNotes(editNote.getText());
             pane.getChildren().remove(btnSave);
             pane.getChildren().remove(editNote);
+            showNote();
         });
         pane.getChildren().add(btnSave);
     }
