@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PastAppointments extends PastAppointmentScreen{
-    ArrayList<Appointment> pastAppointments = new ArrayList<>();
+    ArrayList<PastAppointment> pastAppointments = new ArrayList<>();
     ObservableList<String> appointmentsString = FXCollections.observableArrayList(pastAppointments.toString());
     ArrayKeeper arrayKeeper;
     MedicalSection medicalSection;
@@ -17,7 +17,7 @@ public class PastAppointments extends PastAppointmentScreen{
         fillPastAppointments();
     }
 
-    public ArrayList<Appointment> getPastAppointments(){
+    public ArrayList<PastAppointment> getPastAppointments(){
         return pastAppointments;
     }
 
@@ -26,7 +26,7 @@ public class PastAppointments extends PastAppointmentScreen{
         for(int i = 0; i < getUserAppointments().size(); i++){
             if(!(getUserAppointments().get(i).getAppointmentDate().getYear() < dateNow.getYear())){
                 if(!(getUserAppointments().get(i).getAppointmentDate().getDayOfMonth() < dateNow.getDayOfMonth() && getUserAppointments().get(i).getAppointmentDate().getMonth().getValue() < dateNow.getMonth().getValue())){
-                    pastAppointments.add(getUserAppointments().get(i));
+                    pastAppointments.add(makePastAppointment(getUserAppointments().get(i)));
                     appointmentsString.add(getUserAppointments().get(i).getAppointmentDate().toString() + " - " + getPastAppointments().get(i).getDoctor().getName() + " - " + getPastAppointments().get(i).getAppointmentTime());
                 }
             }
@@ -35,5 +35,10 @@ public class PastAppointments extends PastAppointmentScreen{
 
     public ArrayList<Appointment> getUserAppointments(){
         return ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getAppointments();
+    }
+    public PastAppointment makePastAppointment(Appointment appointment){
+        //doctor, localdate, string, personalData , string
+        PastAppointment pastAppointment = new PastAppointment(appointment.getDoctor(),appointment.getAppointmentDate(),appointment.getAppointmentTime(),appointment.getPatient(),appointment.getSpecialty().getName());
+        return pastAppointment;
     }
 }

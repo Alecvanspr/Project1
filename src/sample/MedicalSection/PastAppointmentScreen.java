@@ -30,33 +30,33 @@ public class PastAppointmentScreen extends Application {
     @Override
     public void start(Stage stage) throws  Exception{
         makeButton(stage);
-        makeLabels();
+        makeLabels(stage);
         pane.getChildren().addAll(buttonBack ,title);
         fin(stage);
     }
-    public void makeLabels(){
-        makeAppointmentLabels();
+    public void makeLabels(Stage stage){
+        makeAppointmentLabels(stage);
         makeTitleLabel();
     }
     public void makeTitleLabel(){
         title.relocate(100, 50);
         title.setFont(Font.font("Arial", 30));
     }
-    public void makeAppointmentLabels(){
+    public void makeAppointmentLabels(Stage stage){
         for(int i =0; i < getPastAppointments().size(); i++){
             Label appointmentLabel = new Label("On " + getPastAppointments().get(i).getAppointmentDate().toString() + " you had an appointment with " + getPastAppointments().get(i).getDoctor().getName() +".");
             Label timeLabel = new Label("The appointment took place at: " + getPastAppointments().get(i).getAppointmentTime());
             appointmentLabel.relocate(100, 100+(50*i));
             timeLabel.relocate(100, 125+(50*i));
-            makeShowNotesButton(i);
+            makeShowNotesButton(i,getPastAppointments().get(i),stage);
             pane.getChildren().addAll(appointmentLabel, timeLabel);
         }
     }
-    public void makeShowNotesButton(int i){
+    public void makeShowNotesButton(int i,PastAppointment pastAppointment,Stage stage){
         Button button = new Button("Show Notes");
         button.relocate(400,100+(50*i));
         button.setOnAction(E->{
-
+            goToScreens.goNotesScreen(stage,pastAppointment);
         });
         pane.getChildren().add(button);
     }
@@ -73,7 +73,7 @@ public class PastAppointmentScreen extends Application {
 
     }
 
-    public ArrayList<Appointment> getPastAppointments(){
+    public ArrayList<PastAppointment> getPastAppointments(){
         PastAppointments pastAppointments = new PastAppointments();
         return pastAppointments.getPastAppointments();
     }
