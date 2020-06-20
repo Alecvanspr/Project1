@@ -9,10 +9,10 @@ public class PastAppointment extends Appointment {
     public PastAppointment(Doctor doctor, LocalDate date, String time, PersonalData patient, String specialty) {
         super(doctor, date, time, patient, specialty);
     }
-    public String getNotes(){
-        return notes;
-    }
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
+//    public String getNotes(){
+//        return notes;
+//    }
+//    public void setNotes(String notes) {
+//        this.notes = notes;
+//    }
 }

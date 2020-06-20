@@ -12,6 +12,7 @@ public class Appointment {
     private Doctor doctor;
     private PersonalData patient;
     private Specialty specialty;
+    private String notes;
     ArrayKeeper arrayKeeper = new ArrayKeeper();
 
 
@@ -74,6 +75,13 @@ public class Appointment {
 
     public void setAppointmentDate(LocalDate date){
         this.appointmentDate = date;
+    }
+
+    public String getNotes(){
+        return notes;
+    }
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public void EditAppointment(String time, LocalDate date, String specialty, Doctor doctor){
