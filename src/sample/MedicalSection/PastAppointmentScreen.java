@@ -22,6 +22,8 @@ public class PastAppointmentScreen extends Application {
     Scene scene;
     ButtonSettings buttonSettings =ButtonSettings.getInstance();
     GoToScreens goToScreens = GoToScreens.getInstance();
+    PastAppointments pastAppointments = PastAppointments.getInstance();
+    ArrayList<Appointment> appointments;
     Main main;
     ArrayKeeper arrayKeeper;
     Button buttonBack = new Button("Back");
@@ -43,20 +45,21 @@ public class PastAppointmentScreen extends Application {
         title.setFont(Font.font("Arial", 30));
     }
     public void makeAppointmentLabels(Stage stage){
-        for(int i =0; i < getPastAppointments().size(); i++){
-            Label appointmentLabel = new Label("On " + getPastAppointments().get(i).getAppointmentDate().toString() + " you had an appointment with " + getPastAppointments().get(i).getDoctor().getName() +".");
+        System.out.println(pastAppointments.pastAppointments+"makeAppointmentLabels");
+        for(int i =0; i < pastAppointments.pastAppointments.size(); i++){
+            Label appointmentLabel = new Label("On " + getPastAppointments().toString() + " you had an appointment with " + getPastAppointments().get(i).getDoctor().getName() +".");
             Label timeLabel = new Label("The appointment took place at: " + getPastAppointments().get(i).getAppointmentTime());
             appointmentLabel.relocate(100, 100+(50*i));
             timeLabel.relocate(100, 125+(50*i));
-            makeShowNotesButton(i,getPastAppointments().get(i),stage);
+            makeShowNotesButton(i,stage);
             pane.getChildren().addAll(appointmentLabel, timeLabel);
         }
     }
-    public void makeShowNotesButton(int i,PastAppointment pastAppointment,Stage stage){
+    public void makeShowNotesButton(int i,Stage stage){
         Button button = new Button("Show Notes");
         button.relocate(400,100+(50*i));
         button.setOnAction(E->{
-            goToScreens.goNotesScreen(stage,pastAppointment,i);
+            goToScreens.goNotesScreen(stage,i);
         });
         pane.getChildren().add(button);
     }
@@ -73,12 +76,9 @@ public class PastAppointmentScreen extends Application {
 
     }
 
-    public ArrayList<PastAppointment> getPastAppointments(){
-        PastAppointments pastAppointments =PastAppointments.getInstance();
-        pastAppointments.fillPastAppointments();
-        return pastAppointments.getPastAppointments();
+    public ArrayList<Appointment> getPastAppointments(){
+        return pastAppointments.pastAppointments;
     }
-
 
     public void fin(Stage stage){
             scene = new Scene(pane,800,600);

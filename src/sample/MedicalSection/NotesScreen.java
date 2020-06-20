@@ -11,7 +11,7 @@ import sample.ArrayKeeper;
 import sample.GoToScreens;
 
 public class NotesScreen extends Application {
-    PastAppointments pastAppointments =PastAppointments.getInstance();
+    PastAppointments pastAppointments = PastAppointments.getInstance();
     Pane pane = new Pane();
     GoToScreens goToScreens = GoToScreens.getInstance();
     //PastAppointment pastAppointment;
@@ -19,12 +19,13 @@ public class NotesScreen extends Application {
     int currentAppointment;
     TextArea editNote = new TextArea();
 
-    public NotesScreen(PastAppointment pastAppointment,int currentAppointment){
+    public NotesScreen(int currentAppointment){
         this.currentAppointment = currentAppointment;
-        pastAppointments.fillPastAppointments();
+
     }
     @Override
     public void start(Stage stage) throws Exception {
+        pastAppointments.fillPastAppointments();
         System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getDoctor().getName());
         makeLabels();
         makeButtons(stage);
