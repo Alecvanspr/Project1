@@ -3,7 +3,9 @@ package sample.educative.read;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.GoToScreens;
 import sample.educative.EducativeHomeScreen;
@@ -11,14 +13,18 @@ import sample.educative.GoToEducative;
 
 public class ReadScreen  extends Application {
     Pane pane = new Pane();
+    Label titel = new Label("Train your Reading");
     GoToScreens goToScreens = GoToScreens.getInstance();
     GoToEducative goToEducative = new GoToEducative();
     Scene scene;
 
     @Override
     public void start(Stage stage) throws Exception {
+        titel.relocate(265,250);
+        titel.setFont(Font.font("Arial",30));
         makeButtons(stage);
         fin(stage);
+        pane.getChildren().add(titel);
     }
     public void fin(Stage stage){
         scene = new Scene(pane, 800, 600);
@@ -34,7 +40,8 @@ public class ReadScreen  extends Application {
     }
     public void makeBtnStories(Stage stage){
         Button btnStories = new Button("Stories");
-        btnStories.relocate(300,200);
+        btnStories.relocate(450,320);
+        btnStories.setPrefSize(100,100);
         btnStories.setOnAction(e->{
             goToScreens.goStoryScreen(stage);
         });
@@ -43,7 +50,8 @@ public class ReadScreen  extends Application {
 
     public void makeBtnWords(Stage stage){
         Button btnWords = new Button("words :)");
-        btnWords.relocate(200,250);
+        btnWords.relocate(340,320);
+        btnWords.setPrefSize(100,100);
         btnWords.setOnAction(e->{
             goToScreens.goWordReading(stage);
         });
@@ -55,7 +63,8 @@ public class ReadScreen  extends Application {
         btnGrammar.setOnAction(e->{
             goToEducative.goGrammar(stage);
         });
-        btnGrammar.relocate(200,200);
+        btnGrammar.relocate(225,320);
+        btnGrammar.setPrefSize(100,100);
         pane.getChildren().add(btnGrammar);
     }
     public void makeBtnBack(Stage stage){

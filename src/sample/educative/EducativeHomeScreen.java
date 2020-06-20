@@ -3,7 +3,9 @@ package sample.educative;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ButtonSettings;
 import sample.GoToScreens;
@@ -17,6 +19,7 @@ public class EducativeHomeScreen extends Application {
     GoToScreens goToScreens = GoToScreens.getInstance();
     Scene scene;
     GetImage getImage = new GetImage();
+    Label title = new Label("Choose Category");
     Button btnBack = new Button("Back");
     Button btnMath = new Button("math");
     Button btnRead = new Button("read");
@@ -25,7 +28,9 @@ public class EducativeHomeScreen extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         makeButtons(stage);
-        pane.getChildren().addAll(btnBack, btnMath, btnRead, btnWrite);
+        title.relocate(265,250);
+        title.setFont(Font.font("Arial",30));
+        pane.getChildren().addAll(title,btnBack, btnMath, btnRead, btnWrite);
         fin(stage);
     }
     public void makeButtons(Stage stage){
