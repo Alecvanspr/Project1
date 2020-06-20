@@ -34,6 +34,7 @@ public class WordReadScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        pane.setStyle("-fx-background-color: #ade6bb");
         iv.setVisible(false);
         makeBtnRandom(stage);
         makeBtnBack(stage);

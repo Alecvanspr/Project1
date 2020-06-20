@@ -36,6 +36,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         login.getChildren().add(error);
+        pane.setStyle("-fx-background-color: #add8e6");
         window = primaryStage;
         makeLabels();
         makeButtons();

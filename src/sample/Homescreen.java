@@ -39,6 +39,7 @@ public class Homescreen extends Application {
     public void start(Stage stage) throws Exception {
         Label user = new Label("Welcome back " + ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getUsername());
         welcome.setFont(Font.font("Arial",30));
+        home.setStyle("-fx-background-color:#e6d8ad");
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
                 btnMarketPlace,btnLiveStock,user,btnEducative,btnMedicalSection);
         welcome.relocate(200,100);

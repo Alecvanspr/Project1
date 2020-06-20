@@ -44,6 +44,7 @@ public class MathScreen  extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        pane.setStyle("-fx-background-color: #add8e6");
         makeButtons(stage);
         makeLabels();
         makeTextField();
