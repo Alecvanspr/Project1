@@ -63,6 +63,7 @@ public class MainMethods {
             LocalDate localDate = LocalDate.of(2020, 6, 18);
             Appointment appointment = new Appointment(DoctorMario,localDate,"4:20",admin,ey.getName());
             ArrayKeeper.getData().get(0).getAppointments().add(appointment);
+            DoctorMario.addAppointment(appointment);
 
             DoctorMario.addAppointment(appointment);
 

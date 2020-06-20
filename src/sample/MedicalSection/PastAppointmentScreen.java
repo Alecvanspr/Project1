@@ -48,9 +48,17 @@ public class PastAppointmentScreen extends Application {
             Label timeLabel = new Label("The appointment took place at: " + getPastAppointments().get(i).getAppointmentTime());
             appointmentLabel.relocate(100, 100+(50*i));
             timeLabel.relocate(100, 125+(50*i));
-
+            makeShowNotesButton(i);
             pane.getChildren().addAll(appointmentLabel, timeLabel);
         }
+    }
+    public void makeShowNotesButton(int i){
+        Button button = new Button("Show Notes");
+        button.relocate(400,100+(50*i));
+        button.setOnAction(E->{
+
+        });
+        pane.getChildren().add(button);
     }
     public void makeButton(Stage stage){
         makeExitButton(stage);

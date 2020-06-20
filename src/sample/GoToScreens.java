@@ -399,4 +399,12 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
+    public void goNotesScreen(Stage stage,int currentAppointment){
+        NotesScreen notesScreen = new NotesScreen(currentAppointment);
+        try{
+            notesScreen.start(stage);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }
