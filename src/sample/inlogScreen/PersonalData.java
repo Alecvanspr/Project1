@@ -13,6 +13,7 @@ public class PersonalData {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     static ArrayList<Species> species= new ArrayList<>();
     private ArrayList<Appointment> appointments = new ArrayList<>();
+
     private ArrayList<Complaint> complaints = new ArrayList<>();
     private String username, name = "Not yet defined", password, dateOfBirth, phoneNumber = "Not yet defined", email = "Not yet defined",
     gender = "Not yet defined", securityQuestion, securityAnswer;

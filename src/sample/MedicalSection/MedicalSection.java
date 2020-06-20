@@ -24,7 +24,7 @@ public class MedicalSection extends Application {
     Main main;
     ArrayKeeper arrayKeeper;
     FutureAppointments futureAppointments = new FutureAppointments();
-    PastAppointments pastAppointments = new PastAppointments();
+    PastAppointments pastAppointments = PastAppointments.getInstance();
     int buttonNumber = 0;
     Pane pane = new Pane();
     GoToScreens goToScreens = GoToScreens.getInstance();

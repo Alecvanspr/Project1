@@ -18,6 +18,7 @@ public class ShowPastAppointments extends Application{
     Pane pane = new Pane();
     Scene showPastAppointments;
     Main main;
+    PastAppointments pastAppointments =PastAppointments.getInstance();
     ArrayKeeper arrayKeeper = new ArrayKeeper();
     GoToScreens goToScreens = GoToScreens.getInstance();
     ButtonSettings buttonSettings = ButtonSettings.getInstance();

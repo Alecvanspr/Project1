@@ -8,26 +8,37 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PastAppointments extends PastAppointmentScreen{
-    static ArrayList<PastAppointment> pastAppointments = new ArrayList<>();
-    //ObservableList<String> appointmentsString = FXCollections.observableArrayList(pastAppointments.toString());
+    private static PastAppointments instance;
+    public static PastAppointments getInstance(){
+        if(instance==null){
+            instance = new PastAppointments();
+        }
+        return  instance;
+    }
+    ArrayList<PastAppointment> pastAppointments = new ArrayList<>();
+    ObservableList<String> appointmentsString = FXCollections.observableArrayList(pastAppointments.toString());
     ArrayKeeper arrayKeeper;
     MedicalSection medicalSection;
 
-    public PastAppointments(){
+    private PastAppointments(){
         fillPastAppointments();
     }
 
     public ArrayList<PastAppointment> getPastAppointments(){
         return pastAppointments;
     }
+    public void clearPastAppointments(){
+        pastAppointments.clear();
+    }
 
     public void fillPastAppointments(){
+        clearPastAppointments();
         LocalDate dateNow = LocalDate.now();
         for(int i = 0; i < getUserAppointments().size(); i++){
             if(!(getUserAppointments().get(i).getAppointmentDate().getYear() < dateNow.getYear())){
                 if(!(getUserAppointments().get(i).getAppointmentDate().getDayOfMonth() < dateNow.getDayOfMonth() && getUserAppointments().get(i).getAppointmentDate().getMonth().getValue() < dateNow.getMonth().getValue())){
                     pastAppointments.add(makePastAppointment(getUserAppointments().get(i)));
-                    //appointmentsString.add(getUserAppointments().get(i).getAppointmentDate().toString() + " - " + getPastAppointments().get(i).getDoctor().getName() + " - " + getPastAppointments().get(i).getAppointmentTime());
+                    appointmentsString.add(getUserAppointments().get(i).getAppointmentDate().toString() + " - " + getPastAppointments().get(i).getDoctor().getName() + " - " + getPastAppointments().get(i).getAppointmentTime());
                 }
             }
         }

@@ -74,7 +74,8 @@ public class PastAppointmentScreen extends Application {
     }
 
     public ArrayList<PastAppointment> getPastAppointments(){
-        PastAppointments pastAppointments = new PastAppointments();
+        PastAppointments pastAppointments =PastAppointments.getInstance();
+        pastAppointments.fillPastAppointments();
         return pastAppointments.getPastAppointments();
     }
 

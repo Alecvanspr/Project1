@@ -11,7 +11,7 @@ import sample.ArrayKeeper;
 import sample.GoToScreens;
 
 public class NotesScreen extends Application {
-    PastAppointments pastAppointments = new PastAppointments();
+    PastAppointments pastAppointments =PastAppointments.getInstance();
     Pane pane = new Pane();
     GoToScreens goToScreens = GoToScreens.getInstance();
     //PastAppointment pastAppointment;
@@ -21,11 +21,11 @@ public class NotesScreen extends Application {
 
     public NotesScreen(PastAppointment pastAppointment,int currentAppointment){
         this.currentAppointment = currentAppointment;
-        //this.pastAppointment = pastAppointment;
+        pastAppointments.fillPastAppointments();
     }
     @Override
     public void start(Stage stage) throws Exception {
-        System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getDoctor());
+        System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getDoctor().getName());
         makeLabels();
         makeButtons(stage);
         fin(stage);
@@ -98,7 +98,6 @@ public class NotesScreen extends Application {
         btnSave.relocate(300,575);
         btnSave.setOnAction(E->{
             pastAppointments.getPastAppointments().get(currentAppointment).setNotes(editNote.getText());
-            System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getNotes());
             pane.getChildren().remove(btnSave);
             pane.getChildren().remove(editNote);
         });
