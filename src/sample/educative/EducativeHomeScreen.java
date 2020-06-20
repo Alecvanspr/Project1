@@ -43,21 +43,24 @@ public class EducativeHomeScreen extends Application {
         });
     }
     public void makeBtnRead(Stage stage){
-        btnRead.relocate(100,200);
+        btnRead.relocate(450,320);
+        btnRead.setPrefSize(100,100);
         buttonSettings.onMouse(btnRead);
         btnRead.setOnAction(E->{
             goToScreens.goReadScreen(stage);
         });
     }
     public void makeBtnWrite(Stage stage){
-        btnWrite.relocate(200,100);
+        btnWrite.relocate(340,320);
+        btnWrite.setPrefSize(100,100);
         buttonSettings.onMouse(btnWrite);
         btnWrite.setOnAction(E->{
             goToScreens.goWriteScreen(stage);
         });
     }
     public void makeBtnMath(Stage stage){
-        btnMath.relocate(100,100);
+        btnMath.relocate(225,320);
+        btnMath.setPrefSize(100,100);
         buttonSettings.onMouse(btnMath);
         btnMath.setOnAction(E->{
             goToScreens.goMathGame(stage);
