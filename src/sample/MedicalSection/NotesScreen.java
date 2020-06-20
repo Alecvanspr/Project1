@@ -25,7 +25,6 @@ public class NotesScreen extends Application {
     }
     @Override
     public void start(Stage stage) throws Exception {
-        System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getNotes());
         System.out.println(pastAppointments.getPastAppointments().get(currentAppointment).getDoctor());
         makeLabels();
         makeButtons(stage);

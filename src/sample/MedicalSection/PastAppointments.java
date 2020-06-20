@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PastAppointments extends PastAppointmentScreen{
-    ArrayList<PastAppointment> pastAppointments = new ArrayList<>();
-    ObservableList<String> appointmentsString = FXCollections.observableArrayList(pastAppointments.toString());
+    static ArrayList<PastAppointment> pastAppointments = new ArrayList<>();
+    //ObservableList<String> appointmentsString = FXCollections.observableArrayList(pastAppointments.toString());
     ArrayKeeper arrayKeeper;
     MedicalSection medicalSection;
 
@@ -27,7 +27,7 @@ public class PastAppointments extends PastAppointmentScreen{
             if(!(getUserAppointments().get(i).getAppointmentDate().getYear() < dateNow.getYear())){
                 if(!(getUserAppointments().get(i).getAppointmentDate().getDayOfMonth() < dateNow.getDayOfMonth() && getUserAppointments().get(i).getAppointmentDate().getMonth().getValue() < dateNow.getMonth().getValue())){
                     pastAppointments.add(makePastAppointment(getUserAppointments().get(i)));
-                    appointmentsString.add(getUserAppointments().get(i).getAppointmentDate().toString() + " - " + getPastAppointments().get(i).getDoctor().getName() + " - " + getPastAppointments().get(i).getAppointmentTime());
+                    //appointmentsString.add(getUserAppointments().get(i).getAppointmentDate().toString() + " - " + getPastAppointments().get(i).getDoctor().getName() + " - " + getPastAppointments().get(i).getAppointmentTime());
                 }
             }
         }
