@@ -55,7 +55,7 @@ public class MathGame {
     public void setRandNumb() {
         this.randNumb1 = random.nextInt(50);
         this.randNumb2 = random.nextInt(50);
-        this.randButNumb = random.nextInt(3);
+        this.randButNumb = random.nextInt(4);
         this.randAnswer1 = random.nextInt(50);
         this.randAnswer2 = random.nextInt(50);
         this.randAnswer3 = random.nextInt(50);
