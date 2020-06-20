@@ -53,7 +53,7 @@ public class Doctor extends PersonalData {
         return specialties;
     }
 
-    public void addSpecialties(Specialty specialty){
+    public void addSpecialty(Specialty specialty){
         if (checkSpecialty(specialty)){
             this.specialties.add(specialty);
         }

@@ -1,9 +1,13 @@
-/*package sample.ProfileTests;
+package sample.ProfileTests;
 
 import org.junit.Assert;
 import org.junit.Test;
 import sample.ArrayKeeper;
+import sample.MedicalSection.Complaint;
+import sample.MedicalSection.Specialty;
 import sample.inlogScreen.PersonalData;
+
+import java.time.LocalDate;
 
 public class PersonTest {
     ArrayKeeper arrayKeeper = new ArrayKeeper();
@@ -15,10 +19,11 @@ public class PersonTest {
         String[] gegevens = {"legend27","Henk de Steen","wachtwoord", "Yesterday", "What you egg?", "Stabs him"};
         String[] gegevens2 = {"Schilder123","Henk de Schilder", "GooiInDeVerf","Vandaag", "Wat is je favorite kleur?", "verf"};
         String[] gegevens3 = {"The_Chin","Karel V van Habsburg","Kin123" ,"Morgen", "Hoe groot is je kin?", "mega"};
-        arrayKeeper.SignUpData(gegevens);
-        arrayKeeper.SignUpData(gegevens2);
-        arrayKeeper.SignUpData(gegevens3);
+        arrayKeeper.signUpData(gegevens);
+        arrayKeeper.signUpData(gegevens2);
+        arrayKeeper.signUpData(gegevens3);
     }
+
     @Test
     public void testFirstPerson(){
         makeArraykeeper();
@@ -29,6 +34,7 @@ public class PersonTest {
         testSecurityQuestion(place,"What you egg?");
         testSecurityAnswer(place,"Stabs him");
     }
+
     @Test
     public void testSecondPerson(){
         place++;
@@ -39,6 +45,7 @@ public class PersonTest {
         testSecurityQuestion(place,"Wat is je favorite kleur?");
         testSecurityAnswer(place,"verf");
     }
+
     @Test
     public void testLastPerson(){
         place+=2;
@@ -49,23 +56,48 @@ public class PersonTest {
         testSecurityQuestion(place,"Hoe groot is je kin?");
         testSecurityAnswer(place,"mega");
     }
+
+    @Test
+    public void testComplaints(){
+        LocalDate today = LocalDate.now();
+        Specialty eyes = new Specialty("Eyes");
+        Specialty general = new Specialty("General");
+        PersonalData patient = new PersonalData();
+        LocalDate[] timeSpan = {today, null};
+        Complaint complaint1 = new Complaint(eyes, timeSpan);
+        Complaint complaint2 = new Complaint(general, timeSpan);
+
+        patient.getComplaints().add(complaint1);
+        Assert.assertEquals(patient.getComplaints().get(0), complaint1);
+
+        patient.getComplaints().add(complaint2);
+        Assert.assertTrue(patient.getComplaints().get(0).equals(complaint1) && patient.getComplaints().get(1).equals(complaint2));
+
+        patient.getComplaints().remove(complaint1);
+        Assert.assertEquals(patient.getComplaints().get(0), complaint2);
+    }
+
     public void testName(int place, String expected){
         Assert.assertEquals(ArrayKeeper.getData().get(place).getName(),expected);
     }
+
     public void testUserName(int place,String expected){
         Assert.assertEquals(ArrayKeeper.getData().get(place).getUsername(),expected);
     }
+
     public void testPassword(int place, String expected){
         Assert.assertEquals(ArrayKeeper.getData().get(place).getPassword(),expected);
     }
+
     public void testBirthdate(int place,String expected){
         Assert.assertEquals(ArrayKeeper.getData().get(place).getDateOfBirth(),expected);
     }
+
     public void testSecurityQuestion(int place, String expected){
         Assert.assertEquals(ArrayKeeper.getData().get(place).getSecurityQuestion(),expected);
     }
+
     public void testSecurityAnswer(int place, String expected){
         Assert.assertEquals(ArrayKeeper.getData().get(place).getSecurityAnswer(),expected);
     }
 }
-*/

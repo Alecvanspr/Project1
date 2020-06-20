@@ -1,9 +1,6 @@
 package sample.MedicalSection;
 
-import sample.ArrayKeeper;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Complaint{
     private Specialty bodyPart;
