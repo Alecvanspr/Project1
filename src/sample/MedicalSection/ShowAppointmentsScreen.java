@@ -32,6 +32,7 @@ public class ShowAppointmentsScreen extends Application {
 
     @Override
     public void start(Stage stage) throws  Exception{
+        pane.setStyle("-fx-background-color:#F0F8FF");
         makeButton(stage);
         makeLabels();
         pane.getChildren().addAll(buttonBack, editAppointment, deleteAppointment,title);

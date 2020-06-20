@@ -25,6 +25,7 @@ public class ShowPastAppointments extends Application{
     ArrayList<Appointment> appointments = makeAppointmentArrayList();
     @Override
     public void start(Stage stage) throws Exception{
+        pane.setStyle("-fx-background-color:#F0F8FF");
         getUserAppointmentLists(ArrayKeeper.getCurrentUser());
         makeButtons(stage);
         pane.getChildren().addAll(exitButton);

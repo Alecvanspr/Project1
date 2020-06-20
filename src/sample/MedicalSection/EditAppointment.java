@@ -41,6 +41,7 @@ public class EditAppointment extends Application {
     DatePicker datePicker = new DatePicker();
 
     public void start(Stage stage) throws Exception{
+        pane.setStyle("-fx-background-color:#F0F8FF");
         makeComboBoxes();
         makeDatePicker();
         makeButtons(stage);

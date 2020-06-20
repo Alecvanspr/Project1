@@ -19,11 +19,14 @@ public class ViewPatientsScreen extends Application{
     GoToScreens goToScreens = GoToScreens.getInstance();
     Pane rootPane = new Pane();
 
+
     @Override
     public void start(Stage stage) {
+        rootPane.setStyle("-fx-background-color:#F0F8FF");
         showPage(stage, rootPane);
         makeLayout(stage);
         getPatients();
+
     }
 
     public void makeLayout(Stage stage){

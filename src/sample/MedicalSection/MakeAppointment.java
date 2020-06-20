@@ -55,6 +55,7 @@ public class  MakeAppointment extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        pane.setStyle("-fx-background-color:#F0F8FF");
         setNotVisible();
         makeButtons(stage);
         makeDatePicker();

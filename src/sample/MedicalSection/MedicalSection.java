@@ -32,6 +32,7 @@ public class MedicalSection extends Application {
     Label welcome = new Label("Welcome to the medical section");
     Label myAppointments = new Label("My Appointments");
     ListView<String> ListView = new ListView<>();
+
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");
     Button yourAppointmentbtn = new Button("Edit appointments");
@@ -44,6 +45,7 @@ public class MedicalSection extends Application {
         makeButtons(stage);
         pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, myAppointments,ListView);
         fin(stage);
+        pane.setStyle("-fx-background-color:#F0F8FF");
 
     }
 

@@ -26,6 +26,7 @@ public class CancelAppointmentScreen extends Application {
     CancelAppointments cancelAppointments = new CancelAppointments();
     @Override
     public void start(Stage stage) throws Exception{
+        pane.setStyle("-fx-background-color:#F0F8FF");
         makeButtons(stage);
         makeAppointmentComboBox();
         pane.getChildren().addAll(deleteAppointmentButton, exitButton, appointmentBox);
@@ -36,8 +37,9 @@ public class CancelAppointmentScreen extends Application {
         makeDeleteAppointmentButton(stage);
     }
     public void makeDeleteAppointmentButton(Stage stage){
-        deleteAppointmentButton.relocate(200, 200);
-        deleteAppointmentButton.setPrefWidth(100);
+        deleteAppointmentButton.relocate(100, 150);
+        deleteAppointmentButton.setPrefWidth(150);
+        deleteAppointmentButton.setPrefHeight(50);
         deleteAppointmentButton.setOnAction(E-> {
             String appointment = appointmentBox.getSelectionModel().getSelectedItem();
             cancelAppointments.deleteAppointment(appointment);
