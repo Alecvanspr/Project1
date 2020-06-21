@@ -20,7 +20,7 @@ public class PersonalData {
     public PersonalData(){
         ArrayKeeper.getData().add(this);
     }
-    //deze inkorten?
+
     //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
     public PersonalData(String[] data){
         this.username = data[0];
@@ -56,7 +56,7 @@ public class PersonalData {
         return securityQuestion;
     }
 
-    public void setUserName(String name) {
+    public void setUsername(String name) {
         this.username = name;
     }
 
