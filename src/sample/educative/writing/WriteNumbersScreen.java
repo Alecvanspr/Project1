@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import sample.GoToScreens;
 import sample.educative.GetImage;
 import sample.educative.GoToEducative;
-import sample.educative.writing.WriteMainScreen;
 
 public class WriteNumbersScreen extends Application {
     GoToScreens goToScreens = GoToScreens.getInstance();
@@ -32,9 +31,9 @@ public class WriteNumbersScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        makeBtnLastNumber(stage);
-        makeBtnNewNumber(stage);
-        makeBtnClear(stage);
+        makeBtnLastNumber();
+        makeBtnNewNumber();
+        makeBtnClear();
         makeBtnBack(stage);
         drawing();
         makeBackGround();
@@ -84,20 +83,20 @@ public class WriteNumbersScreen extends Application {
         clearDrawing();
     }
 
-    public void makeBtnLastNumber(Stage stage){
+    public void makeBtnLastNumber(){
         btnLastNumber.relocate(45,575);
         btnLastNumber.setOnAction(E->{
             number-=2;
             clearAndNext();
         });
     }
-    public void makeBtnNewNumber(Stage stage){
+    public void makeBtnNewNumber(){
         btnNewNumber.relocate(75,575);
         btnNewNumber.setOnAction(E->{
             clearAndNext();
         });
     }
-    public void makeBtnClear(Stage stage){
+    public void makeBtnClear(){
         btnClear.setOnAction(e->{
             clearDrawing();
         });

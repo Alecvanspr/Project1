@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.ButtonSettings;
 import sample.GoToScreens;
@@ -36,7 +35,7 @@ public class WordReadScreen extends Application {
     public void start(Stage stage) throws Exception {
         pane.setStyle("-fx-background-color: #ade6bb");
         iv.setVisible(false);
-        makeBtnRandom(stage);
+        makeBtnRandom();
         makeBtnBack(stage);
         pane.getChildren().addAll(text, btnBack, iv);
 
@@ -52,7 +51,7 @@ public class WordReadScreen extends Application {
     }
 
 
-    public void makeBtnRandom(Stage stage){
+    public void makeBtnRandom(){
         btnRandom.setOnAction(e->{
             wr = new WordReader();
             int rng = random.nextInt(wr.getCombos().size()-1);
@@ -90,8 +89,6 @@ public class WordReadScreen extends Application {
         iv.setPreserveRatio(true);
         iv.setFitWidth(200);
         iv.relocate(scene.getWidth()/2-100,scene.getHeight()/10);
-
-        //pane.getChildren().add(iv);
     }
 
     public void fin (Stage stage){

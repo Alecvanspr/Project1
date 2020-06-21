@@ -28,7 +28,6 @@ public class SignUpScreen extends Application {
         makeLabels();
         makeButtons(stage);
         fin(stage);
-        //doctorName.relocate(200, 300);
     }
 
     public void fin(Stage stage){

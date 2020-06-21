@@ -3,8 +3,6 @@ package sample.inlogScreen;
 import sample.ArrayKeeper;
 import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
-
-import javax.print.Doc;
 import java.util.ArrayList;
 
 public class MainMethods {

@@ -1,17 +1,11 @@
 package sample.MedicalSection;
 
 import javafx.application.Application;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
@@ -36,7 +30,6 @@ public class MedicalSection extends Application {
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");
     Button yourAppointmentbtn = new Button("Edit appointments");
-    Button deleteAppointmentbtn = new Button("Delete appointment");
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -60,7 +53,6 @@ public class MedicalSection extends Application {
         makeBackButton(stage);
         makeAppointmentButton(stage);
         makeYourAppointmentButton(stage);
-        makeDeleteButton(stage);
 
     }
     public void makeBackButton(Stage stage){
@@ -76,12 +68,7 @@ public class MedicalSection extends Application {
             goToScreens.goMakeAppointment(stage);
         });
     }
-    public void makeDeleteButton(Stage stage){
-        makeMenuButton(deleteAppointmentbtn);
-        deleteAppointmentbtn.setOnAction(E-> {
 
-        });
-    }
     public void makeListView(){
         makeAppointmentListView();
     }

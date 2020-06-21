@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -14,12 +13,7 @@ import sample.ButtonSettings;
 import sample.Checks;
 import sample.GoToScreens;
 import sample.inlogScreen.Main;
-import sample.MedicalSection.Specialty;
-
-import javax.swing.*;
-import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Optional;
 
 public class  MakeAppointment extends Application {

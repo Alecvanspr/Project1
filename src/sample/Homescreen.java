@@ -6,16 +6,11 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import sample.contacts.ContactScreen;
-import sample.educative.EducativeHomeScreen;
 import sample.inlogScreen.Main;
-import sample.livestock.Livestock;
-import sample.market.MarketplaceScreen;
-import sample.profileSettings.ProfileSettingsScreen;
+
 
 public class Homescreen extends Application {
     ButtonSettings buttonSettings = ButtonSettings.getInstance();

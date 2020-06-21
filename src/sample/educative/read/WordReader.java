@@ -28,9 +28,6 @@ public class WordReader {
         }
     }
 
-//    public WordWithAudio getRandomWord(){
-//        return words.get((int)(Math.random()*words.size()));
-//    }
 
     public ArrayList<WordWithAudio> getCombos(){
         return words;

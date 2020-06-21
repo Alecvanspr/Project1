@@ -5,24 +5,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.ButtonSettings;
 import sample.GoToScreens;
 import sample.MedicalSection.Doctor;
 import sample.MedicalSection.Specialty;
-import sample.educative.read.tenseScreens.IrregularWords.MakeArrayListsText;
 
 import java.util.ArrayList;
 
-public class SignUpScreenDoctor extends Application { //todo SOLID maken
+public class SignUpScreenDoctor extends Application {
     ArrayKeeper arraykeeper = new ArrayKeeper();
     GoToScreens goToScreens = GoToScreens.getInstance();
     SignUpDocterMethods signUpDocterMethods = new SignUpDocterMethods();
-    //ButtonSettings buttonSettings = ButtonSettings.getInstance();
     Scene SignUpScreenDoctor;
     Main main;
     Pane pane = new Pane();
@@ -55,11 +51,11 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
 
     }
     public void makeButtons(Stage stage){
-        makeButtonback(stage);
+        makeButtonBack(stage);
         makeButtonSignUp(stage);
-        makeAddSpecialty(stage);
+        makeAddSpecialty();
     }
-    public void makeButtonback(Stage stage){
+    public void makeButtonBack(Stage stage){
         Button exitBtn = new Button("Im actually not a doctor");
         exitBtn.setPrefWidth(150);
         exitBtn.relocate(10, 565);
@@ -120,7 +116,7 @@ public class SignUpScreenDoctor extends Application { //todo SOLID maken
             labelSecurity.relocate(100,230);
             pane.getChildren().add(labelSecurity);
         }
-    public void makeAddSpecialty(Stage stage) {
+    public void makeAddSpecialty() {
         Button addSpecialty = new Button("add");
         addSpecialty.relocate(250, 368);
         addSpecialty.setOnAction(new EventHandler<ActionEvent>() {

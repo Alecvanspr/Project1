@@ -1,12 +1,10 @@
 package sample.livestock;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
@@ -21,7 +19,7 @@ public class AddWeightCheckScreen extends Application {
     Pane healthPane = new Pane();
     int currentAnimal;
     Label lblWeight = new Label("Here you enter the weight of your animal");
-    TextField txtnewWeight = new TextField();
+    TextField txtNewWeight = new TextField();
 
     public AddWeightCheckScreen(int currentAnimal){
         this.currentAnimal = currentAnimal;
@@ -42,8 +40,8 @@ public class AddWeightCheckScreen extends Application {
         stage.show();
     }
     public void makeTextField(){
-        txtnewWeight.relocate(100,100);
-        healthPane.getChildren().addAll(txtnewWeight);
+        txtNewWeight.relocate(100,100);
+        healthPane.getChildren().addAll(txtNewWeight);
     }
     public void makeLabels(){
         lblWeight.relocate(100,55);
@@ -62,7 +60,7 @@ public class AddWeightCheckScreen extends Application {
         Button btnAply = new Button("Apply");
         btnAply.relocate(300,100);
         btnAply.setOnAction(E->{
-            addWeightSituation(txtnewWeight.getText());
+            addWeightSituation(txtNewWeight.getText());
             goToScreens.displayWeight(stage,currentAnimal);
         });
         buttonSettings.onMouse(btnAply);

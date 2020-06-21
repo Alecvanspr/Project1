@@ -28,7 +28,7 @@ public class Appointment {
         }
     }
 
-    public Specialty getSpecialtyClass(String specialtyString){ //todo fix dit
+    public Specialty getSpecialtyClass(String specialtyString){
         for (int i = 0; i < arrayKeeper.getSpecialtiesArrayList().size(); i++){
             if(arrayKeeper.getSpecialtiesArrayList().get(i).getName().equalsIgnoreCase(specialtyString)){
                 return arrayKeeper.getSpecialtiesArrayList().get(i);

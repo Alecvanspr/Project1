@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.GoToScreens;
 import sample.inlogScreen.Main;
-import sample.inlogScreen.SignUpScreenDoctor;
 
 public class ViewPatientsScreen extends Application{
     Scene ViewPatientsScreen;

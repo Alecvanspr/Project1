@@ -4,7 +4,6 @@ import javafx.scene.control.Alert;
 import sample.ArrayKeeper;
 import sample.MedicalSection.Specialty;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SignUpDocterMethods {
@@ -20,7 +19,7 @@ public class SignUpDocterMethods {
         if (specialties.size() == 0) {
             addsSpecialty();
         } else {
-            makeError(alreadyHave);
+            makeError();
             saveData(alreadyHave);
         }
     }
@@ -31,13 +30,12 @@ public class SignUpDocterMethods {
             }
         }
     }
-    public void makeError(boolean alreadyHave) {
+    public void makeError() {
         for (int j = 0; j < specialties.size(); j++) {
             if (specialties.get(j).getName().equals(specialty1[j].toString())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("You already have this specialty!");
                 alert.show();
-                alreadyHave = true;
             }
         }
     }

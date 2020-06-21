@@ -15,7 +15,7 @@ public class Doctor extends PersonalData {
     public Doctor(String[] personalData, ArrayList<Specialty> specialties){
         //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
         super(personalData);
-        this.specialties = specialties;     //todo hier moet nog de naam van de dokter komen. dus: dr. Mario
+        this.specialties = specialties;
         arraykeeper.addDoctor(this);
     }
 

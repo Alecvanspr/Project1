@@ -8,7 +8,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.GoToScreens;
-import sample.educative.EducativeHomeScreen;
 import sample.educative.GoToEducative;
 
 public class ReadScreen  extends Application {

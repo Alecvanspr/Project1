@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.GoToScreens;
-import sample.educative.EducativeHomeScreen;
 import sample.educative.GoToEducative;
 
 public class WriteMainScreen extends Application {

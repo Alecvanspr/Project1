@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import sample.GoToScreens;
 import sample.educative.GetImage;
 import sample.educative.GoToEducative;
-import sample.educative.writing.WriteMainScreen;
 
 import java.util.Random;
 
@@ -33,7 +32,7 @@ public class WriteRandomScreen extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         makeBtnClear(stage);
-        makeBtnNewLetter(stage);
+        makeBtnNewLetter();
         makeBtnBack(stage);
 
         drawing();
@@ -43,7 +42,7 @@ public class WriteRandomScreen extends Application {
 
         fin(stage);
     }
-    public void goback(Stage stage){
+    public void goBack(Stage stage){
         goToScreens.goWriteScreen(stage);
     }
     public void drawing(){
@@ -80,7 +79,7 @@ public class WriteRandomScreen extends Application {
             clearDrawing();
         });
     }
-    public void makeBtnNewLetter(Stage stage){
+    public void makeBtnNewLetter(){
         btnNewLetter.relocate(75,575);
         btnNewLetter.setOnAction(E->{
             makeBackGround();
@@ -90,7 +89,7 @@ public class WriteRandomScreen extends Application {
     public void makeBtnBack(Stage stage){
         btnBack.relocate(0,575);
         btnBack.setOnAction(E->{
-            goback(stage);
+            goBack(stage);
         });
     }
     public void fin(Stage stage){

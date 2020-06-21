@@ -1,6 +1,5 @@
 package sample;
 
-import sample.ArrayKeeper;
 
 public class Checks{
     public static boolean checkIfTimeAvailable(String time) {

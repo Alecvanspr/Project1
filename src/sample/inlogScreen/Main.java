@@ -27,7 +27,7 @@ public class Main extends Application {
     final Pane pane = new Pane();
 
     final int initWidth = 800;
-    final int initheight = 600;
+    final int initHeight = 600;
 
     TextField textFieldUserName = new TextField();
     PasswordField passwordField = new PasswordField();
@@ -47,10 +47,10 @@ public class Main extends Application {
                 login.getChildren().remove(error);
             }
         });
-        fin(window);
+        fin();
         mainMethods.delettis();
     }
-    public void fin(Stage stage){
+    public void fin(){
         Scene loginScene = new Scene(pane,800,600);
         window.setResizable(true);
         window.setScene(loginScene);
@@ -68,10 +68,10 @@ public class Main extends Application {
     }
     public void makeButtons(){
         makeButtonLogin(window);
-        makeButtonSignUp(window);
-        makeButtonForgotPassword(window);
+        makeButtonSignUp();
+        makeButtonForgotPassword();
     }
-    public void makeButtonSignUp(Stage stage){
+    public void makeButtonSignUp(){
         Button btnSignUp = new Button("Create an account");
         btnSignUp.setOnAction(e -> {
             goToScreens.goSignUp(window);
@@ -79,7 +79,7 @@ public class Main extends Application {
         btnSignUp.relocate(150,145);
         pane.getChildren().add(btnSignUp);
     }
-    public void makeButtonForgotPassword(Stage Stage){
+    public void makeButtonForgotPassword(){
         Button btnForgotPassword = new Button("Forgot Password");
         btnForgotPassword.relocate(100,175);
         btnForgotPassword.setOnMousePressed(e->{
@@ -107,7 +107,7 @@ public class Main extends Application {
                 loginScene.rootProperty().removeListener(this);
                 loginScene.setRoot(pane);
                 ((Region)t1).setPrefWidth(initWidth);
-                ((Region)t1).setPrefHeight(initheight);
+                ((Region)t1).setPrefHeight(initHeight);
                 pane.getChildren().clear();
                 pane.getChildren().add(t1);
                 loginScene.rootProperty().addListener(this);
@@ -116,12 +116,12 @@ public class Main extends Application {
     }
     public void setSize(){
         login.setPrefWidth(initWidth);
-        login.setPrefHeight(initheight);
+        login.setPrefHeight(initHeight);
         pane.getChildren().add(login);
 
         Scale scale = new Scale(1,1,0,0);
         scale.xProperty().bind(pane.widthProperty().divide(initWidth));
-        scale.yProperty().bind(pane.heightProperty().divide(initheight));
+        scale.yProperty().bind(pane.heightProperty().divide(initHeight));
         pane.getTransforms().add(scale);
     }
     public static void main(String[] args) {

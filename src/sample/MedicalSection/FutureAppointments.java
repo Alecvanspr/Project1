@@ -2,11 +2,7 @@ package sample.MedicalSection;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import sample.ArrayKeeper;
-
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

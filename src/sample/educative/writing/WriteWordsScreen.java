@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import sample.GoToScreens;
 import sample.educative.GetImage;
 import sample.educative.GoToEducative;
-import sample.educative.writing.WriteMainScreen;
 
 import java.util.Random;
 
@@ -26,7 +25,7 @@ public class WriteWordsScreen extends Application {
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 800, 600);
     GetImage getImage = new GetImage();
-    Button CorrectAnswer = new Button("Dragging");
+    Button correctAnswer = new Button("Dragging");
     Button random1 = new Button("");
     Button random2 = new Button("");
     ImageView iv;
@@ -42,18 +41,17 @@ public class WriteWordsScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        makeCorrectAnswer(stage);
-        makeRandom1(stage);
-        makeRandom2(stage);
-        makeEnterField(stage);
-        makeLblAnswer(stage);
+        setButtonScales();
+        makeEnterField();
+        makeLblAnswer();
         makebtnBack(stage);
-        makebtnNewPic(stage);
+        makebtnNewPic();
         makeBackGround();
-        buttonMover(CorrectAnswer);
+        
+        buttonMover(correctAnswer);
         buttonMover(random1);
         buttonMover(random2);
-        pane.getChildren().addAll(enterField,btnBack, btnNewPic, CorrectAnswer , random1 , random2,lblAnswer);
+        pane.getChildren().addAll(enterField,btnBack, btnNewPic, correctAnswer, random1 , random2,lblAnswer);
         fin(stage);
     }
 
@@ -68,7 +66,7 @@ public class WriteWordsScreen extends Application {
         rng = random.nextInt(getImage.getAnimalImages().size() - 1);
         int randomAnswer1 = random.nextInt(getImage.getAnimalImages().size() - 1);
         int randomAnswer2 = random.nextInt(getImage.getAnimalImages().size() - 1);
-        CorrectAnswer.setText(getImage.getAnimalImages().get(rng).getName());
+        correctAnswer.setText(getImage.getAnimalImages().get(rng).getName());
         random1.setText(getImage.getAnimalImages().get(randomAnswer1).getName());
         random2.setText(getImage.getAnimalImages().get(randomAnswer2).getName());
 
@@ -122,7 +120,7 @@ public class WriteWordsScreen extends Application {
 
     //met een paar aanpassingen kan dit in een andere class
     public void checkCorrect(String text){
-        if(text.equals(CorrectAnswer.getText())){
+        if(text.equals(correctAnswer.getText())){
             lblAnswer.setText("That is the Correct Animal");
             lblAnswer.setTextFill(Paint.valueOf("green"));
         }else{
@@ -143,47 +141,45 @@ public class WriteWordsScreen extends Application {
 
     //deze moeten eigenlijk in een andere class, dit ziet er niet mooi uit.
     public void senario1(){
-        CorrectAnswer.relocate(100,100);
+        correctAnswer.relocate(100,100);
         random1.relocate(100,300);
         random2.relocate(100,500);
     }
     public void senario2(){
-        CorrectAnswer.relocate(100,300);
+        correctAnswer.relocate(100,300);
         random1.relocate(100,500);
         random2.relocate(100,100);
     }
     public void senario3(){
-        CorrectAnswer.relocate(100,500);
+        correctAnswer.relocate(100,500);
         random1.relocate(100,100);
         random2.relocate(100,300);
     }
     public void senario4(){
-        CorrectAnswer.relocate(100,100);
+        correctAnswer.relocate(100,100);
         random1.relocate(100,500);
         random2.relocate(100,300);
     }
     public void senario5(){
-        CorrectAnswer.relocate(100,300);
+        correctAnswer.relocate(100,300);
         random1.relocate(100,100);
         random2.relocate(100,500);
     }
 
-    public void makeCorrectAnswer(Stage stage){
-        CorrectAnswer.setScaleX(2.0);
-        CorrectAnswer.setScaleY(2.0);
+    public void setButtonScales(){
+        setScale(correctAnswer);
+        setScale(random1);
+        setScale(random2);
     }
-    public void makeRandom1(Stage stage){
-        random1.setScaleX(2.0);
-        random1.setScaleY(2.0);
+    public void setScale(Button button){
+        button.setScaleX(2.0);
+        button.setScaleY(2.0);
     }
-    public void makeRandom2(Stage stage){
-        random2.setScaleX(2.0);
-        random2.setScaleY(2.0);
-    }
-    public void makeEnterField(Stage stage){
+    
+    public void makeEnterField(){
         enterField.relocate(imageX,imageY);
     }
-    public void makeLblAnswer(Stage stage){
+    public void makeLblAnswer(){
         lblAnswer.relocate(475,50);
     }
     public void makebtnBack(Stage stage){
@@ -192,7 +188,7 @@ public class WriteWordsScreen extends Application {
             goBack(stage);
         });
     }
-    public void makebtnNewPic(Stage stage){
+    public void makebtnNewPic(){
         btnNewPic.setOnAction(e->{
             makeBackGround();
         });

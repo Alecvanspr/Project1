@@ -35,11 +35,11 @@ public class WriteAlphabetScreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        makeBtnNextLetter(stage);
-        makeBtnLastLetter(stage);
-        makeBtnClear(stage);
-        makeBtnCapital(stage);
-        makeBtnLowerCase(stage);
+        makeBtnNextLetter();
+        makeBtnLastLetter();
+        makeBtnClear();
+        makeBtnCapital();
+        makeBtnLowerCase();
         makeBtnBack(stage);
 
         drawing();
@@ -81,32 +81,32 @@ public class WriteAlphabetScreen extends Application {
         if(letter>getImage.getLetterImages().size()){
             letter=0;
         }
-    } // als dit weg kan zou het fijn zijn.
+    }
     public void clearAndNext(){
         checkCounter();
         makeBackGround();
         clearDrawing();
     }
-    public void makeBtnNextLetter(Stage stage){
+    public void makeBtnNextLetter(){
         btnNextLetter.relocate(75,575);
         btnNextLetter.setOnAction(E->{
             letter=letter+2;
             clearAndNext();
         });
     }
-    public void makeBtnLastLetter(Stage stage){
+    public void makeBtnLastLetter(){
         btnLastLetter.setOnAction(E->{
             letter= letter-2;
             clearAndNext();
         });
     }
-    public void makeBtnClear(Stage stage){
+    public void makeBtnClear(){
         btnClear.relocate(775,575);
         btnClear.setOnAction(E->{
             clearDrawing();
         });
     }
-    public void makeBtnCapital(Stage stage){
+    public void makeBtnCapital(){
         btnCapital.relocate(150 ,575);
         btnCapital.setOnAction(E->{
             letter--;
@@ -115,7 +115,7 @@ public class WriteAlphabetScreen extends Application {
             clearAndNext();
         });
     }
-    public void makeBtnLowerCase(Stage stage){
+    public void makeBtnLowerCase(){
         btnLowerCase.relocate(150,575);
         btnLowerCase.setOnAction(E->{
             letter++;
