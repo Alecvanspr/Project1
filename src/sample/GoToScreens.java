@@ -345,15 +345,6 @@ public class GoToScreens {
         }
     }
 
-    public void goViewPatientsScreen(Stage stage){
-        ViewPatientsScreen viewPatientsScreen = new ViewPatientsScreen();
-        try{
-            viewPatientsScreen.start(stage);
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
 
     public void goStoryScreen(Stage stage) {
         StoryScreen storyScreen = new StoryScreen();
