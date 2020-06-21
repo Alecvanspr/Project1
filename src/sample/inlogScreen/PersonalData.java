@@ -116,10 +116,6 @@ public class PersonalData {
         return animals;
     }
 
-    public void setAnimals(ArrayList<Animal> animals){
-        this.animals = animals;
-    }
-
     public ArrayList<Appointment> getAppointments(){
         return appointments;
     }
