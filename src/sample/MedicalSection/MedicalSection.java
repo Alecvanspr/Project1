@@ -30,14 +30,13 @@ public class MedicalSection extends Application {
     Button btnBack = new Button("Back");
     Button makeAppointmentbtn = new Button("Make appointment");
     Button yourAppointmentbtn = new Button("Edit appointments");
-    Button patientButton  = new Button("Go to Patients");
 
     @Override
     public void start(Stage stage) throws Exception{
         makeListView();
         makeLabels();
         makeButtons(stage);
-        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, myAppointments,ListView, patientButton);
+        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, myAppointments,ListView);
         fin(stage);
         pane.setStyle("-fx-background-color:#F0F8FF");
 
@@ -54,16 +53,10 @@ public class MedicalSection extends Application {
         makeBackButton(stage);
         makeAppointmentButton(stage);
         makeYourAppointmentButton(stage);
-        makeViewPatientsScreenButton(stage);
 
 
     }
-    public void makeViewPatientsScreenButton(Stage stage){
-        makeMenuButton(patientButton);
-        patientButton.setOnAction(E-> {
-            goToScreens.goViewPatientsScreen(stage);
-        });
-    }
+
     public void makeBackButton(Stage stage){
         btnBack.relocate(10,565);
         buttonSettings.onMouse(btnBack);
