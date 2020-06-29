@@ -6,7 +6,7 @@ import sample.MedicalSection.Specialty;
 import java.util.ArrayList;
 
 public class MainMethods {
-    private static boolean delettisHappened = false;
+    private static boolean makeTestAccountsHappened = false;
     ArrayKeeper arraykeeper = new ArrayKeeper();
     public boolean dataCheck(String password, String username){
         boolean ret = false;
@@ -23,9 +23,9 @@ public class MainMethods {
         return ret;
     }
 
-    public void delettis(){
+    public void makeTestAccounts(){
         //dit is om te testen, dit moet achteraf verwijderd worden.
-        if(!delettisHappened) {
+        if(!makeTestAccountsHappened) {
             String[] adminData = {"admin","admin", "admin", "Yesterday", "Bruh", "You have to insert your username first"};
             arraykeeper.SignUpData(adminData);
             PersonalData admin = new PersonalData();
@@ -53,7 +53,7 @@ public class MainMethods {
             //name name password securityQuestionsecurityAnswer, thing
             String[] luigiData= {"luigi", "luigi", "konk", "back then", "WHY????", "because"};
             Doctor doctorLuigi = new Doctor(luigiData,specialtiesDoc2);
-            delettisHappened = true;
+            makeTestAccountsHappened = true;
         }
     }
 }

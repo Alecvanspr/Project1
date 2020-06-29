@@ -48,7 +48,7 @@ public class Main extends Application {
             }
         });
         fin();
-        mainMethods.delettis();
+        mainMethods.makeTestAccounts();
     }
     public void fin(){
         Scene loginScene = new Scene(pane,800,600);
