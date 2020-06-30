@@ -32,13 +32,13 @@ public class Homescreen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Label user = new Label("Welcome back " + ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getUsername());
+        Label userLabel = new Label("Welcome back " + ArrayKeeper.getData().get(ArrayKeeper.getCurrentUser()).getUsername());
         welcome.setFont(Font.font("Arial",30));
         home.setStyle("-fx-background-color:#e6d8ad");
         home.getChildren().addAll(welcome,btnLogOut,btnProfile,btnContacts,
-                btnMarketPlace,btnLiveStock,user,btnEducative,btnMedicalSection);
+                btnMarketPlace,btnLiveStock,userLabel,btnEducative,btnMedicalSection);
         welcome.relocate(200,100);
-        user.relocate(660,35);
+        userLabel.relocate(660,35);
         makeButtons(stage);
         fin(stage);
     }
@@ -87,21 +87,19 @@ public class Homescreen extends Application {
         });
     }
     public void makeBtnContacts(Stage stage){
-        //Contact button
         buttonSettings.onMouse(btnContacts);
         buttonSettings.setButtonLayout(btnContacts);
         btnContacts.relocate(225,320);
         btnContacts.setOnAction(e -> {
-            goToScreens.goContacts(stage);
+            goToScreens.goContactsScreen(stage);
         });
     }
     public void makeBtnProfile(Stage stage){
-        //Profile Button
         buttonSettings.setButtonLayout(btnProfile);
         buttonSettings.onMouse(btnProfile);
         btnProfile.relocate(225,200);
         btnProfile.setOnAction(e -> {
-            goToScreens.goProfile(stage);
+            goToScreens.goProfileScreen(stage);
         });
     }
     public void makeBtnLogOut(Stage stage){

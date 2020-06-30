@@ -1,11 +1,9 @@
 package sample.market;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
@@ -39,7 +37,7 @@ public class UserAuctions extends Application{
         btnBack.relocate(10, 565);
         userAuctionsPane.getChildren().add(btnBack);
         btnBack.setOnAction(E->{
-            goToScreens.goAutionlist(stage);
+            goToScreens.goAuctionList(stage);
         });
         buttonSettings.onMouse(btnBack);
     }

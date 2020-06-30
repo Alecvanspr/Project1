@@ -67,7 +67,7 @@ public class ShowAppointmentsScreen extends Application {
         deleteAppointment.setPrefHeight(100);
         buttonSettings.onMouse(deleteAppointment);
         deleteAppointment.setOnAction(E-> {
-            goToScreens.goCancelAppointments(stage);
+            goToScreens.goCancelAppointmentsScreen(stage);
         });
     }
     public void makeExitButton(Stage stage){
@@ -84,7 +84,7 @@ public class ShowAppointmentsScreen extends Application {
         editAppointment.setPrefWidth(125);
         editAppointment.setPrefHeight(100);
         editAppointment.setOnAction(E-> {
-            goToScreens.goEditAppointment(stage);
+            goToScreens.goEditAppointmentScreen(stage);
         });
     }
     public ArrayList<Appointment> getFutureAppointments(){

@@ -2,7 +2,6 @@ package sample.MedicalSection;
 
 import sample.ArrayKeeper;
 import sample.inlogScreen.PersonalData;
-
 import java.time.LocalDate;
 
 public class Appointment {

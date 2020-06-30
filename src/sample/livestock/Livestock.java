@@ -3,20 +3,15 @@ package sample.livestock;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.ButtonSettings;
 import sample.GoToScreens;
-import sample.Homescreen;
-import sample.market.AuctionListScreen;
 
 
 public class Livestock extends Application {
@@ -69,7 +64,7 @@ public class Livestock extends Application {
         makeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                goToScreens.goShowAnimalsBySpiecies(stage);
+                goToScreens.goShowAnimalsBySpecies(stage);
             }
         });
         buttonSettings.onMouse(makeAuction);
@@ -84,7 +79,7 @@ public class Livestock extends Application {
         toMakeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                goToScreens.goAutionlist(stage);
+                goToScreens.goAuctionList(stage);
             }
         });
     }
@@ -94,7 +89,7 @@ public class Livestock extends Application {
             int animal = i;
             currentAnimal = animal;
             label.setOnMouseClicked(E -> {
-                goToScreens.goEditAnimal(stage, animal);
+                goToScreens.goEditAnimalScreen(stage, animal);
             });
             label.relocate(100, placeName);
             liveStockPane.getChildren().add(label);
@@ -113,7 +108,7 @@ public class Livestock extends Application {
     public void makeBtnAdd(Stage stage){
         Button btnAdd = new Button("Add animal");
         btnAdd.setOnAction(E->{
-            goToScreens.goNewAnimal(stage);
+            goToScreens.goNewAnimalScreen(stage);
         });
         btnAdd.relocate(100,10);
         liveStockPane.getChildren().add(btnAdd);

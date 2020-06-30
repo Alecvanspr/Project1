@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
@@ -66,7 +65,7 @@ public class MarketplaceScreen extends Application {
         buttonSettings.onMouse(auctionButton);
 
         auctionButton.setOnAction(E->{
-            goToScreens.goAutionlist(stage);
+            goToScreens.goAuctionList(stage);
         });
     }
     public void makeMakeAuction(Stage stage){

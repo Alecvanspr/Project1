@@ -57,7 +57,6 @@ public class  MakeAppointment extends Application {
         makeComboBoxes();
         pane.getChildren().addAll(title, specialtyLabel, doctorLabel, dateLabel, timeLabel, exitButton, specialtyBox, selectSpecialty, selectDoctor, doctorBox, datePicker, selectDate,timeBox, makeAppointment);
         fin(stage);
-
     }
     public void makeAppointmentButton(Stage stage) {
         makeAppointment.relocate(325, 300);

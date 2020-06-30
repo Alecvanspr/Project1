@@ -43,25 +43,25 @@ public class WriteMainScreen extends Application {
     public void makeBtnGuessAnimals(Stage stage){
         btnGuessAnimals.relocate(400,200);
         btnGuessAnimals.setOnMouseClicked(E->{
-            goToScreens.goWords(stage);
+            goToScreens.goWordsScreen(stage);
         });
     }
     public void makeBtnWriteAlphabet(Stage stage){
         btnWriteAlphabet.relocate(200,400);
         btnWriteAlphabet.setOnMouseClicked(E->{
-            goToScreens.goAlphabet(stage);
+            goToScreens.goAlphabetScreen(stage);
         });
     }
     public void makeBtnWriteRandom(Stage stage){
         btnWriteRandom.relocate(200,200);
         btnWriteRandom.setOnMouseClicked(E->{
-            goToScreens.goRandom(stage);
+            goToScreens.goRandomScreen(stage);
         });
     }
     public void makeBtnWriteNumbers(Stage stage){
         btnWriteNumbers.relocate(400,400);
         btnWriteNumbers.setOnMouseClicked(E->{
-            goToScreens.goNumbers(stage);
+            goToScreens.goNumbersScreen(stage);
         });
     }
     public void makeBtnBack(Stage stage){

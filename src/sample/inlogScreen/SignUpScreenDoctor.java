@@ -62,7 +62,7 @@ public class SignUpScreenDoctor extends Application {
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                goToScreens.goSignUp(stage);
+                goToScreens.goSignUpScreen(stage);
             }
         });
         pane.getChildren().add(exitBtn);

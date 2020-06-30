@@ -57,7 +57,7 @@ public class GoToScreens {
         }
     }
 
-    public void goAutionlist(Stage stage){
+    public void goAuctionList(Stage stage){
         AuctionListScreen auctionListScreen = new AuctionListScreen();
         try {
             auctionListScreen.start(stage);
@@ -111,7 +111,7 @@ public class GoToScreens {
         }
     }
 
-    public void goShowAnimalsBySpiecies (Stage stage){
+    public void goShowAnimalsBySpecies(Stage stage){
         ShowAnimalsBySpeciesScreen showAnimalsBySpeciesScreen = new ShowAnimalsBySpeciesScreen();
         try {
             showAnimalsBySpeciesScreen.start(stage);
@@ -192,7 +192,7 @@ public class GoToScreens {
         }
     }
 
-    public void goRandom(Stage stage){
+    public void goRandomScreen(Stage stage){
         WriteRandomScreen writeRandomScreen = new WriteRandomScreen();
         try {
             writeRandomScreen.start(stage);
@@ -201,7 +201,7 @@ public class GoToScreens {
         }
     }
 
-    public void goNumbers(Stage stage){
+    public void goNumbersScreen(Stage stage){
         WriteNumbersScreen writeNumbersScren = new WriteNumbersScreen();
         try {
             writeNumbersScren.start(stage);
@@ -210,7 +210,7 @@ public class GoToScreens {
         }
     }
 
-    public void goAlphabet(Stage stage){
+    public void goAlphabetScreen(Stage stage){
         WriteAlphabetScreen writeAlphabetScreen = new WriteAlphabetScreen();
         try {
             writeAlphabetScreen.start(stage);
@@ -219,7 +219,7 @@ public class GoToScreens {
         }
     }
 
-    public void goWords(Stage stage){
+    public void goWordsScreen(Stage stage){
         WriteWordsScreen writeWordsScreen = new WriteWordsScreen();
         try {
             writeWordsScreen.start(stage);
@@ -228,7 +228,7 @@ public class GoToScreens {
         }
     }
 
-    public void goWordReading(Stage stage){
+    public void goWordReadingScreen(Stage stage){
         WordReadScreen wordReadScreen = new WordReadScreen();
         try {
             wordReadScreen.start(stage);
@@ -237,7 +237,7 @@ public class GoToScreens {
         }
     }
 
-    public void goProfile(Stage stage){
+    public void goProfileScreen(Stage stage){
         ProfileSettingsScreen pScreen = new ProfileSettingsScreen();
         try {
             pScreen.start(stage);
@@ -246,7 +246,7 @@ public class GoToScreens {
         }
     }
 
-    public void goContacts(Stage stage){
+    public void goContactsScreen(Stage stage){
         ContactScreen contactScreen = new ContactScreen();
         try {
             contactScreen.start(stage);
@@ -255,7 +255,7 @@ public class GoToScreens {
         }
     }
 
-    public void goForgetPassword(Stage stage){
+    public void goForgetPasswordScreen(Stage stage){
         ForgotPasswordScreen forgotPasswordScreen = new ForgotPasswordScreen();
         try{
             forgotPasswordScreen.start(stage);
@@ -264,7 +264,7 @@ public class GoToScreens {
         }
     }
 
-    public void goSignUp(Stage stage){
+    public void goSignUpScreen(Stage stage){
         SignUpScreen signUpScreen = new SignUpScreen();
         try{
             signUpScreen.start(stage);
@@ -273,7 +273,7 @@ public class GoToScreens {
         }
     }
 
-    public void goNewAnimal(Stage stage){
+    public void goNewAnimalScreen(Stage stage){
         AddanimalScreen addanimalScreen = new AddanimalScreen();
         try {
             addanimalScreen.start(stage);
@@ -282,7 +282,7 @@ public class GoToScreens {
         }
     }
 
-    public void goEditAnimal(Stage stage,int animal){
+    public void goEditAnimalScreen(Stage stage, int animal){
         EditAnimalScreen editAnimalScreen = new EditAnimalScreen(animal,ArrayKeeper.getCurrentUser());
         try {
             editAnimalScreen.start(stage);
@@ -300,7 +300,7 @@ public class GoToScreens {
         }
     }
 
-    public void goMakeAppointment(Stage stage){
+    public void goMakeAppointmentScreen(Stage stage){
         MakeAppointment makeAppointment = new MakeAppointment();
         try {
             makeAppointment.start(stage);
@@ -318,7 +318,7 @@ public class GoToScreens {
         }
     }
 
-    public void goEditAppointment(Stage stage){
+    public void goEditAppointmentScreen(Stage stage){
         EditAppointment editAppointment = new EditAppointment();
         try {
             editAppointment.start(stage);
@@ -336,7 +336,7 @@ public class GoToScreens {
         }
     }
 
-    public void goAddHealthCheck(Stage stage,int currentAnimal){
+    public void goAddHealthCheckScreen(Stage stage, int currentAnimal){
         AddHealthCheckScreen addHealthCheckScreen = new AddHealthCheckScreen(currentAnimal);
         try {
             addHealthCheckScreen.start(stage);
@@ -344,8 +344,6 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
-
-
     public void goStoryScreen(Stage stage) {
         StoryScreen storyScreen = new StoryScreen();
         try{
@@ -355,7 +353,6 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
-
     public void goShowPastAppointments(Stage stage){
         ShowPastAppointments showPastAppointments = new ShowPastAppointments();
         try{
@@ -364,8 +361,7 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
-
-    public void goCancelAppointments(Stage stage){
+    public void goCancelAppointmentsScreen(Stage stage){
         CancelAppointmentScreen cancelAppointmentScreen = new CancelAppointmentScreen();
         try{
             cancelAppointmentScreen.start(stage);
@@ -373,7 +369,6 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
-
     public void goMathGame(Stage stage) {
         MathScreen mathScreen = new MathScreen();
         try{
@@ -382,5 +377,4 @@ public class GoToScreens {
             ex.printStackTrace();
         }
     }
-
 }

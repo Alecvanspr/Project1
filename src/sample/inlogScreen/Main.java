@@ -74,7 +74,7 @@ public class Main extends Application {
     public void makeButtonSignUp(){
         Button btnSignUp = new Button("Create an account");
         btnSignUp.setOnAction(e -> {
-            goToScreens.goSignUp(window);
+            goToScreens.goSignUpScreen(window);
         });
         btnSignUp.relocate(150,145);
         pane.getChildren().add(btnSignUp);
@@ -83,7 +83,7 @@ public class Main extends Application {
         Button btnForgotPassword = new Button("Forgot Password");
         btnForgotPassword.relocate(100,175);
         btnForgotPassword.setOnMousePressed(e->{
-            goToScreens.goForgetPassword(window);
+            goToScreens.goForgetPasswordScreen(window);
         });
         pane.getChildren().add(btnForgotPassword);
     }

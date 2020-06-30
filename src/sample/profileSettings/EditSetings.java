@@ -53,7 +53,6 @@ public class EditSetings {
             PersonalData personalData = new PersonalData();
             personalData = ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser());
             personalData.setSecurityAnswer(answer);
-            //personalData.setSecurtityQuestion();
             ArrayKeeper.getData().set(getCurrentUser(), personalData);
         }
     }
@@ -64,9 +63,9 @@ public class EditSetings {
             ArrayKeeper.getData().set(getCurrentUser(), personalData);
         }
     }
-    public boolean CheckFilled(String isempety){
+    public boolean CheckFilled(String isEmpty){
         boolean ret = true;
-        if(isempety.equals("")){
+        if(isEmpty.equals("")){
             ret = false;
         }
         return  ret;

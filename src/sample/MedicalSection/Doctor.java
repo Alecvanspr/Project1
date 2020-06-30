@@ -11,7 +11,6 @@ public class Doctor extends PersonalData {
     private ArrayList<Specialty> specialties;
     private ArrayList<Dates> dates = new ArrayList<>();
     private ArrayList<PersonalData> patients = new ArrayList<>();
-//String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
     public Doctor(String[] personalData, ArrayList<Specialty> specialties){
         //String username, String name, String password, String dateOfBirth, String securityQuestion, String securityAnswer
         super(personalData);

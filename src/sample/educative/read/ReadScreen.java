@@ -53,7 +53,7 @@ public class ReadScreen  extends Application {
         btnWords.relocate(340,320);
         btnWords.setPrefSize(100,100);
         btnWords.setOnAction(e->{
-            goToScreens.goWordReading(stage);
+            goToScreens.goWordReadingScreen(stage);
         });
         pane.getChildren().add(btnWords);
     }

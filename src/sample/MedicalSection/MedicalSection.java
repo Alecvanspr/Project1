@@ -28,15 +28,15 @@ public class MedicalSection extends Application {
     ListView<String> ListView = new ListView<>();
 
     Button btnBack = new Button("Back");
-    Button makeAppointmentbtn = new Button("Make appointment");
-    Button yourAppointmentbtn = new Button("Edit appointments");
+    Button makeAppointmentBtn = new Button("Make appointment");
+    Button yourAppointmentBtn = new Button("Edit appointments");
 
     @Override
     public void start(Stage stage) throws Exception{
         makeListView();
         makeLabels();
         makeButtons(stage);
-        pane.getChildren().addAll(welcome, btnBack, makeAppointmentbtn, yourAppointmentbtn, myAppointments,ListView);
+        pane.getChildren().addAll(welcome, btnBack, makeAppointmentBtn, yourAppointmentBtn, myAppointments,ListView);
         fin(stage);
         pane.setStyle("-fx-background-color:#F0F8FF");
 
@@ -44,8 +44,8 @@ public class MedicalSection extends Application {
 
 
     public void makeYourAppointmentButton(Stage stage){
-        makeMenuButton(yourAppointmentbtn);
-        yourAppointmentbtn.setOnMouseClicked(E -> {
+        makeMenuButton(yourAppointmentBtn);
+        yourAppointmentBtn.setOnMouseClicked(E -> {
             goToScreens.goAppointmentsScreen(stage);
         });
     }
@@ -53,10 +53,7 @@ public class MedicalSection extends Application {
         makeBackButton(stage);
         makeAppointmentButton(stage);
         makeYourAppointmentButton(stage);
-
-
     }
-
     public void makeBackButton(Stage stage){
         btnBack.relocate(10,565);
         buttonSettings.onMouse(btnBack);
@@ -65,9 +62,9 @@ public class MedicalSection extends Application {
         });
     }
     public void makeAppointmentButton(Stage stage){
-        makeMenuButton(makeAppointmentbtn);
-        makeAppointmentbtn.setOnAction(E-> {
-            goToScreens.goMakeAppointment(stage);
+        makeMenuButton(makeAppointmentBtn);
+        makeAppointmentBtn.setOnAction(E-> {
+            goToScreens.goMakeAppointmentScreen(stage);
         });
     }
 

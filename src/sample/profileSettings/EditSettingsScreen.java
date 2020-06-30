@@ -15,30 +15,26 @@ public class EditSettingsScreen extends Application {
     Scene changeSettings;
     EditSetings editSetings = new EditSetings();
     GoToScreens goToScreens = GoToScreens.getInstance();
-    //ButtonSettings ButtonSettings = new ButtonSettings();
-    Pane eSettings = new Pane();
+    Pane pane = new Pane();
 
     Label text = new Label("Settings to change user settings");
     TextField txtNewUsername = new TextField();
     TextField txtNewName = new TextField();
     PasswordField txtNewPassword = new PasswordField();
-    PasswordField txtNewPasswordConfrm = new PasswordField();
+    PasswordField txtNewPasswordConfirm = new PasswordField();
     TextField txtNewBirthday = new TextField();
     TextField txtNewPhoneNumber = new TextField();
     TextField txtSecurityQuestion = new TextField();
     TextField txtChangeGender = new TextField();
         public void start(Stage stage) throws Exception {
-        //De code hieronder heeft te maken met de knoppen voor het edit Scherm
-
-        eSettings.getChildren().addAll(txtNewUsername,txtNewName,txtNewPassword,txtNewPasswordConfrm,
+        pane.getChildren().addAll(txtNewUsername,txtNewName,txtNewPassword, txtNewPasswordConfirm,
                 txtNewBirthday,txtSecurityQuestion,text,txtNewPhoneNumber,txtChangeGender);
-
         relocateLabels();
         makeButtons(stage);
         fin(stage);
     }
     public void fin(Stage stage){
-        changeSettings = new Scene(eSettings,800,600);
+        changeSettings = new Scene(pane,800,600);
         stage.setTitle("Change Settings");
         stage.setScene(changeSettings);
         stage.show();
@@ -47,7 +43,7 @@ public class EditSettingsScreen extends Application {
         txtNewUsername.relocate(100,100);
         txtNewName.relocate(100,135);
         txtNewPassword.relocate(100,170);
-        txtNewPasswordConfrm.relocate(100,195);
+        txtNewPasswordConfirm.relocate(100,195);
         txtNewBirthday.relocate(100,230);
         txtSecurityQuestion.relocate(100,265);
         txtNewPhoneNumber.relocate(100,300);
@@ -71,7 +67,7 @@ public class EditSettingsScreen extends Application {
         btnApplyAll.setOnAction(E->{
             editSetings.changeUsername(txtNewUsername.getText());
             editSetings.changeName(txtNewName.getText());
-            editSetings.changePassword(txtNewPassword.getText(),txtNewPasswordConfrm.getText());
+            editSetings.changePassword(txtNewPassword.getText(), txtNewPasswordConfirm.getText());
             editSetings.changePhone(txtNewPhoneNumber.getText());
             editSetings.changeBirthday(txtNewBirthday.getText());
             editSetings.changeSecurityAnswer(txtSecurityQuestion.getText());
@@ -79,7 +75,7 @@ public class EditSettingsScreen extends Application {
             goToScreens.goProfileSettingScreen(stage);
         });
         ButtonSettings.onMouse(btnApplyAll);
-        eSettings.getChildren().add(btnApplyAll);
+        pane.getChildren().add(btnApplyAll);
     }
     public void makeBtnBack(Stage stage){
         Button btnBack = new Button("Back");
@@ -88,7 +84,7 @@ public class EditSettingsScreen extends Application {
         btnBack.setOnAction(e -> {
             goToScreens.goProfileSettingScreen(stage);
         });
-        eSettings.getChildren().add(btnBack);
+        pane.getChildren().add(btnBack);
     }
     public void makeBtnChangeName(Stage stage){
         Button btnChangeName = new Button("Change name");
@@ -98,7 +94,7 @@ public class EditSettingsScreen extends Application {
             goToScreens.goProfileSettingScreen(stage);
         });
         btnChangeName.relocate(300,135);
-        eSettings.getChildren().add(btnChangeName);
+        pane.getChildren().add(btnChangeName);
     }
     public void makeBtnUserName(Stage stage){
         Button btnChangeUsername = new Button("Change Username");
@@ -108,17 +104,17 @@ public class EditSettingsScreen extends Application {
             goToScreens.goProfileSettingScreen(stage);
         });
         btnChangeUsername.relocate(300,100);
-        eSettings.getChildren().add(btnChangeUsername);
+        pane.getChildren().add(btnChangeUsername);
     }
     public void makeBtnChangePassword(Stage stage){
         Button btnChangePassword = new Button("Change password");
         ButtonSettings.onMouse(btnChangePassword);
         btnChangePassword.setOnAction(E->{
-            editSetings.changePassword(txtNewPassword.getText(),txtNewPasswordConfrm.getText());
+            editSetings.changePassword(txtNewPassword.getText(), txtNewPasswordConfirm.getText());
             goToScreens.goProfileSettingScreen(stage);
         });
         btnChangePassword.relocate(300,195);
-        eSettings.getChildren().add(btnChangePassword);
+        pane.getChildren().add(btnChangePassword);
     }
     public void makeBtnChangeGender(Stage stage){
         Button btnChangeGender = new Button("Change Gender");
@@ -128,7 +124,7 @@ public class EditSettingsScreen extends Application {
             goToScreens.goProfileSettingScreen(stage);
         });
         ButtonSettings.onMouse(btnChangeGender);
-        eSettings.getChildren().add(btnChangeGender);
+        pane.getChildren().add(btnChangeGender);
     }
     public void makeBtnChangeBirthday(Stage stage){
         Button btnChangeBirthday = new Button("Change Birthday");
@@ -138,17 +134,17 @@ public class EditSettingsScreen extends Application {
             editSetings.changeBirthday(txtNewBirthday.getText());
             goToScreens.goProfileSettingScreen(stage);
         });
-        eSettings.getChildren().add(btnChangeBirthday);
+        pane.getChildren().add(btnChangeBirthday);
     }
     public void makeBtnChangePhoneNumber(Stage stage){
-        Button btnChagnePhonenumber = new Button("Change phonenumber");
-        ButtonSettings.onMouse(btnChagnePhonenumber);
-        btnChagnePhonenumber.setOnAction(E->{
+        Button btnChangePhoneNumber = new Button("Change phonenumber");
+        ButtonSettings.onMouse(btnChangePhoneNumber);
+        btnChangePhoneNumber.setOnAction(E->{
             editSetings.changePhone(txtNewPhoneNumber.getText());
             goToScreens.goProfileSettingScreen(stage);
         });
-        btnChagnePhonenumber.relocate(300,300);
-        eSettings.getChildren().add(btnChagnePhonenumber);
+        btnChangePhoneNumber.relocate(300,300);
+        pane.getChildren().add(btnChangePhoneNumber);
     }
     public void makeBtnSecurityQuestion(Stage stage){
         Button btnChangeSecurityQuestion = new Button("Change Security question");
@@ -158,6 +154,6 @@ public class EditSettingsScreen extends Application {
             editSetings.changeSecurityAnswer(txtSecurityQuestion.getText());
             goToScreens.goProfileSettingScreen(stage);
         });
-        eSettings.getChildren().add(btnChangeSecurityQuestion);
+        pane.getChildren().add(btnChangeSecurityQuestion);
     }
 }
