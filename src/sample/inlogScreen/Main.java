@@ -35,20 +35,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        login.getChildren().add(error);
         pane.setStyle("-fx-background-color: #add8e6");
         window = primaryStage;
         makeLabels();
         makeButtons();
-        //mainMethods.delettis(); //this is the demo account where we all can log in with, i used it to to test. but it need to be deleted afterwards
         textFieldUserName.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                login.getChildren().remove(error);
+                error.setVisible(false);
             }
         });
         fin();
-        mainMethods.delettis();
+        mainMethods.makeTestAccounts();//these are the demo accounts where we all can log in with, i used it to to test.
     }
     public void fin(){
         Scene loginScene = new Scene(pane,800,600);
@@ -58,13 +56,15 @@ public class Main extends Application {
         window.show();
     }
     public void makeLabels(){
+        error.setVisible(false);
         Label lblUserName = new Label("Username");
         Label lblPassWord = new Label("Password");
         lblPassWord.relocate(100,95);
         lblUserName.relocate(100,50);
         textFieldUserName.relocate(100,70);
         passwordField.relocate(100,115);
-        pane.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord);
+        error.relocate(100,200);
+        pane.getChildren().addAll(textFieldUserName,passwordField,lblUserName,lblPassWord,error);
     }
     public void makeButtons(){
         makeButtonLogin(window);
@@ -94,8 +94,8 @@ public class Main extends Application {
             if(mainMethods.dataCheck(passwordField.getText(),(textFieldUserName.getText()))){
                 goToScreens.goHomeScreen(window);
             }else{
+                error.setVisible(true);
                 error.setText("Sorry, try again");
-                error.relocate(100,200);
             }
         });
         pane.getChildren().add(btnLogin);
