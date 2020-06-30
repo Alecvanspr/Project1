@@ -185,13 +185,13 @@ public class MathScreen  extends Application {
             checkAnswer(btnAnswer2);
         });
 
-        btnAnswer2 .setOnMouseEntered(new EventHandler<MouseEvent>() {
+        btnAnswer2.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 setButtonScaleChange(btnAnswer2 , 1.2);
             }
         });
-        btnAnswer2 .setOnMouseExited(new EventHandler<MouseEvent>() {
+        btnAnswer2.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 setButtonScaleChange(btnAnswer2 , 1.0);
