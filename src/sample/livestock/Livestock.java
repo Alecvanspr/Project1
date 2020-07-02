@@ -67,7 +67,7 @@ public class Livestock extends Application {
         makeAuction.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                goToScreens.goShowAnimalsBySpiecies(stage);
+                goToScreens.goShowAnimalsBySpecies(stage);
             }
         });
         buttonSettings.onMouse(makeAuction);

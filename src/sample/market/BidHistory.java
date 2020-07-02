@@ -5,7 +5,7 @@ import sample.ArrayKeeper;
 import java.util.ArrayList;
 
 public class BidHistory {
-        private ArrayList<Bid> userBidHistoryList = new ArrayList<Bid>();
+        private ArrayList<Bid> userBidHistoryList = new ArrayList<>();
         private int userInt;
 
         public BidHistory() {

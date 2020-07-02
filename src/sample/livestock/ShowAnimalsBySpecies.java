@@ -31,7 +31,7 @@ public class ShowAnimalsBySpecies {
             for(int i = 1; i < amount; i++){
                 auction.addAnimalToQueue(PersonalData.getSpecies().get(x).arrayListOfSpecies.getArrayList().get(i));
             }
-            goToScreens.goShowAnimalsBySpiecies(stage);
+            goToScreens.goShowAnimalsBySpecies(stage);
         }else{
             showAnimalsBySpeciesScreen.playError();
         }

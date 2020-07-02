@@ -37,7 +37,6 @@ public class Addressbook {
         }
     }
 
-
     public static String list(){
         String ret = "";
         for(Contact contact : contacts) {

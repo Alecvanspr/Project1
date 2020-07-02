@@ -89,7 +89,7 @@ public class MedicalSection extends Application {
     }
 
     public void makeViewPatientsButton(Stage stage){
-        if(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()) instanceof Doctor){
+        if(ArrayKeeper.checkIsDoctor()){
             viewPatientsBtn.setVisible(true);
         }
         else{
@@ -108,14 +108,17 @@ public class MedicalSection extends Application {
         ListView.setPrefWidth(373);
         ListView.setItems(futureAppointments.appointmentsString);
     }
+
     public void makeLabels(){
         makeAppointmentLabel();
         makeStartLabel();
     }
+
     public void makeStartLabel(){
         welcome.setFont(Font.font("Arial", 30));
         welcome.relocate(200, 100);
     }
+
     public void makeAppointmentLabel(){
         myAppointments.setFont(Font.font("Arial", 20));
         myAppointments.relocate(335, 150);

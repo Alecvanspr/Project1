@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import sample.ArrayKeeper;
 import sample.GoToScreens;
 import sample.inlogScreen.Main;
+import sample.inlogScreen.PersonalData;
 
 public class ViewPatientsScreen extends Application{
     Button goBack = new Button("Back");
@@ -19,13 +20,12 @@ public class ViewPatientsScreen extends Application{
     GoToScreens goToScreens = new GoToScreens();
     Pane pane = new Pane();
     ScrollPane rootPane = new ScrollPane();
-    int currentPatient = 0;
 
     @Override
-    public void start(Stage stage) throws Exception{
-        showPage(stage);
-        makeLayout(stage);
-        getPatients(stage);
+    public void start(Stage primarystage) throws Exception{
+        showPage(primarystage);
+        makeLayout(primarystage);
+        getPatients(primarystage);
     }
 
     public void makeLayout(Stage stage){
@@ -70,11 +70,10 @@ public class ViewPatientsScreen extends Application{
 
     public void getPatients(Stage stage){
         for(int i = 0; i < ArrayKeeper.findDoctor(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName()).getPatients().size(); i++){
-            int patient = i;
-            currentPatient = i;
             Label patientNaam = new Label(ArrayKeeper.findDoctor(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName()).getPatients().get(i).getName());
+            PersonalData patient = ArrayKeeper.searchPersonalData(ArrayKeeper.findDoctor(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName()).getPatients().get(i).getUsername());
             patientNaam.setOnMouseClicked(E -> {
-                //goToScreens.goViewPatientComplaintsScreen(stage, patient);
+                goToScreens.goViewPatientComplaintsScreen(stage, patient, ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()).getName());
             });
             patientNaam.relocate(50, 50+(50*i));
             pane.getChildren().add(patientNaam);

@@ -56,15 +56,26 @@ public class ShowPastAppointments extends Application{
         LocalDate dateNow = LocalDate.now();
         if(dateNow.getYear() > date.getYear()){
             return true;
-        }else if(dateNow.getYear() == date.getYear()){
+        }
+        else if(dateNow.getYear() == date.getYear()){
             if(dateNow.getMonthValue() > date.getMonthValue()){
                 return true;
-            }else if(dateNow.getMonthValue() == date.getMonthValue()){
+            }
+            else if(dateNow.getMonthValue() == date.getMonthValue()){
                 if(dateNow.getDayOfYear() > date.getDayOfYear()){
                     return true;
-                }else{return false;}
-            }else{return false;}
-        }else {return false;}
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
     }
 
     public ArrayList<Appointment> getUserAppointmentLists(int userInt){

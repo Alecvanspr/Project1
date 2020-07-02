@@ -68,6 +68,10 @@ public class PersonalData {
         this.name = name;
     }
 
+    public void setUserName(String username){
+        this.username = username;
+    }
+
     public String getName(){
         return name;
     }
@@ -144,7 +148,7 @@ public class PersonalData {
     public void makeAppointment(Doctor doctor, LocalDate date, String[] timeAndReason, PersonalData currentUser){
         Appointment newAppointment = new Appointment(doctor, date, timeAndReason, currentUser);
         this.addAppointment(newAppointment);
-        this.addComplaint(ArrayKeeper.getSpecialty(timeAndReason[1]), date);
+        currentUser.addComplaint(ArrayKeeper.getSpecialty(timeAndReason[1]), date);
         doctor.getAppointments().add(newAppointment);
         doctor.getDate(date).removeTimeFromTimeTable((String) timeAndReason[0]);
         doctor.addPatient(this);

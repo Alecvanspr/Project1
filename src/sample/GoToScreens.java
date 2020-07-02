@@ -6,10 +6,7 @@ import sample.contacts.ContactScreen;
 import sample.educative.EducativeHomeScreen;
 import sample.educative.read.ReadScreen;
 import sample.educative.writing.*;
-import sample.inlogScreen.ForgotPasswordScreen;
-import sample.inlogScreen.Main;
-import sample.inlogScreen.SignUpScreen;
-import sample.inlogScreen.SignUpScreenDoctor;
+import sample.inlogScreen.*;
 import sample.livestock.*;
 import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
@@ -99,7 +96,7 @@ public class GoToScreens {
         }
     }
 
-    public void goShowAnimalsBySpiecies (Stage stage){
+    public void goShowAnimalsBySpecies(Stage stage){
         ShowAnimalsBySpeciesScreen showAnimalsBySpeciesScreen = new ShowAnimalsBySpeciesScreen();
         try {
             showAnimalsBySpeciesScreen.start(stage);
@@ -266,6 +263,17 @@ public class GoToScreens {
         try {
             editAnimalScreen.start(stage);
         } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void goViewPatientComplaintsScreen(Stage stage, PersonalData patient, String doctorName){
+        //ViewPatientComplaintsScreen viewComplaints = new ViewPatientComplaintsScreen(patient, ArrayKeeper.findDoctor(doctorName));
+        ViewPatientComplaintsScreen viewComplaints = new ViewPatientComplaintsScreen(patient,ArrayKeeper.findDoctor(doctorName));
+        try{
+            viewComplaints.start(stage);
+        }
+        catch(Exception ex){
             ex.printStackTrace();
         }
     }

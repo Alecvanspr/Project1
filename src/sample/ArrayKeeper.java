@@ -102,4 +102,13 @@ public class ArrayKeeper {
             return false;
         }
     }
+
+    public static PersonalData searchPersonalData(String patientUsername){
+        for(int i = 0; i < Data.size(); i++){
+            if(Data.get(i).getUsername().equals(patientUsername)){
+                return Data.get(i);
+            }
+        }
+        return null;
+    }
 }
