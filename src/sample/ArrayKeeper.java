@@ -78,4 +78,20 @@ public class ArrayKeeper {
         }
         return null;
     }
+    public static PersonalData searchPersonalData(String patientUsername){
+        for(int i = 0; i < Data.size(); i++){
+            if(Data.get(i).getUsername().equals(patientUsername)){
+                return Data.get(i);
+            }
+        }
+        return null;
+    }
+    public static boolean checkIsDoctor(){
+        if(ArrayKeeper.getPersonalData(ArrayKeeper.getCurrentUser()) instanceof Doctor){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

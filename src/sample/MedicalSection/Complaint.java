@@ -6,6 +6,15 @@ public class Complaint{
     private Specialty bodyPart;
     private Date firstNoticed;
     private Date cured;
+    private boolean hasBeenCured = false;
+
+    public boolean getHasBeenCured(){
+        return hasBeenCured;
+    }
+
+    public void setHasBeenCured(boolean hasBeenCured){
+        this.hasBeenCured = hasBeenCured;
+    }
 
     public Specialty getBodyPart(){
         return bodyPart;

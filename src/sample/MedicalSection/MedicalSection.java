@@ -30,6 +30,7 @@ public class MedicalSection extends Application {
     Button btnBack = new Button("Back");
     Button makeAppointmentBtn = new Button("Make appointment");
     Button yourAppointmentBtn = new Button("Edit appointments");
+    Button viewPatientsBtn = new Button("View your patients");
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -53,7 +54,23 @@ public class MedicalSection extends Application {
         makeBackButton(stage);
         makeAppointmentButton(stage);
         makeYourAppointmentButton(stage);
+        makeViewPatientsButton(stage);
     }
+
+    public void makeViewPatientsButton(Stage stage){
+        if(ArrayKeeper.checkIsDoctor()){
+            viewPatientsBtn.setVisible(true);
+        }
+        else{
+            viewPatientsBtn.setVisible(false);
+        }
+        viewPatientsBtn.setOnAction(E -> {
+            goToScreens.goViewPatientsScreen(stage);
+        });
+        pane.getChildren().add(viewPatientsBtn);
+        viewPatientsBtn.relocate(4,4);
+    }
+
     public void makeBackButton(Stage stage){
         btnBack.relocate(10,565);
         buttonSettings.onMouse(btnBack);

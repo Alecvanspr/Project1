@@ -9,10 +9,7 @@ import sample.educative.read.ReadScreen;
 import sample.educative.read.StoryScreen;
 import sample.educative.read.WordReadScreen;
 import sample.educative.writing.*;
-import sample.inlogScreen.ForgotPasswordScreen;
-import sample.inlogScreen.Main;
-import sample.inlogScreen.SignUpScreen;
-import sample.inlogScreen.SignUpScreenDoctor;
+import sample.inlogScreen.*;
 import sample.livestock.*;
 import sample.market.*;
 import sample.profileSettings.EditSettingsScreen;
@@ -374,6 +371,25 @@ public class GoToScreens {
         try{
             mathScreen.start(stage);
         } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goViewPatientsScreen(Stage stage){
+        ViewPatientsScreen viewPatientsScreen = new ViewPatientsScreen();
+        try{
+            viewPatientsScreen.start(stage);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void goViewPatientComplaintsScreen(Stage stage, PersonalData patient, String doctorName){
+        //ViewPatientComplaintsScreen viewComplaints = new ViewPatientComplaintsScreen(patient, ArrayKeeper.findDoctor(doctorName));
+        ViewPatientComplaintsScreen viewComplaints = new ViewPatientComplaintsScreen(patient,ArrayKeeper.findDoctor(doctorName));
+        try{
+            viewComplaints.start(stage);
+        }
+        catch(Exception ex){
             ex.printStackTrace();
         }
     }
